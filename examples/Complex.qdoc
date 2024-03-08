@@ -1,0 +1,10 @@
+/*!
+    \title Complex graph
+    \ingroup quickgraphlibdemos
+    \brief A complex graph with lines, histograms, changing data and user interaction.
+    \example complex
+
+    \image examples/Complex.png
+
+    \quotefile examples/Complex.qml
+*/

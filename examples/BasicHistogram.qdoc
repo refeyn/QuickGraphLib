@@ -1,0 +1,10 @@
+/*!
+    \title Basic histogram
+    \ingroup quickgraphlibdemos
+    \brief A simple histogram of a normal function.
+    \example basichistogram
+
+    \image examples/BasicHistogram.png
+
+    \quotefile examples/BasicHistogram.qml
+*/

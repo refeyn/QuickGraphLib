@@ -1,0 +1,5 @@
+*.qml~
+.mypy_cache
+__pycache__
+venv
+dist

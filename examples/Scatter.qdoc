@@ -1,0 +1,10 @@
+/*!
+    \title Scatter graph
+    \ingroup quickgraphlibdemos
+    \brief A simple scatter graph with transparent markers.
+    \example scatter
+
+    \image examples/Scatter.png
+
+    \quotefile examples/Scatter.qml
+*/

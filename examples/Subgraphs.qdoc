@@ -1,0 +1,10 @@
+/*!
+    \title Subgraphs
+    \ingroup quickgraphlibdemos
+    \brief Four subgraphs with hidden axes.
+    \example subgraphs
+
+    \image examples/Subgraphs.png
+
+    \quotefile examples/Subgraphs.qml
+*/

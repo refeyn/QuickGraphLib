@@ -1,0 +1,10 @@
+/*!
+    \title Readout line
+    \ingroup quickgraphlibdemos
+    \brief A graph with a movable line that shows the X and Y value at that position.
+    \example readoutline
+
+    \image examples/ReadoutLine.png
+
+    \quotefile examples/ReadoutLine.qml
+*/

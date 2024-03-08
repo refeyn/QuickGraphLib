@@ -1,0 +1,10 @@
+/*!
+    \title Twinned X axis
+    \ingroup quickgraphlibdemos
+    \brief Two graphs with different GraphAreas sharing the same X axis.
+    \example twinx
+
+    \image examples/TwinX.png
+
+    \quotefile examples/TwinX.qml
+*/

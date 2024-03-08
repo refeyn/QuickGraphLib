@@ -1,0 +1,10 @@
+/*!
+    \title Contours
+    \ingroup quickgraphlibdemos
+    \brief Contours
+    \example contours
+
+    \image examples/Contours.png
+
+    \quotefile examples/Contours.qml
+*/

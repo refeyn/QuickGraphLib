@@ -1,0 +1,10 @@
+/*!
+    \title Graph with all four axes
+    \ingroup quickgraphlibdemos
+    \brief A simple graph of a sin function with all four axes shown.
+    \example alltheaxes
+
+    \image examples/AllTheAxes.png
+
+    \quotefile examples/AllTheAxes.qml
+*/

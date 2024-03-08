@@ -1,0 +1,10 @@
+/*!
+    \title Scaled graph
+    \ingroup quickgraphlibdemos
+    \brief A simple graph with a fixed size which is scaled to fit the UI.
+    \example scalinggraph
+
+    \image examples/ScalingGraph.png
+
+    \quotefile examples/ScalingGraph.qml
+*/

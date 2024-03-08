@@ -1,0 +1,10 @@
+/*!
+    \title Zoomable as image
+    \ingroup quickgraphlibdemos
+    \brief Zoom into a graph as if it were an image.
+    \example zoomableasimage
+
+    \image examples/ZoomableAsImage.png
+
+    \quotefile examples/ZoomableAsImage.qml
+*/

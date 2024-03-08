@@ -1,0 +1,10 @@
+/*!
+    \title Zoomable axes
+    \ingroup quickgraphlibdemos
+    \brief Zooming adjusts the axes' limits.
+    \example zoomableaxes
+
+    \image examples/ZoomableAxes.png
+
+    \quotefile examples/ZoomableAxes.qml
+*/

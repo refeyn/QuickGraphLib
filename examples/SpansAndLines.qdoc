@@ -1,0 +1,10 @@
+/*!
+    \title Spans and lines
+    \ingroup quickgraphlibdemos
+    \brief Axis spans and lines.
+    \example spansandlines
+
+    \image examples/SpansAndLines.png
+
+    \quotefile examples/SpansAndLines.qml
+*/

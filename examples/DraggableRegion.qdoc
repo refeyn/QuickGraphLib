@@ -1,0 +1,10 @@
+/*!
+    \title Draggable region
+    \ingroup quickgraphlibdemos
+    \brief Draggable region
+    \example draggableregion
+
+    \image examples/DraggableRegion.png
+
+    \quotefile examples/DraggableRegion.qml
+*/

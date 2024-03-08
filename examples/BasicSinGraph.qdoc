@@ -1,0 +1,10 @@
+/*!
+    \title Basic sin graph
+    \ingroup quickgraphlibdemos
+    \brief A simple graph of a sin function.
+    \example basicsingraph
+
+    \image examples/BasicSinGraph.png
+
+    \quotefile examples/BasicSinGraph.qml
+*/
