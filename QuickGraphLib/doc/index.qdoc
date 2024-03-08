@@ -1,7 +1,7 @@
 /*!
 \page index.html
 \title QuickGraphLib
-\brief A scientific graphing library for QtQuick
+\brief A scientific graphing library
 
 The \l{QuickGraphLib} module provides a collection of types that can be composed to create complex and fast scientific graphs.
 

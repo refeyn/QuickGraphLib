@@ -1,7 +1,7 @@
 /*!
 \qmlmodule QuickGraphLib.GraphItems
 \title QuickGraphLib.GraphItems QML types
-\brief Submodule containing components to be used inside a GraphArea.
+\brief Submodule containing components to be used inside a graph area.
 
 The \l {QuickGraphLib.GraphItems} module provides components to be used inside a GraphArea.
 

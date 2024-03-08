@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background-color: #f8f8f8;
+    line-height: 1.5;
+}
+
+a {
+    color: #0B5C93;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+    margin: 1em 0;
+    font-weight: normal;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0.5em 0;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 0.5em;
+}
+
+li {
+    list-style: "›";
+    padding-left: 0.25em;
+}
+
+ul {
+    padding-left: 1em;
+    margin: 1em 0;
+    line-height: 1.75;
+}
+
+ul ul {
+    margin: 0;
+}
+
+b {
+    font-weight: bold;
+}
+
+pre {
+    margin: 1em 0;
+    background-color: #222;
+    padding: 1em;
+    color: white;
+}
+
+pre a {
+    color: #ACCEED;
+}
+
+li::marker {
+    color: #0B5C93;
+}
+
+img {
+    max-width: 50%;
+    margin: 1em;
+}
+
+.centerAlign {
+    text-align: center;
+}
+
+.crumbs ul {
+    display: table;
+    font-size: 0.9em;
+    padding: 1em;
+    margin: 0;
+}
+
+.crumbs li {
+    display: table-cell;
+    padding: 0;
+}
+
+.crumbs li:not(:first-child)::before {
+    content: "›";
+    padding: 0 0.5em;
+    color: black;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.content {
+    max-width: 1000px;
+    background-color: white;
+    padding: 1em;
+    flex-grow: 1;
+}
+
+.toc {
+    margin-right: 1em;
+    padding: 1em;
+    background-color: white;
+}
+
+.sidebar ul {
+    padding-left: 0;
+}
+
+.sidebar li {
+    list-style: none;
+}
+
+table.qmlname {
+    width: 100%;
+}
+
+table.qmlname td {
+    border: none;
+    background-color: #f8f8f8;
+    font-size: 1.2em;
+}
+
+h1.title,
+h3#toc {
+    margin-top: 0;
+}
+
+.qmlextra {
+    float: right;
+}
+
+.admonition {
+    margin: 1em 0;
+    padding: 1em;
+}
+
+.warning {
+    background-color: #ff000011;
+    border-left: 3px solid red;
+}
+
+.note {
+    background-color: #0B5C9311;
+    border-left: 3px solid #0B5C93;
+}

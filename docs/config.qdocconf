@@ -1,0 +1,41 @@
+project = QuickGraphLib
+description = QtQuick Scientific Graphing
+sourcedirs = ../QuickGraphLib
+imagedirs = ../QuickGraphLib/ ../.
+exampledirs = ../examples
+
+sources.fileextensions = "*.qml *.qdoc *.js"
+examples.fileextensions = "*.qml *.qdoc *.js"
+
+outputdir = ../dist/docs
+outputformats = HTML
+
+depends = qtdoc qtcore qtgui qtqml qtquick
+include($QT_INSTALL_DOCS\global\qt-html-templates-offline.qdocconf)
+HTML.stylesheets += style.css
+HTML.headerstyles = "<link href=\"https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap\" rel=\"stylesheet\">" \
+    "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\" />\n"
+
+HTML.endheader = \
+    "</head>\n"
+
+# minimal header
+HTML.postheader = \
+    "<body>\n" \
+    "<div class=\"main\">\n" \
+    "<div class=\"crumbs\">\n" \
+    "    <ul>\n" \
+    "<li><a href="index.html" translate="no">Index</a></li>"
+
+HTML.postpostheader = \
+    "    </ul>\n" \
+    "</div>\n" \
+    "<div class=\"container\">\n" \
+
+HTML.prologue = \
+    "<div class=\"content\">\n"
+
+HTML.footer = \
+    "</div>\n" \
+    "</div>\n" \
+    "</div>\n"
