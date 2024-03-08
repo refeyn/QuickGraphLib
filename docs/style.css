@@ -135,6 +135,10 @@ h3#toc {
     margin-top: 0;
 }
 
+.toc ul:last-child {
+    margin-bottom: 0;
+}
+
 .qmlextra {
     float: right;
 }
