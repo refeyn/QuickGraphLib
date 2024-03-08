@@ -1,0 +1,50 @@
+/*!
+\page index.html
+\title QuickGraphLib
+\brief A scientific graphing library for QtQuick
+
+The \l{QuickGraphLib} module provides a collection of types that can be composed to create complex and fast scientific graphs.
+
+The Qt Quick module provides a \l{QuickGraphLib QML Types}{QML API}, as well as a few Python helper functions.
+
+\section1 Using the Module
+
+\include {module-use.qdocinc} {using the qml api} {QuickGraphLib}
+
+\section1 Important Concepts
+
+\list
+    \li \l {Graph structure} - The basics of how a graph is constructed
+    \li \l {Interaction} - How to construct interactive graphs
+    \li \l {Exporting graphs} - How to export graphs
+\endlist
+
+\section1 Examples
+
+The example gallery can be run using (provided the Python environment has
+\l {https://pypi.org/project/PySide6/} {PySide6} and \l {https://pypi.org/project/contourpy/} {contourpy} installed):
+
+\badcode
+python examples\gallery.py
+\endcode
+
+\image examples/ExampleGallery.png
+
+\annotatedlist{quickgraphlibdemos}
+
+\section1 Reference
+
+\list
+    \li \l {QuickGraphLib QML Types}
+           - a list of QML types provided by the \c{QuickGraphLib} import
+        \list
+            \li \l{QuickGraphLib.GraphItems QML types}{QuickGraphLib.GraphItems} - a submodule containing components to be used inside a GraphArea
+            \li \l{QuickGraphLib.PreFabs QML types}{QuickGraphLib.PreFabs} - a submodule containing pre-fabricated groups of components for common graph types
+            \li \l{QuickGraphLib.PythonHelpers QML types}{QuickGraphLib.PythonHelpers} - a submodule containing helpers for exporting and constructing graphs
+        \endlist
+\endlist
+
+\section1 Licenses and Attributions
+
+TODO
+*/

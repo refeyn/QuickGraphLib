@@ -1,0 +1,21 @@
+/*!
+\page export.html
+\title Exporting graphs
+\brief How to export graphs
+
+Graphs can be exported in two types of formats:
+
+\list
+    \li Raster - pixel-based formats like PNG and JPEG
+    \li Vector - vector-based formats like SVG and PS
+\endlist
+
+\section1 Screen capture (raster)
+
+TODO
+
+\section1 QPainter export (both)
+
+TODO
+
+*/

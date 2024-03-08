@@ -1,0 +1,70 @@
+/*!
+\qmlmodule QuickGraphLib.PythonHelpers
+\title QuickGraphLib.PythonHelpers QML types
+\brief Submodule containing helpers for exporting and constructing graphs.
+
+The \l {QuickGraphLib.PythonHelpers} module provides helper functions for exporting and constructing graphs.
+
+To use the module, import the Python module (so that the types are registered):
+
+\badcode
+import quick_graph_lib_helpers
+\endcode
+
+And then import the \c QuickGraphLib.PreFabs module with the following statement:
+
+\qml
+import QuickGraphLib.PythonHelpers as QGLPyHelpers
+\endqml
+
+Visit the \l {QuickGraphLib} module documentation (and in particular the \l {Exporting graphs} page) to learn how to use these components.
+
+\section1 Object Types
+
+*/
+
+/*!
+    \qmltype ExportHelper
+    \inqmlmodule QuickGraphLib.PythonHelpers
+    \inherits QObject
+    \brief Saves export data as SVG or PNG files.
+*/
+
+/*!
+    \qmlmethod var ExportHelper::exportToSvg(var data, url path)
+
+    Exports the graph in \a data to an SVG file at \a path.
+
+    \note Only some QML elements are supported by this export method. See Helpers::exportData for more details.
+
+    \sa Helpers::exportData
+*/
+
+/*!
+    \qmlmethod var ExportHelper::exportToPng(var data, url path)
+
+    Exports the graph in \a data to an PNG file at \a path.
+
+    \note Only some QML elements are supported by this export method. See Helpers::exportData for more details.
+
+    \sa Helpers::exportData
+*/
+
+/*!
+    \qmltype ContourHelper
+    \inqmlmodule QuickGraphLib.PythonHelpers
+    \inherits QObject
+    \brief Produces contour lines and fills from XYZ data.
+*/
+
+/*!
+    \qmlmethod list<list<point>> ContourHelper::contourLine(list<list<double>> x, list<list<double>> y, list<list<double>> z, double height)
+
+    Generates a contour line for the z position \a height from the mesh described by provided \a x, \a y and \a z coordinates. 
+*/
+
+/*!
+    \qmlmethod list<list<point>> ContourHelper::contourFill(list<list<double>> x, list<list<double>> y, list<list<double>> z, double h_min, double h_max)
+
+    Generates a contour fill for the z positions between \a h_min and \a h_max from the mesh described by provided \a x, \a y and \a z coordinates. 
+*/

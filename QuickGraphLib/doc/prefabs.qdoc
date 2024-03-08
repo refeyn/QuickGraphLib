@@ -1,0 +1,18 @@
+/*!
+\qmlmodule QuickGraphLib.PreFabs
+\title QuickGraphLib.PreFabs QML types
+\brief Submodule containing pre-fabricated groups of components for common graph types.
+
+The \l {QuickGraphLib.PreFabs} module provides pre-fabricated groups of components for common graph types.
+
+To use the module, import the \c QuickGraphLib.PreFabs module with the following statement:
+
+\qml
+import QuickGraphLib.PreFabs as QGLPreFabs
+\endqml
+
+Visit the \l {QuickGraphLib} module documentation (and in particular the \l {Graph structure} page) to learn how to use these components.
+
+\section1 Object Types
+
+*/

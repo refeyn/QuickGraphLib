@@ -1,0 +1,18 @@
+/*!
+\qmlmodule QuickGraphLib.GraphItems
+\title QuickGraphLib.GraphItems QML types
+\brief Submodule containing components to be used inside a GraphArea.
+
+The \l {QuickGraphLib.GraphItems} module provides components to be used inside a GraphArea.
+
+To use the module, import the \c QuickGraphLib.GraphItems module with the following statement:
+
+\qml
+import QuickGraphLib.GraphItems as QGLGraphItems
+\endqml
+
+Visit the \l {QuickGraphLib} module documentation (and in particular the \l {Graph structure} page) to learn how to use these components.
+
+\section1 Object Types
+
+*/

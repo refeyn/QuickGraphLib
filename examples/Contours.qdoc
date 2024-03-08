@@ -1,7 +1,7 @@
 /*!
     \title Contours
     \ingroup quickgraphlibdemos
-    \brief Contours
+    \brief A graph with contour lines and fills.
     \example contours
 
     \image examples/Contours.png

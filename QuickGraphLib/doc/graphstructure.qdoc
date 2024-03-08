@@ -1,0 +1,137 @@
+/*!
+\page graphstructure.html
+\title Graph structure
+\brief The basics of how a graph is constructed
+
+\section1 Top-level graph structure
+
+Basic graphs usually consist of an X axis, a Y axis and a graphing area where the data is displayed. In QuickGraphLib, this structure is expressed in QML using a 2x2 GridLayout:
+
+\image doc/AxesGridLayout.svg
+
+In QML, this would be expressed as:
+
+\qml
+    import QtQuick.Layouts as QQL
+    import QuickGraphLib as QuickGraphLib
+
+    QQL.GridLayout {
+        columns: 2
+
+        QuickGraphLib.Axis { ... }
+        QuickGraphLib.GraphArea { ... }
+        Item {} // A filler item for the empty cell
+        QuickGraphLib.Axis { ... }
+    }
+\endqml
+
+QuickGraphLib provides two important types in this example:
+
+\list
+    \li \l Axis, which draws an axis (a left and bottom axis in this example)
+    \li \l GraphArea, which provides an area to draw data, like line graphs
+\endlist
+
+This grid structure is very flexible: for example, if you wanted to place an axis on the top and right as well, the GridLayout can be expanded to a 3x3 grid. Or if you could add more columns or rows to add subgraphs.
+
+\section1 Graphing area contents
+
+Once we have a GraphArea, we can add graph items to it. The example above has a grid, a line graph and a legend:
+
+\qml
+    import QuickGraphLib.GraphItems as QGLGraphItems
+
+    QuickGraphLib.GraphArea {
+        QGLGraphItems.Grid { ... }
+        QGLGraphItems.Line { ... }
+        QGLGraphItems.BasicLegend { ... }
+    }
+\endqml
+
+Each graph item is a QML component, with a set of properties to control it's position or data and how it is drawn.
+
+\section1 Understanding the data transform
+
+One of the most important properties of a GraphArea is \c dataTransform. It must be passed to all of the graph items used, as well as any axes used:
+
+\qml
+
+    QQL.GridLayout {
+        QuickGraphLib.GraphArea {
+            id: grapharea
+
+            viewRect: Qt.rect(-20, -1.1, 760, 2.2)
+
+            QGLGraphItems.Line {
+                dataTransform: grapharea.dataTransform
+            }
+        }
+        QuickGraphLib.Axis {
+            dataTransform: grapharea.dataTransform
+        }
+    }
+\endqml
+
+The \c dataTransform is a matrix4x4 which encodes the transformation from data coordinates (which can be any unit, like degrees) to pixel coordinates relative to the GraphArea. To be precise, \c dataTransform is a \l {https://en.wikipedia.org/wiki/Affine_transformation} {affine transformation} consisting of a scaling and translation. To convert any x/y data coordinate to pixels, just do:
+
+\qml
+    grapharea.dataTransform.map(Qt.point(dataX, dataY))
+\endqml
+
+You can also transform from pixels back to data coordinates by inverting the transform:
+
+\qml
+    grapharea.dataTransform.inverted().map(Qt.point(mouseX, mouseY))
+\endqml
+
+The \c dataTransform matrix is used by graph items and axes to convert any position/data you give them into pixel positions for drawing. You can also make your own graph items using the \c dataTransform.
+
+\section1 Configuring an axis (and grid)
+
+An Axis has a few properties you must set:
+
+\list
+    \li \c dataTransform - this must be set to the \c dataTransform of the graph area the axis is for (there may be multiple graphareas)
+    \li \c direction - this must be set to one of \c Left, \c Right, \c Top or \c Bottom, depending on which side of the graph area the axis is
+    \li \c ticks - this must be set to a list of tick positions (which may be empty)
+\endlist
+
+There are a few options for generating tick positions. The most automatic option is to use \c tickLocator:
+
+\qml
+    ticks: QuickGraphLib.Helpers.tickLocator(-20, 740, 11)
+\endqml
+
+This will find up to 11 nice positions between -20 and 740. You can specify the spacing etc. manually using \c linspace:
+
+\qml
+    ticks: QuickGraphLib.Helpers.linspace(0, 720, 9)
+\endqml
+
+This function works the same way as numpy's function of the same name. It will generate 9 positions between 0 and 720 inclusive. And finally, since this is just a list, you can specify ticks using any JavaScript expression you want:
+
+\qml
+    ticks: [0, 100, 700]
+\endqml
+
+Tick positions are also important for grids, normally you can just feed in the ticks from the axes into the grid:
+
+\qml
+    QGLGraphItems.Grid {
+        dataTransform: grapharea.dataTransform
+        xTicks: xAxis.ticks
+        yTicks: yAxis.ticks
+    }
+\endqml
+
+\section1 Drawing a line
+
+\section1 A simple legend
+
+\section1 Full example
+
+The full code for this example can be seen in the \l {Basic sin graph (without prefabs)} example.
+
+\section1 Prefabs
+
+*/

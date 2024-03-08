@@ -1,0 +1,26 @@
+/*!
+\qmlmodule QuickGraphLib
+\title QuickGraphLib QML types
+\brief Module containing components for constructing scientific graphs.
+
+To use the module, import the \c QuickGraphLib module with the following statement:
+
+\qml
+import QuickGraphLib as QuickGraphLib
+\endqml
+
+Visit the \l {QuickGraphLib} module documentation (and in particular the \l {Graph structure} page) to learn how to use these components.
+
+\section1 Submodules
+
+    Qt Quick includes several submodules that contain additional types:
+
+    \list
+    \li \l{QuickGraphLib.GraphItems QML types}{GraphItems} - a submodule containing components to be used inside a GraphArea
+    \li \l{QuickGraphLib.PreFabs QML types}{PreFabs} - a submodule containing pre-fabricated groups of components for common graph types
+    \li \l{QuickGraphLib.PythonHelpers QML types}{PythonHelpers} - a submodule containing helpers for exporting and constructing graphs
+    \endlist
+
+\section1 Object Types
+
+*/
