@@ -1,0 +1,44 @@
+[project]
+name = "QuickGraphLib"
+description = "A scientific graphing library for QtQuick"
+license = { text = "proprietary and confidential" }
+authors = [{ name = "Matthew Joyce", email = "matthew.joyce@refeyn.com" }]
+version = "0.1.0"
+dependencies = ["PySide6", "contourpy"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Topic :: Multimedia :: Graphics :: Presentation",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Software Development :: User Interfaces",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/refeyn/QuickGraphLib"
+Issues = "https://github.com/refeyn/QuickGraphLib/issues"
+Documentation = "..."
+Source = "https://github.com/refeyn/QuickGraphLib"
+
+[project.optional-dependencies]
+analyse = [
+    # Code analysis
+    "black",
+    "pylint",
+    "mypy",
+    "pre-commit",
+    "lxml",
+    # Testing
+    "pytest",
+    "pytest-cov",
+]
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["QuickGraphLib*", "quickgraphlib_helpers*"]
