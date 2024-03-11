@@ -1,7 +1,8 @@
 [project]
 name = "QuickGraphLib"
 description = "A scientific graphing library for QtQuick"
-license = { text = "proprietary and confidential" }
+readme = "README.md"
+license = { file = "LICENCE" }
 authors = [{ name = "Matthew Joyce", email = "matthew.joyce@refeyn.com" }]
 version = "0.1.0"
 dependencies = ["PySide6", "contourpy"]
@@ -9,6 +10,7 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: X11 Applications :: Qt",
     "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Topic :: Multimedia :: Graphics :: Presentation",

@@ -7,7 +7,7 @@ Key advantages:
  - Written in pure QML (with some optional Python helpers), so it can be used in both C++ and Python projects
  - QtQuick's hardware-based rendering makes this library render very fast
  - Support for line graphs, histograms, contour plots and more
- - Interactivity supported natively though declaritive bindings and QtQuick
+ - Interactivity supported natively though declarative bindings and QtQuick
  - Support for PNG and SVG export
 
 ## Examples
