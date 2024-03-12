@@ -4,7 +4,7 @@ description = "A scientific graphing library for QtQuick"
 readme = "README.md"
 license = { file = "LICENCE" }
 authors = [{ name = "Matthew Joyce", email = "matthew.joyce@refeyn.com" }]
-version = "0.1.0"
+version = "0.1.0a0"
 dependencies = ["PySide6", "contourpy"]
 classifiers = [
     "Development Status :: 3 - Alpha",
