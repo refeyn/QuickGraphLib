@@ -44,3 +44,17 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 include = ["QuickGraphLib*", "quickgraphlib_helpers*"]
+
+[tool.isort]
+profile = "black"
+force_alphabetical_sort_within_sections = true
+combine_as_imports = true
+
+[tool.pylint.MAIN]
+extension-pkg-whitelist = ["PySide6"]
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = [
+    "R", # R=Refactor
+    "C", # C=Conventions
+]

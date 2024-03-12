@@ -1,9 +1,13 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
 /*!
     \qmltype Helpers
     \inqmlmodule QuickGraphLib
     \brief Helper functions for building graphs.
 */
 
+// Indentation due to VSCode's formatter...
 .import QtQuick as QQ
     .import QtQuick.Shapes as QQS
 

@@ -1,11 +1,19 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+# SPDX-License-Identifier: MIT
+
 from typing import Sequence
 
 from PySide6 import QtCore, QtQml
 
-from .consts import QML_IMPORT_MAJOR_VERSION, QML_IMPORT_MINOR_VERSION, QML_IMPORT_NAME
+from .consts import (  # pylint: disable=unused-import
+    QML_IMPORT_MAJOR_VERSION,
+    QML_IMPORT_MINOR_VERSION,
+    QML_IMPORT_NAME,
+)
 
 try:
     import contourpy
+    import numpy as np
 except ModuleNotFoundError:
     CONTOURPY_AVAILABLE = False
 else:
@@ -23,6 +31,7 @@ def contour_line(
     )
     result = []
     for loop in gen.lines(height):
+        assert isinstance(loop, np.ndarray), "Loop is not an array"  # For mypy
         points = [QtCore.QPointF(x, y) for x, y in loop]
         result.append(points)
     return result

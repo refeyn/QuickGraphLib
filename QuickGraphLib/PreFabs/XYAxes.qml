@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
 import QtQuick
 import QtQuick.Layouts as QQL
 import QuickGraphLib as QuickGraphLib

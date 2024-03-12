@@ -1,10 +1,17 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+# SPDX-License-Identifier: MIT
+
 import math
 import pathlib
 from typing import Any, Mapping
 
 from PySide6 import QtCore, QtGui, QtQml, QtSvg
 
-from .consts import QML_IMPORT_MAJOR_VERSION, QML_IMPORT_MINOR_VERSION, QML_IMPORT_NAME
+from .consts import (  # pylint: disable=unused-import
+    QML_IMPORT_MAJOR_VERSION,
+    QML_IMPORT_MINOR_VERSION,
+    QML_IMPORT_NAME,
+)
 
 
 def _export_child_to_painter(data: Mapping[str, Any], painter: QtGui.QPainter) -> None:
@@ -16,7 +23,7 @@ def _export_child_to_painter(data: Mapping[str, Any], painter: QtGui.QPainter) -
         painter.setOpacity(data["opacity"])
         rect = QtCore.QRectF(0, 0, data["width"], data["height"])
         if data["clip"]:
-            # TODO doesn't work for SVGs until 6.7
+            # Note: doesn't work for SVGs until 6.7
             painter.setClipRect(rect)
 
         childrenZSorted = sorted(data["children"], key=lambda c: c.get("z", 0))

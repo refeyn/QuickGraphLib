@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+# SPDX-License-Identifier: MIT
+
 import pathlib
 import re
 import sys
@@ -8,7 +11,7 @@ EXAMPLES_DIR = pathlib.Path(__file__).parent
 
 sys.path.append(str(EXAMPLES_DIR.parent))
 
-import quickgraphlib_helpers
+import quickgraphlib_helpers  # pylint: disable=unused-import
 
 if __name__ == "__main__":
     QtQuickControls2.QQuickStyle.setStyle("Basic")

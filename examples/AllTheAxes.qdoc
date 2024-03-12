@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
 /*!
     \title Graph with all four axes
     \ingroup quickgraphlibdemos
