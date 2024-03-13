@@ -19,11 +19,15 @@ QuickGraphLib.AntialiasingContainer {
     /*! TODO */
     property alias axes: axes
     /*! TODO */
+    property alias background: background
+    /*! TODO */
     property alias dataTransform: grapharea.dataTransform
     /*! TODO */
     default property alias graphChildren: grapharea.data
     /*! TODO */
     property alias grapharea: grapharea
+    /*! TODO */
+    property alias grid: grid
     /*! TODO */
     property int numXTicks: 11
     /*! TODO */
@@ -37,18 +41,24 @@ QuickGraphLib.AntialiasingContainer {
     /*! TODO */
     required property rect viewRect
     /*! TODO */
+    property alias xAxis: xAxis
+    /*! TODO */
     property alias xLabel: xAxis.label
+    /*! TODO */
+    property alias yAxis: yAxis
     /*! TODO */
     property alias yLabel: yAxis.label
 
+    Rectangle {
+        id: background
+
+        anchors.fill: parent
+    }
     QQL.GridLayout {
         id: axes
 
-        anchors.bottomMargin: 4
         anchors.fill: parent
-        anchors.leftMargin: 15
-        anchors.rightMargin: 15
-        anchors.topMargin: 4
+        anchors.margins: 10
         columnSpacing: 0
         columns: 2
         rowSpacing: 0

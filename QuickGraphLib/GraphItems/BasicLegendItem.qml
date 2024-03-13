@@ -24,6 +24,10 @@ Row {
     property real strokeWidth: 1
     /*! TODO */
     property alias text: label.text
+    /*! TODO */
+    property alias textColor: label.color
+    /*! TODO */
+    property alias textFont: label.font
 
     spacing: 2
 

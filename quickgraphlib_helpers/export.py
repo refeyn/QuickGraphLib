@@ -126,6 +126,9 @@ def _export_child_to_painter(data: Mapping[str, Any], painter: QtGui.QPainter) -
 def export_to_painter(data: Mapping[str, Any], painter: QtGui.QPainter) -> None:
     painter.setRenderHint(QtGui.QPainter.RenderHint.Antialiasing, True)
     painter.setRenderHint(QtGui.QPainter.RenderHint.TextAntialiasing, True)
+
+    # Cancel out translation done in _export_child_to_painter
+    painter.translate(-data["x"], -data["y"])
     _export_child_to_painter(data, painter)
 
 
@@ -144,10 +147,11 @@ def export_to_svg(data: Mapping[str, Any], path: pathlib.Path) -> None:
     export_to_paintdevice(data, device)
 
 
-def export_to_png(data: Mapping[str, Any], path: pathlib.Path, dpi: int = 96) -> None:
+def export_to_png(
+    data: Mapping[str, Any], path: pathlib.Path, dpi: int = 96 * 2
+) -> None:
     device = QtGui.QPixmap(
-        math.ceil((data["width"] + data["x"]) * dpi / 96),
-        math.ceil((data["height"] + data["y"]) * dpi / 96),
+        math.ceil(data["width"] * dpi / 96), math.ceil(data["height"] * dpi / 96)
     )
     device.fill(QtCore.Qt.GlobalColor.transparent)
     device.setDevicePixelRatio(dpi / 96)

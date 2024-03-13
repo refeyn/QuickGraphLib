@@ -43,9 +43,21 @@ Item {
     /*! TODO */
     property alias label: labelText.text
     /*! TODO */
+    property alias labelColor: labelText.color
+    /*! TODO */
+    property alias labelFont: labelText.font
+    /*! TODO */
     property bool showTickLabels: true
     /*! TODO */
     property double spacing: 4
+    /*! TODO */
+    property alias strokeColor: myPath.strokeColor
+    /*! TODO */
+    property alias strokeWidth: myPath.strokeWidth
+    /*! TODO */
+    property color tickLabelColor: labelColor
+    /*! TODO */
+    property font tickLabelFont: labelFont
     /*! TODO */
     property double tickLength: 10
     /*! TODO */
@@ -146,6 +158,8 @@ Item {
             required property int index
             required property double modelData
 
+            color: root.tickLabelColor
+            font: root.tickLabelFont
             leftPadding: 2
             rightPadding: 2
             text: Number(modelData).toFixed(root.decimalPoints)
