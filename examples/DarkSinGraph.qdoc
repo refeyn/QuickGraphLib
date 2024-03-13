@@ -4,7 +4,7 @@
 /*!
     \title Dark theme sin graph
     \ingroup quickgraphlibdemos
-    \brief A simple graph of a sin function.
+    \brief An example of customising colors to make a dark theme.
     \example darksingraph
 
     \image examples/DarkSinGraph.png

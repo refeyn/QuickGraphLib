@@ -23,7 +23,10 @@ QQS.Shape {
     */
     readonly property rect effectiveViewRect: {
         let mat = rawDataTransform.inverted().times(viewTransform.inverted().times(rawDataTransform));
-        return mat.mapRect(viewRect);
+        // Map corners instead of the whole rect to preserve the invertedness of each axis
+        let blCorner = mat.map(Qt.point(viewRect.x, viewRect.y));
+        let trCorner = mat.map(Qt.point(viewRect.x + viewRect.width, viewRect.y + viewRect.height));
+        return Qt.rect(blCorner.x, blCorner.y, trCorner.x - blCorner.x, trCorner.y - blCorner.y);
     }
     /*!
         Transform from data coordinates to pixel coordinates inside the GraphArea

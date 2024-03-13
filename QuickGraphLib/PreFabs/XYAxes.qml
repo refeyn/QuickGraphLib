@@ -58,7 +58,7 @@ QuickGraphLib.AntialiasingContainer {
         id: axes
 
         anchors.fill: parent
-        anchors.margins: 10
+        anchors.margins: 15
         columnSpacing: 0
         columns: 2
         rowSpacing: 0

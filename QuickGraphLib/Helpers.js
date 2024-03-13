@@ -41,6 +41,11 @@ function tickLocator(min, max, maxNum) {
     if (min == max || !isFinite(min) || !isFinite(max) || maxNum == 0) {
         return [];
     }
+    if (max < min) {
+        let tmp = max;
+        max = min;
+        min = tmp;
+    }
     let steps = [0.2, 0.25, 0.5, 1];
     let approxTickSpacing = (max - min) / (maxNum - 1);
     let magnitude = Math.ceil(Math.log10(approxTickSpacing));
