@@ -14,16 +14,19 @@ IGNORED_LINES = [
     "In file included from",
 ]
 
+QT_PATH = pathlib.Path(os.environ.get("Qt6_DIR", "C:/Qt/6.5.1/msvc2019_64"))
+QT_VERSION = QT_PATH.parts[-2]
+
+print("Using Qt", QT_VERSION, "from", QT_PATH)
+
 proc = subprocess.run(
     [
-        r"C:\Qt\6.5.1\msvc2019_64\bin\qdoc.exe",
+        QT_PATH / "bin/qdoc.exe",
         pathlib.Path(__file__).parent / "config.qdocconf",
         "-indexdir",
-        r"C:\Qt\Docs\Qt-6.5.1",
+        QT_PATH.parent.parent / ("Docs/Qt-" + QT_VERSION),
     ],
-    env=collections.ChainMap(
-        {"QT_INSTALL_DOCS": r"C:\Qt\6.5.1\msvc2019_64\doc"}, os.environ
-    ),
+    env=collections.ChainMap({"QT_INSTALL_DOCS": str(QT_PATH / "doc")}, os.environ),
     stdout=subprocess.PIPE,
     stderr=subprocess.STDOUT,
     check=False,
