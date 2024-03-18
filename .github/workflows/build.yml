@@ -40,6 +40,11 @@ jobs:
           .\activate_venv.ps1
           python -m build
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: QuickGraphLib-wheels
+          path: dist/*
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -58,8 +63,8 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: QuickGraphLib-wheels
-          path: dist/*
+          name: QuickGraphLib-docs
+          path: dist/docs/*
 
   upload-pypi:
     name: Upload to PyPI
@@ -97,14 +102,14 @@ jobs:
       pages: write
       id-token: write
     concurrency:
-      group: "deploy-pypi"
+      group: "deploy-pages"
       cancel-in-progress: false
     steps:
       - name: "Download docs"
         uses: actions/download-artifact@v4
         with:
-          name: QuickGraphLib-wheels
-          path: dist
+          name: QuickGraphLib-docs
+          path: docs
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -112,7 +117,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist/docs'
+          path: 'docs'
 
       - name: Deploy to GitHub Pages
         id: deployment
