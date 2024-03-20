@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
 # SPDX-License-Identifier: MIT
 
+import os
 import pathlib
 import re
 import sys
@@ -15,9 +16,15 @@ import quickgraphlib_helpers  # pylint: disable=unused-import
 
 if __name__ == "__main__":
     QtQuickControls2.QQuickStyle.setStyle("Basic")
+    QtQml.QQmlDebuggingEnabler.enableDebugging(True)
     app = QtGui.QGuiApplication(sys.argv)
     engine = QtQml.QQmlApplicationEngine()
-    engine.addImportPath(EXAMPLES_DIR.parent)
+    # engine.addImportPath(EXAMPLES_DIR.parent)
+    print(os.getpid())
+    engine.addImportPath(
+        EXAMPLES_DIR.parent.parent
+        / "build-QuickGraphLib-Desktop_Qt_6_5_1_MSVC2019_64bit-RelWithDebInfo"
+    )
 
     examples = []
     for f in EXAMPLES_DIR.glob("*.qdoc"):

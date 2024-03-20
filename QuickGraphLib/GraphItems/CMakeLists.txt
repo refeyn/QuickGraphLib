@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+# SPDX-License-Identifier: MIT
+
 qt_add_qml_module(QuickGraphLibGraphItems
     URI QuickGraphLib.GraphItems
     SHARED
@@ -5,7 +8,7 @@ qt_add_qml_module(QuickGraphLibGraphItems
     QML_FILES
         AxHLine.qml AxVLine.qml BasicLegend.qml GraphItemDragHandler.qml Histogram.qml Marker.qml
         AxHSpan.qml AxVSpan.qml BasicLegendItem.qml Contour.qml Grid.qml Line.qml
-    SOURCES helpers/HistogramHelper.cpp helpers/HistogramHelper.hpp
+    SOURCES helpers/HistogramHelper.cpp helpers/HistogramHelper.hpp helpers/GridHelper.hpp helpers/GridHelper.cpp
     PLUGIN_TARGET QuickGraphLibGraphItems
     DEPENDENCIES QtQuick
 )
@@ -13,3 +16,9 @@ qt_add_qml_module(QuickGraphLibGraphItems
 target_compile_definitions(QuickGraphLibGraphItems PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(QuickGraphLibGraphItems PRIVATE Qt6::Quick)
 target_include_directories(QuickGraphLibGraphItems PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/helpers)
+
+install(TARGETS QuickGraphLibGraphItems DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems)
+install(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLibGraphItems.qmltypes
+    DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems
+)

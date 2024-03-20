@@ -62,13 +62,6 @@ Item {
     /*! TODO */
     property alias ticks: helper.ticks
 
-    QuickGraphLib.AxisHelper {
-        id: helper
-
-        width: root.width
-        height: root.height
-    }
-
     implicitHeight: {
         switch (root.direction) {
         case Axis.Direction.Left:
@@ -105,6 +98,12 @@ Item {
     }
     z: 1
 
+    QuickGraphLib.AxisHelper {
+        id: helper
+
+        height: root.height
+        width: root.width
+    }
     QQS.Shape {
         id: shape
 

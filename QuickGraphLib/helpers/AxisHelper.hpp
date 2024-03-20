@@ -1,26 +1,33 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
 #pragma once
 
-#include <QObject>
 #include <QBindable>
+#include <QObject>
 #include <QQmlEngine>
-#include <QtGui/QPolygonF>
 #include <QtGui/QMatrix4x4>
+#include <QtGui/QPolygonF>
 
 class AxisHelper : public QObject {
     Q_OBJECT
     QML_ELEMENT
 
     Q_PROPERTY(QList<qreal> ticks READ ticks WRITE setTicks NOTIFY ticksChanged BINDABLE bindableTicks REQUIRED)
-    Q_PROPERTY(QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE bindableDataTransform REQUIRED)
-    Q_PROPERTY(int direction READ direction WRITE setDirection NOTIFY directionChanged BINDABLE bindableDirection REQUIRED)
+    Q_PROPERTY(QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE
+                   bindableDataTransform REQUIRED)
+    Q_PROPERTY(
+        int direction READ direction WRITE setDirection NOTIFY directionChanged BINDABLE bindableDirection REQUIRED)
     Q_PROPERTY(qreal width READ width WRITE setWidth NOTIFY widthChanged BINDABLE bindableWidth REQUIRED)
     Q_PROPERTY(qreal height READ height WRITE setHeight NOTIFY heightChanged BINDABLE bindableHeight REQUIRED)
 
     Q_PROPERTY(QPolygonF path READ path NOTIFY pathChanged BINDABLE bindablePath)
-    Q_PROPERTY(QList<QPointF> tickPositions READ tickPositions NOTIFY tickPositionsChanged BINDABLE bindableTickPositions)
+    Q_PROPERTY(
+        QList<QPointF> tickPositions READ tickPositions NOTIFY tickPositionsChanged BINDABLE bindableTickPositions)
 
     QList<int> _cachedTickPositions;
-public:
+
+   public:
     explicit AxisHelper(QObject *parent = nullptr);
 
     void setTicks(QList<qreal> ticks) { ticksProp = ticks; }
@@ -49,7 +56,7 @@ public:
     QList<QPointF> tickPositions() const { return tickPositionsProp; }
     QBindable<QList<QPointF>> bindableTickPositions() { return &tickPositionsProp; }
 
-signals:
+   signals:
     void ticksChanged();
     void dataTransformChanged();
     void directionChanged();
@@ -58,7 +65,7 @@ signals:
     void pathChanged();
     void tickPositionsChanged();
 
-private:
+   private:
     Q_OBJECT_BINDABLE_PROPERTY(AxisHelper, QList<qreal>, ticksProp, &AxisHelper::ticksChanged)
     Q_OBJECT_BINDABLE_PROPERTY(AxisHelper, QMatrix4x4, dataTransformProp, &AxisHelper::dataTransformChanged)
     Q_OBJECT_BINDABLE_PROPERTY(AxisHelper, int, directionProp, &AxisHelper::directionChanged)

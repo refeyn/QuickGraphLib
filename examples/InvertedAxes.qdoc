@@ -4,7 +4,7 @@
 /*!
     \title Inverted axes
     \ingroup quickgraphlibdemos
-    \brief Example of inverted axes
+    \brief Example of inverted axes.
     \example InvertedAxes
 
     \image examples/InvertedAxes.png

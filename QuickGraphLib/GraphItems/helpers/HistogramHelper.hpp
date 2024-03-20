@@ -1,22 +1,27 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
 #pragma once
 
-#include <QObject>
 #include <QBindable>
+#include <QObject>
 #include <QQmlEngine>
-#include <QtGui/QPolygonF>
 #include <QtGui/QMatrix4x4>
+#include <QtGui/QPolygonF>
 
 class HistogramHelper : public QObject {
     Q_OBJECT
     QML_ELEMENT
 
-    Q_PROPERTY(QList<qreal> heights READ heights WRITE setHeights NOTIFY heightsChanged BINDABLE bindableHeights REQUIRED)
+    Q_PROPERTY(
+        QList<qreal> heights READ heights WRITE setHeights NOTIFY heightsChanged BINDABLE bindableHeights REQUIRED)
     Q_PROPERTY(QList<qreal> bins READ bins WRITE setBins NOTIFY binsChanged BINDABLE bindableBins REQUIRED)
-    Q_PROPERTY(QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE bindableDataTransform REQUIRED)
+    Q_PROPERTY(QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE
+                   bindableDataTransform REQUIRED)
     Q_PROPERTY(bool vertical READ vertical WRITE setVertical NOTIFY verticalChanged BINDABLE bindableVertical REQUIRED)
 
     Q_PROPERTY(QPolygonF path READ path NOTIFY pathChanged BINDABLE bindablePath)
-public:
+   public:
     explicit HistogramHelper(QObject *parent = nullptr);
 
     void setHeights(QList<qreal> heights) { heightsProp = heights; }
@@ -38,14 +43,14 @@ public:
     QPolygonF path() const { return pathProp; }
     QBindable<QPolygonF> bindablePath() { return &pathProp; }
 
-signals:
+   signals:
     void heightsChanged();
     void binsChanged();
     void dataTransformChanged();
     void verticalChanged();
     void pathChanged();
 
-private:
+   private:
     Q_OBJECT_BINDABLE_PROPERTY(HistogramHelper, QList<qreal>, heightsProp, &HistogramHelper::heightsChanged)
     Q_OBJECT_BINDABLE_PROPERTY(HistogramHelper, QList<qreal>, binsProp, &HistogramHelper::binsChanged)
     Q_OBJECT_BINDABLE_PROPERTY(HistogramHelper, QMatrix4x4, dataTransformProp, &HistogramHelper::dataTransformChanged)

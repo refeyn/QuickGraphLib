@@ -90,8 +90,7 @@ QuickGraphLib.AntialiasingContainer {
                 id: grid
 
                 dataTransform: grapharea.dataTransform
-                parentHeight: grapharea.height
-                parentWidth: grapharea.width
+                viewRect: grapharea.viewRect
                 strokeColor: "#11000000"
                 strokeWidth: 1
                 xTicks: QuickGraphLib.Helpers.tickLocator(grapharea.effectiveViewRect.x, grapharea.effectiveViewRect.x + grapharea.effectiveViewRect.width, root.numXTicks)

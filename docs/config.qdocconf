@@ -7,8 +7,8 @@ sourcedirs = ../QuickGraphLib
 imagedirs = ../QuickGraphLib/ ../.
 exampledirs = ../examples
 
-sources.fileextensions = "*.qml *.qdoc *.js"
-examples.fileextensions = "*.qml *.qdoc *.js"
+sources.fileextensions = "*.qml *.qdoc *.cpp *.hpp"
+examples.fileextensions = "*.qml *.qdoc *.cpp *.hpp"
 
 outputdir = ../dist/docs
 outputformats = HTML

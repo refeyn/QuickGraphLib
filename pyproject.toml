@@ -39,13 +39,14 @@ analyse = [
 ]
 
 [build-system]
-requires = ["setuptools>=61.0.0", "setuptools-scm>=8.0", "wheel"]
+requires = ["setuptools>=61.0.0", "setuptools-git-versioning<2", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools_scm]
+[tool.setuptools-git-versioning]
+enabled = true
 
 [tool.setuptools.packages.find]
-include = ["QuickGraphLib*", "quickgraphlib_helpers*"]
+include = ["quickgraphlib_helpers*"]
 
 [tool.isort]
 profile = "black"

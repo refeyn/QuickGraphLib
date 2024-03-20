@@ -3,6 +3,7 @@
 
 import QtQuick
 import QtQuick.Shapes as QQS
+import QuickGraphLib.GraphItems as QGLGraphItems
 
 /*!
     \qmltype Grid
@@ -14,45 +15,23 @@ import QtQuick.Shapes as QQS
 QQS.ShapePath {
     id: root
 
-    /*! TODO */
-    required property matrix4x4 dataTransform
-    /*! TODO */
-    required property double parentHeight
-    /*! TODO */
-    required property double parentWidth
-    /*! TODO */
-    property list<double> xTicks: []
-    /*! TODO */
-    property list<double> yTicks: []
+    property QGLGraphItems.GridHelper _helper: QGLGraphItems.GridHelper {
+        id: helper
+    }
 
-    function _calculateXPath(xTicks, dataTransform, parentHeight) {
-        let points = [];
-        xTicks.forEach(t => {
-            let x = dataTransform.map(Qt.point(t, 0)).x;
-            points.push(Qt.point(x, -10));
-            points.push(Qt.point(x, parentHeight + 10));
-            points.push(Qt.point(x, -10));
-        });
-        return points;
-    }
-    function _calculateYPath(yTicks, dataTransform, parentWidth) {
-        let points = [];
-        yTicks.forEach(t => {
-            let y = dataTransform.map(Qt.point(0, t)).y;
-            points.push(Qt.point(-10, y));
-            points.push(Qt.point(parentWidth + 10, y));
-            points.push(Qt.point(-10, y));
-        });
-        return points;
-    }
+    /*! TODO */
+    property alias dataTransform: helper.dataTransform
+    /*! TODO */
+    property alias viewRect: helper.viewRect
+    /*! TODO */
+    property alias xTicks: helper.xTicks
+    /*! TODO */
+    property alias yTicks: helper.yTicks
 
     capStyle: QQS.ShapePath.RoundCap
     joinStyle: QQS.ShapePath.RoundJoin
 
-    PathPolyline {
-        path: root._calculateXPath(root.xTicks, root.dataTransform, root.parentHeight)
-    }
-    PathPolyline {
-        path: root._calculateYPath(root.yTicks, root.dataTransform, root.parentWidth)
+    PathMultiline {
+        paths: helper.paths
     }
 }

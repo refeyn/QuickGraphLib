@@ -1,11 +1,9 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other
+// QuickGraphLib contributors SPDX-License-Identifier: MIT
+
 #include "AxisHelper.hpp"
 
-enum Direction {
-    Left,
-    Right,
-    Top,
-    Bottom
-};
+enum Direction { Left, Right, Top, Bottom };
 
 AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
     pathProp.setBinding([&]() -> QPolygonF {
@@ -14,7 +12,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
         auto height = heightProp.value();
         auto ticks = ticksProp.value();
         auto dataTransform = dataTransformProp.value();
-        auto tickLength = 10;
+        auto tickLength = 0;
 
         auto longAxis = direction == Top || direction == Bottom ? width : height;
 
@@ -24,13 +22,15 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
         QList<int> tickPositions;
         tickPositions.reserve(ticks.size());
         for (auto tick : ticks) {
-            auto t = direction == Top || direction == Bottom ? dataTransform.map(QPointF{tick, 0}).x() : dataTransform.map(QPointF{0, tick}).y();
+            auto t = direction == Top || direction == Bottom ? dataTransform.map(QPointF{tick, 0}).x()
+                                                             : dataTransform.map(QPointF{0, tick}).y();
             if (t >= -0.5 && t <= longAxis + 0.5) {
                 points.emplaceBack(t, 0);
                 points.emplaceBack(t, tickLength);
                 points.emplaceBack(t, 0);
                 tickPositions.append(points.size() - 2);
-            } else {
+            }
+            else {
                 tickPositions.append(-1);
             }
         }
@@ -39,7 +39,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
         // Transform into the correct positions
         switch (direction) {
             case Left: {
-                for (auto& p : points) {
+                for (auto &p : points) {
                     auto x = p.x();
                     p.setX(width - p.y());
                     p.setY(x);
@@ -47,7 +47,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
                 break;
             }
             case Right: {
-                for (auto& p : points) {
+                for (auto &p : points) {
                     auto x = p.x();
                     p.setX(p.y());
                     p.setY(x);
@@ -55,7 +55,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
                 break;
             }
             case Top: {
-                for (auto& p : points) {
+                for (auto &p : points) {
                     p.setY(height - p.y());
                 }
                 break;
@@ -73,7 +73,12 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
         QList<QPointF> tickPositions;
         tickPositions.reserve(_cachedTickPositions.size());
         for (auto index : _cachedTickPositions) {
-            tickPositions.append(path[index]);
+            if (index == -1) {
+                tickPositions.emplaceBack(-1, -1);
+            }
+            else {
+                tickPositions.append(path[index]);
+            }
         }
         return tickPositions;
     });

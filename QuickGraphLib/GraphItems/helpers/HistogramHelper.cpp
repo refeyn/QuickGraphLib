@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
 #include "HistogramHelper.hpp"
 
 HistogramHelper::HistogramHelper(QObject *parent) : QObject{parent} {
@@ -10,7 +13,7 @@ HistogramHelper::HistogramHelper(QObject *parent) : QObject{parent} {
             return {};
         }
         QPolygonF points;
-        points.reserve(heights.size()*2);
+        points.reserve(heights.size() * 2);
         // Bins must have at least one element due to the check above
         auto binIter = bins.begin();
         if (vertical) {

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+# SPDX-License-Identifier: MIT
+
 qt_add_qml_module(QuickGraphLib
     URI QuickGraphLib
     SHARED
@@ -9,8 +12,14 @@ qt_add_qml_module(QuickGraphLib
 )
 
 target_compile_definitions(QuickGraphLib PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(QuickGraphLib PRIVATE Qt6::Quick)
+target_link_libraries(QuickGraphLib PRIVATE Qt6::Quick Qt6::Svg)
 target_include_directories(QuickGraphLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/helpers)
+
+install(TARGETS QuickGraphLib DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
+install(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib.qmltypes
+    DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
+)
 
 add_subdirectory(PreFabs)
 add_subdirectory(GraphItems)

@@ -3,6 +3,6 @@
 
 import pathlib
 
-from . import contours, export
+from . import contours
 
 QML_IMPORT_PATH = str(pathlib.Path(__file__).parent.parent)

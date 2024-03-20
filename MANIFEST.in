@@ -1,1 +1,3 @@
-recursive-include QuickGraphLib *.qml *.js qmldir
+recursive-include . CMakeLists.txt
+recursive-include QuickGraphLib *.qml *.svg *.qdoc *.cpp *.hpp
+recursive-include examples *.qml *.png *.qdoc

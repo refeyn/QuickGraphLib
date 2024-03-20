@@ -35,23 +35,20 @@ jobs:
           .\activate_venv.ps1
           pre-commit run --all-files --show-diff-on-failure
 
-      - name: Build wheel
-        run: |
-          .\activate_venv.ps1
-          python -m build
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
           aqtversion: '==3.1.*'
-          version: '6.5.1'
-          host: 'windows'
-          target: 'desktop'
-          arch: 'win64_msvc2019_64'
+          version: '6.5.3'
           archives: 'qttools qtdeclarative qtbase'
           documentation: true
           doc-archives: 'qtdeclarative qtbase'
           cache: true
+
+      - name: Build wheel
+        run: |
+          .\activate_venv.ps1
+          python -m build --config-setting=--build-option=--py-limited-api=cp37
 
       - name: Build docs
         run: python docs/build_docs.py
