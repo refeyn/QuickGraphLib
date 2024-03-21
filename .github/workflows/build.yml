@@ -40,15 +40,18 @@ jobs:
         with:
           aqtversion: '==3.1.*'
           version: '6.5.3'
-          archives: 'qttools qtdeclarative qtbase'
+          archives: 'qttools qtdeclarative qtbase qtsvg'
           documentation: true
-          doc-archives: 'qtdeclarative qtbase'
+          doc-archives: 'qtcore qtgui qtqml qtqmlcore qtqmlmodels qtquick qtquickcontrols qtquickdialogs qtsvg'
           cache: true
-          tools: 'tools_cmake tools_ninja'
+          tools: 'tools_cmake'
 
       - name: Build wheel
         run: |
           .\activate_venv.ps1
+          # Stupid Windows file path length issues
+          mkdir C:\tmp
+          $Env:TMPDIR = "C:\tmp"
           python -m build --config-setting=--build-option=--py-limited-api=cp37
 
       - name: Build docs
