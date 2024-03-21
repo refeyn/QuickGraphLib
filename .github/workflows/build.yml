@@ -8,6 +8,7 @@ on:
       - '*'
     branches:
       - master
+      - cpp-ext-build
 
 jobs:
   build:
@@ -52,6 +53,7 @@ jobs:
           # Stupid Windows file path length issues
           mkdir C:\tmp
           $Env:TMPDIR = "C:\tmp"
+          git status
           python -m build --config-setting=--build-option=--py-limited-api=cp37
 
       - name: Build docs
