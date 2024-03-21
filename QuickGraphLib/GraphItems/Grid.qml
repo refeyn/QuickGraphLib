@@ -17,6 +17,7 @@ QQS.ShapePath {
 
     property QGLGraphItems.GridHelper _helper: QGLGraphItems.GridHelper {
         id: helper
+
     }
 
     /*! TODO */
@@ -29,6 +30,7 @@ QQS.ShapePath {
     property alias yTicks: helper.yTicks
 
     capStyle: QQS.ShapePath.RoundCap
+    fillColor: "transparent"
     joinStyle: QQS.ShapePath.RoundJoin
 
     PathMultiline {

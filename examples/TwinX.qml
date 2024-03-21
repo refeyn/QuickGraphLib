@@ -35,10 +35,9 @@ QuickGraphLib.AntialiasingContainer {
 
                 QGLGraphItems.Grid {
                     dataTransform: grapharea.dataTransform
-                    parentHeight: grapharea.height
-                    parentWidth: grapharea.width
                     strokeColor: "#11000000"
                     strokeWidth: 1
+                    viewRect: grapharea.viewRect
                     xTicks: xAxis.ticks
                     yTicks: yAxis.ticks
                 }

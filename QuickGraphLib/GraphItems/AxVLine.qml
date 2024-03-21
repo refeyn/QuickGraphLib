@@ -18,6 +18,7 @@ Rectangle {
     /*! TODO */
     required property double position
 
+    border.width: 0
     height: parent.height + border.width * 4
     width: 2
     x: root.dataTransform.map(Qt.point(position, 0)).x - width / 2

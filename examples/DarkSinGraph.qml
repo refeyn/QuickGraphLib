@@ -10,7 +10,7 @@ QGLPreFabs.XYAxes {
     id: axes
 
     background.color: "black"
-    grid.strokeColor: "#11ffffff"
+    grid.strokeColor: "#33ffffff"
     viewRect: Qt.rect(-20, -1.1, 760, 2.2)
     xAxis.labelColor: "#ffaaaa"
     xAxis.strokeColor: "white"

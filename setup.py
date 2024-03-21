@@ -1,5 +1,10 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+# SPDX-License-Identifier: MIT
+
 import multiprocessing
+import os
 import pathlib
+import shlex
 
 from setuptools import Extension, setup
 from setuptools.command.build_ext import build_ext as build_ext_orig
@@ -36,6 +41,7 @@ class build_ext(build_ext_orig):
                 str(build_temp),
                 f"-DCMAKE_BUILD_TYPE={config}",
                 "-DINSTALL_SUBPATH=.",
+                *shlex.split(os.environ.get("CMAKE_BUILD_FLAGS", "")),
             ]
         )
         self.spawn(

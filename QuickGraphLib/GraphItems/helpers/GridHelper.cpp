@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
 #include "GridHelper.hpp"
 
 GridHelper::GridHelper(QObject *parent) : QObject{parent} {

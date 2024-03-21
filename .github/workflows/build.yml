@@ -44,6 +44,7 @@ jobs:
           documentation: true
           doc-archives: 'qtdeclarative qtbase'
           cache: true
+          tools: 'tools_cmake tools_ninja'
 
       - name: Build wheel
         run: |
