@@ -63,7 +63,7 @@ try:
 except subprocess.CalledProcessError as e:
     out = e.output
 
-parsed = QMLLintOutput.parse_raw(out)
+parsed = QMLLintOutput.model_validate_json(out)
 
 warnings = 0
 files_with_warnings = 0

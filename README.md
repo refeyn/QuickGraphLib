@@ -4,7 +4,7 @@ A scientific graphing library for [QtQuick](https://doc.qt.io/qt-6/qtquick-index
 
 Key advantages:
 
- - Written in pure QML (with some optional Python helpers), so it can be used in both C++ and Python projects
+ - Written in C++ and QML (with some optional Python helpers), so it can be used in both C++ and Python projects
  - QtQuick's hardware-based rendering makes this library render very fast
  - Support for line graphs, histograms, contour plots and more
  - Interactivity supported natively though declarative bindings and QtQuick

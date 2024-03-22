@@ -1,3 +1,4 @@
+annotated-types==0.6.0
 astroid==3.1.0
 black==24.3.0
 build==1.1.1
@@ -19,11 +20,13 @@ packaging==24.0
 pathspec==0.12.1
 platformdirs==4.2.0
 pre-commit==3.6.2
+pydantic==2.6.4
+pydantic_core==2.16.3
 pylint==3.1.0
 pyproject_hooks==1.0.0
 PySide6==6.5.3
-PySide6_Addons==6.5.3
-PySide6_Essentials==6.5.3
+PySide6-Addons==6.5.3
+PySide6-Essentials==6.5.3
 PyYAML==6.0.1
 shiboken6==6.5.3
 tomli==2.0.1
