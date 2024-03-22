@@ -16,12 +16,12 @@ Visit the \l {QuickGraphLib} module documentation (and in particular the \l {Gra
 
 \section1 Submodules
 
-    Qt Quick includes several submodules that contain additional types:
+    QuickGraphLib includes several submodules that contain additional types:
 
     \list
     \li \l{QuickGraphLib.GraphItems QML types}{GraphItems} - a submodule containing components to be used inside a GraphArea
     \li \l{QuickGraphLib.PreFabs QML types}{PreFabs} - a submodule containing pre-fabricated groups of components for common graph types
-    \li \l{QuickGraphLib.PythonHelpers QML types}{PythonHelpers} - a submodule containing helpers for exporting and constructing graphs
+    \li \l{QuickGraphLib.PythonHelpers QML types}{PythonHelpers} - a submodule containing Python helpers functions for constructing graphs
     \endlist
 
 \section1 Object Types

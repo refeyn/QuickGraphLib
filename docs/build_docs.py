@@ -14,19 +14,22 @@ IGNORED_LINES = [
     "In file included from",
 ]
 
-QT_PATH = pathlib.Path(os.environ.get("Qt6_DIR", "C:/Qt/6.5.1/msvc2019_64"))
+QT_PATH = pathlib.Path(os.environ.get("Qt6_DIR", "C:/Qt/6.5.3/msvc2019_64"))
 QT_VERSION = QT_PATH.parts[-2]
+QDOC_PATH = QT_PATH / "bin/qdoc.exe"
+INDEX_PATH = QT_PATH.parent.parent / ("Docs/Qt-" + QT_VERSION)
+QDOCCONF_PATH = pathlib.Path(__file__).parent / "config.qdocconf"
+QT_INSTALL_DOCS = QT_PATH / "doc"
+
+for path in [QT_PATH, QDOC_PATH, INDEX_PATH, QDOCCONF_PATH, QT_INSTALL_DOCS]:
+    if not path.exists():
+        raise RuntimeError(f"Path {path} does not exist")
 
 print("Using Qt", QT_VERSION, "from", QT_PATH)
 
 proc = subprocess.run(
-    [
-        QT_PATH / "bin/qdoc.exe",
-        pathlib.Path(__file__).parent / "config.qdocconf",
-        "-indexdir",
-        QT_PATH.parent.parent / ("Docs/Qt-" + QT_VERSION),
-    ],
-    env=collections.ChainMap({"QT_INSTALL_DOCS": str(QT_PATH / "doc")}, os.environ),
+    [QDOC_PATH, QDOCCONF_PATH, "-indexdir", INDEX_PATH],
+    env=collections.ChainMap({"QT_INSTALL_DOCS": str(QT_INSTALL_DOCS)}, os.environ),
     stdout=subprocess.PIPE,
     stderr=subprocess.STDOUT,
     check=False,

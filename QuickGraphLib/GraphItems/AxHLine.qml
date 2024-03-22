@@ -18,6 +18,7 @@ Rectangle {
     /*! TODO */
     required property double position
 
+    border.width: 0
     height: 2
     width: parent.width + border.width * 4
     x: -border.width * 2

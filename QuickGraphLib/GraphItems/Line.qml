@@ -49,8 +49,6 @@ QQS.ShapePath {
     capStyle: QQS.ShapePath.RoundCap
     fillColor: "transparent"
     joinStyle: QQS.ShapePath.RoundJoin
-    startX: root.path[0].x
-    startY: root.path[0].y
 
     PathPolyline {
         path: root.path.map(p => root.dataTransform.map(p))

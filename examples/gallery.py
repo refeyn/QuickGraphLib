@@ -15,9 +15,10 @@ import quickgraphlib_helpers  # pylint: disable=unused-import
 
 if __name__ == "__main__":
     QtQuickControls2.QQuickStyle.setStyle("Basic")
+    QtQml.QQmlDebuggingEnabler.enableDebugging(True)
     app = QtGui.QGuiApplication(sys.argv)
     engine = QtQml.QQmlApplicationEngine()
-    engine.addImportPath(EXAMPLES_DIR.parent)
+    engine.addImportPath(EXAMPLES_DIR.parent / "build")
 
     examples = []
     for f in EXAMPLES_DIR.glob("*.qdoc"):

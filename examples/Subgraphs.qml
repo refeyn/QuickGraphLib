@@ -17,9 +17,9 @@ QQL.GridLayout {
 
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
-        showXTickLabels: false
         title: "Sin"
         viewRect: Qt.rect(-20, -1.1, 760, 2.2)
+        xAxis.showTickLabels: false
         yLabel: "Value"
 
         QGLGraphItems.Line {
@@ -34,10 +34,10 @@ QQL.GridLayout {
 
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
-        showXTickLabels: false
-        showYTickLabels: false
         title: "Cosine"
         viewRect: Qt.rect(-20, -1.1, 760, 2.2)
+        xAxis.showTickLabels: false
+        yAxis.showTickLabels: false
 
         QGLGraphItems.Line {
             dataTransform: cosAxes.dataTransform
@@ -68,10 +68,10 @@ QQL.GridLayout {
 
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
-        showYTickLabels: false
         title: "Cotangent"
         viewRect: Qt.rect(-20, -1.1, 760, 2.2)
         xLabel: "Angle (°)"
+        yAxis.showTickLabels: false
 
         QGLGraphItems.Line {
             dataTransform: cotAxes.dataTransform

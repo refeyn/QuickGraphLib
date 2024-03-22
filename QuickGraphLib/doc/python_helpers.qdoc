@@ -4,53 +4,26 @@
 /*!
 \qmlmodule QuickGraphLib.PythonHelpers
 \title QuickGraphLib.PythonHelpers QML types
-\brief Submodule containing helpers for exporting and constructing graphs.
+\brief Submodule containing Python helpers functions for constructing graphs.
 
-The \l {QuickGraphLib.PythonHelpers} module provides helper functions for exporting and constructing graphs.
+The \l {QuickGraphLib.PythonHelpers} module provides Python helpers functions for constructing graphs.
 
 To use the module, import the Python module (so that the types are registered):
 
 \badcode
-import quick_graph_lib_helpers
+import quickgraphlib_helpers
 \endcode
 
-And then import the \c QuickGraphLib.PreFabs module with the following statement:
+And then import the \c QuickGraphLib.PythonHelpers module with the following statement:
 
 \qml
 import QuickGraphLib.PythonHelpers as QGLPyHelpers
 \endqml
 
-Visit the \l {QuickGraphLib} module documentation (and in particular the \l {Exporting graphs} page) to learn how to use these components.
+Visit the \l {QuickGraphLib} module documentation and examples (in particular the \l Contours example) to learn how to use these functions.
 
 \section1 Object Types
 
-*/
-
-/*!
-    \qmltype ExportHelper
-    \inqmlmodule QuickGraphLib.PythonHelpers
-    \inherits QObject
-    \brief Saves export data as SVG or PNG files.
-*/
-
-/*!
-    \qmlmethod var ExportHelper::exportToSvg(var data, url path)
-
-    Exports the graph in \a data to an SVG file at \a path.
-
-    \note Only some QML elements are supported by this export method. See Helpers::exportData for more details.
-
-    \sa Helpers::exportData
-*/
-
-/*!
-    \qmlmethod var ExportHelper::exportToPng(var data, url path)
-
-    Exports the graph in \a data to an PNG file at \a path.
-
-    \note Only some QML elements are supported by this export method. See Helpers::exportData for more details.
-
-    \sa Helpers::exportData
 */
 
 /*!

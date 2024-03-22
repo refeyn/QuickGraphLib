@@ -35,28 +35,29 @@ jobs:
           .\activate_venv.ps1
           pre-commit run --all-files --show-diff-on-failure
 
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==3.1.*'
+          version: '6.5.3'
+          archives: 'qttools qtdeclarative qtbase qtsvg'
+          documentation: true
+          doc-archives: 'qtcore qtgui qtqml qtqmlcore qtqmlmodels qtquick qtquickcontrols qtquickdialogs qtsvg'
+          cache: true
+          tools: 'tools_cmake'
+
       - name: Build wheel
         run: |
           .\activate_venv.ps1
-          python -m build
+          # Stupid Windows file path length issues
+          mkdir C:\tmp
+          $Env:TMPDIR = "C:\tmp"
+          python -m build --config-setting=--build-option=--py-limited-api=cp37
 
       - uses: actions/upload-artifact@v4
         with:
           name: QuickGraphLib-wheels
           path: dist/*
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          aqtversion: '==3.1.*'
-          version: '6.5.1'
-          host: 'windows'
-          target: 'desktop'
-          arch: 'win64_msvc2019_64'
-          archives: 'qttools qtdeclarative qtbase'
-          documentation: true
-          doc-archives: 'qtdeclarative qtbase'
-          cache: true
 
       - name: Build docs
         run: python docs/build_docs.py

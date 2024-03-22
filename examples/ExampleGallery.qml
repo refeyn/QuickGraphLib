@@ -7,7 +7,6 @@ import QtQuick.Layouts as QQL
 import QtQuick.Controls as QQC
 import QtQuick.Dialogs as QQD
 import QuickGraphLib as QuickGraphLib
-import QuickGraphLib.PythonHelpers as QGLPyHelpers
 
 QQC.ApplicationWindow {
     id: root
@@ -54,10 +53,7 @@ QQC.ApplicationWindow {
                 text: "Export\nPNG"
                 visible: root.selectedExample !== null
 
-                onClicked: {
-                    root.exportData = QuickGraphLib.Helpers.exportData(graph);
-                    pngDialog.open();
-                }
+                onClicked: pngDialog.open()
             }
             QQC.ToolButton {
                 id: exportSvgButton
@@ -65,10 +61,7 @@ QQC.ApplicationWindow {
                 text: "Export\nSVG"
                 visible: root.selectedExample !== null
 
-                onClicked: {
-                    root.exportData = QuickGraphLib.Helpers.exportData(graph);
-                    svgDialog.open();
-                }
+                onClicked: svgDialog.open()
             }
         }
     }
@@ -80,7 +73,7 @@ QQC.ApplicationWindow {
         nameFilters: ["SVG files (*.svg)", "All files (*)"]
         title: "Export SVG"
 
-        onAccepted: QGLPyHelpers.ExportHelper.exportToSvg(root.exportData, selectedFile)
+        onAccepted: QuickGraphLib.Helpers.exportToSvg(graph, selectedFile)
     }
     QQD.FileDialog {
         id: pngDialog
@@ -89,7 +82,7 @@ QQC.ApplicationWindow {
         nameFilters: ["PNG files (*.png)", "All files (*)"]
         title: "Export PNG"
 
-        onAccepted: QGLPyHelpers.ExportHelper.exportToPng(root.exportData, selectedFile)
+        onAccepted: QuickGraphLib.Helpers.exportToPng(graph, selectedFile)
     }
     Loader {
         id: graph

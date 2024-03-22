@@ -1,0 +1,5 @@
+{
+    "qtForPython.qmlls.options": [
+        "--build-dir build"
+    ]
+}
