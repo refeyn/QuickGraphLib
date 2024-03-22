@@ -17,7 +17,6 @@ Row {
     property color fillColor: "transparent"
     /*! TODO */
     property Gradient fillGradient: null
-
     /*! TODO */
     property color strokeColor: "black"
     /*! TODO */

@@ -58,7 +58,7 @@ Item {
     /*! TODO */
     property font tickLabelFont: labelFont
     /*! TODO */
-    property double tickLength: 10
+    property alias tickLength: helper.tickLength
     /*! TODO */
     property alias ticks: helper.ticks
 
@@ -102,6 +102,7 @@ Item {
         id: helper
 
         height: root.height
+        tickLength: 10
         width: root.width
     }
     QQS.Shape {

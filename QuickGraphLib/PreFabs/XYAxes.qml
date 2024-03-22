@@ -33,10 +33,6 @@ QuickGraphLib.AntialiasingContainer {
     /*! TODO */
     property int numYTicks: 11
     /*! TODO */
-    property bool showXTickLabels: true
-    /*! TODO */
-    property bool showYTickLabels: true
-    /*! TODO */
     property alias title: titleLabel.text
     /*! TODO */
     required property rect viewRect
@@ -76,7 +72,6 @@ QuickGraphLib.AntialiasingContainer {
             QQL.Layout.fillHeight: true
             dataTransform: grapharea.dataTransform
             direction: QuickGraphLib.Axis.Direction.Left
-            showTickLabels: root.showYTickLabels
             ticks: grid.yTicks
         }
         QuickGraphLib.GraphArea {
@@ -105,7 +100,6 @@ QuickGraphLib.AntialiasingContainer {
             QQL.Layout.fillWidth: true
             dataTransform: grapharea.dataTransform
             direction: QuickGraphLib.Axis.Direction.Bottom
-            showTickLabels: root.showXTickLabels
             ticks: grid.xTicks
         }
     }

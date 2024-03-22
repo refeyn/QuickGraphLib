@@ -8,7 +8,7 @@
 
 The \l{QuickGraphLib} module provides a collection of types that can be composed to create complex and fast scientific graphs.
 
-The Qt Quick module provides a \l{QuickGraphLib QML Types}{QML API}, as well as a few Python helper functions.
+The QuickGraphLib module provides a \l{QuickGraphLib QML Types}{QML API}, as well as a few Python helper functions.
 
 \section1 Using the Module
 
@@ -20,6 +20,18 @@ The Qt Quick module provides a \l{QuickGraphLib QML Types}{QML API}, as well as 
     \li \l {Graph structure} - The basics of how a graph is constructed
     \li \l {Interaction} - How to construct interactive graphs
     \li \l {Exporting graphs} - How to export graphs
+\endlist
+
+\section1 Reference
+
+\list
+    \li \l {QuickGraphLib QML Types}
+           - a list of QML types provided by the \c{QuickGraphLib} import
+        \list
+            \li \l{QuickGraphLib.GraphItems QML types}{QuickGraphLib.GraphItems} - a submodule containing components to be used inside a GraphArea
+            \li \l{QuickGraphLib.PreFabs QML types}{QuickGraphLib.PreFabs} - a submodule containing pre-fabricated groups of components for common graph types
+            \li \l{QuickGraphLib.PythonHelpers QML types}{QuickGraphLib.PythonHelpers} - a submodule containing Python helpers functions for constructing graphs
+        \endlist
 \endlist
 
 \section1 Examples
@@ -35,19 +47,9 @@ python examples\gallery.py
 
 \annotatedlist{quickgraphlibdemos}
 
-\section1 Reference
-
-\list
-    \li \l {QuickGraphLib QML Types}
-           - a list of QML types provided by the \c{QuickGraphLib} import
-        \list
-            \li \l{QuickGraphLib.GraphItems QML types}{QuickGraphLib.GraphItems} - a submodule containing components to be used inside a GraphArea
-            \li \l{QuickGraphLib.PreFabs QML types}{QuickGraphLib.PreFabs} - a submodule containing pre-fabricated groups of components for common graph types
-            \li \l{QuickGraphLib.PythonHelpers QML types}{QuickGraphLib.PythonHelpers} - a submodule containing helpers for exporting and constructing graphs
-        \endlist
-\endlist
-
 \section1 Licenses and Attributions
 
-TODO
+QuickGraphLib is distributed under the MIT licence (displayed below). However, the Qt (and PySide6) libraries it depends on are licenced under the LGPL v3 unless you have a commercial licence.
+
+\quotefile LICENCE
 */

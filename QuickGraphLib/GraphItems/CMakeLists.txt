@@ -10,7 +10,7 @@ qt_add_qml_module(QuickGraphLibGraphItems
         AxHSpan.qml AxVSpan.qml BasicLegendItem.qml Contour.qml Grid.qml Line.qml
     SOURCES helpers/HistogramHelper.cpp helpers/HistogramHelper.hpp helpers/GridHelper.hpp helpers/GridHelper.cpp
     PLUGIN_TARGET QuickGraphLibGraphItems
-    DEPENDENCIES QtQuick
+    DEPENDENCIES QtQuick QuickGraphLib
 )
 
 target_compile_definitions(QuickGraphLibGraphItems PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)

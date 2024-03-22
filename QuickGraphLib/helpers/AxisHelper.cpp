@@ -12,7 +12,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
         auto height = heightProp.value();
         auto ticks = ticksProp.value();
         auto dataTransform = dataTransformProp.value();
-        auto tickLength = 0;
+        auto tickLength = tickLengthProp.value();
 
         auto longAxis = direction == Top || direction == Bottom ? width : height;
 
