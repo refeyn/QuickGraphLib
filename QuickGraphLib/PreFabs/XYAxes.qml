@@ -35,7 +35,7 @@ QuickGraphLib.AntialiasingContainer {
     /*! TODO */
     property alias title: titleLabel.text
     /*! TODO */
-    required property rect viewRect
+    property alias viewRect: grapharea.viewRect
     /*! TODO */
     property alias xAxis: xAxis
     /*! TODO */
@@ -79,7 +79,6 @@ QuickGraphLib.AntialiasingContainer {
 
             QQL.Layout.fillHeight: true
             QQL.Layout.fillWidth: true
-            viewRect: root.viewRect
 
             QGLGraphItems.Grid {
                 id: grid

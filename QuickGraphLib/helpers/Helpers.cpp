@@ -103,26 +103,37 @@ void exportPathElementToPainter(QObject* element, QPainter* painter) {
     }
 }
 
+QBrush brushFromColorAndGradient(QVariant fillGradient, QVariant color, std::optional<QRectF> overrideArea) {
+    if (fillGradient.canConvert<QJSValue>()) {
+        fillGradient = fillGradient.value<QJSValue>().toVariant();
+    }
+    if (auto fillGradientObj = fillGradient.value<QObject*>()) {
+        if (fillGradientObj->inherits("QQuickShapeLinearGradient")) {
+            QRectF area{
+                fillGradientObj->property("x1").toDouble(), fillGradientObj->property("y1").toDouble(),
+                fillGradientObj->property("x2").toDouble(), fillGradientObj->property("y2").toDouble()
+            };
+            if (overrideArea) {
+                area = *overrideArea;
+            }
+            auto lingrad = QLinearGradient(area.topLeft(), area.bottomRight());
+            auto stops = QQmlListReference(fillGradientObj, "stops");
+            for (auto stopsIndex = 0; stopsIndex < stops.size(); ++stopsIndex) {
+                auto stop = stops.at(stopsIndex);
+                lingrad.setColorAt(stop->property("position").toDouble(), stop->property("color").value<QColor>());
+            }
+            return QBrush(lingrad);
+        }
+    }
+    return QBrush(color.value<QColor>());
+}
+
 void exportShapePathToPainter(QObject* shapePath, QPainter* painter) {
     painter->save();
     auto pen = QPen(shapePath->property("strokeColor").value<QColor>());
     pen.setWidth(shapePath->property("strokeWidth").toDouble());
     painter->setPen(pen);
-    auto brush = QBrush(shapePath->property("fillColor").value<QColor>());
-    if (auto fillGradient = shapePath->property("fillGradient").value<QObject*>()) {
-        if (fillGradient->inherits("QQuickLinearGradient")) {
-            auto lingrad = QLinearGradient(
-                fillGradient->property("x1").toDouble(), fillGradient->property("y1").toDouble(),
-                fillGradient->property("x2").toDouble(), fillGradient->property("y2").toDouble()
-            );
-            auto stops = QQmlListReference(fillGradient, "stops");
-            for (auto stopsIndex = 0; stopsIndex < stops.size(); ++stopsIndex) {
-                auto stop = stops.at(stopsIndex);
-                lingrad.setColorAt(stop->property("position").toDouble(), stop->property("color").value<QColor>());
-            }
-            brush = QBrush(lingrad);
-        }
-    }
+    auto brush = brushFromColorAndGradient(shapePath->property("fillGradient"), shapePath->property("fillColor"), {});
     painter->setBrush(brush);
 
     auto elements = QQmlListReference(shapePath, "pathElements");
@@ -198,7 +209,10 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
             pen.setWidthF(borderProp->property("width").toDouble());
         }
         painter->setPen(pen);
-        painter->setBrush(item->property("color").value<QColor>());
+
+        auto brush =
+            brushFromColorAndGradient(item->property("gradient"), item->property("color"), {{0, 0, 0, item->height()}});
+        painter->setBrush(brush);
         painter->drawRoundedRect(rect, item->property("radius").toDouble(), item->property("radius").toDouble());
         painter->restore();
     }
