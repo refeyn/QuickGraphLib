@@ -15,6 +15,7 @@ class Helpers : public QObject {
     Q_INVOKABLE QList<qreal> linspace(qreal min, qreal max, int num) const;
     Q_INVOKABLE QList<int> range(int min, int max, int step = 1) const;
     Q_INVOKABLE QList<qreal> tickLocator(qreal min, qreal max, int maxNum) const;
-    Q_INVOKABLE void exportToSvg(QQuickItem* item, QUrl path);
-    Q_INVOKABLE void exportToPng(QQuickItem* item, QUrl path, int dpi = 96 * 2);
+    Q_INVOKABLE QPolygonF mapPoints(QVariant points, QMatrix4x4 dataTransform) const;
+    Q_INVOKABLE void exportToSvg(QQuickItem* item, QUrl path) const;
+    Q_INVOKABLE void exportToPng(QQuickItem* item, QUrl path, int dpi = 96 * 2) const;
 };

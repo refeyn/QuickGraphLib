@@ -69,6 +69,41 @@ QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum) const {
     return linspace(lower, upper, numTicks);
 }
 
+QPolygonF mapPointsInner(const QList<QPointF>& poly, QMatrix4x4 dataTranform) {
+    QPolygonF newPoly;
+    newPoly.reserve(poly.size());
+    for (auto& point : poly) {
+        newPoly.append(dataTranform.map(point));
+    }
+    return newPoly;
+}
+
+QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
+    /*!
+        \qmlmethod QPolygonF Helpers::mapPoints(var points, matrix4x4 dataTransform)
+
+        Maps each point in \a points though the transform defined by \a dataTransform.
+        Essentially the same as \c{points.map(p => dataTransform.map(p))}, but more efficient.
+    */
+    if (points.userType() == QMetaType::QPolygonF) {
+        return mapPointsInner(points.value<QPolygonF>(), dataTransform);
+    }
+    else if (points.canConvert<QVector<QPointF>>()) {
+        return mapPointsInner(points.value<QList<QPointF>>(), dataTransform);
+    }
+    else if (points.canConvert<QVariantList>()) {
+        QList<QPointF> convertedPoints;
+        for (const auto& p : points.value<QVariantList>()) {
+            convertedPoints.append(p.toPointF());
+        }
+        return mapPointsInner(convertedPoints, dataTransform);
+    }
+    else {
+        qWarning() << "Helpers::mapPoints: Cannot interpret" << points.userType() << "as a list of points";
+        return {};
+    }
+}
+
 void exportPathElementToPainter(QObject* element, QPainter* painter) {
     if (element->inherits("QQuickPathPolyline")) {
         auto brush = painter->brush();
@@ -103,7 +138,7 @@ void exportPathElementToPainter(QObject* element, QPainter* painter) {
     }
 }
 
-QBrush brushFromColorAndGradient(QVariant fillGradient, QVariant color, std::optional<QRectF> overrideArea) {
+QBrush brushFromColorAndGradient(QVariant fillGradient, QVariant color, std::optional<QSizeF> simpleGradient) {
     if (fillGradient.canConvert<QJSValue>()) {
         fillGradient = fillGradient.value<QJSValue>().toVariant();
     }
@@ -113,8 +148,13 @@ QBrush brushFromColorAndGradient(QVariant fillGradient, QVariant color, std::opt
                 fillGradientObj->property("x1").toDouble(), fillGradientObj->property("y1").toDouble(),
                 fillGradientObj->property("x2").toDouble(), fillGradientObj->property("y2").toDouble()
             };
-            if (overrideArea) {
-                area = *overrideArea;
+            if (simpleGradient) {
+                if (fillGradientObj->property("orientation").toInt() == Qt::Vertical) {
+                    area = {0, 0, 0, simpleGradient->height()};
+                }
+                else {
+                    area = {0, 0, simpleGradient->width(), 0};
+                }
             }
             auto lingrad = QLinearGradient(area.topLeft(), area.bottomRight());
             auto stops = QQmlListReference(fillGradientObj, "stops");
@@ -210,8 +250,7 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         }
         painter->setPen(pen);
 
-        auto brush =
-            brushFromColorAndGradient(item->property("gradient"), item->property("color"), {{0, 0, 0, item->height()}});
+        auto brush = brushFromColorAndGradient(item->property("gradient"), item->property("color"), {item->size()});
         painter->setBrush(brush);
         painter->drawRoundedRect(rect, item->property("radius").toDouble(), item->property("radius").toDouble());
         painter->restore();
@@ -252,7 +291,7 @@ void exportToPaintDevice(QQuickItem* item, QPaintDevice* device) {
     painter.end();
 }
 
-void Helpers::exportToSvg(QQuickItem* item, QUrl path) {
+void Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
     /*!
         \qmlmethod var Helpers::exportToSvg(Item obj, url path)
 
@@ -270,7 +309,7 @@ void Helpers::exportToSvg(QQuickItem* item, QUrl path) {
     exportToPaintDevice(item, &device);
 }
 
-void Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
+void Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) const {
     /*!
         \qmlmethod var Helpers::exportToPng(Item obj, url path, int dpi = 96 * 2)
 
@@ -289,106 +328,3 @@ void Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
     exportToPaintDevice(item, &device);
     device.save(path.toLocalFile());
 }
-
-/*
-function _exportTransform(t) {
-    if (t instanceof QQ.Translate) {
-        return {
-            "type": "translate",
-                     "x": t.x,
-                     "y": t.y
-        }
-    } else if (t instanceof QQ.Rotation) {
-        return {
-            "type": "rotation",
-                     "angle": t.angle,
-                     "origin": t.origin
-        }
-    } else if (t instanceof QQ.Scale) {
-        return {
-            "type": "scale",
-                     "xScale": t.xScale,
-                     "yScale": t.yScale,
-                     "origin": t.origin
-        }
-    } else if (t instanceof QQ.Matrix4x4) {
-        return {
-            "type": "matrix4x4",
-                     "matrix": t.matrix
-        }
-    }
-}
-
-function _exportGradient(g) {
-    if (g === null) {
-        return null
-    } else if (g instanceof QQS.LinearGradient) {
-        return {
-            "type": "lineargradient",
-                     "x1": g.x1,
-                     "x2": g.x2,
-                     "y1": g.y1,
-                     "y2": g.y2,
-                     "stops": g.stops.map(s => ({
-                                                   color: s.color, position: s.position
-                                               }))
-        }
-    }
-}
-
-function exportData(obj) {
-    let data = { "type": null, "js": obj.toString() };
-    if (obj instanceof QQ.Item) {
-        data.x = obj.x;
-        data.y = obj.y;
-        data.z = obj.z;
-        data.width = obj.width;
-        data.height = obj.height;
-        data.children = obj.data.map(exportData);
-        data.clip = obj.clip;
-        data.transform = obj.transform.map(_exportTransform);
-        data.opacity = obj.opacity;
-        data.visible = obj.visible;
-
-        if (obj instanceof QQ.Text) {
-            data.type = "text";
-            data.text = obj.text;
-            data.color = obj.color;
-            data.fontFamily = obj.font.family;
-            data.fontSize = obj.font.pixelSize;
-            data.fontWeight = obj.font.weight;
-        }
-        else if (obj instanceof QQ.Rectangle) {
-            data.type = "rectangle";
-            data.border_color = obj.border.color;
-            data.border_width = obj.border.width;
-            data.color = obj.color;
-            data.radius = obj.radius;
-            data.gradient = _exportGradient(obj.gradient);
-        }
-    }
-    else if (obj instanceof QQS.ShapePath) {
-        data.type = "shape_path";
-        data.elements = obj.pathElements.map(exportData);
-        data.capStyle = obj.capStyle;
-        data.dashOffset = obj.dashOffset;
-        data.dashPattern = obj.dashPattern.map(x => x);
-        data.fillColor = obj.fillColor;
-        data.fillGradient = _exportGradient(obj.fillGradient);
-        data.fillRule = obj.fillRule;
-        data.joinStyle = obj.joinStyle;
-        data.miterLimit = obj.miterLimit;
-        data.strokeColor = obj.strokeColor;
-        data.strokeStyle = obj.strokeStyle;
-        data.strokeWidth = obj.strokeWidth;
-    }
-    else if (obj instanceof QQ.PathPolyline) {
-        data.type = "polyline";
-        data.path = obj.path;
-    }
-    else if (obj instanceof QQ.PathMultiline) {
-        data.type = "multiline";
-        data.paths = obj.paths;
-    }
-    return data;
-} */

@@ -8,6 +8,11 @@ repos:
         language: pygrep
         args: [--negate]
         files: "((\\.(qml|py|css|qdoc|qdocconf|js|cpp|hpp))|qmldir|CMakeLists.txt)$"
+      - id: qdebug-present
+        name: qdebug-present
+        entry: qDebug
+        language: pygrep
+        files: "(\\.(cpp|hpp))$"
       - id: black
         name: black
         entry: venv/Scripts/black.exe

@@ -13,6 +13,7 @@ html {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background-color: #f8f8f8;
     line-height: 1.5;
+    font-size: 16px;
 }
 
 a {
@@ -74,6 +75,10 @@ li::marker {
 img {
     max-width: 50%;
     margin: 1em;
+}
+
+code {
+    font-size: 1rem;
 }
 
 .centerAlign {

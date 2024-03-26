@@ -3,6 +3,7 @@
 
 import QtQuick
 import QtQuick.Shapes as QQS
+import QuickGraphLib as QuickGraphLib
 
 /*!
     \qmltype Line
@@ -51,6 +52,6 @@ QQS.ShapePath {
     joinStyle: QQS.ShapePath.RoundJoin
 
     PathPolyline {
-        path: root.path.map(p => root.dataTransform.map(p))
+        path: QuickGraphLib.Helpers.mapPoints(root.path, root.dataTransform)
     }
 }

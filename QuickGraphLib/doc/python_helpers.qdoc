@@ -34,13 +34,13 @@ Visit the \l {QuickGraphLib} module documentation and examples (in particular th
 */
 
 /*!
-    \qmlmethod list<list<point>> ContourHelper::contourLine(list<list<double>> x, list<list<double>> y, list<list<double>> z, double height)
+    \qmlmethod list<QPolygonF> ContourHelper::contourLine(list<list<double>> x, list<list<double>> y, list<list<double>> z, double height)
 
     Generates a contour line for the z position \a height from the mesh described by provided \a x, \a y and \a z coordinates. 
 */
 
 /*!
-    \qmlmethod list<list<point>> ContourHelper::contourFill(list<list<double>> x, list<list<double>> y, list<list<double>> z, double h_min, double h_max)
+    \qmlmethod list<QPolygonF> ContourHelper::contourFill(list<list<double>> x, list<list<double>> y, list<list<double>> z, double hMin, double hMax)
 
-    Generates a contour fill for the z positions between \a h_min and \a h_max from the mesh described by provided \a x, \a y and \a z coordinates. 
+    Generates a contour fill for the z positions between \a hMin and \a hMax from the mesh described by provided \a x, \a y and \a z coordinates.
 */

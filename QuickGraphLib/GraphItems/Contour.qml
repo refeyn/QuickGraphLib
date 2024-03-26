@@ -3,6 +3,7 @@
 
 import QtQuick
 import QtQuick.Shapes as QQS
+import QuickGraphLib as QuickGraphLib
 
 /*!
     \qmltype Contours
@@ -28,6 +29,6 @@ QQS.ShapePath {
     joinStyle: QQS.ShapePath.RoundJoin
 
     PathMultiline {
-        paths: root.paths.map(ps => ps.map(p => root.dataTransform.map(p)))
+        paths: root.paths.map(ps => QuickGraphLib.Helpers.mapPoints(ps, root.dataTransform))
     }
 }
