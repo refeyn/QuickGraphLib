@@ -54,6 +54,13 @@ Item {
     /*! TODO */
     property alias strokeWidth: myPath.strokeWidth
     /*! TODO */
+    property Component tickDelegate: TickLabel {
+        color: root.labelColor
+        decimalPoints: root.decimalPoints
+        direction: root.direction
+        font: root.labelFont
+    }
+    /*! TODO */
     property color tickLabelColor: labelColor
     /*! TODO */
     property font tickLabelFont: labelFont
@@ -124,45 +131,8 @@ Item {
     Repeater {
         id: tickLabels
 
-        model: root.showTickLabels ? root.ticks : []
-
-        Text {
-            required property int index
-            required property double modelData
-
-            color: root.tickLabelColor
-            font: root.tickLabelFont
-            leftPadding: 2
-            rightPadding: 2
-            text: Number(modelData).toFixed(root.decimalPoints)
-            visible: helper.tickPositions[index].x !== -1
-            x: {
-                let baseX = helper.tickPositions[index].x;
-                switch (root.direction) {
-                case Axis.Direction.Left:
-                    return baseX - width;
-                case Axis.Direction.Right:
-                    return baseX;
-                case Axis.Direction.Top:
-                    return baseX - width / 2;
-                case Axis.Direction.Bottom:
-                    return baseX - width / 2;
-                }
-            }
-            y: {
-                let baseY = helper.tickPositions[index].y;
-                switch (root.direction) {
-                case Axis.Direction.Left:
-                    return baseY - height / 2;
-                case Axis.Direction.Right:
-                    return baseY - height / 2;
-                case Axis.Direction.Top:
-                    return baseY - height;
-                case Axis.Direction.Bottom:
-                    return baseY;
-                }
-            }
-        }
+        delegate: root.tickDelegate
+        model: root.showTickLabels ? helper.tickModel : null
     }
     Text {
         id: labelText

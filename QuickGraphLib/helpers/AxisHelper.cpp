@@ -6,6 +6,8 @@
 enum Direction { Left, Right, Top, Bottom };
 
 AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
+    _tickModel = new AxisTickModel(this);
+
     pathProp.setBinding([&]() -> QPolygonF {
         auto direction = directionProp.value();
         auto width = widthProp.value();
@@ -64,22 +66,57 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
                 break;
             }
         }
-        _cachedTickPositions = tickPositions;
+
+        // Update tick items model
+        QList<AxisTickModel::TickData> tickDatas;
+        auto tickIndex = 0u;
+        for (auto tickPointsIndex : tickPositions) {
+            if (tickPointsIndex != -1) {
+                tickDatas.emplaceBack(AxisTickModel::TickData{points[tickPointsIndex], ticks[tickIndex]});
+            }
+            ++tickIndex;
+        }
+        _tickModel->_setTicks(std::move(tickDatas));
+
         return points;
     });
+}
 
-    tickPositionsProp.setBinding([&]() -> QList<QPointF> {
-        auto path = pathProp.value();
-        QList<QPointF> tickPositions;
-        tickPositions.reserve(_cachedTickPositions.size());
-        for (auto index : _cachedTickPositions) {
-            if (index == -1) {
-                tickPositions.emplaceBack(-1, -1);
-            }
-            else {
-                tickPositions.append(path[index]);
-            }
+AxisTickModel::AxisTickModel(QObject *parent) : QAbstractListModel(parent) {}
+
+int AxisTickModel::rowCount(const QModelIndex &parent) const { return parent.isValid() ? 0 : _ticks.size(); }
+
+QVariant AxisTickModel::data(const QModelIndex &index, int role) const {
+    if (!checkIndex(index, CheckIndexOption::IndexIsValid | CheckIndexOption::ParentIsInvalid)) {
+        return {};
+    }
+
+    switch (role) {
+        case Qt::DisplayRole: {
+            return QString::number(_ticks[index.row()].value);
         }
-        return tickPositions;
-    });
+        case AxisTickModel::PositionRole: {
+            return _ticks[index.row()].position;
+        }
+        case AxisTickModel::ValueRole: {
+            return _ticks[index.row()].value;
+        }
+        default: {
+            return {};
+        }
+    }
+}
+
+QHash<int, QByteArray> AxisTickModel::roleNames() const {
+    return {
+        {Qt::DisplayRole, {"display"}},
+        {AxisTickModel::PositionRole, {"position"}},
+        {AxisTickModel::ValueRole, {"value"}}
+    };
+}
+
+void AxisTickModel::_setTicks(QList<AxisTickModel::TickData> &&ticks) {
+    beginResetModel();
+    _ticks = std::move(ticks);
+    endResetModel();
 }

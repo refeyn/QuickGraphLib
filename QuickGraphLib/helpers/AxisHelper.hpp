@@ -3,11 +3,33 @@
 
 #pragma once
 
+#include <QAbstractListModel>
 #include <QBindable>
 #include <QObject>
 #include <QQmlEngine>
 #include <QtGui/QMatrix4x4>
 #include <QtGui/QPolygonF>
+
+class AxisTickModel : public QAbstractListModel {
+    Q_OBJECT
+    QML_ELEMENT
+
+    struct TickData {
+        QPointF position;
+        qreal value;
+    };
+    QList<TickData> _ticks;
+    void _setTicks(QList<TickData> &&ticks);
+    friend class AxisHelper;
+
+   public:
+    enum Roles { PositionRole = Qt::UserRole, ValueRole };
+
+    AxisTickModel(QObject *parent = nullptr);
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
+};
 
 class AxisHelper : public QObject {
     Q_OBJECT
@@ -24,10 +46,10 @@ class AxisHelper : public QObject {
     )
 
     Q_PROPERTY(QPolygonF path READ path NOTIFY pathChanged BINDABLE bindablePath)
-    Q_PROPERTY(QList<QPointF> tickPositions READ tickPositions NOTIFY tickPositionsChanged BINDABLE
-                   bindableTickPositions)
+    Q_PROPERTY(AxisTickModel *tickModel READ tickModel CONSTANT)
 
     QList<int> _cachedTickPositions;
+    AxisTickModel *_tickModel;
 
    public:
     explicit AxisHelper(QObject *parent = nullptr);
@@ -59,8 +81,7 @@ class AxisHelper : public QObject {
     QPolygonF path() const { return pathProp; }
     QBindable<QPolygonF> bindablePath() { return &pathProp; }
 
-    QList<QPointF> tickPositions() const { return tickPositionsProp; }
-    QBindable<QList<QPointF>> bindableTickPositions() { return &tickPositionsProp; }
+    AxisTickModel *tickModel() const { return _tickModel; }
 
    signals:
     void ticksChanged();
@@ -70,7 +91,6 @@ class AxisHelper : public QObject {
     void heightChanged();
     void tickLengthChanged();
     void pathChanged();
-    void tickPositionsChanged();
 
    private:
     Q_OBJECT_BINDABLE_PROPERTY(AxisHelper, QList<qreal>, ticksProp, &AxisHelper::ticksChanged)
@@ -80,5 +100,4 @@ class AxisHelper : public QObject {
     Q_OBJECT_BINDABLE_PROPERTY(AxisHelper, qreal, heightProp, &AxisHelper::heightChanged)
     Q_OBJECT_BINDABLE_PROPERTY(AxisHelper, qreal, tickLengthProp, &AxisHelper::tickLengthChanged)
     Q_OBJECT_BINDABLE_PROPERTY(AxisHelper, QPolygonF, pathProp, &AxisHelper::pathChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(AxisHelper, QList<QPointF>, tickPositionsProp, &AxisHelper::tickPositionsChanged)
 };

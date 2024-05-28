@@ -5,7 +5,7 @@ qt_add_qml_module(QuickGraphLib
     URI QuickGraphLib
     SHARED
     VERSION 1.0
-    QML_FILES AntialiasingContainer.qml Axis.qml GraphArea.qml ScalingContainer.qml ZoomPanHandler.qml
+    QML_FILES AntialiasingContainer.qml Axis.qml GraphArea.qml ScalingContainer.qml ZoomPanHandler.qml TickLabel.qml
     SOURCES helpers/Helpers.cpp helpers/Helpers.hpp helpers/AxisHelper.hpp helpers/AxisHelper.cpp helpers/Foreign.hpp
     PLUGIN_TARGET QuickGraphLib
     DEPENDENCIES QtQuick
