@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: Copyright (c) 2024 Matthew Joyce and other
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 // QuickGraphLib contributors SPDX-License-Identifier: MIT
 
 #include "AxisHelper.hpp"
