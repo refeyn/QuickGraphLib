@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 # SPDX-License-Identifier: MIT
 
-set(QGL_QML_FILES AntialiasingContainer.qml Axis.qml GraphArea.qml ScalingContainer.qml ZoomPanHandler.qml TickLabel.qml)
+set(QGL_QML_FILES AntialiasingContainer.qml Axis.qml GraphArea.qml ScalingContainer.qml ZoomPanHandler.qml TickLabel.qml ShapeRepeater.qml)
 qt_add_qml_module(QuickGraphLib
     URI QuickGraphLib
     SHARED

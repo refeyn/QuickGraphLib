@@ -291,11 +291,11 @@ void exportToPaintDevice(QQuickItem* item, QPaintDevice* device) {
     painter.end();
 }
 
-void Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
+bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
     /*!
-        \qmlmethod var Helpers::exportToSvg(Item obj, url path)
+        \qmlmethod bool Helpers::exportToSvg(Item obj, url path)
 
-        Exports the graph in \a obj to an SVG file at \a path.
+        Exports the graph in \a obj to an SVG file at \a path. Returns a boolean indicating success.
 
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
@@ -307,13 +307,15 @@ void Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
     QSvgGenerator device;
     device.setFileName(path.toLocalFile());
     exportToPaintDevice(item, &device);
+    return true;  // TODO How do we detect IO errors?
 }
 
-void Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) const {
+bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) const {
     /*!
-        \qmlmethod var Helpers::exportToPng(Item obj, url path, int dpi = 96 * 2)
+        \qmlmethod void Helpers::exportToPng(Item obj, url path, int dpi = 96 * 2)
 
-        Exports the graph in \a obj to an PNG file at \a path with the resolution \a dpi.
+        Exports the graph in \a obj to an PNG file at \a path with the resolution \a dpi. Returns a boolean indicating
+        success.
 
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
@@ -326,5 +328,5 @@ void Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
     device.fill(Qt::GlobalColor::transparent);
     device.setDevicePixelRatio(dpi / 96);
     exportToPaintDevice(item, &device);
-    device.save(path.toLocalFile());
+    return device.save(path.toLocalFile());
 }

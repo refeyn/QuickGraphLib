@@ -143,8 +143,8 @@ Item {
                     }
                     QGLGraphItems.BasicLegend {
                         anchors.margins: 10
-                        anchors.right: parent.right
-                        anchors.top: parent.top
+                        anchors.right: parent?.right
+                        anchors.top: parent?.top
 
                         QGLGraphItems.BasicLegendItem {
                             strokeColor: sinLine.strokeColor
@@ -171,6 +171,20 @@ Item {
                     decimalPoints: 0
                     direction: QuickGraphLib.Axis.Direction.Bottom
                     ticks: QuickGraphLib.Helpers.linspace(0, 720, 9)
+                }
+                QuickGraphLib.ShapeRepeater {
+                    graphArea: grapharea
+                    model: QuickGraphLib.Helpers.linspace(0, 720, freqSlider.value)
+
+                    QGLGraphItems.AxVLine {
+                        required property var modelData
+
+                        dataTransform: grapharea.dataTransform
+                        position: modelData
+                        strokeColor: "blue"
+                        strokeWidth: 3
+                        viewRect: grapharea.viewRect
+                    }
                 }
             }
         }

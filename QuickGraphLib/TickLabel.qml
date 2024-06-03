@@ -7,7 +7,7 @@ import QtQuick
     \qmltype TickLabel
     \inqmlmodule QuickGraphLib
     \inherits Text
-    \brief A single tick label
+    \brief A single tick label.
 */
 
 Text {
