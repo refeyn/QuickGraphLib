@@ -22,7 +22,7 @@ dynamic = ["version"]
 [project.urls]
 Homepage = "https://github.com/refeyn/QuickGraphLib"
 Issues = "https://github.com/refeyn/QuickGraphLib/issues"
-# Documentation = "..."
+Documentation = "https://refeyn.github.io/QuickGraphLib"
 Source = "https://github.com/refeyn/QuickGraphLib"
 
 [project.optional-dependencies]
