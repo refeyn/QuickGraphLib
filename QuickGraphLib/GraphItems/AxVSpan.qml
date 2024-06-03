@@ -2,27 +2,45 @@
 // SPDX-License-Identifier: MIT
 
 import QtQuick
+import QtQuick.Shapes as QQS
 
 /*!
     \qmltype AxVSpan
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Rectangle
+    \inherits QtQuick::Shapes::ShapePath
     \brief Displays an vertical span.
 */
 
-Rectangle {
+QQS.ShapePath {
     id: root
+
+    readonly property point bottomRightPoint: dataTransform.map(Qt.point(xMax, viewRect.top))
 
     /*! TODO */
     required property matrix4x4 dataTransform
+    readonly property point topLeftPoint: dataTransform.map(Qt.point(xMin, viewRect.bottom))
+    /*! TODO */
+    required property rect viewRect
     /*! TODO */
     required property double xMax
     /*! TODO */
     required property double xMin
 
-    border.width: 0
-    height: parent.height + border.width * 4
-    width: root.dataTransform.map(Qt.point(xMax, 0)).x - root.dataTransform.map(Qt.point(xMin, 0)).x
-    x: root.dataTransform.map(Qt.point(xMin, 0)).x
-    y: -border.width * 2
+    startX: topLeftPoint.x
+    startY: topLeftPoint.y
+    strokeColor: "transparent"
+
+    PathLine {
+        x: root.topLeftPoint.x
+        y: root.bottomRightPoint.y + root.strokeWidth
+    }
+    // Would be much nicer to use PathMove, but then the whole rect is not filled
+    PathLine {
+        x: root.bottomRightPoint.x
+        y: root.bottomRightPoint.y + root.strokeWidth
+    }
+    PathLine {
+        x: root.bottomRightPoint.x
+        y: root.topLeftPoint.y
+    }
 }

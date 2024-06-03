@@ -12,16 +12,14 @@ GridHelper::GridHelper(QObject *parent) : QObject{parent} {
         QList<QPolygonF> paths;
         paths.reserve(xTicks.size() + yTicks.size());
         for (auto x : xTicks) {
-            paths.emplaceBack(QList{
-                dataTransform.map(QPointF{x, viewRect.y()}),
-                dataTransform.map(QPointF{x, viewRect.y() + viewRect.height()})
-            });
+            paths.emplaceBack(
+                QList{dataTransform.map(QPointF{x, viewRect.top()}), dataTransform.map(QPointF{x, viewRect.bottom()})}
+            );
         }
         for (auto y : yTicks) {
-            paths.emplaceBack(QList{
-                dataTransform.map(QPointF{viewRect.x(), y}),
-                dataTransform.map(QPointF{viewRect.x() + viewRect.width(), y})
-            });
+            paths.emplaceBack(
+                QList{dataTransform.map(QPointF{viewRect.left(), y}), dataTransform.map(QPointF{viewRect.right(), y})}
+            );
         }
         return paths;
     });

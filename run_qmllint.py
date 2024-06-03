@@ -47,18 +47,7 @@ class QMLLintOutput(pydantic.BaseModel):
 
 try:
     out = subprocess.check_output(
-        [
-            "pyside6-qmllint",
-            *QML_FILES,
-            "-I",
-            "stubs",
-            "-I",
-            "build",
-            "--json",
-            "-",
-            "--compiler",
-            "info",
-        ]
+        ["pyside6-qmllint", *QML_FILES, "-I", "stubs", "-I", "build", "--json", "-"]
     )
 except subprocess.CalledProcessError as e:
     out = e.output

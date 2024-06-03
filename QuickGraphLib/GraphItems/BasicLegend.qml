@@ -8,6 +8,8 @@ import QtQuick
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Rectangle
     \brief Displays a simple legend.
+
+    \note This graph item does not inherit from ShapePath, unlike other graph items.
 */
 
 Rectangle {

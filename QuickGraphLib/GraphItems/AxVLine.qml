@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import QtQuick
+import QtQuick.Shapes as QQS
 
 /*!
     \qmltype AxVLine
@@ -10,17 +11,24 @@ import QtQuick
     \brief Displays an vertical line.
 */
 
-Rectangle {
+QQS.ShapePath {
     id: root
+
+    readonly property point bottomRightPoint: dataTransform.map(Qt.point(position, viewRect.top))
 
     /*! TODO */
     required property matrix4x4 dataTransform
     /*! TODO */
     required property double position
+    readonly property point topLeftPoint: dataTransform.map(Qt.point(position, viewRect.bottom))
+    /*! TODO */
+    required property rect viewRect
 
-    border.width: 0
-    height: parent.height + border.width * 4
-    width: 2
-    x: root.dataTransform.map(Qt.point(position, 0)).x - width / 2
-    y: -border.width * 2
+    startX: topLeftPoint.x
+    startY: topLeftPoint.y
+
+    PathLine {
+        x: root.topLeftPoint.x
+        y: root.bottomRightPoint.y + root.strokeWidth
+    }
 }

@@ -23,36 +23,45 @@ QGLPreFabs.XYAxes {
         strokeWidth: 1
     }
     QGLGraphItems.AxVSpan {
-        color: "#44000000"
+        id: span34
+
         dataTransform: axes.dataTransform
+        fillColor: "#44000000"
+        viewRect: axes.viewRect
         xMax: 0
         xMin: -1
-
-        Text {
-            anchors.centerIn: parent
-            text: "34%"
-        }
+    }
+    Text {
+        text: "34%"
+        x: (span34.topLeftPoint.x + span34.bottomRightPoint.x) / 2 - width / 2
+        y: (span34.topLeftPoint.y + span34.bottomRightPoint.y) / 2 - height / 2
     }
     QGLGraphItems.AxVSpan {
-        color: "#33000000"
+        id: span13
+
         dataTransform: axes.dataTransform
+        fillColor: "#33000000"
+        viewRect: axes.viewRect
         xMax: -1
         xMin: -2
-
-        Text {
-            anchors.centerIn: parent
-            text: "13.5%"
-        }
+    }
+    Text {
+        text: "13.5%"
+        x: (span13.topLeftPoint.x + span13.bottomRightPoint.x) / 2 - width / 2
+        y: (span13.topLeftPoint.y + span13.bottomRightPoint.y) / 2 - height / 2
     }
     QGLGraphItems.AxVSpan {
-        color: "#22000000"
+        id: span2
+
         dataTransform: axes.dataTransform
+        fillColor: "#22000000"
+        viewRect: axes.viewRect
         xMax: -2
         xMin: -3
-
-        Text {
-            anchors.centerIn: parent
-            text: "2.35%"
-        }
+    }
+    Text {
+        text: "2.35%"
+        x: (span2.topLeftPoint.x + span2.bottomRightPoint.x) / 2 - width / 2
+        y: (span2.topLeftPoint.y + span2.bottomRightPoint.y) / 2 - height / 2
     }
 }

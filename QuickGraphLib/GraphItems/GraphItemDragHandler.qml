@@ -26,7 +26,7 @@ MouseArea {
 
     onPositionChanged: event => {
         if (dragging) {
-            moved(dataTransform.inverted().mapRect(Qt.rect(parent.x + event.x - _startDragPos.x, parent.y + event.y - _startDragPos.y, _startDragPos.width, _startDragPos.height)));
+            moved(dataTransform.inverted().mapRect(Qt.rect(root.x + event.x - _startDragPos.x, parent.y + root.y - _startDragPos.y, _startDragPos.width, _startDragPos.height)));
         }
     }
     onPressed: event => {

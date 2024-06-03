@@ -2,25 +2,33 @@
 // SPDX-License-Identifier: MIT
 
 import QtQuick
+import QtQuick.Shapes as QQS
 
 /*!
     \qmltype AxHLine
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Rectangle
+    \inherits QtQuick::Shapes::ShapePath
     \brief Displays a horizontal line.
 */
 
-Rectangle {
+QQS.ShapePath {
     id: root
+
+    readonly property point bottomRightPoint: dataTransform.map(Qt.point(viewRect.right, position))
 
     /*! TODO */
     required property matrix4x4 dataTransform
     /*! TODO */
     required property double position
+    readonly property point topLeftPoint: dataTransform.map(Qt.point(viewRect.left, position))
+    /*! TODO */
+    required property rect viewRect
 
-    border.width: 0
-    height: 2
-    width: parent.width + border.width * 4
-    x: -border.width * 2
-    y: root.dataTransform.map(Qt.point(0, position)).y - height / 2
+    startX: topLeftPoint.x
+    startY: topLeftPoint.y
+
+    PathLine {
+        x: root.bottomRightPoint.x
+        y: root.topLeftPoint.y
+    }
 }

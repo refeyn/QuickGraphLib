@@ -68,20 +68,20 @@ Item {
                     QGLGraphItems.AxVSpan {
                         id: span
 
-                        border.color: "grey"
-                        border.width: 1
-                        color: "#22000000"
                         dataTransform: grapharea.dataTransform
+                        fillColor: "#22000000"
+                        strokeColor: "grey"
+                        strokeWidth: 1
+                        viewRect: grapharea.viewRect
                         xMax: 90 + spanSlider.value
                         xMin: 90
-                        z: -1
-
-                        Text {
-                            anchors.centerIn: parent
-                            color: "brown"
-                            horizontalAlignment: Text.AlignHCenter
-                            text: "I'm an\naxvspan"
-                        }
+                    }
+                    Text {
+                        color: "brown"
+                        horizontalAlignment: Text.AlignHCenter
+                        text: "I'm an\naxvspan"
+                        x: (span.topLeftPoint.x + span.bottomRightPoint.x) / 2 - width / 2
+                        y: (span.topLeftPoint.y + span.bottomRightPoint.y) / 2 - height / 2
                     }
                     QGLGraphItems.Histogram {
                         id: histogram

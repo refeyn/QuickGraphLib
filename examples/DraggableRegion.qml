@@ -26,54 +26,63 @@ QGLPreFabs.XYAxes {
         strokeWidth: 1
     }
     QGLGraphItems.AxVSpan {
-        color: spanMouseArea.containsMouse || spanMouseArea.dragging ? "#44ffff00" : "#44000000"
+        id: span
+
         dataTransform: axes.dataTransform
+        fillColor: spanMouseArea.containsMouse || spanMouseArea.dragging ? "#44ffff00" : "#44000000"
+        viewRect: axes.viewRect
         xMax: axes.maxPos
         xMin: axes.minPos
+    }
+    QGLGraphItems.GraphItemDragHandler {
+        id: spanMouseArea
 
-        QGLGraphItems.GraphItemDragHandler {
-            id: spanMouseArea
+        dataTransform: axes.dataTransform
+        height: span.bottomRightPoint.y - span.topLeftPoint.y
+        width: span.bottomRightPoint.x - span.topLeftPoint.x
+        x: span.topLeftPoint.x
+        y: span.topLeftPoint.y
 
-            anchors.fill: parent
-            dataTransform: axes.dataTransform
-
-            onMoved: position => {
-                let x = Math.max(Math.min(position.x, 3 - position.width), -3);
-                axes.maxPos = x + position.width;
-                axes.minPos = x;
-            }
+        onMoved: position => {
+            let x = Math.max(Math.min(position.x, 3 - position.width), -3);
+            axes.maxPos = x + position.width;
+            axes.minPos = x;
         }
     }
     QGLGraphItems.AxVLine {
-        color: leftLineMouseArea.containsMouse || leftLineMouseArea.dragging ? "yellow" : "black"
+        id: leftLine
+
         dataTransform: axes.dataTransform
         position: axes.minPos
+        strokeColor: leftLineMouseArea.containsMouse || leftLineMouseArea.dragging ? "yellow" : "black"
+        viewRect: axes.viewRect
+    }
+    QGLGraphItems.GraphItemDragHandler {
+        id: leftLineMouseArea
 
-        QGLGraphItems.GraphItemDragHandler {
-            id: leftLineMouseArea
+        dataTransform: axes.dataTransform
+        height: parent.height
+        width: 40
+        x: leftLine.topLeftPoint.x - width / 2
 
-            anchors.centerIn: parent
-            dataTransform: axes.dataTransform
-            height: parent.height
-            width: 40
-
-            onMoved: position => axes.minPos = Math.max(-3, Math.min(position.x, axes.maxPos))
-        }
+        onMoved: position => axes.minPos = Math.max(-3, Math.min(position.x + position.width / 2, axes.maxPos))
     }
     QGLGraphItems.AxVLine {
-        color: rightLineMouseArea.containsMouse || rightLineMouseArea.dragging ? "yellow" : "black"
+        id: rightLine
+
         dataTransform: axes.dataTransform
         position: axes.maxPos
+        strokeColor: rightLineMouseArea.containsMouse || rightLineMouseArea.dragging ? "yellow" : "black"
+        viewRect: axes.viewRect
+    }
+    QGLGraphItems.GraphItemDragHandler {
+        id: rightLineMouseArea
 
-        QGLGraphItems.GraphItemDragHandler {
-            id: rightLineMouseArea
+        dataTransform: axes.dataTransform
+        height: parent.height
+        width: 40
+        x: rightLine.topLeftPoint.x - width / 2
 
-            anchors.centerIn: parent
-            dataTransform: axes.dataTransform
-            height: parent.height
-            width: 40
-
-            onMoved: position => axes.maxPos = Math.min(3, Math.max(position.x, axes.minPos))
-        }
+        onMoved: position => axes.maxPos = Math.min(3, Math.max(position.x + position.width / 2, axes.minPos))
     }
 }

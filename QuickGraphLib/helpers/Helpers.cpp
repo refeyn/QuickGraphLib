@@ -298,8 +298,8 @@ void Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
         Exports the graph in \a obj to an SVG file at \a path.
 
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
-       PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
-       correctly, create a new issue and we'll see if it can be added.
+            PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
+            correctly, create a new issue and we'll see if it can be added.
 
         \sa Helpers::exportToPng
     */
@@ -316,8 +316,8 @@ void Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
         Exports the graph in \a obj to an PNG file at \a path with the resolution \a dpi.
 
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
-       PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
-       correctly, create a new issue and we'll see if it can be added.
+            PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
+            correctly, create a new issue and we'll see if it can be added.
 
         \sa Helpers::exportToSvg
     */

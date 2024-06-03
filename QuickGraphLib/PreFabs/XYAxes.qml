@@ -87,8 +87,8 @@ QuickGraphLib.AntialiasingContainer {
                 strokeColor: "#11000000"
                 strokeWidth: 1
                 viewRect: grapharea.viewRect
-                xTicks: QuickGraphLib.Helpers.tickLocator(grapharea.effectiveViewRect.x, grapharea.effectiveViewRect.x + grapharea.effectiveViewRect.width, root.numXTicks)
-                yTicks: QuickGraphLib.Helpers.tickLocator(grapharea.effectiveViewRect.y, grapharea.effectiveViewRect.y + grapharea.effectiveViewRect.height, root.numYTicks)
+                xTicks: QuickGraphLib.Helpers.tickLocator(grapharea.effectiveViewRect.left, grapharea.effectiveViewRect.right, root.numXTicks)
+                yTicks: QuickGraphLib.Helpers.tickLocator(grapharea.effectiveViewRect.top, grapharea.effectiveViewRect.bottom, root.numYTicks)
             }
         }
         Item {

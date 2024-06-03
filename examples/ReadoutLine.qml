@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import QtQuick
+import QtQuick.Shapes as QQC
 import QuickGraphLib as QuickGraphLib
 import QuickGraphLib.GraphItems as QGLGraphItems
 import QuickGraphLib.PreFabs as QGLPreFabs
@@ -27,14 +28,16 @@ QGLPreFabs.XYAxes {
     QGLGraphItems.AxVLine {
         id: line
 
-        color: "lightgrey"
         dataTransform: axes.dataTransform
         position: axes.dataTransform.inverted().map(Qt.point(mousearea.mouseX, mousearea.mouseY)).x
-
-        Text {
-            anchors.centerIn: parent
-            text: "X: %1\nY: %2".arg(Number(line.position).toFixed(2)).arg(Number(axes.f(line.position)).toFixed(2))
-        }
+        strokeColor: "lightgrey"
+        strokeStyle: QQC.ShapePath.DashLine
+        viewRect: axes.viewRect
+    }
+    Text {
+        text: "X: %1\nY: %2".arg(Number(line.position).toFixed(2)).arg(Number(axes.f(line.position)).toFixed(2))
+        x: line.topLeftPoint.x - width / 2
+        y: parent.height / 2 - height / 2
     }
     QGLGraphItems.Marker {
         color: "black"

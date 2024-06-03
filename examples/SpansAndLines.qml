@@ -11,43 +11,49 @@ QGLPreFabs.XYAxes {
     viewRect: Qt.rect(-5, -5, 10, 10)
 
     QGLGraphItems.AxVSpan {
-        color: "#44ff0000"
         dataTransform: axes.dataTransform
+        fillColor: "#44ff0000"
+        viewRect: axes.viewRect
         xMax: -1
         xMin: -4
     }
     QGLGraphItems.AxVSpan {
-        border.color: "green"
-        border.width: 5
-        color: "#4400ff00"
         dataTransform: axes.dataTransform
+        fillColor: "#4400ff00"
+        strokeColor: "green"
+        strokeWidth: 5
+        viewRect: axes.viewRect
         xMax: 4
         xMin: 1
     }
     QGLGraphItems.AxVLine {
-        color: "blue"
         dataTransform: axes.dataTransform
         position: 0.5
-        width: 5
+        strokeColor: "blue"
+        strokeWidth: 5
+        viewRect: axes.viewRect
     }
     QGLGraphItems.AxHSpan {
-        color: "#44ff00ff"
         dataTransform: axes.dataTransform
+        fillColor: "#44ff00ff"
+        viewRect: axes.viewRect
         yMax: -1
         yMin: -4
     }
     QGLGraphItems.AxHSpan {
-        border.color: "cyan"
-        border.width: 5
-        color: "#4400ffff"
         dataTransform: axes.dataTransform
+        fillColor: "#4400ffff"
+        strokeColor: "cyan"
+        strokeWidth: 5
+        viewRect: axes.viewRect
         yMax: 4
         yMin: 1
     }
     QGLGraphItems.AxHLine {
-        color: "yellow"
         dataTransform: axes.dataTransform
-        height: 5
         position: 0.5
+        strokeColor: "yellow"
+        strokeWidth: 5
+        viewRect: axes.viewRect
     }
 }
