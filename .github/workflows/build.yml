@@ -158,3 +158,4 @@ jobs:
           files: |
             dist/*
             docs.zip
+          generate_release_notes: true
