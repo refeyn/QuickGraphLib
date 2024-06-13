@@ -17,6 +17,6 @@ QQM.Instantiator {
     onObjectAdded: (i, obj) => graphArea.data.push(obj)
     onObjectRemoved: (i, obj) => {
         // Remove everything into a JS array and then add back in all items except for `obj`
-        graphArea.data.splice(0, graphArea.data.length).filter(o => o !== obj).map(graphArea.data.push);
+        graphArea.data.splice(0).filter(o => o !== obj).map(x => graphArea.data.push(x));
     }
 }

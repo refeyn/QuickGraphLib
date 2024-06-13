@@ -19,7 +19,7 @@ class AxisTickModel : public QAbstractListModel {
         qreal value;
     };
     QList<TickData> _ticks;
-    void _setTicks(QList<TickData> &&ticks);
+    void _setTicks(const QList<TickData> &ticks);
     friend class AxisHelper;
 
    public:
@@ -49,7 +49,7 @@ class AxisHelper : public QObject {
     Q_PROPERTY(AxisTickModel *tickModel READ tickModel CONSTANT)
 
     QList<int> _cachedTickPositions;
-    AxisTickModel *_tickModel;
+    AxisTickModel *_tickModel = nullptr;
 
    public:
     explicit AxisHelper(QObject *parent = nullptr);

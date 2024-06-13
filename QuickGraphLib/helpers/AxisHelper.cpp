@@ -16,7 +16,8 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
         auto dataTransform = dataTransformProp.value();
         auto tickLength = tickLengthProp.value();
 
-        auto longAxis = direction == Top || direction == Bottom ? width : height;
+        auto isVertical = direction == Top || direction == Bottom;
+        auto longAxis = isVertical ? width : height;
 
         // Calculate everything as if we were a bottom axis
         auto points = QList{QPointF{0, 0}};
@@ -24,8 +25,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
         QList<int> tickPositions;
         tickPositions.reserve(ticks.size());
         for (auto tick : ticks) {
-            auto t = direction == Top || direction == Bottom ? dataTransform.map(QPointF{tick, 0}).x()
-                                                             : dataTransform.map(QPointF{0, tick}).y();
+            auto t = isVertical ? dataTransform.map(QPointF{tick, 0}).x() : dataTransform.map(QPointF{0, tick}).y();
             if (t >= -0.5 && t <= longAxis + 0.5) {
                 points.emplaceBack(t, 0);
                 points.emplaceBack(t, tickLength);
@@ -76,7 +76,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
             }
             ++tickIndex;
         }
-        _tickModel->_setTicks(std::move(tickDatas));
+        _tickModel->_setTicks(tickDatas);
 
         return points;
     });
@@ -109,14 +109,14 @@ QVariant AxisTickModel::data(const QModelIndex &index, int role) const {
 
 QHash<int, QByteArray> AxisTickModel::roleNames() const {
     return {
-        {Qt::DisplayRole, {"display"}},
-        {AxisTickModel::PositionRole, {"position"}},
-        {AxisTickModel::ValueRole, {"value"}}
+        {Qt::DisplayRole, "display"},
+        {AxisTickModel::PositionRole, "position"},
+        {AxisTickModel::ValueRole, "value"},
     };
 }
 
-void AxisTickModel::_setTicks(QList<AxisTickModel::TickData> &&ticks) {
+void AxisTickModel::_setTicks(const QList<AxisTickModel::TickData> &ticks) {
     beginResetModel();
-    _ticks = std::move(ticks);
+    _ticks = ticks;
     endResetModel();
 }
