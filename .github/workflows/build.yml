@@ -1,4 +1,4 @@
-name: Build, static analysis, tests & upload
+name: Static analysis, build & upload
 
 on:
   workflow_dispatch:
@@ -81,8 +81,14 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: QuickGraphLib-wheels-${{ matrix.os }}
-          path: dist/*
+          name: QuickGraphLib-wheel-${{ matrix.os }}
+          path: dist/*.whl
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          name: QuickGraphLib-sdist
+          path: dist/*.tar.gz
 
       - name: Build docs
         if: matrix.os == 'windows-latest'
@@ -111,11 +117,17 @@ jobs:
       - name: "Download wheels"
         uses: actions/download-artifact@v4
         with:
+          pattern: QuickGraphLib-wheel-*
           path: dist
-          pattern: QuickGraphLib-wheels-*
           merge-multiple: true
 
-      - name: Publish package distributions to TestPyPI
+      - name: "Download sdist"
+        uses: actions/download-artifact@v4
+        with:
+          name: QuickGraphLib-sdist
+          path: dist
+
+      - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
 
   upload-docs:
@@ -167,9 +179,15 @@ jobs:
       - name: "Download wheels"
         uses: actions/download-artifact@v4
         with:
+          pattern: QuickGraphLib-wheel-*
           path: dist
-          pattern: QuickGraphLib-wheels-*
           merge-multiple: true
+
+      - name: "Download sdist"
+        uses: actions/download-artifact@v4
+        with:
+          name: QuickGraphLib-sdist
+          path: dist
 
       - name: "Download docs"
         uses: actions/download-artifact@v4
