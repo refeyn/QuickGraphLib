@@ -9,6 +9,12 @@ project(qmlmodule VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if(MSVC)
+    add_compile_options(/W4)
+else()
+    add_compile_options(-Wextra -Wpedantic -Werror)
+endif()
+
 if(NOT INSTALL_SUBPATH)
     set(INSTALL_SUBPATH ${CMAKE_INSTALL_LIBDIR}/qml CACHE STRING "Install subpath (defaults to lib/qml)")
 endif()

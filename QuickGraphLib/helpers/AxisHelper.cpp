@@ -116,7 +116,21 @@ QHash<int, QByteArray> AxisTickModel::roleNames() const {
 }
 
 void AxisTickModel::_setTicks(const QList<AxisTickModel::TickData> &ticks) {
-    beginResetModel();
+    auto oldCount = _ticks.count();
+    if (oldCount < ticks.count()) {
+        beginInsertRows({}, oldCount, ticks.count() - 1);
+    }
+    else if (oldCount > ticks.count()) {
+        beginRemoveRows({}, ticks.count(), oldCount - 1);
+    }
     _ticks = ticks;
-    endResetModel();
+    if (oldCount < ticks.count()) {
+        endInsertRows();
+    }
+    else if (oldCount > ticks.count()) {
+        endRemoveRows();
+    }
+    if (ticks.count()) {
+        emit dataChanged(index(0), index(ticks.count() - 1));
+    }
 }
