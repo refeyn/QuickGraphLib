@@ -7,7 +7,7 @@ on:
     tags:
       - '*'
     branches:
-      - '*'
+      - master
 
 jobs:
   static_analysis:
@@ -68,18 +68,15 @@ jobs:
       - name: Install Python requirements
         run: pip install -r requirements.txt
 
-      - name: Build wheel (windows)
+      - name: Mess with tmpdir
         if: matrix.os == 'windows-latest'
         run: |
-          # Stupid Windows file path length issues
+          # Stupid Windows/MSCV/MSBuild file path length issues
           mkdir C:\tmp
-          $Env:TMPDIR="C:\tmp"
-          python -m build --config-setting=--build-option=--py-limited-api=cp37
+          echo "TMPDIR=C:\tmp" > $env:GITHUB_ENV
 
-      - name: Build wheel (linux)
-        if: matrix.os == 'ubuntu-latest'
+      - name: Build wheel
         run: |
-          # export PATH=./Qt/6.5.3/gcc_64/bin:$PATH
           python -m build --config-setting=--build-option=--py-limited-api=cp37
 
       - uses: actions/upload-artifact@v4
@@ -114,8 +111,9 @@ jobs:
       - name: "Download wheels"
         uses: actions/download-artifact@v4
         with:
-          name: QuickGraphLib-wheels
           path: dist
+          pattern: QuickGraphLib-wheels-*
+          merge-multiple: true
 
       - name: Publish package distributions to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -169,8 +167,9 @@ jobs:
       - name: "Download wheels"
         uses: actions/download-artifact@v4
         with:
-          name: QuickGraphLib-wheels
           path: dist
+          pattern: QuickGraphLib-wheels-*
+          merge-multiple: true
 
       - name: "Download docs"
         uses: actions/download-artifact@v4
