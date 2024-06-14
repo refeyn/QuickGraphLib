@@ -7,6 +7,7 @@ enum Direction { Left, Right, Top, Bottom };
 
 AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
     _tickModel = new AxisTickModel(this);
+    connect(this, &AxisHelper::pathChanged, _tickModel, &AxisTickModel::_updateToNewTicks);
 
     pathProp.setBinding([&]() -> QPolygonF {
         auto direction = directionProp.value();
@@ -76,7 +77,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
             }
             ++tickIndex;
         }
-        _tickModel->_setTicks(tickDatas);
+        _tickModel->_setNewTicks(tickDatas);
 
         return points;
     });
@@ -115,22 +116,24 @@ QHash<int, QByteArray> AxisTickModel::roleNames() const {
     };
 }
 
-void AxisTickModel::_setTicks(const QList<AxisTickModel::TickData> &ticks) {
+void AxisTickModel::_setNewTicks(const QList<AxisTickModel::TickData> &ticks) { _newTicks = ticks; }
+
+void AxisTickModel::_updateToNewTicks() {
     auto oldCount = _ticks.count();
-    if (oldCount < ticks.count()) {
-        beginInsertRows({}, oldCount, ticks.count() - 1);
+    if (oldCount < _newTicks.count()) {
+        beginInsertRows({}, oldCount, _newTicks.count() - 1);
     }
-    else if (oldCount > ticks.count()) {
-        beginRemoveRows({}, ticks.count(), oldCount - 1);
+    else if (oldCount > _newTicks.count()) {
+        beginRemoveRows({}, _newTicks.count(), oldCount - 1);
     }
-    _ticks = ticks;
-    if (oldCount < ticks.count()) {
+    _ticks = _newTicks;
+    if (oldCount < _newTicks.count()) {
         endInsertRows();
     }
-    else if (oldCount > ticks.count()) {
+    else if (oldCount > _newTicks.count()) {
         endRemoveRows();
     }
-    if (ticks.count()) {
-        emit dataChanged(index(0), index(ticks.count() - 1));
+    if (_newTicks.count()) {
+        emit dataChanged(index(0), index(_newTicks.count() - 1));
     }
 }

@@ -19,8 +19,12 @@ class AxisTickModel : public QAbstractListModel {
         qreal value;
     };
     QList<TickData> _ticks;
-    void _setTicks(const QList<TickData> &ticks);
+    QList<TickData> _newTicks;
+    void _setNewTicks(const QList<TickData> &ticks);
     friend class AxisHelper;
+
+   private slots:
+    void _updateToNewTicks();
 
    public:
     enum Roles { PositionRole = Qt::UserRole, ValueRole };
