@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(MSVC)
     add_compile_options(/W4)
 else()
-    add_compile_options(-Wextra -Wpedantic -Werror)
+    add_compile_options(-Wextra -Wpedantic -Werror -fno-visibility-inlines-hidden)
 endif()
 
 if(NOT INSTALL_SUBPATH)
