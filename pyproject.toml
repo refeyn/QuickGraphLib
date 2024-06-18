@@ -48,6 +48,33 @@ enabled = true
 [tool.setuptools.packages.find]
 include = ["quickgraphlib_helpers*"]
 
+[tool.cibuildwheel]
+build = [
+    "cp37-macosx_x86_64",
+    "cp37-win_amd64",
+    "cp37-manylinux_x86_64",
+    # "cp37-manylinux_aarch64",
+]
+before-all = "python ci/setup_qt.py"
+repair-wheel-command = ""
+build-frontend = "build"
+# test-command = "pytest {project}/tests"
+# test-extras = ["tests"]
+
+[tool.cibuildwheel.environment]
+CMAKE_BUILD_FLAGS = "-DCMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
+
+[tool.cibuildwheel.macos]
+archs = ["universal2"]
+
+[tool.cibuildwheel.linux]
+archs = ["x86_64"]                         # , "aarch64"]
+manylinux-x86_64-image = "manylinux_2_28"
+manylinux-aarch64-image = "manylinux_2_28"
+
+[tool.cibuildwheel.windows]
+archs = ["AMD64"]
+
 [tool.isort]
 profile = "black"
 force_alphabetical_sort_within_sections = true

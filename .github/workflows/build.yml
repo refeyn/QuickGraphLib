@@ -33,12 +33,37 @@ jobs:
           .\activate_venv.ps1
           pre-commit run --all-files --show-diff-on-failure
 
-  build:
-    name: Build
+  build-wheels:
+    name: Build wheels on ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    needs: static_analysis
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: "0"
+
+      - name: Mess with tmpdir
+        if: matrix.os == 'windows-latest'
+        run: |
+          # Stupid Windows/MSCV/MSBuild file path length issues
+          mkdir C:\tmp
+          echo "TMPDIR=C:\tmp" > $env:GITHUB_ENV
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.19.1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: QuickGraphLib-wheel-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
+
+  build-docs:
+    name: Build docs
+    runs-on: windows-latest # TODO use ubuntu
     needs: static_analysis
     steps:
       - name: Checkout
@@ -51,8 +76,6 @@ jobs:
         with:
           python-version: "3.10.11"
           architecture: "x64"
-          cache: "pip"
-          cache-dependency-path: "./requirements.txt"
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
@@ -65,45 +88,30 @@ jobs:
           cache: true
           tools: 'tools_cmake'
           
-      - name: Install Python requirements
-        run: pip install -r requirements.txt
-
-      - name: Mess with tmpdir
-        if: matrix.os == 'windows-latest'
-        run: |
-          # Stupid Windows/MSCV/MSBuild file path length issues
-          mkdir C:\tmp
-          echo "TMPDIR=C:\tmp" > $env:GITHUB_ENV
-
-      - name: Build wheel
-        run: |
-          python -m build --config-setting=--build-option=--py-limited-api=cp37
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: QuickGraphLib-wheel-${{ matrix.os }}
-          path: dist/*.whl
-
-      - uses: actions/upload-artifact@v4
-        if: matrix.os == 'ubuntu-latest'
-        with:
-          name: QuickGraphLib-sdist
-          path: dist/*.tar.gz
-
       - name: Build docs
-        if: matrix.os == 'windows-latest'
         run: python docs/build_docs.py
 
       - uses: actions/upload-artifact@v4
-        if: matrix.os == 'windows-latest'
         with:
           name: QuickGraphLib-docs
           path: dist/docs/*
 
+      - name: Build sdist
+        run: |
+          pip install build
+          python -m build --sdist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: QuickGraphLib-sdist
+          path: dist/*.tar.gz
+
   upload-pypi:
     name: Upload to PyPI
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+      - build-wheels
+      - build-docs
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     environment:
       name: pypi
@@ -133,7 +141,7 @@ jobs:
   upload-docs:
     name: Upload to GitHub Pages
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-docs
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     environment:
       name: github-pages
@@ -167,7 +175,9 @@ jobs:
   upload-github:
     name: Upload to GitHub
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+      - build-wheels
+      - build-docs
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     environment:
       name: github-release
