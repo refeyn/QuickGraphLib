@@ -23,6 +23,9 @@ QList<qreal> Helpers::linspace(qreal min, qreal max, int num) const {
         Returns a list of \a num values equally spaced from \a min and \a max (inclusive).
     */
     auto result = QList<qreal>();
+    if (num <= 0) {
+        return result;
+    }
     result.reserve(num);
     for (auto i = 0; i < num; ++i) {
         result.append(static_cast<qreal>(i) / (num - 1) * (max - min) + min);
@@ -37,7 +40,14 @@ QList<int> Helpers::range(int min, int max, int step /* = 1 */) const {
         Returns a list of values from \a min to \a max (exclusive) with a gap of \a step between each one.
     */
     auto result = QList<int>();
-    result.reserve((max - min) / step);
+    if (step == 0) {
+        return result;
+    }
+    auto num = (max - min) / step;
+    if (num <= 0) {
+        return result;
+    }
+    result.reserve(num);
     for (auto i = min; i < max; i += step) {
         result.append(i);
     }
@@ -50,7 +60,7 @@ QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum) const {
 
         Returns a list of at most \a maxNum nice tick locations values equally spaced between \a min and \a max.
     */
-    if (min == max || !std::isfinite(min) || !std::isfinite(max) || maxNum == 0) {
+    if (min == max || !std::isfinite(min) || !std::isfinite(max) || maxNum <= 0) {
         return {};
     }
     if (max < min) {
