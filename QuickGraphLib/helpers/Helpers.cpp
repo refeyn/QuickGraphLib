@@ -311,11 +311,13 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
             PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
             correctly, create a new issue and we'll see if it can be added.
 
-        \sa Helpers::exportToPng
+        \sa Helpers::exportToPng, Helpers::exportToPicture
     */
 
     QSvgGenerator device;
     device.setFileName(path.toLocalFile());
+    device.setViewBox(QRectF(0, 0, item->width(), item->height()));
+    device.setResolution(96);
     exportToPaintDevice(item, &device);
     return true;  // TODO How do we detect IO errors?
 }
@@ -331,7 +333,7 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
             PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
             correctly, create a new issue and we'll see if it can be added.
 
-        \sa Helpers::exportToSvg
+        \sa Helpers::exportToSvg, Helpers::exportToPicture
     */
 
     auto device = QPixmap(std::ceil(item->width() * dpi / 96), std::ceil(item->height() * dpi / 96));
@@ -339,4 +341,22 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
     device.setDevicePixelRatio(dpi / 96);
     exportToPaintDevice(item, &device);
     return device.save(path.toLocalFile());
+}
+
+QPicture Helpers::exportToPicture(QQuickItem* item) const {
+    /*!
+        \qmlmethod QPicture Helpers::exportToPicture(Item obj)
+
+         Exports the graph in \a obj to a QPicture.
+
+          \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
+              PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
+              correctly, create a new issue and we'll see if it can be added.
+
+         \sa Helpers::exportToPng, Helpers::exportToSvg
+     */
+
+    QPicture device;
+    exportToPaintDevice(item, &device);
+    return device;
 }

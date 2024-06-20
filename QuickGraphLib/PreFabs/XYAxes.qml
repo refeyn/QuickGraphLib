@@ -49,6 +49,7 @@ QuickGraphLib.AntialiasingContainer {
         id: background
 
         anchors.fill: parent
+        border.width: 0
     }
     QQL.GridLayout {
         id: axes

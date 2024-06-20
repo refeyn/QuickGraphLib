@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QObject>
+#include <QPicture>
 #include <QQmlEngine>
 #include <QQuickItem>
 
@@ -18,4 +19,5 @@ class Helpers : public QObject {
     Q_INVOKABLE QPolygonF mapPoints(QVariant points, QMatrix4x4 dataTransform) const;
     Q_INVOKABLE bool exportToSvg(QQuickItem* item, QUrl path) const;
     Q_INVOKABLE bool exportToPng(QQuickItem* item, QUrl path, int dpi = 96 * 2) const;
+    Q_INVOKABLE QPicture exportToPicture(QQuickItem* item) const;
 };
