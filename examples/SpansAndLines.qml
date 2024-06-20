@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import QtQuick
+import QtQuick.Shapes as QQS
 import QuickGraphLib.GraphItems as QGLGraphItems
 import QuickGraphLib.PreFabs as QGLPreFabs
 
@@ -27,9 +28,12 @@ QGLPreFabs.XYAxes {
         xMin: 1
     }
     QGLGraphItems.AxVLine {
+        dashOffset: 10
+        dashPattern: [10, 5]
         dataTransform: axes.dataTransform
         position: 0.5
         strokeColor: "blue"
+        strokeStyle: QQS.ShapePath.DashLine
         strokeWidth: 5
         viewRect: axes.viewRect
     }

@@ -114,37 +114,22 @@ QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
     }
 }
 
-void exportPathElementToPainter(QObject* element, QPainter* painter) {
+void exportPathElementToPainterPath(QObject* element, QPainterPath& path) {
     if (element->inherits("QQuickPathPolyline")) {
-        auto brush = painter->brush();
-        auto pen = painter->pen();
-        auto path = element->property("path").value<QList<QPointF>>();
-        painter->setPen(Qt::PenStyle::NoPen);
-        painter->drawPolygon(path);
-        painter->setPen(pen);
-        painter->setBrush(Qt::BrushStyle::NoBrush);
-        painter->drawPolyline(path);
-        painter->setBrush(brush);
+        path.addPolygon(element->property("path").value<QList<QPointF>>());
     }
     else if (element->inherits("QQuickPathMultiline")) {
-        auto brush = painter->brush();
-        auto pen = painter->pen();
         auto paths = element->property("paths").value<QList<QList<QPointF>>>();
 
-        QPainterPath fill_path;
-        for (auto& path : paths) {
-            fill_path.addPolygon(QPolygonF(path));
-            fill_path.closeSubpath();
+        for (auto& p : paths) {
+            path.addPolygon(p);
         }
-
-        painter->setPen(Qt::PenStyle::NoPen);
-        painter->drawPath(fill_path);
-        painter->setPen(pen);
-        painter->setBrush(Qt::BrushStyle::NoBrush);
-        for (auto& path : paths) {
-            painter->drawPolyline(path);
-        }
-        painter->setBrush(brush);
+    }
+    else if (element->inherits("QQuickPathLine")) {
+        path.lineTo(element->property("x").toDouble(), element->property("y").toDouble());
+    }
+    else if (element->inherits("QQuickPathMove")) {
+        path.moveTo(element->property("x").toDouble(), element->property("y").toDouble());
     }
 }
 
@@ -182,15 +167,29 @@ void exportShapePathToPainter(QObject* shapePath, QPainter* painter) {
     painter->save();
     auto pen = QPen(shapePath->property("strokeColor").value<QColor>());
     pen.setWidth(shapePath->property("strokeWidth").toDouble());
+    auto strokeStyle = static_cast<Qt::PenStyle>(shapePath->property("strokeStyle").toInt());
+    pen.setStyle(strokeStyle);
+    if (strokeStyle == Qt::PenStyle::DashLine) {
+        pen.setDashOffset(shapePath->property("dashOffset").toDouble());
+        pen.setDashPattern(shapePath->property("dashPattern").value<QList<qreal>>());
+    }
+    pen.setCapStyle(static_cast<Qt::PenCapStyle>(shapePath->property("capStyle").toInt()));
+    pen.setJoinStyle(static_cast<Qt::PenJoinStyle>(shapePath->property("joinStyle").toInt()));
+    pen.setMiterLimit(shapePath->property("miterLimit").toDouble());
     painter->setPen(pen);
+
     auto brush = brushFromColorAndGradient(shapePath->property("fillGradient"), shapePath->property("fillColor"), {});
     painter->setBrush(brush);
+
+    QPainterPath path({shapePath->property("startX").toDouble(), shapePath->property("startY").toDouble()});
+    path.setFillRule(static_cast<Qt::FillRule>(shapePath->property("fillRule").toInt()));
 
     auto elements = QQmlListReference(shapePath, "pathElements");
     for (auto elIndex = 0; elIndex < elements.count(); ++elIndex) {
         auto element = elements.at(elIndex);
-        exportPathElementToPainter(element, painter);
+        exportPathElementToPainterPath(element, path);
     }
+    painter->drawPath(path);
     painter->restore();
 }
 
