@@ -78,7 +78,8 @@ Item {
         case Axis.Direction.Bottom:
             let height = 0;
             if (ticks.length > 0) {
-                height += root.tickLength + Math.max(0, ...[...Array(tickLabels.count).keys()].map(i => tickLabels.itemAt(i)?.height));
+                // Can't use childrenRect due to the binding loop it causes
+                height += root.tickLength + Math.max(0, ...tickLabelsContainer.children.map(x => x.height));
             }
             if (label !== "") {
                 height += labelText.height + root.spacing;
@@ -92,7 +93,8 @@ Item {
         case Axis.Direction.Right:
             let width = 0;
             if (ticks.length > 0) {
-                width += root.tickLength + Math.max(0, ...[...Array(tickLabels.count).keys()].map(i => tickLabels.itemAt(i)?.width));
+                // Can't use childrenRect due to the binding loop it causes
+                width += root.tickLength + Math.max(0, ...tickLabelsContainer.children.map(x => x.width));
             }
             if (label !== "") {
                 width += labelText.height + root.spacing;
@@ -128,11 +130,13 @@ Item {
             }
         }
     }
-    Repeater {
-        id: tickLabels
+    Item {
+        id: tickLabelsContainer
 
-        delegate: root.tickDelegate
-        model: root.showTickLabels ? helper.tickModel : null
+        Repeater {
+            delegate: root.tickDelegate
+            model: root.showTickLabels ? helper.tickModel : null
+        }
     }
     Text {
         id: labelText
