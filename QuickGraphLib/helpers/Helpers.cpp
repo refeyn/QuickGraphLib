@@ -307,10 +307,10 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
         Exports the graph in \a obj to an SVG file at \a path. Returns a boolean indicating success.
 
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
-            PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
-            correctly, create a new issue and we'll see if it can be added.
+            PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
+            more information.
 
-        \sa Helpers::exportToPng, Helpers::exportToPicture
+        \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
     */
 
     QSvgGenerator device;
@@ -329,10 +329,10 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
         success.
 
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
-            PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
-            correctly, create a new issue and we'll see if it can be added.
+            PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
+       more information.
 
-        \sa Helpers::exportToSvg, Helpers::exportToPicture
+        \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
     */
 
     auto device = QPixmap(std::ceil(item->width() * dpi / 96), std::ceil(item->height() * dpi / 96));
@@ -346,13 +346,13 @@ QPicture Helpers::exportToPicture(QQuickItem* item) const {
     /*!
         \qmlmethod QPicture Helpers::exportToPicture(Item obj)
 
-         Exports the graph in \a obj to a QPicture.
+        Exports the graph in \a obj to a QPicture.
 
-          \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
-              PathPolyline). Other elements will be rendered incorrectly or not at all. If an element is not rendered
-              correctly, create a new issue and we'll see if it can be added.
+        \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
+            PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
+            more information.
 
-         \sa Helpers::exportToPng, Helpers::exportToSvg
+        \sa Helpers::exportToPng, Helpers::exportToSvg, {Exporting graphs}
      */
 
     QPicture device;

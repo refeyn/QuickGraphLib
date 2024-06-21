@@ -5,6 +5,7 @@ import collections
 import os
 import pathlib
 import subprocess
+import sys
 
 IGNORED_LINES = [
     "Example has no project file",
@@ -27,9 +28,20 @@ for path in [QT_PATH, QDOC_PATH, INDEX_PATH, QDOCCONF_PATH, QT_INSTALL_DOCS]:
 
 print("Using Qt", QT_VERSION, "from", QT_PATH)
 
+qgl_version = (
+    subprocess.check_output([sys.executable, "-m", "setuptools_git_versioning"])
+    .decode()
+    .strip()
+)
+
+print("QGL version", qgl_version)
+
 proc = subprocess.run(
     [QDOC_PATH, QDOCCONF_PATH, "-indexdir", INDEX_PATH],
-    env=collections.ChainMap({"QT_INSTALL_DOCS": str(QT_INSTALL_DOCS)}, os.environ),
+    env=collections.ChainMap(
+        {"QT_INSTALL_DOCS": str(QT_INSTALL_DOCS), "QGL_VERSION": qgl_version},
+        os.environ,
+    ),
     stdout=subprocess.PIPE,
     stderr=subprocess.STDOUT,
     check=False,

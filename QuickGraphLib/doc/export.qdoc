@@ -9,16 +9,39 @@
 Graphs can be exported in two types of formats:
 
 \list
-    \li Raster - pixel-based formats like PNG and JPEG
-    \li Vector - vector-based formats like SVG and PS
+    \li \l {https://en.wikipedia.org/wiki/Raster_graphics} {Raster} - pixel-based formats like PNG and JPEG
+    \li \l {https://en.wikipedia.org/wiki/Vector_graphics} {Vector} - vector-based formats like SVG and PS
 \endlist
 
-\section1 Screen capture (raster)
+\section1 Screen capture
 
-TODO
+The quickest and most accurate export method is to use \l{Item::grabToImage}. This method will export any visible Items with pixel-perfect accuracy. However, since it works by grabbing data from the rendering backend, it can only export a raster image, and only if it is part of a scene. This method cannot export vector files, or non-visible parts of graphs.
 
-\section1 QPainter export (both)
+For documentation and examples, consult the Qt docs at \l{Item::grabToImage}.
 
-TODO
+\section1 QPainter-based export
+
+QuickGraphLib has it's own export methods which support a wider range of export formats, but do not support all Item types and will not be pixel-perfect:
+
+\list
+    \li \l Helpers::exportToPng, for PNG (raster) export
+    \li \l Helpers::exportToSvg, for SVG (vector) export
+    \li \l Helpers::exportToPicture, for export to a QPicture (vector)
+\endlist
+
+These methods iterate though the Item tree for a given Item, and attempt to draw each Item using a QPainter. Since each Item is converted into a series of vector drawing commands, these methods can export in both raster and vector formats. However, these methods have corresponding downsides:
+
+\list
+    \li Any Item types not handled by QuickGraphLib cannot be exported - they will simply not appear in the exported file
+    \li Not all properties of supported Item types are supported
+\endlist
+
+If an element is not rendered correctly, create a \l {https://github.com/refeyn/QuickGraphLib/issues/new} {new issue on GitHub} and we'll see if it can be supported.
+
+\section2 Known issues
+
+\list
+    \li \l Rectangle items must have \l {Rectangle::border.width} {border.width} set to zero if the border should be hidden. This is because the border width defaults to 1, and there is no public API for checking if the width or color has been set.
+\endlist
 
 */

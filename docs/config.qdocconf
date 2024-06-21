@@ -13,6 +13,8 @@ examples.fileextensions = "*.qml *.qdoc *.cpp *.hpp"
 outputdir = ../dist/docs
 outputformats = HTML
 
+macro.qglversion = "$QGL_VERSION"
+
 depends = qtdoc qtcore qtgui qtqml qtqmlmodels qtquick
 include($QT_INSTALL_DOCS\global\qt-html-templates-offline.qdocconf)
 HTML.stylesheets += style.css
@@ -28,7 +30,7 @@ HTML.postheader = \
     "<div class=\"main\">\n" \
     "<div class=\"crumbs\">\n" \
     "    <ul>\n" \
-    "<li><a href="index.html" translate="no">Index</a></li>"
+    "<li><a href="index.html" translate="no">QuickGraphLib $QGL_VERSION</a></li>"
 
 HTML.postpostheader = \
     "    </ul>\n" \
