@@ -21,13 +21,25 @@ QQS.ShapePath {
         vertical: false
     }
 
-    /*! TODO */
+    /*!
+        List of doubles, representing the edges of each histogram bin. Should have a length equal to
+        the length of \l heights plus one.
+    */
     property alias bins: helper.bins
-    /*! TODO */
+    /*!
+        Must be assigned the data transform of the graph area this axis is paired to.
+
+        \sa GraphArea::dataTransform
+    */
     property alias dataTransform: helper.dataTransform
-    /*! TODO */
+    /*!
+        List of doubles, representing the height of each histogram bin. Should have a length equal to
+        the length of \l bins minus one.
+    */
     property alias heights: helper.heights
-    /*! TODO */
+    /*!
+        Whether to draw the histogram horizontally (i.e. \l bins are X positions) or vertically (i.e. \l bins are Y positions).
+    */
     property alias vertical: helper.vertical
 
     capStyle: QQS.ShapePath.RoundCap

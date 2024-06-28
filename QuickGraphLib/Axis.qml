@@ -26,7 +26,7 @@ Item {
     /*!
         Must be assigned the data transform of the graph area this axis is paired to.
 
-        \sa {GraphArea::dataTransform}
+        \sa GraphArea::dataTransform
     */
     property alias dataTransform: helper.dataTransform
     /*!

@@ -15,10 +15,16 @@ import QtQuick
 Rectangle {
     id: root
 
-    /*! TODO */
+    /*!
+        Must be assigned the data transform of the graph area this axis is paired to.
+
+        \sa GraphArea::dataTransform
+    */
     required property matrix4x4 dataTransform
     readonly property point pixelPosition: root.dataTransform.map(position)
-    /*! TODO */
+    /*!
+        The position of the marker in data coordinates.
+    */
     required property point position
 
     border.width: 0

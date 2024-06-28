@@ -32,7 +32,9 @@ QQS.ShapePath {
     id: root
 
     /*!
-        Transform from data coordinates to pixel coordinates (this is usually provided by a GraphArea).
+        Must be assigned the data transform of the graph area this axis is paired to.
+
+        \sa GraphArea::dataTransform
 
         \qmlproperty list<point> Line::path
         \omit
