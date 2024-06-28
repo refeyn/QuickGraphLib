@@ -16,33 +16,78 @@ import QuickGraphLib.GraphItems as QGLGraphItems
 QuickGraphLib.AntialiasingContainer {
     id: root
 
-    /*! TODO */
+    /*!
+        An alias to the GridLayout that positions the graph area and individual axes.
+    */
     property alias axes: axes
-    /*! TODO */
+    /*!
+        An alias to the \l Rectangle used as the background.
+    */
     property alias background: background
-    /*! TODO */
+    /*!
+        An alias to the data transform of the graph area.
+
+        \sa GraphArea::dataTransform
+    */
     property alias dataTransform: grapharea.dataTransform
-    /*! TODO */
+    /*!
+        An alias to the children of the graph area. Since this is the default property
+        any declared children will be parented to the graph area.
+    */
     default property alias graphChildren: grapharea.data
-    /*! TODO */
+    /*!
+        An alias the the GraphArea.
+    */
     property alias grapharea: grapharea
-    /*! TODO */
+    /*!
+        An alias to the graph area's \l Grid.
+    */
     property alias grid: grid
-    /*! TODO */
+    /*!
+        Maximum number of ticks to show on the X axis.
+
+        \sa Helpers::tickLocator
+    */
     property int numXTicks: 11
-    /*! TODO */
+    /*!
+        Maximum number of ticks to show on the Y axis.
+
+        \sa Helpers::tickLocator
+    */
     property int numYTicks: 11
-    /*! TODO */
+    /*!
+        The title of the graph.
+    */
     property alias title: titleLabel.text
-    /*! TODO */
+    /*!
+        An alias to the title item of the graph (a \l Text).
+    */
+    property alias titleItem: titleLabel
+    /*!
+        An alias to the view rect of the graph area.
+
+        \sa GraphArea::viewRect
+    */
     property alias viewRect: grapharea.viewRect
-    /*! TODO */
+    /*!
+        An alias to the X \l Axis.
+    */
     property alias xAxis: xAxis
-    /*! TODO */
+    /*!
+        An alias to the X axis label.
+
+        \sa Axis::label
+    */
     property alias xLabel: xAxis.label
-    /*! TODO */
+    /*!
+        An alias to the Y \l Axis.
+    */
     property alias yAxis: yAxis
-    /*! TODO */
+    /*!
+        An alias to the X axis label.
+
+        \sa Axis::label
+    */
     property alias yLabel: yAxis.label
 
     Rectangle {

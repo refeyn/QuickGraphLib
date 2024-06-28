@@ -57,9 +57,9 @@ Item {
     */
     property alias labelFont: labelText.font
     /*!
-        The axis label.
+        The axis label (a \l Text).
     */
-    property Text labelItem: labelText
+    property alias labelItem: labelText
     /*!
         Whether to show a label for each tick.
     */
@@ -79,7 +79,8 @@ Item {
     /*!
         The component used for rendering tick labels. If overridden,
         the \c color, \c decimalPoints, \c direction, and \c font properties
-        of the component should be set explicitly.
+        of the component should be set explicitly. To get proper positioning,
+        it is recommended that \l TickLabel or a subclass is used.
     */
     property Component tickDelegate: TickLabel {
         color: root.labelColor
