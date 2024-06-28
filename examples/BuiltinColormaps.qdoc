@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Builtin colormaps
+    \ingroup quickgraphlibdemos
+    \brief Colorised Sierpinski triangles using 4 of the builtin colormaps.
+    \example builtincolormaps
+
+    \image examples/BuiltinColormaps.png
+
+    \quotefile examples/BuiltinColormaps.qml
+*/

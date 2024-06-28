@@ -98,7 +98,7 @@ QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
     if (points.userType() == QMetaType::QPolygonF) {
         return mapPointsInner(points.value<QPolygonF>(), dataTransform);
     }
-    else if (points.canConvert<QVector<QPointF>>()) {
+    else if (points.canConvert<QList<QPointF>>()) {
         return mapPointsInner(points.value<QList<QPointF>>(), dataTransform);
     }
     else if (points.canConvert<QVariantList>()) {
