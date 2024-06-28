@@ -24,14 +24,19 @@ Item {
     }
 
     /*!
-        TODO
+        Must be assigned the data transform of the graph area this axis is paired to.
+
         \sa {GraphArea::dataTransform}
     */
     property alias dataTransform: helper.dataTransform
-    /*! TODO */
-    property int decimalPoints: 2
-    /*! TODO
+    /*!
+        Number of decimal points the ticks should show.
 
+        \sa TickLabel::decimalPoints
+    */
+    property int decimalPoints: 2
+    /*!
+        The side of the graph the Axis is on. It can take one of the following values:
 
         \value Axis.Direction.Left Axis to the left of the GraphArea
         \value Axis.Direction.Right Axis to the right of the GraphArea
@@ -39,34 +44,66 @@ Item {
         \value Axis.Direction.Bottom Axis below of the GraphArea
      */
     property alias direction: helper.direction
-    /*! TODO */
+    /*!
+        The label text for this axis. Alias of \c labelItem.text.
+    */
     property alias label: labelText.text
-    /*! TODO */
+    /*!
+        The color of the label. Alias of \c labelItem.color.
+    */
     property alias labelColor: labelText.color
-    /*! TODO */
+    /*!
+        The font of the label. Alias of \c labelItem.font.
+    */
     property alias labelFont: labelText.font
-    /*! TODO */
+    /*!
+        The axis label.
+    */
+    property Text labelItem: labelText
+    /*!
+        Whether to show a label for each tick.
+    */
     property bool showTickLabels: true
-    /*! TODO */
+    /*!
+        Spacing between the end of each tick and the tick label.
+    */
     property double spacing: 4
-    /*! TODO */
+    /*!
+        Color of the axis spine and ticks.
+    */
     property alias strokeColor: myPath.strokeColor
-    /*! TODO */
+    /*!
+        Width of the axis spine and ticks.
+    */
     property alias strokeWidth: myPath.strokeWidth
-    /*! TODO */
+    /*!
+        The component used for rendering tick labels. If overridden,
+        the \c color, \c decimalPoints, \c direction, and \c font properties
+        of the component should be set explicitly.
+    */
     property Component tickDelegate: TickLabel {
         color: root.labelColor
         decimalPoints: root.decimalPoints
         direction: root.direction
         font: root.labelFont
     }
-    /*! TODO */
+    /*!
+        The color of the tick labels.
+    */
     property color tickLabelColor: labelColor
-    /*! TODO */
+    /*!
+        The font of the tick labels.
+    */
     property font tickLabelFont: labelFont
-    /*! TODO */
+    /*!
+        The length of each tick.
+    */
     property alias tickLength: helper.tickLength
-    /*! TODO */
+    /*!
+        The position of each tick. This should be a list of doubles in data coordinates.
+
+        \sa Helpers::range, Helpers::linspace, Grid::xTicks, Grid::yTicks
+    */
     property alias ticks: helper.ticks
 
     implicitHeight: {

@@ -13,17 +13,31 @@ import QtQuick
 PinchArea {
     id: root
 
-    /*! TODO */
+    /*!
+        The view transform, but in a pixel-independant form.
+    */
     property matrix4x4 baseTransform
-    /*! TODO */
+    /*!
+        When set to true, translations will not be able to leave the original viewRect of the GraphArea.
+    */
     property bool limitMovement: true
-    /*! TODO */
+    /*!
+        Maximum zoom (separate X/Y zoom limits can be set with the width/height of \l size).
+    */
     property size maxScale: Qt.size(10, 10)
-    /*! TODO */
+    /*!
+        Minimum zoom (separate X/Y zoom limits can be set with the width/height of \l size).
+    */
     property size minScale: Qt.size(1, 1)
-    /*! TODO */
+    /*!
+        The current view transform. This can be assigned to GraphArea::viewTransform.
+    */
     readonly property matrix4x4 viewTransform: Qt.matrix4x4(baseTransform.m11, baseTransform.m12, baseTransform.m13, baseTransform.m14 * width, baseTransform.m21, baseTransform.m22, baseTransform.m23, baseTransform.m24 * height, baseTransform.m31, baseTransform.m32, baseTransform.m33, baseTransform.m34, baseTransform.m41, baseTransform.m42, baseTransform.m43, baseTransform.m44)
-    /*! TODO */
+    /*!
+        The amount to zoom in by for 15 degrees of mouse wheel movement.
+
+        \sa QWheelEvent::angleDelta
+    */
     property double wheelZoomFactor: 1.05
 
     function _applyLimitedMovement() {

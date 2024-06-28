@@ -15,11 +15,11 @@ QQS.Shape {
     id: root
 
     /*!
-        Transform from data coordinates to pixel coordinates inside the GraphArea with the viewTransform applied
+        Transform from data coordinates to pixel coordinates inside the GraphArea with the viewTransform applied.
     */
     readonly property matrix4x4 dataTransform: viewTransform.times(rawDataTransform)
     /*!
-        The view rect the view is actually showing based on viewTransform
+        The view rect the view is actually showing based on viewTransform.
     */
     readonly property rect effectiveViewRect: {
         let mat = rawDataTransform.inverted().times(viewTransform.inverted().times(rawDataTransform));
@@ -29,7 +29,7 @@ QQS.Shape {
         return Qt.rect(blCorner.x, blCorner.y, trCorner.x - blCorner.x, trCorner.y - blCorner.y);
     }
     /*!
-        Transform from data coordinates to pixel coordinates inside the GraphArea
+        Transform from data coordinates to pixel coordinates inside the GraphArea.
     */
     readonly property matrix4x4 rawDataTransform: {
         let mat = Qt.matrix4x4();
@@ -39,9 +39,13 @@ QQS.Shape {
         mat.translate(Qt.vector3d(-viewRect.x, -viewRect.y, 0));
         return mat;
     }
-    /*! TODO */
+    /*!
+        The area in data coordinates that the graph covers.
+    */
     required property rect viewRect
-    /*! TODO */
+    /*!
+        An additional transform that can be used to zoom/translate the graph area without affecting the original view rect.
+    */
     property matrix4x4 viewTransform
 
     function baseTransformFromRect(r: rect): matrix4x4 {
