@@ -406,3 +406,8 @@ QSGNode *ImageView::updatePaintNode(QSGNode *node, UpdatePaintNodeData *) {
     n->setFiltering(smooth() ? QSGTexture::Linear : QSGTexture::Nearest);
     return n;
 }
+
+QImage ImageView::image() {
+    ensurePolished();
+    return _coloredImage;
+}

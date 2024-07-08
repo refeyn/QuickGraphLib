@@ -3,10 +3,13 @@
 
 #include "Helpers.hpp"
 
+#include <QFile>
 #include <QMatrix4x4>
 #include <QPainter>
 #include <QPainterPath>
 #include <QtSvg/QSvgGenerator>
+
+#include "ImageView.hpp"
 
 /*!
     \qmltype Helpers
@@ -276,6 +279,18 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         }
     }
 
+    else if (item->inherits("ImageView")) {
+        if (auto imageView = qobject_cast<ImageView*>(item)) {
+            if (imageView->smooth()) {
+                painter->setRenderHint(QPainter::RenderHint::SmoothPixmapTransform, true);
+            }
+            painter->drawImage(
+                imageView->paintedRect(),
+                imageView->image().mirrored(imageView->mirrorHorizontally(), imageView->mirrorVertically())
+            );
+        }
+    }
+
     for (auto c : children) {
         if (c->z() >= 0) {
             exportItemToPainter(c, painter);
@@ -285,8 +300,11 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
 }
 
 void exportToPainter(QQuickItem* item, QPainter* painter) {
-    painter->setRenderHint(QPainter::RenderHint::Antialiasing, true);
-    painter->setRenderHint(QPainter::RenderHint::TextAntialiasing, true);
+    painter->setRenderHints(
+        QPainter::RenderHint::Antialiasing | QPainter::RenderHint::TextAntialiasing |
+            QPainter::RenderHint::LosslessImageRendering,
+        true
+    );
 
     // Cancel out translation done in _export_child_to_painter
     painter->translate(-item->x(), -item->y());
@@ -310,15 +328,31 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
             more information.
 
+        \note Clip paths for SVGs are only supported in Qt 6.7+. If your graph needs clipping, ensure you are using a Qt
+            version that supports it.
+
         \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
     */
 
-    QSvgGenerator device;
-    device.setFileName(path.toLocalFile());
-    device.setViewBox(QRectF(0, 0, item->width(), item->height()));
-    device.setResolution(96);
-    exportToPaintDevice(item, &device);
-    return true;  // TODO How do we detect IO errors?
+    {
+        QSvgGenerator device;
+        device.setFileName(path.toLocalFile());
+        device.setViewBox(QRectF(0, 0, item->width(), item->height()));
+        device.setResolution(96);
+        exportToPaintDevice(item, &device);
+    }
+    {
+        QFile file(path.toLocalFile());
+        if (!file.open(QIODevice::ReadWrite)) {
+            return false;
+        }
+        QByteArray text = file.readAll();
+        text.replace(QByteArray("image-rendering=\"optimizeSpeed\""), QByteArray("image-rendering=\"pixelated\""));
+        file.seek(0);
+        file.write(text);
+        file.close();
+    }
+    return true;
 }
 
 bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) const {
@@ -330,7 +364,7 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
 
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
-       more information.
+            more information.
 
         \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
     */
@@ -351,6 +385,12 @@ QPicture Helpers::exportToPicture(QQuickItem* item) const {
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
             more information.
+
+        \note Using this method, followed by saving to an image should give the same result as the other functions
+            (ignoring some differences in the output that result in equivalent display). One exception is that exporting
+            an ImageView as SVG will result in images rendering using the "optimiseSpeed" setting when they are not
+            smooth. For reliable rendering across multiple programs, it is better to replace this with "pixelated". \l
+            Helpers::exportToSvg does this correction automatically.
 
         \sa Helpers::exportToPng, Helpers::exportToSvg, {Exporting graphs}
      */

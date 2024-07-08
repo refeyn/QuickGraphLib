@@ -27,7 +27,7 @@ MouseArea {
     property bool dragging
 
     /*!
-        Emitted when the handler should be moved, with the rect that it should be moved to.
+        Emitted when the handler should be moved, with the rect \a position that it should be moved to.
     */
     signal moved(rect position)
 

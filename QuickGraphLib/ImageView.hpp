@@ -82,6 +82,8 @@ class ImageView : public QQuickItem {
     QRectF paintedRect() const { return paintedRectProp; }
     QBindable<QRectF> bindablePaintedRect() { return &paintedRectProp; }
 
+    QImage image();
+
    protected:
     void updatePolish() override;
     QSGNode* updatePaintNode(QSGNode* node, UpdatePaintNodeData* data) override;
