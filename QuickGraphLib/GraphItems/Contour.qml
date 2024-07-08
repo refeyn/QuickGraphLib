@@ -16,11 +16,16 @@ QQS.ShapePath {
     id: root
 
     /*!
-        TODO
+        Must be assigned the data transform of the graph area this axis is paired to.
+
+        \sa GraphArea::dataTransform
     */
     required property matrix4x4 dataTransform
     /*!
-        TODO
+        A list of list of points (or a list of \l {QPolygon}s) in data coordinates, with each list of points
+        defining a contour line to draw.
+
+        \sa ContourHelper::contourLine, ContourHelper::contourFill
     */
     required property var paths
 

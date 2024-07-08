@@ -12,6 +12,9 @@ import QtQuick.Shapes as QQS
 */
 
 QQM.Instantiator {
+    /*!
+        The GraphArea to add children to.
+    */
     required property QQS.Shape graphArea
 
     onObjectAdded: (i, obj) => graphArea.data.push(obj)

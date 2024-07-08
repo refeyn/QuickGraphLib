@@ -13,9 +13,13 @@ import QtQuick
 */
 
 Rectangle {
-    /*! TODO */
+    /*!
+        The legend items. This should be l\ {BasicLegendItem}s.
+    */
     default property alias contentChildren: legend.children
-    /*! TODO */
+    /*!
+        The spacing between each legend item.
+    */
     property alias verticalSpacing: legend.spacing
 
     border.color: "black"

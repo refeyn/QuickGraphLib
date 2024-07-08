@@ -16,12 +16,22 @@ QQS.ShapePath {
 
     readonly property point bottomRightPoint: dataTransform.map(Qt.point(viewRect.right, position))
 
-    /*! TODO */
+    /*!
+        Must be assigned the data transform of the graph area this axis is paired to.
+
+        \sa GraphArea::dataTransform
+    */
     required property matrix4x4 dataTransform
-    /*! TODO */
+    /*!
+        The Y position of the horizontal line in data coordinates.
+    */
     required property double position
     readonly property point topLeftPoint: dataTransform.map(Qt.point(viewRect.left, position))
-    /*! TODO */
+    /*!
+        Must be assigned the view rect of the graph area this axis is paired to.
+
+        \sa GraphArea::viewRect
+    */
     required property rect viewRect
 
     startX: topLeftPoint.x

@@ -16,14 +16,26 @@ QQS.ShapePath {
 
     readonly property point bottomRightPoint: dataTransform.map(Qt.point(xMax, viewRect.top))
 
-    /*! TODO */
+    /*!
+        Must be assigned the data transform of the graph area this axis is paired to.
+
+        \sa GraphArea::dataTransform
+    */
     required property matrix4x4 dataTransform
     readonly property point topLeftPoint: dataTransform.map(Qt.point(xMin, viewRect.bottom))
-    /*! TODO */
+    /*!
+        Must be assigned the view rect of the graph area this axis is paired to.
+
+        \sa GraphArea::viewRect
+    */
     required property rect viewRect
-    /*! TODO */
+    /*!
+        The starting X position of the vertical span in data coordinates.
+    */
     required property double xMax
-    /*! TODO */
+    /*!
+        The ending X position of the vertical span in data coordinates.
+    */
     required property double xMin
 
     startX: topLeftPoint.x

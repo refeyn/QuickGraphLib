@@ -20,13 +20,29 @@ QQS.ShapePath {
 
     }
 
-    /*! TODO */
+    /*!
+        Must be assigned the data transform of the graph area this axis is paired to.
+
+        \sa GraphArea::dataTransform
+    */
     property alias dataTransform: helper.dataTransform
-    /*! TODO */
+    /*!
+        Must be assigned the view rect of the graph area this axis is paired to.
+
+        \sa GraphArea::viewRect
+    */
     property alias viewRect: helper.viewRect
-    /*! TODO */
+    /*!
+        The position of each X tick. This should be a list of doubles in data coordinates.
+
+        \sa Helpers::range, Helpers::linspace, Axis::ticks
+    */
     property alias xTicks: helper.xTicks
-    /*! TODO */
+    /*!
+        The position of each Y tick. This should be a list of doubles in data coordinates.
+
+        \sa Helpers::range, Helpers::linspace, Axis::ticks
+    */
     property alias yTicks: helper.yTicks
 
     capStyle: QQS.ShapePath.RoundCap

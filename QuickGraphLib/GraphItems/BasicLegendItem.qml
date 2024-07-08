@@ -13,19 +13,33 @@ import QtQuick
 Row {
     id: root
 
-    /*! TODO */
+    /*!
+        Fill color below the line.
+    */
     property color fillColor: "transparent"
-    /*! TODO */
+    /*!
+        Fill gradient below the line.
+    */
     property Gradient fillGradient: null
-    /*! TODO */
+    /*!
+        Stroke color of the line.
+    */
     property color strokeColor: "black"
-    /*! TODO */
+    /*!
+        Stroke width of the line.
+    */
     property real strokeWidth: 1
-    /*! TODO */
+    /*!
+        Name of this legend item.
+    */
     property alias text: label.text
-    /*! TODO */
+    /*!
+        Color of this legend item's name.
+    */
     property alias textColor: label.color
-    /*! TODO */
+    /*!
+        Font of this legend item's name.
+    */
     property alias textFont: label.font
 
     spacing: 2

@@ -15,11 +15,20 @@ MouseArea {
 
     property rect _startDragPos
 
-    /*! TODO */
+    /*!
+        Must be assigned the data transform of the graph area this axis is paired to.
+
+        \sa GraphArea::dataTransform
+    */
     required property matrix4x4 dataTransform
-    /*! TODO */
+    /*!
+        Whether the handler is currently being dragged.
+    */
     property bool dragging
 
+    /*!
+        Emitted when the handler should be moved, with the rect that it should be moved to.
+    */
     signal moved(rect position)
 
     hoverEnabled: true

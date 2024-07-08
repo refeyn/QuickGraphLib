@@ -8,18 +8,29 @@ import QtQuick
     \inqmlmodule QuickGraphLib
     \inherits Text
     \brief A single tick label.
+
+    This is the default implementation of a tick label. To customise how labels are shown,
+    you can subclass this and override the \l Text::text property.
 */
 
 Text {
-    /*! TODO */
+    /*!
+        Number of decimal points to show.
+    */
     required property int decimalPoints
-    /*! TODO */
+    /*!
+        The direction of the Axis this tick is part of.
+
+        \sa Axis::direction
+    */
     required property int direction
-    /*! TODO */
-    required property int index
-    /*! TODO */
+    /*!
+        The position of the tick in pixels.
+    */
     required property point position
-    /*! TODO */
+    /*!
+        The data value of the tick.
+    */
     required property double value
 
     leftPadding: 2
