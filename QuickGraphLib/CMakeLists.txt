@@ -9,7 +9,7 @@ qt_add_qml_module(QuickGraphLib
     QML_FILES ${QGL_QML_FILES}
     SOURCES
         helpers/Helpers.cpp helpers/Helpers.hpp helpers/AxisHelper.hpp helpers/AxisHelper.cpp helpers/Foreign.hpp
-        ColorMesh.hpp ColorMesh.cpp ColorMaps.cpp
+        ImageView.hpp ImageView.cpp ColorMaps.cpp
     PLUGIN_TARGET QuickGraphLib
     DEPENDENCIES QtQuick
 )

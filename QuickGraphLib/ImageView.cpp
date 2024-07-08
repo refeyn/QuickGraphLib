@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 // QuickGraphLib contributors SPDX-License-Identifier: MIT
 
-#include "ColorMesh.hpp"
+#include "ImageView.hpp"
 
 #include <QQuickWindow>
 #include <QSGImageNode>
@@ -9,14 +9,14 @@
 extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS;
 
 /*!
-    \qmltype ColorMesh
+    \qmltype ImageView
     \inqmlmodule QuickGraphLib
     \inherits QtQuick::Item
     \brief Display a colorized image from a 2D array.
 */
 
 /*!
-    \qmlproperty int ColorMesh::fillMode
+    \qmlproperty int ImageView::fillMode
 
         One of the following:
 
@@ -30,7 +30,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS;
 */
 
 /*!
-    \qmlproperty int ColorMesh::alignment
+    \qmlproperty int ImageView::alignment
 
         A bitwise or of one horizontal and one vertical flag from the following:
 
@@ -47,20 +47,20 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS;
 */
 
 /*!
-    \qmlproperty bool ColorMesh::mirrorHorizontally
-    \qmlproperty bool ColorMesh::mirrorVertically
+    \qmlproperty bool ImageView::mirrorHorizontally
+    \qmlproperty bool ImageView::mirrorVertically
 
         Mirror the image horizontally and/or vertically.
 */
 
 /*!
-    \qmlproperty bool ColorMesh::transpose
+    \qmlproperty bool ImageView::transpose
 
         Transpose the image.
 */
 
 /*!
-    \qmlproperty var ColorMesh::source
+    \qmlproperty var ImageView::source
 
         The data source for the displayed image. This can be a QImage, or a 1D/2D list of reals.
 
@@ -71,20 +71,20 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS;
 */
 
 /*!
-    \qmlproperty size ColorMesh::sourceSize
+    \qmlproperty size ImageView::sourceSize
 
         The size \l source should be interpreted with. Only used when source is a 1D list.
 */
 
 /*!
-    \qmlproperty bool ColorMesh::smooth
+    \qmlproperty bool ImageView::smooth
 
         Sets whether the displayed image should be pixelated or smooth (linearly interpolated).
         Unlike other \l {Item}s, this property defaults to \c false.
 */
 
 /*!
-    \qmlproperty var ColorMesh::colormap
+    \qmlproperty var ImageView::colormap
 
         The colormap to use when source is a list of values.
         This property can either take a \l Gradient, or a string name from the following options:
@@ -113,26 +113,26 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS;
 */
 
 /*!
-    \qmlproperty real ColorMesh::min
+    \qmlproperty real ImageView::min
 
         The value which is mapped to 0 on the \l colormap.
 */
 
 /*!
-    \qmlproperty real ColorMesh::max
+    \qmlproperty real ImageView::max
 
         The value which is mapped to 1 on the \l colormap.
 */
 
 /*!
-    \qmlproperty rect ColorMesh::paintedRect
+    \qmlproperty rect ImageView::paintedRect
     \readonly
 
-        The rect that the image is painted in, in the ColorMesh's own coordinate space.
+        The rect that the image is painted in, in the ImageView's own coordinate space.
         If \l fillMode is \c Qt.IgnoreAspectRatio, this will equal \c {Qt.rect(0, 0, width, height)}.
 */
 
-ColorMesh::ColorMesh(QQuickItem *parent) : QQuickItem{parent} {
+ImageView::ImageView(QQuickItem *parent) : QQuickItem{parent} {
     setFlags(QQuickItem::ItemHasContents);
     setSmooth(false);
 
@@ -168,7 +168,7 @@ ColorMesh::ColorMesh(QQuickItem *parent) : QQuickItem{parent} {
 
     // Must regenerate the texture after these
     _sourceNotifier = sourceProp.addNotifier([this]() { polish(); });
-    _sourceSizeNotifier = sourceSizeProp.addNotifier([this]() { polish(); });
+    _source1DSizeNotifier = source1DSizeProp.addNotifier([this]() { polish(); });
     _transposeNotifier = transposeProp.addNotifier([this]() { polish(); });
     _colormapNotifier = colormapProp.addNotifier([this]() { polish(); });
     _minNotifier = minProp.addNotifier([this]() { polish(); });
@@ -251,10 +251,10 @@ QImage convertToImageFrom2D(
     }
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
     QRgb *pixels = reinterpret_cast<QRgb *>(image.bits());
-    for (auto x = 0; x < size.width(); ++x) {
-        const auto &row = converted[x];
-        for (auto y = 0; y < size.height(); ++y) {
-            pixels[indexForCoord(x, y, size, transpose)] = toColor(row[y], colormap);
+    for (auto y = 0; y < size.height(); ++y) {
+        const auto &row = converted[y];
+        for (auto x = 0; x < size.width(); ++x) {
+            pixels[indexForCoord(x, y, size, transpose)] = toColor(row[x], colormap);
         }
     }
     return image;
@@ -312,7 +312,7 @@ QImage convertToImage(
     }
 }
 
-void ColorMesh::updatePolish() {
+void ImageView::updatePolish() {
     auto source = this->source();
     if (source.userType() == QMetaType::QImage) {
         _coloredImage = source.value<QImage>().convertToFormat(QImage::Format_ARGB32_Premultiplied);
@@ -372,15 +372,16 @@ void ColorMesh::updatePolish() {
             std::reverse(colormap.begin(), colormap.end());
         }
 
-        _coloredImage = convertToImage(source, sourceSize(), colormap, transpose());
+        _coloredImage = convertToImage(source, source1DSize(), colormap, transpose());
     }
 
     setImplicitSize(_coloredImage.width(), _coloredImage.height());
+    sourceSizeProp.setValue(_coloredImage.size());
     _textureDirty = true;
     update();
 }
 
-QSGNode *ColorMesh::updatePaintNode(QSGNode *node, UpdatePaintNodeData *) {
+QSGNode *ImageView::updatePaintNode(QSGNode *node, UpdatePaintNodeData *) {
     Q_ASSERT(window() != nullptr);
 
     QSGImageNode *n = static_cast<QSGImageNode *>(node);

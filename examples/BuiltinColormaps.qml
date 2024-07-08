@@ -29,21 +29,19 @@ QQL.GridLayout {
         horizontalAlignment: Text.AlignHCenter
         text: "viridis"
     }
-    QuickGraphLib.ColorMesh {
+    QuickGraphLib.ImageView {
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
         colormap: "magma"
         max: 29
         source: root.sierpinskiTriangles
-        sourceSize: Qt.size(30, 30)
     }
-    QuickGraphLib.ColorMesh {
+    QuickGraphLib.ImageView {
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
         colormap: "viridis"
         max: 29
         source: root.sierpinskiTriangles
-        sourceSize: Qt.size(30, 30)
     }
     QQC.Label {
         QQL.Layout.fillWidth: true
@@ -59,20 +57,18 @@ QQL.GridLayout {
         horizontalAlignment: Text.AlignHCenter
         text: "turbo"
     }
-    QuickGraphLib.ColorMesh {
+    QuickGraphLib.ImageView {
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
         colormap: "twilight"
         max: 29
         source: root.sierpinskiTriangles
-        sourceSize: Qt.size(30, 30)
     }
-    QuickGraphLib.ColorMesh {
+    QuickGraphLib.ImageView {
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
         colormap: "turbo"
         max: 29
         source: root.sierpinskiTriangles
-        sourceSize: Qt.size(30, 30)
     }
 }

@@ -6,7 +6,7 @@
 #include <QImage>
 #include <QQuickItem>
 
-class ColorMesh : public QQuickItem {
+class ImageView : public QQuickItem {
     Q_OBJECT
     QML_ELEMENT
 
@@ -18,22 +18,23 @@ class ColorMesh : public QQuickItem {
                    BINDABLE bindableMirrorVertically)
     Q_PROPERTY(bool transpose READ transpose WRITE setTranspose NOTIFY transposeChanged BINDABLE bindableTranspose)
     Q_PROPERTY(QVariant source READ source WRITE setSource NOTIFY sourceChanged BINDABLE bindableSource)
-    Q_PROPERTY(QSize sourceSize READ sourceSize WRITE setSourceSize NOTIFY sourceSizeChanged BINDABLE bindableSourceSize
-    )
+    Q_PROPERTY(QSize source1DSize READ source1DSize WRITE setSource1DSize NOTIFY source1DSizeChanged BINDABLE
+                   bindableSource1DSize)
     Q_PROPERTY(QVariant colormap READ colormap WRITE setColormap NOTIFY colormapChanged BINDABLE bindableColormap)
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY minChanged BINDABLE bindableMin)
     Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY maxChanged BINDABLE bindableMax)
+    Q_PROPERTY(QSize sourceSize READ sourceSize NOTIFY sourceSizeChanged BINDABLE bindableSourceSize)
     Q_PROPERTY(QRectF paintedRect READ paintedRect NOTIFY paintedRectChanged BINDABLE bindablePaintedRect)
 
     QPropertyNotifier _mirrorHorizontallyNotifier, _mirrorVerticallyNotifier, _transposeNotifier, _sourceNotifier,
-        _sourceSizeNotifier, _colormapNotifier, _minNotifier, _maxNotifier, _paintedRectNotifier;
+        _source1DSizeNotifier, _colormapNotifier, _minNotifier, _maxNotifier, _paintedRectNotifier;
     bool _textureDirty = false;
     QImage _coloredImage;
 
     void _calcColoredImage();
 
    public:
-    explicit ColorMesh(QQuickItem* parent = nullptr);
+    explicit ImageView(QQuickItem* parent = nullptr);
 
     void setFillMode(int fillMode) { fillModeProp = fillMode; }
     int fillMode() const { return fillModeProp; }
@@ -59,9 +60,9 @@ class ColorMesh : public QQuickItem {
     QVariant source() const { return sourceProp; }
     QBindable<QVariant> bindableSource() { return &sourceProp; }
 
-    void setSourceSize(QSize sourceSize) { sourceSizeProp = sourceSize; }
-    QSize sourceSize() const { return sourceSizeProp; }
-    QBindable<QSize> bindableSourceSize() { return &sourceSizeProp; }
+    void setSource1DSize(QSize source1DSize) { source1DSizeProp = source1DSize; }
+    QSize source1DSize() const { return source1DSizeProp; }
+    QBindable<QSize> bindableSource1DSize() { return &source1DSizeProp; }
 
     void setColormap(QVariant colormap) { colormapProp = colormap; }
     QVariant colormap() const { return colormapProp; }
@@ -74,6 +75,9 @@ class ColorMesh : public QQuickItem {
     void setMax(qreal max) { maxProp = max; }
     qreal max() const { return maxProp; }
     QBindable<qreal> bindableMax() { return &maxProp; }
+
+    QSize sourceSize() const { return sourceSizeProp; }
+    QBindable<QSize> bindableSourceSize() { return &sourceSizeProp; }
 
     QRectF paintedRect() const { return paintedRectProp; }
     QBindable<QRectF> bindablePaintedRect() { return &paintedRectProp; }
@@ -89,24 +93,26 @@ class ColorMesh : public QQuickItem {
     void mirrorVerticallyChanged();
     void transposeChanged();
     void sourceChanged();
-    void sourceSizeChanged();
+    void source1DSizeChanged();
     void colormapChanged();
     void minChanged();
     void maxChanged();
+    void sourceSizeChanged();
     void paintedRectChanged();
 
    private:
     Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(
-        ColorMesh, int, fillModeProp, Qt::IgnoreAspectRatio, &ColorMesh::fillModeChanged
+        ImageView, int, fillModeProp, Qt::IgnoreAspectRatio, &ImageView::fillModeChanged
     )
-    Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ColorMesh, int, alignmentProp, Qt::AlignCenter, &ColorMesh::alignmentChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ColorMesh, bool, mirrorHorizontallyProp, &ColorMesh::mirrorHorizontallyChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ColorMesh, bool, mirrorVerticallyProp, &ColorMesh::mirrorVerticallyChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ColorMesh, bool, transposeProp, &ColorMesh::transposeChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ColorMesh, QVariant, sourceProp, &ColorMesh::sourceChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ColorMesh, QSize, sourceSizeProp, &ColorMesh::sourceSizeChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ColorMesh, QVariant, colormapProp, &ColorMesh::colormapChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ColorMesh, qreal, minProp, &ColorMesh::minChanged)
-    Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ColorMesh, qreal, maxProp, 1.0, &ColorMesh::maxChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ColorMesh, QRectF, paintedRectProp, &ColorMesh::paintedRectChanged)
+    Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, int, alignmentProp, Qt::AlignCenter, &ImageView::alignmentChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, bool, mirrorHorizontallyProp, &ImageView::mirrorHorizontallyChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, bool, mirrorVerticallyProp, &ImageView::mirrorVerticallyChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, bool, transposeProp, &ImageView::transposeChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, QVariant, sourceProp, &ImageView::sourceChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, QSize, source1DSizeProp, &ImageView::source1DSizeChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, QVariant, colormapProp, &ImageView::colormapChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, qreal, minProp, &ImageView::minChanged)
+    Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, qreal, maxProp, 1.0, &ImageView::maxChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, QSize, sourceSizeProp, &ImageView::sourceSizeChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, QRectF, paintedRectProp, &ImageView::paintedRectChanged)
 };
