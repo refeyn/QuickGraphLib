@@ -13,10 +13,12 @@ import QtQuick
 */
 
 Item {
+    id: root
+
     /*!
         Whether MSAA antialiasing is enabled.
     */
-    property alias antialiasingEnabled: layer.enabled
+    property alias antialiasingEnabled: root.layer.enabled
 
     implicitHeight: 100
     implicitWidth: 100
