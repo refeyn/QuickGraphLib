@@ -1,15 +1,93 @@
 // SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 // QuickGraphLib contributors SPDX-License-Identifier: MIT
 
+#include "ColorMaps.hpp"
+
 #include <QColor>
 #include <map>
-#include <vector>
+
+/*!
+    \qmltype ColorMaps
+    \inqmlmodule QuickGraphLib
+    \inherits QObject
+    \brief Utility functions for color maps.
+*/
+
+extern const std::map<ColorMaps::ColorMapName, QList<QRgb>> DEFAULT_COLORMAPS;
+
+QList<QRgb> colors(int colorMapName) {
+    auto iter = DEFAULT_COLORMAPS.find(static_cast<ColorMaps::ColorMapName>(colorMapName));
+    if (iter != DEFAULT_COLORMAPS.end()) {
+        return iter->second;
+    }
+    return {};
+}
+
+QList<QColor> ColorMaps::colors(int colorMapName) const {
+    /*!
+        \qmlmethod list<color> ColorMaps::colors(enumeration colorMapName)
+
+        Returns the list of colors that are used in \a colorMapName. These colors are equally spaced over the range of
+        values.
+
+        \a colorMapName can take one of the following options:
+
+            \value ColorMaps.Cividis Monotonically increasing colormap (blue/brown/yellow)
+            \value ColorMaps.Grayscale Monotonically increasing colormap (black/white)
+            \value ColorMaps.Inferno Monotonically increasing colormap (black/red/yellow)
+            \value ColorMaps.Magma Monotonically increasing colormap (blue/purple/red/yellow)
+            \value ColorMaps.Plasma Monotonically increasing colormap (black/purple/red/yellow)
+            \value ColorMaps.Turbo Multihue colormap (blue/green/yellow/red)
+            \value ColorMaps.Twilight Cylical colormap (white/blue/black/red/white)
+            \value ColorMaps.TwilightShifted Cylical colormap (black/blue/white/red/black)
+            \value ColorMaps.Viridis Monotonically increasing colormap (purple/green/yellow)
+
+        More information about these colormaps can be found at in the
+        \l {https://matplotlib.org/stable/users/explain/colors/colormaps.html} {matplotlib documentation}.
+
+        \image examples/BuiltinColormaps.png
+     */
+    auto rgbs = ::colors(colorMapName);
+    QList<QColor> res(rgbs.length());
+    std::transform(rgbs.begin(), rgbs.end(), res.begin(), QColor::fromRgba);
+    return res;
+}
+QString ColorMaps::colorMapName(int colorMapName) const {
+    /*!
+        \qmlmethod string ColorMaps::colorMapName(enumeration colorMapName)
+
+        Returns the name of the color map \a colorMapName.
+
+        \sa ColorMaps::colors
+      */
+    switch (colorMapName) {
+        case ColorMaps::Grayscale:
+            return "Grayscale";
+        case ColorMaps::Magma:
+            return "Magma";
+        case ColorMaps::Inferno:
+            return "Inferno";
+        case ColorMaps::Plasma:
+            return "Plasma";
+        case ColorMaps::Viridis:
+            return "Viridis";
+        case ColorMaps::Cividis:
+            return "Cividis";
+        case ColorMaps::Twilight:
+            return "Twilight";
+        case ColorMaps::TwilightShifted:
+            return "TwilightShifted";
+        case ColorMaps::Turbo:
+            return "Turbo";
+    }
+    return "";
+}
 
 // Numbers converted from matplotlib
 
-extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS = {
-    {"grayscale", {qRgb(0, 0, 0), qRgb(255, 255, 255)}},
-    {"magma",
+const std::map<ColorMaps::ColorMapName, QList<QRgb>> DEFAULT_COLORMAPS = {
+    {ColorMaps::Grayscale, {qRgb(0, 0, 0), qRgb(255, 255, 255)}},
+    {ColorMaps::Magma,
      {
          qRgb(0, 0, 4),       qRgb(1, 0, 5),       qRgb(1, 1, 6),       qRgb(1, 1, 8),       qRgb(2, 1, 9),
          qRgb(2, 2, 11),      qRgb(2, 2, 13),      qRgb(3, 3, 15),      qRgb(3, 3, 18),      qRgb(4, 4, 20),
@@ -64,7 +142,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS = {
          qRgb(252, 244, 182), qRgb(252, 246, 184), qRgb(252, 247, 185), qRgb(252, 249, 187), qRgb(252, 251, 189),
          qRgb(252, 253, 191),
      }},
-    {"inferno",
+    {ColorMaps::Inferno,
      {
          qRgb(0, 0, 4),       qRgb(1, 0, 5),       qRgb(1, 1, 6),       qRgb(1, 1, 8),       qRgb(2, 1, 10),
          qRgb(2, 2, 12),      qRgb(2, 2, 14),      qRgb(3, 2, 16),      qRgb(4, 3, 18),      qRgb(4, 3, 20),
@@ -119,7 +197,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS = {
          qRgb(245, 249, 146), qRgb(246, 250, 150), qRgb(248, 251, 154), qRgb(249, 252, 157), qRgb(250, 253, 161),
          qRgb(252, 255, 164),
      }},
-    {"plasma",
+    {ColorMaps::Plasma,
      {
          qRgb(13, 8, 135),   qRgb(16, 7, 136),   qRgb(19, 7, 137),   qRgb(22, 7, 138),   qRgb(25, 6, 140),
          qRgb(27, 6, 141),   qRgb(29, 6, 142),   qRgb(32, 6, 143),   qRgb(34, 6, 144),   qRgb(36, 6, 145),
@@ -174,7 +252,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS = {
          qRgb(243, 240, 39), qRgb(242, 242, 39), qRgb(241, 244, 38), qRgb(241, 245, 37), qRgb(240, 247, 36),
          qRgb(240, 249, 33),
      }},
-    {"viridis",
+    {ColorMaps::Viridis,
      {
          qRgb(68, 1, 84),    qRgb(68, 2, 86),    qRgb(69, 4, 87),    qRgb(69, 5, 89),    qRgb(70, 7, 90),
          qRgb(70, 8, 92),    qRgb(70, 10, 93),   qRgb(70, 11, 94),   qRgb(71, 13, 96),   qRgb(71, 14, 97),
@@ -229,7 +307,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS = {
          qRgb(241, 229, 29), qRgb(244, 230, 30), qRgb(246, 230, 32), qRgb(248, 230, 33), qRgb(251, 231, 35),
          qRgb(253, 231, 37),
      }},
-    {"cividis",
+    {ColorMaps::Cividis,
      {
          qRgb(0, 34, 78),     qRgb(0, 35, 79),     qRgb(0, 36, 81),     qRgb(0, 37, 83),     qRgb(0, 37, 84),
          qRgb(0, 38, 86),     qRgb(0, 39, 88),     qRgb(0, 40, 89),     qRgb(0, 40, 91),     qRgb(0, 41, 93),
@@ -284,7 +362,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS = {
          qRgb(252, 226, 54),  qRgb(253, 227, 52),  qRgb(254, 228, 52),  qRgb(254, 229, 53),  qRgb(254, 230, 54),
          qRgb(254, 232, 56),
      }},
-    {"twilight",
+    {ColorMaps::Twilight,
      {
          qRgb(226, 217, 226), qRgb(225, 217, 226), qRgb(225, 217, 226), qRgb(224, 217, 226), qRgb(224, 217, 226),
          qRgb(223, 217, 225), qRgb(222, 217, 225), qRgb(222, 217, 225), qRgb(221, 217, 224), qRgb(220, 217, 224),
@@ -389,7 +467,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS = {
          qRgb(224, 215, 219), qRgb(225, 215, 220), qRgb(225, 216, 221), qRgb(225, 216, 222), qRgb(225, 216, 223),
          qRgb(226, 216, 223), qRgb(226, 217, 224), qRgb(226, 217, 225), qRgb(226, 217, 225), qRgb(226, 217, 226),
      }},
-    {"twilight_shifted",
+    {ColorMaps::TwilightShifted,
      {
          qRgb(48, 20, 55),    qRgb(48, 19, 56),    qRgb(49, 19, 57),    qRgb(49, 18, 58),    qRgb(50, 18, 58),
          qRgb(50, 18, 59),    qRgb(51, 17, 60),    qRgb(51, 17, 61),    qRgb(52, 17, 62),    qRgb(52, 17, 63),
@@ -494,7 +572,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS = {
          qRgb(53, 17, 56),    qRgb(52, 18, 56),    qRgb(52, 18, 56),    qRgb(51, 18, 55),    qRgb(51, 18, 55),
          qRgb(50, 18, 55),    qRgb(49, 19, 55),    qRgb(49, 19, 55),    qRgb(48, 20, 55),    qRgb(47, 20, 54),
      }},
-    {"turbo",
+    {ColorMaps::Turbo,
      {
          qRgb(48, 18, 59),    qRgb(50, 21, 67),    qRgb(51, 24, 74),   qRgb(52, 27, 81),   qRgb(53, 30, 88),
          qRgb(54, 33, 95),    qRgb(55, 36, 102),   qRgb(56, 39, 109),  qRgb(57, 42, 115),  qRgb(58, 45, 121),

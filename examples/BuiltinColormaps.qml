@@ -8,67 +8,76 @@ import QuickGraphLib as QuickGraphLib
 import QuickGraphLib.GraphItems as QGLGraphItems
 import QuickGraphLib.PreFabs as QGLPreFabs
 
-QQL.GridLayout {
+Item {
     id: root
 
-    property var sierpinskiTriangles: QuickGraphLib.Helpers.range(0, 30).map(x => QuickGraphLib.Helpers.range(0, 30).map(y => x & y))
+    property var values: {
+        let vals = [];
+        let index = 0;
+        while (QuickGraphLib.ColorMaps.colorMapName(index) != "") {
+            vals.push(index);
+            ++index;
+        }
+        return vals;
+    }
 
-    columns: 2
+    QuickGraphLib.ScalingContainer {
+        anchors.fill: parent
+        contentHeight: grid.height
+        contentWidth: grid.width
 
-    QQC.Label {
-        QQL.Layout.fillWidth: true
-        QQL.Layout.preferredWidth: 100
-        font.pixelSize: 16
-        horizontalAlignment: Text.AlignHCenter
-        text: "magma"
+        QQL.GridLayout {
+            id: grid
+
+            columns: 2
+            rows: root.values.length
+
+            Repeater {
+                model: root.values
+
+                QQC.Label {
+                    required property int index
+
+                    QQL.Layout.column: 0
+                    QQL.Layout.preferredWidth: 100
+                    QQL.Layout.row: index
+                    horizontalAlignment: Text.AlignRight
+                    text: QuickGraphLib.ColorMaps.colorMapName(index)
+                }
+            }
+            Repeater {
+                model: root.values
+
+                Rectangle {
+                    id: delegate
+
+                    required property int index
+
+                    QQL.Layout.column: 1
+                    QQL.Layout.row: index
+                    border.width: 0
+                    implicitHeight: 30
+                    implicitWidth: 300
+
+                    gradient: Gradient {
+                        id: grad
+
+                        property var colors: QuickGraphLib.ColorMaps.colors(delegate.index)
+
+                        orientation: Gradient.Horizontal
+                        stops: colors.map((color, i) => gradStop.createObject(grad, {
+                                        "color": color,
+                                        "position": i / (colors.length - 1)
+                                    }))
+                    }
+                }
+            }
+        }
     }
-    QQC.Label {
-        QQL.Layout.fillWidth: true
-        QQL.Layout.preferredWidth: 100
-        font.pixelSize: 16
-        horizontalAlignment: Text.AlignHCenter
-        text: "viridis"
-    }
-    QuickGraphLib.ImageView {
-        QQL.Layout.fillHeight: true
-        QQL.Layout.fillWidth: true
-        colormap: "magma"
-        max: 29
-        source: root.sierpinskiTriangles
-    }
-    QuickGraphLib.ImageView {
-        QQL.Layout.fillHeight: true
-        QQL.Layout.fillWidth: true
-        colormap: "viridis"
-        max: 29
-        source: root.sierpinskiTriangles
-    }
-    QQC.Label {
-        QQL.Layout.fillWidth: true
-        QQL.Layout.preferredWidth: 100
-        font.pixelSize: 16
-        horizontalAlignment: Text.AlignHCenter
-        text: "twilight"
-    }
-    QQC.Label {
-        QQL.Layout.fillWidth: true
-        QQL.Layout.preferredWidth: 100
-        font.pixelSize: 16
-        horizontalAlignment: Text.AlignHCenter
-        text: "turbo"
-    }
-    QuickGraphLib.ImageView {
-        QQL.Layout.fillHeight: true
-        QQL.Layout.fillWidth: true
-        colormap: "twilight"
-        max: 29
-        source: root.sierpinskiTriangles
-    }
-    QuickGraphLib.ImageView {
-        QQL.Layout.fillHeight: true
-        QQL.Layout.fillWidth: true
-        colormap: "turbo"
-        max: 29
-        source: root.sierpinskiTriangles
+    Component {
+        id: gradStop
+
+        GradientStop {
+        }
     }
 }

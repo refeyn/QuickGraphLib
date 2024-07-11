@@ -162,6 +162,22 @@ QBrush brushFromColorAndGradient(QVariant fillGradient, QVariant color, std::opt
             }
             return QBrush(lingrad);
         }
+        else if (fillGradientObj->inherits("QQuickGradient") && simpleGradient.has_value()) {
+            QRectF area;
+            if (fillGradientObj->property("orientation").toInt() == Qt::Vertical) {
+                area = {0, 0, 0, simpleGradient->height()};
+            }
+            else {
+                area = {0, 0, simpleGradient->width(), 0};
+            }
+            auto lingrad = QLinearGradient(area.topLeft(), area.bottomRight());
+            auto stops = QQmlListReference(fillGradientObj, "stops");
+            for (auto stopsIndex = 0; stopsIndex < stops.size(); ++stopsIndex) {
+                auto stop = stops.at(stopsIndex);
+                lingrad.setColorAt(stop->property("position").toDouble(), stop->property("color").value<QColor>());
+            }
+            return QBrush(lingrad);
+        }
     }
     return QBrush(color.value<QColor>());
 }
@@ -280,15 +296,15 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
     }
 
     else if (item->inherits("ImageView")) {
-        if (auto imageView = qobject_cast<ImageView*>(item)) {
-            if (imageView->smooth()) {
-                painter->setRenderHint(QPainter::RenderHint::SmoothPixmapTransform, true);
-            }
-            painter->drawImage(
-                imageView->paintedRect(),
-                imageView->image().mirrored(imageView->mirrorHorizontally(), imageView->mirrorVertically())
-            );
+        auto imageView = qobject_cast<ImageView*>(item);
+        Q_ASSERT(imageView != nullptr);
+        if (imageView->smooth()) {
+            painter->setRenderHint(QPainter::RenderHint::SmoothPixmapTransform, true);
         }
+        painter->drawImage(
+            imageView->paintedRect(),
+            imageView->image().mirrored(imageView->mirrorHorizontally(), imageView->mirrorVertically())
+        );
     }
 
     for (auto c : children) {
@@ -306,7 +322,7 @@ void exportToPainter(QQuickItem* item, QPainter* painter) {
         true
     );
 
-    // Cancel out translation done in _export_child_to_painter
+    // Cancel out translation done in exportItemToPainter
     painter->translate(-item->x(), -item->y());
     exportItemToPainter(item, painter);
 }
@@ -349,6 +365,7 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
         QByteArray text = file.readAll();
         text.replace(QByteArray("image-rendering=\"optimizeSpeed\""), QByteArray("image-rendering=\"pixelated\""));
         file.seek(0);
+        file.resize(text.length());
         file.write(text);
         file.close();
     }

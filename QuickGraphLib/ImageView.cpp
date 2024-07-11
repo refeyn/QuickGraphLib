@@ -6,7 +6,7 @@
 #include <QQuickWindow>
 #include <QSGImageNode>
 
-extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS;
+#include "ColorMaps.hpp"
 
 /*!
     \qmltype ImageView
@@ -87,20 +87,7 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS;
     \qmlproperty var ImageView::colormap
 
         The colormap to use when source is a list of values.
-        This property can either take a \l Gradient, or a string name from the following options:
-
-        \value "cividis" Monotonically increasing colormap (blue/brown/yellow)
-        \value "grayscale" Monotonically increasing colormap (black/white)
-        \value "inferno" Monotonically increasing colormap (black/red/yellow)
-        \value "magma" Monotonically increasing colormap (blue/purple/red/yellow)
-        \value "plasma" Monotonically increasing colormap (black/purple/red/yellow)
-        \value "turbo" Multihue colormap (blue/green/yellow/red)
-        \value "twilight" Cylical colormap (white/blue/black/red/white)
-        \value "twilight_shifted" Cylical colormap (black/blue/white/red/black)
-        \value "viridis" Monotonically increasing colormap (purple/green/yellow)
-
-        More information about these colormaps can be found at in the
-        \l {https://matplotlib.org/stable/users/explain/colors/colormaps.html} {matplotlib documentation}.
+        This property can either take a \l Gradient, or a color map enumeration value from \l ColorMaps.
 
         The values of \l source are mapped to a color using \l min and \l max (i.e. if the value is
         less than or equal to min, it will be assigned the value at 0; if the value is greater than
@@ -110,6 +97,8 @@ extern const std::map<QString, std::vector<QRgb>> DEFAULT_COLORMAPS;
         The default colormap is grayscale.
 
         \note This property has no effect when \l source is a QImage.
+
+        \sa ColorMaps::colors
 */
 
 /*!
@@ -350,12 +339,13 @@ void ImageView::updatePolish() {
                 }
             }
         }
-        else if (cmapVar.canConvert<QString>()) {
-            auto cmapName = cmapVar.toString();
-            if (DEFAULT_COLORMAPS.count(cmapName)) {
-                auto step = scale / DEFAULT_COLORMAPS.at(cmapName).size();
+        else if (cmapVar.canConvert<int>()) {
+            auto cmapName = cmapVar.toInt();
+            auto cmap = colors(cmapName);
+            if (cmap.length()) {
+                auto step = scale / cmap.size();
                 auto pos = min;
-                for (const auto &stop : DEFAULT_COLORMAPS.at(cmapName)) {
+                for (const auto &stop : cmap) {
                     colormap.emplace_back(ColormapStop{pos, step, stop});
                     pos += step;
                 }

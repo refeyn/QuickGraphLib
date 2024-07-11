@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: MIT
 
 /*!
-    \title Builtin colormaps
+    \title Builtin color maps
     \ingroup quickgraphlibdemos
-    \brief Colorised Sierpinski triangles using 4 of the builtin colormaps.
+    \brief All of the builtin color maps.
     \example builtincolormaps
 
     \image examples/BuiltinColormaps.png
