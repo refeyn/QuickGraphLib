@@ -16,7 +16,7 @@
 */
 
 /*!
-    \qmlproperty int ImageView::fillMode
+    \qmlproperty enumeration ImageView::fillMode
 
         One of the following:
 
@@ -30,7 +30,7 @@
 */
 
 /*!
-    \qmlproperty int ImageView::alignment
+    \qmlproperty enumeration ImageView::alignment
 
         A bitwise or of one horizontal and one vertical flag from the following:
 
@@ -340,7 +340,7 @@ void ImageView::updatePolish() {
             }
         }
         else if (cmapVar.canConvert<int>()) {
-            auto cmapName = cmapVar.toInt();
+            auto cmapName = static_cast<ColorMaps::ColorMapName>(cmapVar.toInt());
             auto cmap = colors(cmapName);
             if (cmap.length()) {
                 auto step = scale / cmap.size();

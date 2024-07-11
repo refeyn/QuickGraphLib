@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Image alignment
+    \ingroup quickgraphlibdemos
+    \brief Various image alignments and fills.
+    \example imagealignment
+
+    \image examples/ImageAlignment.png
+
+    \quotefile examples/ImageAlignment.qml
+*/

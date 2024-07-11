@@ -15,15 +15,15 @@
 
 extern const std::map<ColorMaps::ColorMapName, QList<QRgb>> DEFAULT_COLORMAPS;
 
-QList<QRgb> colors(int colorMapName) {
-    auto iter = DEFAULT_COLORMAPS.find(static_cast<ColorMaps::ColorMapName>(colorMapName));
+QList<QRgb> colors(ColorMaps::ColorMapName colorMapName) {
+    auto iter = DEFAULT_COLORMAPS.find(colorMapName);
     if (iter != DEFAULT_COLORMAPS.end()) {
         return iter->second;
     }
     return {};
 }
 
-QList<QColor> ColorMaps::colors(int colorMapName) const {
+QList<QColor> ColorMaps::colors(ColorMaps::ColorMapName colorMapName) const {
     /*!
         \qmlmethod list<color> ColorMaps::colors(enumeration colorMapName)
 
@@ -52,7 +52,7 @@ QList<QColor> ColorMaps::colors(int colorMapName) const {
     std::transform(rgbs.begin(), rgbs.end(), res.begin(), QColor::fromRgba);
     return res;
 }
-QString ColorMaps::colorMapName(int colorMapName) const {
+QString ColorMaps::colorMapName(ColorMaps::ColorMapName colorMapName) const {
     /*!
         \qmlmethod string ColorMaps::colorMapName(enumeration colorMapName)
 

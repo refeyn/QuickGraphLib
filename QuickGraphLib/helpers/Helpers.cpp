@@ -263,7 +263,10 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         painter->save();
         painter->setFont(item->property("font").value<QFont>());
         painter->setPen(item->property("color").value<QColor>());
-        painter->drawText(rect, item->property("text").toString());
+        painter->drawText(
+            rect, item->property("horizontalAlignment").toInt() | item->property("verticalAlignment").toInt(),
+            item->property("text").toString()
+        );
         painter->restore();
     }
 
