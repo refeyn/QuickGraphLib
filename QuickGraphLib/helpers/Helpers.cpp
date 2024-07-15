@@ -3,10 +3,13 @@
 
 #include "Helpers.hpp"
 
+#include <QFile>
 #include <QMatrix4x4>
 #include <QPainter>
 #include <QPainterPath>
 #include <QtSvg/QSvgGenerator>
+
+#include "ImageView.hpp"
 
 /*!
     \qmltype Helpers
@@ -98,7 +101,7 @@ QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
     if (points.userType() == QMetaType::QPolygonF) {
         return mapPointsInner(points.value<QPolygonF>(), dataTransform);
     }
-    else if (points.canConvert<QVector<QPointF>>()) {
+    else if (points.canConvert<QList<QPointF>>()) {
         return mapPointsInner(points.value<QList<QPointF>>(), dataTransform);
     }
     else if (points.canConvert<QVariantList>()) {
@@ -150,6 +153,22 @@ QBrush brushFromColorAndGradient(QVariant fillGradient, QVariant color, std::opt
                 else {
                     area = {0, 0, simpleGradient->width(), 0};
                 }
+            }
+            auto lingrad = QLinearGradient(area.topLeft(), area.bottomRight());
+            auto stops = QQmlListReference(fillGradientObj, "stops");
+            for (auto stopsIndex = 0; stopsIndex < stops.size(); ++stopsIndex) {
+                auto stop = stops.at(stopsIndex);
+                lingrad.setColorAt(stop->property("position").toDouble(), stop->property("color").value<QColor>());
+            }
+            return QBrush(lingrad);
+        }
+        else if (fillGradientObj->inherits("QQuickGradient") && simpleGradient.has_value()) {
+            QRectF area;
+            if (fillGradientObj->property("orientation").toInt() == Qt::Vertical) {
+                area = {0, 0, 0, simpleGradient->height()};
+            }
+            else {
+                area = {0, 0, simpleGradient->width(), 0};
             }
             auto lingrad = QLinearGradient(area.topLeft(), area.bottomRight());
             auto stops = QQmlListReference(fillGradientObj, "stops");
@@ -244,7 +263,10 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         painter->save();
         painter->setFont(item->property("font").value<QFont>());
         painter->setPen(item->property("color").value<QColor>());
-        painter->drawText(rect, item->property("text").toString());
+        painter->drawText(
+            rect, item->property("horizontalAlignment").toInt() | item->property("verticalAlignment").toInt(),
+            item->property("text").toString()
+        );
         painter->restore();
     }
 
@@ -276,6 +298,18 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         }
     }
 
+    else if (item->inherits("ImageView")) {
+        auto imageView = qobject_cast<ImageView*>(item);
+        Q_ASSERT(imageView != nullptr);
+        if (imageView->smooth()) {
+            painter->setRenderHint(QPainter::RenderHint::SmoothPixmapTransform, true);
+        }
+        painter->drawImage(
+            imageView->paintedRect(),
+            imageView->image().mirrored(imageView->mirrorHorizontally(), imageView->mirrorVertically())
+        );
+    }
+
     for (auto c : children) {
         if (c->z() >= 0) {
             exportItemToPainter(c, painter);
@@ -285,10 +319,13 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
 }
 
 void exportToPainter(QQuickItem* item, QPainter* painter) {
-    painter->setRenderHint(QPainter::RenderHint::Antialiasing, true);
-    painter->setRenderHint(QPainter::RenderHint::TextAntialiasing, true);
+    painter->setRenderHints(
+        QPainter::RenderHint::Antialiasing | QPainter::RenderHint::TextAntialiasing |
+            QPainter::RenderHint::LosslessImageRendering,
+        true
+    );
 
-    // Cancel out translation done in _export_child_to_painter
+    // Cancel out translation done in exportItemToPainter
     painter->translate(-item->x(), -item->y());
     exportItemToPainter(item, painter);
 }
@@ -310,15 +347,32 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
             more information.
 
+        \note Clip paths for SVGs are only supported in Qt 6.7+. If your graph needs clipping, ensure you are using a Qt
+            version that supports it.
+
         \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
     */
 
-    QSvgGenerator device;
-    device.setFileName(path.toLocalFile());
-    device.setViewBox(QRectF(0, 0, item->width(), item->height()));
-    device.setResolution(96);
-    exportToPaintDevice(item, &device);
-    return true;  // TODO How do we detect IO errors?
+    {
+        QSvgGenerator device;
+        device.setFileName(path.toLocalFile());
+        device.setViewBox(QRectF(0, 0, item->width(), item->height()));
+        device.setResolution(96);
+        exportToPaintDevice(item, &device);
+    }
+    {
+        QFile file(path.toLocalFile());
+        if (!file.open(QIODevice::ReadWrite)) {
+            return false;
+        }
+        QByteArray text = file.readAll();
+        text.replace(QByteArray("image-rendering=\"optimizeSpeed\""), QByteArray("image-rendering=\"pixelated\""));
+        file.seek(0);
+        file.resize(text.length());
+        file.write(text);
+        file.close();
+    }
+    return true;
 }
 
 bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) const {
@@ -330,7 +384,7 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
 
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
-       more information.
+            more information.
 
         \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
     */
@@ -351,6 +405,12 @@ QPicture Helpers::exportToPicture(QQuickItem* item) const {
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
             more information.
+
+        \note Using this method, followed by saving to an image should give the same result as the other functions
+            (ignoring some differences in the output that result in equivalent display). One exception is that exporting
+            an ImageView as SVG will result in images rendering using the "optimiseSpeed" setting when they are not
+            smooth. For reliable rendering across multiple programs, it is better to replace this with "pixelated". \l
+            Helpers::exportToSvg does this correction automatically.
 
         \sa Helpers::exportToPng, Helpers::exportToSvg, {Exporting graphs}
      */

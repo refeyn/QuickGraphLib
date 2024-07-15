@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Builtin color maps
+    \ingroup quickgraphlibdemos
+    \brief All of the builtin color maps.
+    \example builtincolormaps
+
+    \image examples/BuiltinColormaps.png
+
+    \quotefile examples/BuiltinColormaps.qml
+*/

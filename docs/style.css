@@ -38,6 +38,12 @@ td {
     padding: 0.5em;
 }
 
+th {
+    border: 1px solid black;
+    background: #ACCEED;
+    padding: 0.5em;
+}
+
 li {
     list-style: "›";
     padding-left: 0.25em;
@@ -79,6 +85,13 @@ img {
 
 code {
     font-size: 1rem;
+    background: #f8f8f8;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+p {
+    margin: 1em 0;
 }
 
 .centerAlign {
@@ -140,6 +153,10 @@ table.qmlname td {
     font-size: 1.2em;
 }
 
+td p {
+    margin: 0;
+}
+
 h1.title,
 h3#toc {
     margin-top: 0;
@@ -155,7 +172,7 @@ h3#toc {
 
 .admonition {
     margin: 1em 0;
-    padding: 1em;
+    padding: 1px 1em;
 }
 
 .warning {

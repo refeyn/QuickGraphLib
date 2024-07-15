@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Color mesh
+    \ingroup quickgraphlibdemos
+    \brief Displays an image on an axes.
+    \example colormesh
+
+    \image examples/ColorMesh.png
+
+    \quotefile examples/ColorMesh.qml
+*/

@@ -3,7 +3,7 @@
 
 set(QGL_GI_QML_FILES
     AxHLine.qml AxVLine.qml BasicLegend.qml GraphItemDragHandler.qml Histogram.qml Marker.qml
-    AxHSpan.qml AxVSpan.qml BasicLegendItem.qml Contour.qml Grid.qml Line.qml
+    AxHSpan.qml AxVSpan.qml BasicLegendItem.qml Contour.qml Grid.qml Line.qml ColorMesh.qml
 )
 qt_add_qml_module(QuickGraphLibGraphItems
     URI QuickGraphLib.GraphItems
