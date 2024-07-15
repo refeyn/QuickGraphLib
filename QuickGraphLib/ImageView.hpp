@@ -23,11 +23,14 @@ class ImageView : public QQuickItem {
     Q_PROPERTY(QVariant colormap READ colormap WRITE setColormap NOTIFY colormapChanged BINDABLE bindableColormap)
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY minChanged BINDABLE bindableMin)
     Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY maxChanged BINDABLE bindableMax)
+    Q_PROPERTY(bool autoMin READ autoMin WRITE setAutoMin NOTIFY autoMinChanged BINDABLE bindableAutoMin)
+    Q_PROPERTY(bool autoMax READ autoMax WRITE setAutoMax NOTIFY autoMaxChanged BINDABLE bindableAutoMax)
     Q_PROPERTY(QSize sourceSize READ sourceSize NOTIFY sourceSizeChanged BINDABLE bindableSourceSize)
     Q_PROPERTY(QRectF paintedRect READ paintedRect NOTIFY paintedRectChanged BINDABLE bindablePaintedRect)
 
     QPropertyNotifier _mirrorHorizontallyNotifier, _mirrorVerticallyNotifier, _transposeNotifier, _sourceNotifier,
-        _source1DSizeNotifier, _colormapNotifier, _minNotifier, _maxNotifier, _paintedRectNotifier;
+        _source1DSizeNotifier, _colormapNotifier, _minNotifier, _maxNotifier, _autoMinNotifier, _autoMaxNotifier,
+        _paintedRectNotifier;
     bool _textureDirty = false;
     QImage _coloredImage;
 
@@ -76,6 +79,14 @@ class ImageView : public QQuickItem {
     qreal max() const { return maxProp; }
     QBindable<qreal> bindableMax() { return &maxProp; }
 
+    void setAutoMin(bool autoMin) { autoMinProp = autoMin; }
+    bool autoMin() const { return autoMinProp; }
+    QBindable<bool> bindableAutoMin() { return &autoMinProp; }
+
+    void setAutoMax(bool autoMax) { autoMaxProp = autoMax; }
+    bool autoMax() const { return autoMaxProp; }
+    QBindable<bool> bindableAutoMax() { return &autoMaxProp; }
+
     QSize sourceSize() const { return sourceSizeProp; }
     QBindable<QSize> bindableSourceSize() { return &sourceSizeProp; }
 
@@ -99,6 +110,8 @@ class ImageView : public QQuickItem {
     void colormapChanged();
     void minChanged();
     void maxChanged();
+    void autoMinChanged();
+    void autoMaxChanged();
     void sourceSizeChanged();
     void paintedRectChanged();
 
@@ -115,6 +128,8 @@ class ImageView : public QQuickItem {
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, QVariant, colormapProp, &ImageView::colormapChanged)
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, qreal, minProp, &ImageView::minChanged)
     Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, qreal, maxProp, 1.0, &ImageView::maxChanged)
+    Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, bool, autoMinProp, true, &ImageView::autoMinChanged)
+    Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, bool, autoMaxProp, true, &ImageView::autoMaxChanged)
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, QSize, sourceSizeProp, &ImageView::sourceSizeChanged)
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, QRectF, paintedRectProp, &ImageView::paintedRectChanged)
 };

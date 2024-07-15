@@ -33,14 +33,12 @@ QQL.GridLayout {
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
         colormap: QuickGraphLib.ColorMaps.Magma
-        max: 31
         source: root.sierpinskiTriangles
     }
     QuickGraphLib.ImageView {
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
         colormap: QuickGraphLib.ColorMaps.Viridis
-        max: 31
         source: root.sierpinskiTriangles
     }
     QQC.Label {
@@ -61,14 +59,12 @@ QQL.GridLayout {
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
         colormap: QuickGraphLib.ColorMaps.Twilight
-        max: 31
         source: root.sierpinskiTriangles
     }
     QuickGraphLib.ImageView {
         QQL.Layout.fillHeight: true
         QQL.Layout.fillWidth: true
         colormap: QuickGraphLib.ColorMaps.Turbo
-        max: 31
         source: root.sierpinskiTriangles
     }
 }

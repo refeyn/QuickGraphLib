@@ -104,13 +104,31 @@
 /*!
     \qmlproperty real ImageView::min
 
-        The value which is mapped to 0 on the \l colormap.
+        The value which is mapped to 0 on the \l colormap. \l autoMin must be set to \c false for this property to have
+        an effect.
 */
 
 /*!
     \qmlproperty real ImageView::max
 
-        The value which is mapped to 1 on the \l colormap.
+        The value which is mapped to 1 on the \l colormap. \l autoMax must be set to \c false for this property to have
+        an effect.
+*/
+
+/*!
+    \qmlproperty bool ImageView::autoMin
+
+        Whether the minimum value for the colormap should be determined from \l source.
+
+        \sa ImageView::min
+*/
+
+/*!
+    \qmlproperty bool ImageView::autoMax
+
+        Whether the maximum value for the colormap should be determined from \l source.
+
+        \sa ImageView::max
 */
 
 /*!
@@ -162,6 +180,8 @@ ImageView::ImageView(QQuickItem *parent) : QQuickItem{parent} {
     _colormapNotifier = colormapProp.addNotifier([this]() { polish(); });
     _minNotifier = minProp.addNotifier([this]() { polish(); });
     _maxNotifier = maxProp.addNotifier([this]() { polish(); });
+    _autoMinNotifier = autoMinProp.addNotifier([this]() { polish(); });
+    _autoMaxNotifier = autoMaxProp.addNotifier([this]() { polish(); });
 }
 
 struct ColormapStop {
@@ -212,12 +232,68 @@ int indexForCoord(int x, int y, const QSize &size, bool transpose = false) {
     }
 }
 
+std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max) {
+    std::vector<ColormapStop> colormap;
+    auto scale = max - min;
+    if (auto gradientObj = cmapVar.value<QObject *>()) {
+        if (gradientObj && gradientObj->inherits("QQuickGradient")) {
+            auto stops = QQmlListReference(gradientObj, "stops");
+            for (auto stopsIndex = 0; stopsIndex < stops.size(); ++stopsIndex) {
+                auto stop = stops.at(stopsIndex);
+                auto value = min + stop->property("position").toDouble() * scale;
+                auto diff = colormap.size() == 0 ? 0 : value - colormap.back().value;
+                colormap.emplace_back(
+                    ColormapStop{value, diff, qPremultiply(stop->property("color").value<QColor>().rgba())}
+                );
+            }
+            if (colormap.size() == 0) {
+                colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::white).rgba()});
+            }
+        }
+    }
+    else if (cmapVar.canConvert<int>()) {
+        auto cmapName = static_cast<ColorMaps::ColorMapName>(cmapVar.toInt());
+        auto cmap = colors(cmapName);
+        if (cmap.length()) {
+            auto step = scale / cmap.size();
+            auto pos = min;
+            for (const auto &stop : cmap) {
+                colormap.emplace_back(ColormapStop{pos, step, stop});
+                pos += step;
+            }
+        }
+        else {
+            colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::white).rgba()});
+        }
+    }
+    else {
+        colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::black).rgba()});
+        colormap.emplace_back(ColormapStop{min + scale, scale, QColor(Qt::white).rgba()});
+    }
+    if (scale < 0) {
+        std::reverse(colormap.begin(), colormap.end());
+    }
+    return colormap;
+}
+
 QImage convertToImageFrom1D(
-    const QList<qreal> &converted, const QSize &size, const std::vector<ColormapStop> &colormap, bool transpose
+    const QList<qreal> &converted, const QSize &size,
+    std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
 ) {
     if (size.width() * size.height() != converted.size()) {
         return {};
     }
+    auto dataMin = std::numeric_limits<qreal>::infinity(), dataMax = -std::numeric_limits<qreal>::infinity();
+    if (!std::get<1>(colormapArgs).has_value() || !std::get<2>(colormapArgs).has_value()) {
+        for (auto v : converted) {
+            dataMin = std::min(dataMin, v);
+            dataMax = std::max(dataMax, v);
+        }
+    }
+    auto colormap = buildColormap(
+        std::get<0>(colormapArgs), std::get<1>(colormapArgs).value_or(dataMin),
+        std::get<2>(colormapArgs).value_or(dataMax)
+    );
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
     QRgb *pixels = reinterpret_cast<QRgb *>(image.bits());
     for (auto x = 0; x < size.width(); ++x) {
@@ -230,7 +306,8 @@ QImage convertToImageFrom1D(
 }
 
 QImage convertToImageFrom2D(
-    const QList<QList<qreal>> &converted, const std::vector<ColormapStop> &colormap, bool transpose
+    const QList<QList<qreal>> &converted, std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs,
+    bool transpose
 ) {
     QSize size(converted.isEmpty() ? 0 : converted[0].size(), converted.size());
     for (const auto &row : converted) {
@@ -238,6 +315,19 @@ QImage convertToImageFrom2D(
             return {};
         }
     }
+    auto dataMin = std::numeric_limits<qreal>::infinity(), dataMax = -std::numeric_limits<qreal>::infinity();
+    if (!std::get<1>(colormapArgs).has_value() || !std::get<2>(colormapArgs).has_value()) {
+        for (auto &row : converted) {
+            for (auto v : row) {
+                dataMin = std::min(dataMin, v);
+                dataMax = std::max(dataMax, v);
+            }
+        }
+    }
+    auto colormap = buildColormap(
+        std::get<0>(colormapArgs), std::get<1>(colormapArgs).value_or(dataMin),
+        std::get<2>(colormapArgs).value_or(dataMax)
+    );
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
     QRgb *pixels = reinterpret_cast<QRgb *>(image.bits());
     for (auto y = 0; y < size.height(); ++y) {
@@ -250,13 +340,14 @@ QImage convertToImageFrom2D(
 }
 
 QImage convertToImage(
-    const QVariant &data, QSize suggestedSize, const std::vector<ColormapStop> &colormap, bool transpose
+    const QVariant &data, QSize suggestedSize,
+    std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
 ) {
     if (data.canConvert<QList<qreal>>()) {
-        return convertToImageFrom1D(data.value<QList<qreal>>(), suggestedSize, colormap, transpose);
+        return convertToImageFrom1D(data.value<QList<qreal>>(), suggestedSize, colormapArgs, transpose);
     }
     else if (data.canConvert<QList<QList<qreal>>>()) {
-        return convertToImageFrom2D(data.value<QList<QList<qreal>>>(), colormap, transpose);
+        return convertToImageFrom2D(data.value<QList<QList<qreal>>>(), colormapArgs, transpose);
     }
     else if (data.canConvert<QVariantList>()) {
         auto halfWay = data.value<QVariantList>();
@@ -269,7 +360,7 @@ QImage convertToImage(
             for (const auto &p : halfWay) {
                 converted.append(p.toDouble());
             }
-            return convertToImageFrom1D(converted, suggestedSize, colormap, transpose);
+            return convertToImageFrom1D(converted, suggestedSize, colormapArgs, transpose);
         }
         else {
             // 2D
@@ -291,7 +382,7 @@ QImage convertToImage(
                     return {};
                 }
             }
-            return convertToImageFrom2D(converted, colormap, transpose);
+            return convertToImageFrom2D(converted, colormapArgs, transpose);
         }
     }
     else {
@@ -319,50 +410,9 @@ void ImageView::updatePolish() {
         }
     }
     else {
-        std::vector<ColormapStop> colormap;
-        auto cmapVar = this->colormap();
-        auto min = this->min();
-        auto scale = this->max() - min;
-        if (auto gradientObj = cmapVar.value<QObject *>()) {
-            if (gradientObj && gradientObj->inherits("QQuickGradient")) {
-                auto stops = QQmlListReference(gradientObj, "stops");
-                for (auto stopsIndex = 0; stopsIndex < stops.size(); ++stopsIndex) {
-                    auto stop = stops.at(stopsIndex);
-                    auto value = min + stop->property("position").toDouble() * scale;
-                    auto diff = colormap.size() == 0 ? 0 : value - colormap.back().value;
-                    colormap.emplace_back(
-                        ColormapStop{value, diff, qPremultiply(stop->property("color").value<QColor>().rgba())}
-                    );
-                }
-                if (colormap.size() == 0) {
-                    colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::white).rgba()});
-                }
-            }
-        }
-        else if (cmapVar.canConvert<int>()) {
-            auto cmapName = static_cast<ColorMaps::ColorMapName>(cmapVar.toInt());
-            auto cmap = colors(cmapName);
-            if (cmap.length()) {
-                auto step = scale / cmap.size();
-                auto pos = min;
-                for (const auto &stop : cmap) {
-                    colormap.emplace_back(ColormapStop{pos, step, stop});
-                    pos += step;
-                }
-            }
-            else {
-                colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::white).rgba()});
-            }
-        }
-        else {
-            colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::black).rgba()});
-            colormap.emplace_back(ColormapStop{min + scale, scale, QColor(Qt::white).rgba()});
-        }
-        if (scale < 0) {
-            std::reverse(colormap.begin(), colormap.end());
-        }
-
-        _coloredImage = convertToImage(source, source1DSize(), colormap, transpose());
+        auto optionalMin = autoMin() ? std::nullopt : std::optional<qreal>{min()};
+        auto optionalMax = autoMax() ? std::nullopt : std::optional<qreal>{max()};
+        _coloredImage = convertToImage(source, source1DSize(), {colormap(), optionalMin, optionalMax}, transpose());
     }
 
     setImplicitSize(_coloredImage.width(), _coloredImage.height());
