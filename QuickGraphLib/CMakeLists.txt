@@ -2,12 +2,16 @@
 # SPDX-License-Identifier: MIT
 
 set(QGL_QML_FILES AntialiasingContainer.qml Axis.qml GraphArea.qml ScalingContainer.qml ZoomPanHandler.qml TickLabel.qml ShapeRepeater.qml)
+
+add_library(QuickGraphLibPlugin SHARED Plugin.cpp)
+target_link_libraries(QuickGraphLibPlugin PRIVATE Qt6::Gui)
 qt_add_qml_module(QuickGraphLib
     URI QuickGraphLib
     SHARED
     VERSION 1.0
     QML_FILES ${QGL_QML_FILES}
     PLUGIN_TARGET QuickGraphLibPlugin
+    NO_GENERATE_PLUGIN_SOURCE
     DEPENDENCIES QtQuick
     SOURCES
         helpers/Helpers.cpp helpers/Helpers.hpp helpers/AxisHelper.hpp helpers/AxisHelper.cpp helpers/Foreign.hpp

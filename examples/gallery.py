@@ -9,16 +9,16 @@ from PySide6 import QtCore, QtGui, QtQml, QtQuickControls2
 
 EXAMPLES_DIR = pathlib.Path(__file__).parent
 
-sys.path.append(str(EXAMPLES_DIR.parent))
+sys.path.append("build")
 
-import QuickGraphLib  # pylint: disable=unused-import
+import QuickGraphLib
 
 if __name__ == "__main__":
     QtQuickControls2.QQuickStyle.setStyle("Basic")
     QtQml.QQmlDebuggingEnabler.enableDebugging(True)
     app = QtGui.QGuiApplication(sys.argv)
     engine = QtQml.QQmlApplicationEngine()
-    engine.addImportPath(EXAMPLES_DIR.parent / "build")
+    engine.addImportPath(QuickGraphLib.QML_IMPORT_PATH)
 
     examples = []
     for f in EXAMPLES_DIR.glob("*.qdoc"):

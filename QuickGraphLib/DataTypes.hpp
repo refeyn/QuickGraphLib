@@ -29,3 +29,5 @@ class QGLDoubleList : public QList<qreal> {
     Q_DECL_EXPORT operator QVariant() const;
 };
 Q_DECLARE_SHARED(QGLDoubleList)
+
+Q_DECL_EXPORT void registerConvertions();

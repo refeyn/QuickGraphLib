@@ -5,6 +5,7 @@ from typing import Sequence
 
 from PySide6 import QtCore, QtGui, QtQml
 
+from . import QGLPolygonF
 from .consts import (  # pylint: disable=unused-import
     QML_IMPORT_MAJOR_VERSION,
     QML_IMPORT_MINOR_VERSION,
@@ -25,15 +26,14 @@ def contour_line(
     y: Sequence[Sequence[float]],
     z: Sequence[Sequence[float]],
     height: float,
-) -> Sequence[QtGui.QPolygonF]:
+) -> Sequence[QGLPolygonF]:
     gen = contourpy.contour_generator(
         x=x, y=y, z=z, line_type=contourpy.LineType.Separate
     )
     result = []
     for loop in gen.lines(height):
         assert isinstance(loop, np.ndarray), "Loop is not an array"  # For mypy
-        points = QtGui.QPolygonF([QtCore.QPointF(x, y) for x, y in loop])
-        result.append(points)
+        result.append(QGLPolygonF.fromNDArray(loop))
     return result
 
 
@@ -49,8 +49,7 @@ def contour_fill(
     result = []
     for loop, offsets in zip(*gen.filled(*heights)):
         for start, end in zip(offsets, offsets[1:]):
-            points = QtGui.QPolygonF([QtCore.QPointF(x, y) for x, y in loop[start:end]])
-            result.append(points)
+            result.append(QGLPolygonF.fromNDArray(loop[start:end]))
     return result
 
 
@@ -64,7 +63,7 @@ class ContourHelper(QtCore.QObject):
         y: Sequence[Sequence[float]],
         z: Sequence[Sequence[float]],
         height: float,
-    ) -> Sequence[QtGui.QPolygonF]:
+    ) -> Sequence[QGLPolygonF]:
         return contour_line(x, y, z, height)
 
     @QtCore.Slot(list, list, list, float, float, result=list)
@@ -75,5 +74,5 @@ class ContourHelper(QtCore.QObject):
         z: Sequence[Sequence[float]],
         h_min: float,
         h_max: float,
-    ) -> Sequence[QtGui.QPolygonF]:
+    ) -> Sequence[QGLPolygonF]:
         return contour_fill(x, y, z, (h_min, h_max))

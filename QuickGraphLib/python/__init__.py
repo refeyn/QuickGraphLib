@@ -6,8 +6,6 @@ import pathlib
 
 from PySide6 import QtCore, QtGui, QtQml
 
-# from . import contours
-
 QML_IMPORT_PATH = str(pathlib.Path(__file__).parent.parent)
 
 _dll_path = pathlib.Path(__file__).parent
@@ -17,3 +15,5 @@ with os.add_dll_directory(os.fspath(_dll_path)):
         QGLDoubleList,
         QGLPolygonF,
     )
+
+from . import contours

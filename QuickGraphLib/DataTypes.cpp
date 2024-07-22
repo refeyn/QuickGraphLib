@@ -3,6 +3,7 @@
 
 #include "DataTypes.hpp"
 
+#include <QMetaType>
 #include <QVariant>
 
 /*!
@@ -14,3 +15,10 @@ QGLPolygonF::operator QVariant() const { return QVariant::fromValue(*this); }
    Returns the list as a QVariant
 */
 QGLDoubleList::operator QVariant() const { return QVariant::fromValue(*this); }
+
+void registerConvertions() {
+    QMetaType::registerConverter<QGLPolygonF, QPolygonF>();
+    QMetaType::registerConverter<QPolygonF, QGLPolygonF>();
+    QMetaType::registerConverter<QGLDoubleList, QList<qreal>>();
+    QMetaType::registerConverter<QList<qreal>, QGLDoubleList>();
+}
