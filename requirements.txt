@@ -1,3 +1,4 @@
+--extra-index-url=https://download.qt.io/official_releases/QtForPython/
 annotated-types==0.6.0
 astroid==3.1.0
 black==24.3.0
@@ -30,6 +31,7 @@ PySide6==6.5.3
 PyYAML==6.0.1
 setuptools-git-versioning==1.13.6
 shiboken6==6.5.3
+shiboken6_generator==6.5.3
 toml==0.10.2
 tomli==2.0.1
 tomlkit==0.12.4

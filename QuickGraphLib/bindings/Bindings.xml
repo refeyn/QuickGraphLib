@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+-->
+<typesystem package="QuickGraphLib._QuickGraphLib">
+    <load-typesystem name="typesystem_gui.xml" generate="no"/>
+    <value-type name="QGLDoubleList">
+        <inject-code class="native" position="beginning">
+            #include &lt;sbknumpycheck.h&gt;
+            #include &lt;QuickGraphLib/bindings/ShibokenHelpers.hpp&gt;
+        </inject-code>
+        <add-function signature="fromNDArray(PyArrayObject*@data@)" static="yes" return-type="QGLDoubleList">
+            <inject-code file="glue/DataTypes.cpp" snippet="qgldoublelist-fromndarray"/>
+        </add-function>
+        <modify-function signature="constData()const" remove="all"/>
+        <modify-function signature="data()" remove="all"/>
+        <modify-function signature="data()const" remove="all"/>
+    </value-type>
+    <value-type name="QGLPolygonF">
+        <inject-code class="native" position="beginning">
+            #include &lt;sbknumpycheck.h&gt;
+            #include &lt;QuickGraphLib/bindings/ShibokenHelpers.hpp&gt;
+        </inject-code>
+        <add-function signature="fromNDArray(PyArrayObject*@data@)" static="yes" return-type="QGLPolygonF">
+            <inject-code file="glue/DataTypes.cpp" snippet="qglpolygonf-fromndarray"/>
+        </add-function>
+    </value-type>
+</typesystem>

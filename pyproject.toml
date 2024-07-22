@@ -39,14 +39,23 @@ analyse = [
 ]
 
 [build-system]
-requires = ["setuptools>=61.0.0", "setuptools-git-versioning<2", "wheel"]
+requires = [
+    "setuptools>=61.0.0",
+    "setuptools-git-versioning<2",
+    "wheel",
+    "shiboken6_generator==6.5.3",
+    "PySide6==6.5.3",
+]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools-git-versioning]
 enabled = true
 
+[tool.setuptools]
+include-package-data = false
+
 [tool.setuptools.packages.find]
-include = ["quickgraphlib_helpers*"]
+include = ["QuickGraphLib"]
 
 [tool.cibuildwheel]
 build = [

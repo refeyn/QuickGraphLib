@@ -11,7 +11,7 @@ EXAMPLES_DIR = pathlib.Path(__file__).parent
 
 sys.path.append(str(EXAMPLES_DIR.parent))
 
-import quickgraphlib_helpers  # pylint: disable=unused-import
+import QuickGraphLib  # pylint: disable=unused-import
 
 if __name__ == "__main__":
     QtQuickControls2.QQuickStyle.setStyle("Basic")
