@@ -2,8 +2,19 @@
 # SPDX-License-Identifier: MIT
 
 set(QGL_GI_QML_FILES
-    AxHLine.qml AxVLine.qml BasicLegend.qml GraphItemDragHandler.qml Histogram.qml Marker.qml
-    AxHSpan.qml AxVSpan.qml BasicLegendItem.qml Contour.qml Grid.qml Line.qml ColorMesh.qml
+    AxHLine.qml
+    AxVLine.qml
+    BasicLegend.qml
+    GraphItemDragHandler.qml
+    Histogram.qml
+    Marker.qml
+    AxHSpan.qml
+    AxVSpan.qml
+    BasicLegendItem.qml
+    Contour.qml
+    Grid.qml
+    Line.qml
+    ColorMesh.qml
 )
 qt_add_qml_module(QuickGraphLibGraphItems
     URI QuickGraphLib.GraphItems
@@ -15,13 +26,29 @@ qt_add_qml_module(QuickGraphLibGraphItems
     DEPENDENCIES QtQuick QuickGraphLib
 )
 
-target_compile_definitions(QuickGraphLibGraphItems PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+target_compile_definitions(
+    QuickGraphLibGraphItems
+    PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>
+)
 target_link_libraries(QuickGraphLibGraphItems PRIVATE Qt6::Quick)
-target_include_directories(QuickGraphLibGraphItems PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/helpers)
+target_include_directories(
+    QuickGraphLibGraphItems
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/helpers
+)
 
-install(TARGETS QuickGraphLibGraphItems DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems)
-install(FILES ${QGL_GI_QML_FILES} DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems)
 install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLibGraphItems.qmltypes
+    TARGETS
+        QuickGraphLibGraphItems
+        DESTINATION
+        ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems
+)
+install(
+    FILES ${QGL_GI_QML_FILES}
+    DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems
+)
+install(
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/qmldir
+        ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLibGraphItems.qmltypes
     DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems
 )

@@ -18,6 +18,11 @@ repos:
         entry: venv/Scripts/black.exe
         language: system
         types: [python]
+      - id: gersemi
+        name: gersemi
+        entry: venv/Scripts/gersemi.exe -i
+        language: system
+        files: "CMakeLists.txt"
       - id: qmlformat
         name: qmlformat
         entry: venv/Scripts/pyside6-qmlformat.exe -i -n
