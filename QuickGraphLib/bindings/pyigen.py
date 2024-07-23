@@ -3,6 +3,7 @@
 
 import os
 import pathlib
+import re
 import sys
 
 import PySide6.QtGui
@@ -20,11 +21,13 @@ with os.add_dll_directory(os.fspath(_dll_path)):
 # Fixup
 
 path = pathlib.Path(sys.argv[-1]) / pathlib.Path(sys.argv[1]).with_suffix(".pyi").name
-path.write_text(
+text = (
     path.read_text(encoding="utf-8")
     .replace(
-        "import _QuickGraphLib", "import QuickGraphLib._QuickGraphLib\nimport numpy"
+        "import _QuickGraphLib",
+        "import QuickGraphLib._QuickGraphLib\nimport numpy\nimport typing",
     )
-    .replace("shibokensupport.signature.mapping.ArrayLikeVariable", "numpy.ndarray"),
-    encoding="utf-8",
+    .replace("shibokensupport.signature.mapping.ArrayLikeVariable", "numpy.ndarray")
 )
+text = re.sub(r"'(.*,.*)'", r"Union[\1]", text)
+path.write_text(text, encoding="utf-8")
