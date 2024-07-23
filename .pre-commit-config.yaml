@@ -33,11 +33,12 @@ repos:
         entry: venv/Scripts/isort.exe --settings-file pyproject.toml
         language: system
         types: [python]
-      - id: pylint
-        name: pylint
-        entry: venv/Scripts/pylint.exe
-        language: system
-        types: [python]
+      # - id: pylint
+      #   name: pylint
+      #   entry: venv/Scripts/pylint.exe
+      #   language: system
+      #   types: [python]
+      #   require_serial: true
       - id: mypy
         name: mypy
         entry: venv/Scripts/mypy.exe

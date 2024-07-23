@@ -24,18 +24,18 @@ target_compile_definitions(QuickGraphLib PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG
 target_link_libraries(QuickGraphLib PRIVATE Qt6::Quick Qt6::Svg)
 target_include_directories(QuickGraphLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/helpers)
 
-set(QGL_PYTHON_FILES __init__.py consts.py contours.py py.typed)
+set(QGL_PYTHON_FILES __init__.py consts.py contours.py py.typed _version.py)
 foreach(PYTHON_FILE ${QGL_PYTHON_FILES})
     add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PYTHON_FILE}
-                       COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/python/${PYTHON_FILE}
+                       COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE}
                                                         ${CMAKE_CURRENT_BINARY_DIR}/${PYTHON_FILE}
-                       DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/python/${PYTHON_FILE})
+                       DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE})
 endforeach()
 list(TRANSFORM QGL_PYTHON_FILES PREPEND "${CMAKE_CURRENT_BINARY_DIR}/")
 add_custom_target(QuickGraphLibPythonFiles ALL DEPENDS ${QGL_PYTHON_FILES})
 
 install(TARGETS QuickGraphLib RUNTIME DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
-install(TARGETS QuickGraphLibPlugin DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
+install(TARGETS QuickGraphLibPlugin RUNTIME DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
 install(FILES ${QGL_QML_FILES} DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
 install(
     FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib.qmltypes

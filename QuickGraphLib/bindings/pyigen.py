@@ -20,7 +20,10 @@ with os.add_dll_directory(os.fspath(_dll_path)):
 
 # Fixup
 
-path = pathlib.Path(sys.argv[-1]) / pathlib.Path(sys.argv[1]).with_suffix(".pyi").name
+path = (
+    pathlib.Path(sys.argv[-1])
+    / pathlib.Path(sys.argv[1]).with_suffix("").with_suffix(".pyi").name
+)
 text = (
     path.read_text(encoding="utf-8")
     .replace(

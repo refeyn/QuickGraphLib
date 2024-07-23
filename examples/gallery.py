@@ -9,8 +9,6 @@ from PySide6 import QtCore, QtGui, QtQml, QtQuickControls2
 
 EXAMPLES_DIR = pathlib.Path(__file__).parent
 
-sys.path.append("build")
-
 import QuickGraphLib
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
 
 from typing import Sequence
 
-from PySide6 import QtCore, QtGui, QtQml
+from PySide6 import QtCore, QtQml
 
 from . import QGLPolygonF
 from .consts import (  # pylint: disable=unused-import
@@ -42,7 +42,7 @@ def contour_fill(
     y: Sequence[Sequence[float]],
     z: Sequence[Sequence[float]],
     heights: tuple[float, float],
-) -> Sequence[QtGui.QPolygonF]:
+) -> Sequence[QGLPolygonF]:
     gen = contourpy.contour_generator(
         x=x, y=y, z=z, fill_type=contourpy.FillType.OuterOffset
     )
