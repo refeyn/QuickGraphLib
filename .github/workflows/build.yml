@@ -25,6 +25,15 @@ jobs:
           cache: "pip"
           cache-dependency-path: "./requirements.txt"
 
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==3.1.*'
+          version: '6.5.3'
+          archives: 'qttools qtdeclarative qtbase qtsvg icu'
+          cache: true
+          tools: 'tools_cmake'
+
       - name: Setup env
         run: .\setup_venv
 
