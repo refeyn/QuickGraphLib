@@ -1,20 +1,9 @@
-# Copyright (C) 2023 The Qt Company Ltd.
+# SPDX-FileCopyrightText: Copyright (C) 2023 The Qt Company Ltd.
+# SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 # SPDX-License-Identifier: BSD-3-Clause
 
 set(CMAKE_PROGRAM_PATH "${CMAKE_PROGRAM_PATH};${CMAKE_SOURCE_DIR}/venv/Scripts")
 find_package(Python COMPONENTS Interpreter Development.SABIModule REQUIRED)
-
-set(sample_library "QuickGraphLib")
-set(bindings_library "_QuickGraphLib")
-set(wrapped_header ${CMAKE_CURRENT_SOURCE_DIR}/Bindings.hpp)
-set(typesystem_file ${CMAKE_CURRENT_SOURCE_DIR}/Bindings.xml)
-set(generated_sources
-    ${CMAKE_CURRENT_BINARY_DIR}/${sample_library}/${bindings_library}/_quickgraphlib_module_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/${sample_library}/${bindings_library}/qglpolygonf_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/${sample_library}/${bindings_library}/qgldoublelist_wrapper.cpp)
-
-
-# ================================== Shiboken detection ======================================
 
 # Macro to get various pyside / python include / link flags and paths.
 # Uses the not entirely supported utils/pyside_config.py file.
@@ -80,7 +69,13 @@ set(shiboken_options --generator-set=shiboken --enable-parent-ctor-heuristic
     --output-directory=${CMAKE_CURRENT_BINARY_DIR}
     )
 
+set(wrapped_header ${CMAKE_CURRENT_SOURCE_DIR}/Bindings.hpp)
+set(typesystem_file ${CMAKE_CURRENT_SOURCE_DIR}/Bindings.xml)
 set(generated_sources_dependencies ${wrapped_header} ${typesystem_file})
+set(generated_sources
+    ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib/_QuickGraphLib/_quickgraphlib_module_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib/_QuickGraphLib/qglpolygonf_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib/_QuickGraphLib/qgldoublelist_wrapper.cpp)
 
 # Add custom target to run shiboken to generate the binding cpp files.
 add_custom_command(OUTPUT ${generated_sources}
@@ -91,32 +86,29 @@ add_custom_command(OUTPUT ${generated_sources}
                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                     COMMENT "Running generator for ${typesystem_file}.")
 
-
-# =============================== CMake target - bindings_library =============================
-
-python_add_library(${bindings_library} MODULE
+python_add_library(_QuickGraphLib MODULE
     ${generated_sources} Bindings.hpp ShibokenHelpers.hpp ShibokenHelpers.cpp
     WITH_SOABI USE_SABI 3.7)
 
 # Apply relevant include and link flags.
-target_include_directories(${bindings_library} PRIVATE
+target_include_directories(_QuickGraphLib PRIVATE
     ${pyside_additional_includes} ${pyside_include_dir} ${shiboken_include_dir} ${CMAKE_SOURCE_DIR})
 
-target_link_libraries(${bindings_library} PRIVATE
-    ${pyside_shared_libraries} ${shiboken_shared_libraries} ${sample_library} Qt6::Core Qt6::Gui)
+target_link_libraries(_QuickGraphLib PRIVATE
+    ${pyside_shared_libraries} ${shiboken_shared_libraries} QuickGraphLib Qt6::Core Qt6::Gui)
 
 # Generate .pyi stub file
-set(PYI_PATH ${CMAKE_BINARY_DIR}/${sample_library}/${bindings_library}.pyi)
-add_custom_command(OUTPUT ${PYI_PATH}
+set(pyi_path ${CMAKE_BINARY_DIR}/QuickGraphLib/_QuickGraphLib.pyi)
+add_custom_command(OUTPUT ${pyi_path}
                     COMMAND "${Python_EXECUTABLE}" ${CMAKE_CURRENT_SOURCE_DIR}/pyigen.py
-                        $<TARGET_FILE:${bindings_library}>
-                        --outpath ${CMAKE_BINARY_DIR}/${sample_library}
-                    DEPENDS $<TARGET_FILE:${bindings_library}>
+                        $<TARGET_FILE:_QuickGraphLib>
+                        --outpath ${CMAKE_BINARY_DIR}/QuickGraphLib
+                    DEPENDS $<TARGET_FILE:_QuickGraphLib>
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                    COMMENT "Running stub generation for for ${bindings_library}.")
+                    COMMENT "Running stub generation for for _QuickGraphLib.")
 
-add_custom_target(QuickGraphLibPythonStubs ALL DEPENDS ${PYI_PATH})
+add_custom_target(QuickGraphLibPythonStubs ALL DEPENDS ${pyi_path})
 
 # Install files
-install(TARGETS ${bindings_library} DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
-install(FILES ${PYI_PATH} DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
+install(TARGETS _QuickGraphLib DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
+install(FILES ${pyi_path} DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
