@@ -1,10 +1,12 @@
 # SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 # SPDX-License-Identifier: MIT
 
+import contextlib
 import os
 import pathlib
 import re
 import sys
+from typing import ContextManager
 
 import PySide6.QtGui
 import shiboken6  # pylint: disable=unused-import
@@ -14,7 +16,11 @@ from shibokensupport.signature.lib import (  # type: ignore[import-not-found] # 
 
 _dll_path = pathlib.Path(sys.argv[1]).parent
 os.environ["PATH"] = os.fspath(_dll_path) + os.pathsep + os.environ["PATH"]
-with os.add_dll_directory(os.fspath(_dll_path)):
+if hasattr(os, "add_dll_directory"):
+    cm: ContextManager = os.add_dll_directory(os.fspath(_dll_path))
+else:
+    cm = contextlib.nullcontext()
+with cm:
     pyi_generator.PySide6 = PySide6
     pyi_generator.main()
 

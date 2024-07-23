@@ -10,73 +10,12 @@ on:
       - master
 
 jobs:
-  static_analysis:
-    name: Static analysis
+  static-analysis:
+    name: Static analysis and build docs
     runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Use Python 3.10.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10.11"
-          architecture: "x64"
-          cache: "pip"
-          cache-dependency-path: "./requirements.txt"
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          aqtversion: '==3.1.*'
-          version: '6.5.3'
-          archives: 'qttools qtdeclarative qtbase qtsvg icu'
-          cache: true
-          tools: 'tools_cmake'
-
-      - name: Setup env
-        run: .\setup_venv
-
-      - name: Run linting on all files
-        run: |
-          .\activate_venv.ps1
-          pre-commit run --all-files --show-diff-on-failure
-
-  build-wheels:
-    name: Build wheels on ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    needs: static_analysis
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: "0"
-
-      - name: Mess with tmpdir
-        if: matrix.os == 'windows-latest'
-        run: |
-          # Stupid Windows/MSCV/MSBuild file path length issues
-          mkdir C:\tmp
-          echo "TMPDIR=C:\tmp" > $env:GITHUB_ENV
-
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v2.19.1
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: QuickGraphLib-wheel-${{ matrix.os }}
-          path: ./wheelhouse/*.whl
-
-  build-docs:
-    name: Build docs
-    runs-on: windows-latest # TODO use ubuntu
-    needs: static_analysis
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
         with:
           fetch-depth: "0"
 
@@ -87,6 +26,7 @@ jobs:
           architecture: "x64"
           cache: "pip"
           cache-dependency-path: "./requirements.txt"
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -96,10 +36,25 @@ jobs:
           documentation: true
           doc-archives: 'qtcore qtgui qtqml qtqmlcore qtqmlmodels qtquick qtquickcontrols qtquickdialogs qtsvg'
           cache: true
-          tools: 'tools_cmake'
+
+      - name: Build sdist
+        run: |
+          pip install build
+          $Env:PIP_EXTRA_INDEX_URL = "https://download.qt.io/official_releases/QtForPython/"
+          python -m build --sdist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: QuickGraphLib-sdist
+          path: dist/*.tar.gz
 
       - name: Setup env
         run: .\setup_venv
+
+      - name: Run linting on all files
+        run: |
+          .\activate_venv.ps1
+          pre-commit run --all-files --show-diff-on-failure
 
       - name: Build docs
         run: |
@@ -111,22 +66,39 @@ jobs:
           name: QuickGraphLib-docs
           path: dist/docs/*
 
-      - name: Build sdist
-        run: |
-          .\activate_venv.ps1
-          python -m build --sdist
+  build-wheels:
+    name: Build wheels on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    needs: static-analysis
+    steps:
+      - name: "Download sdist"
+        uses: actions/download-artifact@v4
+        with:
+          name: QuickGraphLib-sdist
+          path: dist
+
+      - name: Rename sdist package
+        run: mv dist/*.tar.gz sdist.tar.gz
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.19.1
+        with:
+          package-dir: sdist.tar.gz
 
       - uses: actions/upload-artifact@v4
         with:
-          name: QuickGraphLib-sdist
-          path: dist/*.tar.gz
+          name: QuickGraphLib-wheel-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
 
   upload-pypi:
     name: Upload to PyPI
     runs-on: ubuntu-latest
     needs:
       - build-wheels
-      - build-docs
+      - static-analysis
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     environment:
       name: pypi
@@ -156,7 +128,7 @@ jobs:
   upload-docs:
     name: Upload to GitHub Pages
     runs-on: ubuntu-latest
-    needs: build-docs
+    needs: static-analysis
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     environment:
       name: github-pages
@@ -192,7 +164,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build-wheels
-      - build-docs
+      - static-analysis
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     environment:
       name: github-release

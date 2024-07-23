@@ -89,6 +89,7 @@ set(shiboken_options
     -T${CMAKE_SOURCE_DIR}
     -T${pyside_path}/typesystems
     --output-directory=${CMAKE_CURRENT_BINARY_DIR}
+    --compiler-path=${CMAKE_CXX_COMPILER}
 )
 
 set(wrapped_header ${CMAKE_CURRENT_SOURCE_DIR}/Bindings.hpp)

@@ -85,6 +85,12 @@ manylinux-x86_64-image = "manylinux_2_28"
 manylinux-aarch64-image = "manylinux_2_28"
 repair-wheel-command = "cp {wheel} {dest_dir}; wheel tags --remove --platform-tag $AUDITWHEEL_PLAT {dest_dir}/*.whl"
 
+[tool.cibuildwheel.linux.environment]
+SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
+PIP_EXTRA_INDEX_URL = "https://download.qt.io/official_releases/QtForPython/"
+LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:$(python ci/find_qt.py)/lib"
+LLVM_INSTALL_DIR = "/usr"
+
 [tool.cibuildwheel.windows]
 archs = ["AMD64"]
 
