@@ -8,7 +8,7 @@
 
 The \l{QuickGraphLib} module provides a collection of types that can be composed to create complex and fast scientific graphs.
 
-The QuickGraphLib module provides a \l{QuickGraphLib QML Types}{QML API}, as well as a few Python helper functions.
+The QuickGraphLib module provides a \l{QuickGraphLib QML Types}{QML API} and a \l{QuickGraphLib C++/Python Classes}{C++/Python API}.
 
 \section1 Using the Module
 

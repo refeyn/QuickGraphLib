@@ -87,10 +87,6 @@ jobs:
           architecture: "x64"
           cache: "pip"
           cache-dependency-path: "./requirements.txt"
-
-      - name: Setup env
-        run: .\setup_venv
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -101,7 +97,10 @@ jobs:
           doc-archives: 'qtcore qtgui qtqml qtqmlcore qtqmlmodels qtquick qtquickcontrols qtquickdialogs qtsvg'
           cache: true
           tools: 'tools_cmake'
-          
+
+      - name: Setup env
+        run: .\setup_venv
+
       - name: Build docs
         run: |
           .\activate_venv.ps1
