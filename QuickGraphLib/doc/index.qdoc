@@ -32,6 +32,8 @@ The QuickGraphLib module provides a \l{QuickGraphLib QML Types}{QML API}, as wel
             \li \l{QuickGraphLib.PreFabs QML types}{QuickGraphLib.PreFabs} - a submodule containing pre-fabricated groups of components for common graph types
             \li \l{QuickGraphLib.PythonHelpers QML types}{QuickGraphLib.PythonHelpers} - a submodule containing Python helpers functions for constructing graphs
         \endlist
+    \li \l {QuickGraphLib C++/Python Classes}
+           - a list of C++/Python types available from \c{QuickGraphLib}
 \endlist
 
 \section1 Examples

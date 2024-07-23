@@ -23,7 +23,7 @@ qt_add_qml_module(QuickGraphLib
     DEPENDENCIES QtQuick
     SOURCES
         helpers/Helpers.cpp helpers/Helpers.hpp helpers/AxisHelper.hpp helpers/AxisHelper.cpp helpers/Foreign.hpp
-        ImageView.hpp ImageView.cpp ColorMaps.hpp ColorMaps.cpp DataTypes.hpp DataTypes.cpp bindings/Bindings.hpp
+        ImageView.hpp ImageView.cpp ColorMaps.hpp ColorMaps.cpp DataTypes.hpp DataTypes.cpp bindings/Bindings.hpp QuickGraphLib.hpp
 )
 set_property(
     TARGET QuickGraphLib

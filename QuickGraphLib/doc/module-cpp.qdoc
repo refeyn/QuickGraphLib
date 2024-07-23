@@ -1,0 +1,20 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+\module QuickGraphLib
+\title QuickGraphLib C++/Python Classes
+\brief The C++/Python API provided by the QuickGraphLib module.
+
+For more information on the QuickGraphLib module, see the \l{QuickGraphLib} module documentation.
+
+\section1 Usage from Python
+
+To use the module, import the Python module (so that the types are registered):
+
+\badcode
+import QuickGraphLib
+\endcode
+
+And then access the classes using \c {QuickGraphLib.ClassName}.
+*/

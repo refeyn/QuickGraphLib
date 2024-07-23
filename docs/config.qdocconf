@@ -3,11 +3,14 @@
 
 project = QuickGraphLib
 description = QtQuick Scientific Graphing
-sourcedirs = ../QuickGraphLib
-imagedirs = ../QuickGraphLib/ ../.
+sourcedirs += ../QuickGraphLib
+imagedirs += ../QuickGraphLib/ ../.
+headerdirs += ../QuickGraphLib
 exampledirs = ../examples
+moduleheader = QuickGraphLib.hpp
 
 sources.fileextensions = "*.qml *.qdoc *.cpp *.hpp"
+headers.fileextensions = "*.hpp"
 examples.fileextensions = "*.qml *.qdoc *.cpp *.hpp"
 
 outputdir = ../dist/docs
