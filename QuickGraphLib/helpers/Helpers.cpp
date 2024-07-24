@@ -112,7 +112,8 @@ QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
         return mapPointsInner(convertedPoints, dataTransform);
     }
     else {
-        qWarning() << "Helpers::mapPoints: Cannot interpret" << points.userType() << "as a list of points";
+        qWarning() << "Helpers::mapPoints: Cannot interpret" << (points.typeName() ? points.typeName() : "null")
+                   << "as a list of points";
         return {};
     }
 }

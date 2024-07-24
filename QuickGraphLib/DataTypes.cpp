@@ -55,8 +55,8 @@ QGLPolygonF::operator QVariant() const { return QVariant::fromValue(*this); }
 */
 
 /*!
-   \fn QGLDoubleList::operator QVariant() const
-   Returns the list as a QVariant
+    \fn QGLDoubleList::operator QVariant() const
+    Returns the list as a QVariant
 */
 QGLDoubleList::operator QVariant() const { return QVariant::fromValue(*this); }
 

@@ -27,6 +27,3 @@ find_package(Qt6 REQUIRED COMPONENTS Quick Svg)
 qt_standard_project_setup(REQUIRES 6.5)
 
 add_subdirectory(QuickGraphLib)
-
-# add_executable(tester main.cpp)
-# target_link_libraries(tester QuickGraphLib Qt6::Quick)

@@ -20,6 +20,7 @@ qt_add_qml_module(QuickGraphLib
     QML_FILES ${QGL_QML_FILES}
     PLUGIN_TARGET QuickGraphLibPlugin
     NO_GENERATE_PLUGIN_SOURCE
+    NO_PLUGIN_OPTIONAL
     DEPENDENCIES QtQuick
     SOURCES
         helpers/Helpers.cpp helpers/Helpers.hpp helpers/AxisHelper.hpp helpers/AxisHelper.cpp helpers/Foreign.hpp
