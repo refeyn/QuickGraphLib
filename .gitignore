@@ -6,3 +6,4 @@ dist
 *.egg-info
 aqtinstall.log
 qt
+QuickGraphLib/_version.py

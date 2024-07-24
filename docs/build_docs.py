@@ -21,23 +21,43 @@ QDOC_PATH = QT_PATH / "bin/qdoc.exe"
 INDEX_PATH = QT_PATH.parent.parent / ("Docs/Qt-" + QT_VERSION)
 QDOCCONF_PATH = pathlib.Path(__file__).parent / "config.qdocconf"
 QT_INSTALL_DOCS = QT_PATH / "doc"
+QT_INCLUDE_PATHS = [
+    QT_PATH / "include",
+    *(
+        QT_PATH / "include" / module
+        for module in ("QtCore", "QtGui", "QtQml", "QtQuick")
+    ),
+]
 
-for path in [QT_PATH, QDOC_PATH, INDEX_PATH, QDOCCONF_PATH, QT_INSTALL_DOCS]:
+for path in [
+    QT_PATH,
+    QDOC_PATH,
+    INDEX_PATH,
+    QDOCCONF_PATH,
+    QT_INSTALL_DOCS,
+    *QT_INCLUDE_PATHS,
+]:
     if not path.exists():
         raise RuntimeError(f"Path {path} does not exist")
 
 print("Using Qt", QT_VERSION, "from", QT_PATH)
 
 qgl_version = (
-    subprocess.check_output([sys.executable, "-m", "setuptools_git_versioning"])
-    .decode()
-    .strip()
+    subprocess.check_output([sys.executable, "-m", "setuptools_scm"]).decode().strip()
 )
 
 print("QGL version", qgl_version)
 
 proc = subprocess.run(
-    [QDOC_PATH, QDOCCONF_PATH, "-indexdir", INDEX_PATH],
+    [
+        QDOC_PATH,
+        QDOCCONF_PATH,
+        "-indexdir",
+        INDEX_PATH,
+        "-I",
+        "QuickGraphLib",
+        *(f"-I{path}" for path in QT_INCLUDE_PATHS),
+    ],
     env=collections.ChainMap(
         {"QT_INSTALL_DOCS": str(QT_INSTALL_DOCS), "QGL_VERSION": qgl_version},
         os.environ,

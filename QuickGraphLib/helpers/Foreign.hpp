@@ -6,8 +6,25 @@
 #include <QPolygonF>
 #include <QQmlEngine>
 
-struct QPolygonFForeign {
+#include "DataTypes.hpp"
+
+struct QPolygonFRegistration {
     Q_GADGET
     QML_FOREIGN(QPolygonF)
     QML_ANONYMOUS
+    QML_SEQUENTIAL_CONTAINER(QPointF)
+};
+
+class QGLPolygonFRegistration {
+    Q_GADGET
+    QML_FOREIGN(QGLPolygonF)
+    QML_ANONYMOUS
+    QML_SEQUENTIAL_CONTAINER(QPointF)
+};
+
+class QGLDoubleListRegistration {
+    Q_GADGET
+    QML_FOREIGN(QGLDoubleList)
+    QML_ANONYMOUS
+    QML_SEQUENTIAL_CONTAINER(qreal)
 };

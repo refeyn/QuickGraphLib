@@ -36,17 +36,28 @@ analyse = [
     # Testing
     "pytest",
     "pytest-cov",
+    # Building
+    "scikit-build-core",
+    "shiboken6_generator==6.5.3",
+    "PySide6==6.5.3",
+    "setuptools_scm",
 ]
 
 [build-system]
-requires = ["setuptools>=61.0.0", "setuptools-git-versioning<2", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["scikit-build-core", "shiboken6_generator==6.5.3", "PySide6==6.5.3"]
+build-backend = "scikit_build_core.build"
 
-[tool.setuptools-git-versioning]
-enabled = true
+[tool.scikit-build]
+metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"
+sdist.include = ["QuickGraphLib/_version.py"]
+sdist.exclude = [".github", ".vscode"]
+wheel.py-api = "cp37"
 
-[tool.setuptools.packages.find]
-include = ["quickgraphlib_helpers*"]
+[tool.scikit-build.cmake.define]
+INSTALL_SUBPATH = "."
+
+[tool.setuptools_scm]
+write_to = "QuickGraphLib/_version.py"
 
 [tool.cibuildwheel]
 build = [
@@ -62,7 +73,8 @@ build-frontend = "build"
 # test-extras = ["tests"]
 
 [tool.cibuildwheel.environment]
-CMAKE_BUILD_FLAGS = "-DCMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
+SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
+PIP_EXTRA_INDEX_URL = "https://download.qt.io/official_releases/QtForPython/"
 
 [tool.cibuildwheel.macos]
 archs = ["universal2"]
@@ -73,6 +85,12 @@ manylinux-x86_64-image = "manylinux_2_28"
 manylinux-aarch64-image = "manylinux_2_28"
 repair-wheel-command = "cp {wheel} {dest_dir}; wheel tags --remove --platform-tag $AUDITWHEEL_PLAT {dest_dir}/*.whl"
 
+[tool.cibuildwheel.linux.environment]
+SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
+PIP_EXTRA_INDEX_URL = "https://download.qt.io/official_releases/QtForPython/"
+LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:$(python ci/find_qt.py)/lib"
+LLVM_INSTALL_DIR = "/usr"
+
 [tool.cibuildwheel.windows]
 archs = ["AMD64"]
 
@@ -81,10 +99,10 @@ profile = "black"
 force_alphabetical_sort_within_sections = true
 combine_as_imports = true
 
-[tool.pylint.MAIN]
+[tool.pylint.main]
 extension-pkg-whitelist = ["PySide6"]
 
-[tool.pylint.'MESSAGES CONTROL']
+[tool.pylint.'messages control']
 disable = [
     "R", # R=Refactor
     "C", # C=Conventions

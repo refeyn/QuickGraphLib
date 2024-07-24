@@ -39,3 +39,9 @@ subprocess.run(
     ],
     check=True,
 )
+
+if sys.platform == "linux":
+    subprocess.run(
+        ["dnf", "install", "-y", "libxslt", "llvm-devel", "clang-libs", "libxkbcommon"],
+        check=True,
+    )

@@ -1,4 +1,0 @@
-recursive-include . CMakeLists.txt
-recursive-include QuickGraphLib *.qml *.svg *.qdoc *.cpp *.hpp
-recursive-include examples *.qml *.png *.qdoc
-include quickgraphlib_helpers/py.typed

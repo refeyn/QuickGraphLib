@@ -1,0 +1,40 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+\module QuickGraphLib
+\title QuickGraphLib C++/Python Classes
+\brief The C++/Python API provided by the QuickGraphLib module.
+
+For more information on the QuickGraphLib module, see the \l{QuickGraphLib} module documentation.
+
+\section1 Usage from Python
+
+To use the module, import the Python module:
+
+\badcode
+import QuickGraphLib
+\endcode
+
+And then access the classes using \c {QuickGraphLib.ClassName}.
+
+In addition to the classes listed above, the Python API provides the following functions / constants:
+
+\section2 Module \c QuickGraphLib
+
+\list
+\li \c {QML_IMPORT_PATH: pathlib.Path} - The QML import path that can be provided to \l QQmlEngine::addImportPath to ensure QuickGraphLib can be imported by QML
+
+\li \c {__version__: str} - The version of QuickGraphLib in string form
+
+\li \c {__version_tuple__: tuple[int | str, ...]} - The version of QuickGraphLib in tuple (parsed) form
+\endlist
+
+\section2 Module \c QuickGraphLib.contours
+
+\list
+\li \c {contour_line(x: Sequence[Sequence[float]], y: Sequence[Sequence[float]], z: Sequence[Sequence[float]], height: float) -> Sequence[QGLPolygonF]} - Construct a contour line from the 3D mesh described by \a x, \a y and \a z at the height \a height
+
+\li \c {contour_fill(x: Sequence[Sequence[float]], y: Sequence[Sequence[float]], z: Sequence[Sequence[float]], heights: tuple[float, float]) -> Sequence[QGLPolygonF]} - Construct a contour fill from the 3D mesh described by \a x, \a y and \a z between the two values in \a heights
+\endlist
+*/

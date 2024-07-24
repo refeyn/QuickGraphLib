@@ -18,6 +18,11 @@ repos:
         entry: venv/Scripts/black.exe
         language: system
         types: [python]
+      - id: gersemi
+        name: gersemi
+        entry: venv/Scripts/gersemi.exe -i
+        language: system
+        files: "CMakeLists.txt"
       - id: qmlformat
         name: qmlformat
         entry: venv/Scripts/pyside6-qmlformat.exe -i -n
@@ -33,11 +38,12 @@ repos:
         entry: venv/Scripts/isort.exe --settings-file pyproject.toml
         language: system
         types: [python]
-      - id: pylint
-        name: pylint
-        entry: venv/Scripts/pylint.exe
-        language: system
-        types: [python]
+      # - id: pylint
+      #   name: pylint
+      #   entry: venv/Scripts/pylint.exe
+      #   language: system
+      #   types: [python]
+      #   require_serial: true
       - id: mypy
         name: mypy
         entry: venv/Scripts/mypy.exe

@@ -98,7 +98,7 @@ QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
         Maps each point in \a points though the transform defined by \a dataTransform.
         Essentially the same as \c{points.map(p => dataTransform.map(p))}, but more efficient.
     */
-    if (points.userType() == QMetaType::QPolygonF) {
+    if (points.canConvert<QPolygonF>()) {
         return mapPointsInner(points.value<QPolygonF>(), dataTransform);
     }
     else if (points.canConvert<QList<QPointF>>()) {
@@ -112,7 +112,8 @@ QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
         return mapPointsInner(convertedPoints, dataTransform);
     }
     else {
-        qWarning() << "Helpers::mapPoints: Cannot interpret" << points.userType() << "as a list of points";
+        qWarning() << "Helpers::mapPoints: Cannot interpret" << (points.typeName() ? points.typeName() : "null")
+                   << "as a list of points";
         return {};
     }
 }
