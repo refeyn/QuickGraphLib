@@ -9,6 +9,8 @@ from PySide6 import QtCore, QtGui, QtQml, QtQuickControls2
 
 EXAMPLES_DIR = pathlib.Path(__file__).parent
 
+import conway  # pylint: disable=unused-import
+
 import QuickGraphLib
 
 if __name__ == "__main__":
@@ -40,3 +42,5 @@ if __name__ == "__main__":
 
     if engine.rootObjects():
         app.exec()
+
+    del engine

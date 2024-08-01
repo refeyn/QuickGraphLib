@@ -1,0 +1,16 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Conway's Game of Life
+    \ingroup quickgraphlibdemos
+    \brief A implementation of Conway's Game of Life cellular automaton (and variants).
+    \example conway
+
+    Files to load into this simulator can be found online, e.g. going to \l {https://conwaylife.com/wiki/Gosper_glider_gun} and downloading the "RLE" file under "Pattern files" in the right sidebar.
+
+    \image examples/Conway.png
+
+    \quotefile examples/Conway.qml
+    \quotefile examples/conway.py
+*/
