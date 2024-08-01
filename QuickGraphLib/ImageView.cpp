@@ -65,13 +65,13 @@
         The data source for the displayed image. This can be a QImage, or a 1D/2D list of reals.
 
         If a list is provided, it will be converted to a color image using the \l colormap.
-        A 1D list will be converted to a 2D list using \l sourceSize. The 2D data will be interpreted
+        A 1D list will be converted to a 2D list using \l source1DSize. The 2D data will be interpreted
         using "image" indexing (i.e. the first axis is Y and the second axis is X). If your data uses
         the opposite indexing scheme, use the \l transpose property to correct it.
 */
 
 /*!
-    \qmlproperty size ImageView::sourceSize
+    \qmlproperty size ImageView::source1DSize
 
         The size \l source should be interpreted with. Only used when source is a 1D list.
 */
@@ -129,6 +129,13 @@
         Whether the maximum value for the colormap should be determined from \l source.
 
         \sa ImageView::max
+*/
+
+/*!
+    \qmlproperty size ImageView::sourceSize
+    \readonly
+
+        The size of \l source.
 */
 
 /*!
