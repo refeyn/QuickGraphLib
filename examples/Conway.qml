@@ -19,6 +19,13 @@ QQL.ColumnLayout {
         onAccepted: conwayProvider.loadFile(selectedFile)
     }
     Timer {
+        interval: 1000 / 60
+        repeat: true
+        running: true
+
+        onTriggered: gc()// Prevent JS hoarding too many frames, since it doesn't know how big they are
+    }
+    Timer {
         interval: intervalSpin.value
         repeat: true
         running: runButton.checked

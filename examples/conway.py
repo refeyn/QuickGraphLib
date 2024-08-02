@@ -108,7 +108,7 @@ class ConwayProvider(QtCore.QObject):
         return QGLDoubleList.fromNDArray(self._history_buffer.ravel())
 
     @QtCore.Property(QGLDoubleList, notify=dataChanged)  # type: ignore[operator, arg-type]
-    def neighbour_counts(self) -> QGLDoubleList:
+    def neighbourCounts(self) -> QGLDoubleList:
         return QGLDoubleList.fromNDArray(self._neighbour_counts.ravel())
 
     @QtCore.Slot()
