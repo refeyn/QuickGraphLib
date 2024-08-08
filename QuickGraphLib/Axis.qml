@@ -86,7 +86,7 @@ Item {
         color: root.labelColor
         decimalPoints: root.decimalPoints
         direction: root.direction
-        font: root.labelFont
+        font: root.tickLabelFont
     }
     /*!
         The color of the tick labels.
