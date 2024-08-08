@@ -13,12 +13,16 @@ QGLPreFabs.XYAxes {
     grid.strokeColor: "#33ffffff"
     viewRect: Qt.rect(-20, -1.1, 760, 2.2)
     xAxis.labelColor: "#ffaaaa"
+    xAxis.labelFont.bold: true
     xAxis.strokeColor: "white"
     xAxis.tickLabelColor: "white"
+    xAxis.tickLabelFont.italic: true
     xLabel: "Angle (°)"
     yAxis.labelColor: "#ffaaaa"
+    yAxis.labelFont.bold: true
     yAxis.strokeColor: "white"
     yAxis.tickLabelColor: "white"
+    yAxis.tickLabelFont.italic: true
     yLabel: "Value"
 
     QGLGraphItems.Line {

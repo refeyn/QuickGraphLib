@@ -83,10 +83,10 @@ Item {
         it is recommended that \l TickLabel or a subclass is used.
     */
     property Component tickDelegate: TickLabel {
-        color: root.labelColor
+        color: root.tickLabelColor
         decimalPoints: root.decimalPoints
         direction: root.direction
-        font: root.labelFont
+        font: root.tickLabelFont
     }
     /*!
         The color of the tick labels.
