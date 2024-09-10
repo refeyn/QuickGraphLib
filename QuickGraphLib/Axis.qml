@@ -65,7 +65,7 @@ Item {
     */
     property bool showTickLabels: true
     /*!
-        Spacing between the end of each tick and the tick label.
+        Spacing between the axis label and the tick labels.
     */
     property double spacing: 4
     /*!
