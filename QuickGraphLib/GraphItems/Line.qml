@@ -35,11 +35,6 @@ QQS.ShapePath {
         Must be assigned the data transform of the graph area this axis is paired to.
 
         \sa GraphArea::dataTransform
-
-        \qmlproperty list<point> Line::path
-        \omit
-            QDoc seems to read list<x> as x, so override the type of path here.
-        \endomit
     */
 
     required property matrix4x4 dataTransform
@@ -47,7 +42,7 @@ QQS.ShapePath {
     /*!
         Points to graph. Each point is a \l point (containing x and y coordinates) in the data space.
     */
-    required property list<point> path
+    required property var path
 
     capStyle: QQS.ShapePath.RoundCap
     fillColor: "transparent"
