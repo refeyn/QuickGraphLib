@@ -11,7 +11,7 @@ The \l {QuickGraphLib.PythonHelpers} module provides Python helpers functions fo
 To use the module, import the Python module (so that the types are registered):
 
 \badcode
-import quickgraphlib_helpers
+import QuickGraphLib
 \endcode
 
 And then import the \c QuickGraphLib.PythonHelpers module with the following statement:
