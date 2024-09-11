@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 # SPDX-License-Identifier: MIT
 
-set(QGL_PF_QML_FILES XYAxes.qml)
+set(QGL_PF_QML_FILES XYAxes.qml ImageAxes.qml)
 qt_add_qml_module(QuickGraphLibPreFabs
     URI QuickGraphLib.PreFabs
     SHARED

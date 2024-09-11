@@ -37,6 +37,9 @@ class ImageView : public QQuickItem {
     void _calcColoredImage();
     void _layout();
 
+   protected:
+    void geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) override;
+
    public:
     explicit ImageView(QQuickItem* parent = nullptr);
 

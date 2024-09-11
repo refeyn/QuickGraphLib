@@ -205,6 +205,11 @@ void ImageView::_layout() {
     }
 }
 
+void ImageView::geometryChange(const QRectF &newGeometry, const QRectF &oldGeometry) {
+    QQuickItem::geometryChange(newGeometry, oldGeometry);
+    _layout();
+}
+
 struct ColormapStop {
     qreal value;
     qreal diffFromPrev;
