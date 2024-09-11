@@ -51,6 +51,15 @@ if(NOT EXISTS ${shiboken_path})
     )
 endif()
 
+if(EXISTS $ENV{LLVM_PATH})
+    # Update shiboken's libclang to fix parsing of recent MSVC C++ headers
+    configure_file(
+        "$ENV{LLVM_PATH}/bin/libclang.dll"
+        "${shiboken_generator_path}/libclang.dll"
+        COPYONLY
+    )
+endif()
+
 # Set up the options to pass to shiboken.
 set(INCLUDES "")
 get_property(
