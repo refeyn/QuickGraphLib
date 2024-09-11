@@ -18,23 +18,24 @@ class ImageView : public QQuickItem {
                    BINDABLE bindableMirrorVertically)
     Q_PROPERTY(bool transpose READ transpose WRITE setTranspose NOTIFY transposeChanged BINDABLE bindableTranspose)
     Q_PROPERTY(QVariant source READ source WRITE setSource NOTIFY sourceChanged BINDABLE bindableSource)
-    Q_PROPERTY(QSize source1DSize READ source1DSize WRITE setSource1DSize NOTIFY source1DSizeChanged BINDABLE
-                   bindableSource1DSize)
     Q_PROPERTY(QVariant colormap READ colormap WRITE setColormap NOTIFY colormapChanged BINDABLE bindableColormap)
-    Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY minChanged BINDABLE bindableMin)
-    Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY maxChanged BINDABLE bindableMax)
+    Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY minChanged)
+    Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY maxChanged)
     Q_PROPERTY(bool autoMin READ autoMin WRITE setAutoMin NOTIFY autoMinChanged BINDABLE bindableAutoMin)
     Q_PROPERTY(bool autoMax READ autoMax WRITE setAutoMax NOTIFY autoMaxChanged BINDABLE bindableAutoMax)
-    Q_PROPERTY(QSize sourceSize READ sourceSize NOTIFY sourceSizeChanged BINDABLE bindableSourceSize)
-    Q_PROPERTY(QRectF paintedRect READ paintedRect NOTIFY paintedRectChanged BINDABLE bindablePaintedRect)
+    Q_PROPERTY(QSize sourceSize READ sourceSize WRITE setSourceSize NOTIFY sourceSizeChanged)
+    Q_PROPERTY(QRectF paintedRect READ paintedRect NOTIFY paintedRectChanged)
 
     QPropertyNotifier _mirrorHorizontallyNotifier, _mirrorVerticallyNotifier, _transposeNotifier, _sourceNotifier,
-        _source1DSizeNotifier, _colormapNotifier, _minNotifier, _maxNotifier, _autoMinNotifier, _autoMaxNotifier,
-        _paintedRectNotifier;
+        _colormapNotifier, _autoMinNotifier, _autoMaxNotifier, _fillModeNotifier, _alignmentNotifier;
     bool _textureDirty = false;
     QImage _coloredImage;
+    qreal _min = 0, _max = 1;
+    QSize _sourceSize;
+    QRectF _paintedRect;
 
     void _calcColoredImage();
+    void _layout();
 
    public:
     explicit ImageView(QQuickItem* parent = nullptr);
@@ -63,21 +64,15 @@ class ImageView : public QQuickItem {
     QVariant source() const { return sourceProp; }
     QBindable<QVariant> bindableSource() { return &sourceProp; }
 
-    void setSource1DSize(QSize source1DSize) { source1DSizeProp = source1DSize; }
-    QSize source1DSize() const { return source1DSizeProp; }
-    QBindable<QSize> bindableSource1DSize() { return &source1DSizeProp; }
-
     void setColormap(QVariant colormap) { colormapProp = colormap; }
     QVariant colormap() const { return colormapProp; }
     QBindable<QVariant> bindableColormap() { return &colormapProp; }
 
-    void setMin(qreal min) { minProp = min; }
-    qreal min() const { return minProp; }
-    QBindable<qreal> bindableMin() { return &minProp; }
+    void setMin(qreal min);
+    qreal min() const { return _min; }
 
-    void setMax(qreal max) { maxProp = max; }
-    qreal max() const { return maxProp; }
-    QBindable<qreal> bindableMax() { return &maxProp; }
+    void setMax(qreal max);
+    qreal max() const { return _max; }
 
     void setAutoMin(bool autoMin) { autoMinProp = autoMin; }
     bool autoMin() const { return autoMinProp; }
@@ -87,11 +82,10 @@ class ImageView : public QQuickItem {
     bool autoMax() const { return autoMaxProp; }
     QBindable<bool> bindableAutoMax() { return &autoMaxProp; }
 
-    QSize sourceSize() const { return sourceSizeProp; }
-    QBindable<QSize> bindableSourceSize() { return &sourceSizeProp; }
+    void setSourceSize(QSize sourceSize);
+    QSize sourceSize() const { return _sourceSize; }
 
-    QRectF paintedRect() const { return paintedRectProp; }
-    QBindable<QRectF> bindablePaintedRect() { return &paintedRectProp; }
+    QRectF paintedRect() const { return _paintedRect; }
 
     QImage image();
 
@@ -106,7 +100,6 @@ class ImageView : public QQuickItem {
     void mirrorVerticallyChanged();
     void transposeChanged();
     void sourceChanged();
-    void source1DSizeChanged();
     void colormapChanged();
     void minChanged();
     void maxChanged();
@@ -124,12 +117,7 @@ class ImageView : public QQuickItem {
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, bool, mirrorVerticallyProp, &ImageView::mirrorVerticallyChanged)
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, bool, transposeProp, &ImageView::transposeChanged)
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, QVariant, sourceProp, &ImageView::sourceChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ImageView, QSize, source1DSizeProp, &ImageView::source1DSizeChanged)
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, QVariant, colormapProp, &ImageView::colormapChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ImageView, qreal, minProp, &ImageView::minChanged)
-    Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, qreal, maxProp, 1.0, &ImageView::maxChanged)
     Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, bool, autoMinProp, true, &ImageView::autoMinChanged)
     Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, bool, autoMaxProp, true, &ImageView::autoMaxChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ImageView, QSize, sourceSizeProp, &ImageView::sourceSizeChanged)
-    Q_OBJECT_BINDABLE_PROPERTY(ImageView, QRectF, paintedRectProp, &ImageView::paintedRectChanged)
 };

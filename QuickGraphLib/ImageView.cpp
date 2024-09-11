@@ -65,15 +65,9 @@
         The data source for the displayed image. This can be a QImage, or a 1D/2D list of reals.
 
         If a list is provided, it will be converted to a color image using the \l colormap.
-        A 1D list will be converted to a 2D list using \l source1DSize. The 2D data will be interpreted
+        A 1D list will be converted to a 2D list using \l sourceSize. The 2D data will be interpreted
         using "image" indexing (i.e. the first axis is Y and the second axis is X). If your data uses
         the opposite indexing scheme, use the \l transpose property to correct it.
-*/
-
-/*!
-    \qmlproperty size ImageView::source1DSize
-
-        The size \l source should be interpreted with. Only used when source is a 1D list.
 */
 
 /*!
@@ -104,21 +98,21 @@
 /*!
     \qmlproperty real ImageView::min
 
-        The value which is mapped to 0 on the \l colormap. \l autoMin must be set to \c false for this property to have
-        an effect.
+        The value which is mapped to 0 on the \l colormap. If \l autoMin is set, this property will update to the
+        minimum value of \l source.
 */
 
 /*!
     \qmlproperty real ImageView::max
 
-        The value which is mapped to 1 on the \l colormap. \l autoMax must be set to \c false for this property to have
-        an effect.
+        The value which is mapped to 1 on the \l colormap. If \l autoMax is set, this property will update to the
+        maximum value of \l source.
 */
 
 /*!
     \qmlproperty bool ImageView::autoMin
 
-        Whether the minimum value for the colormap should be determined from \l source.
+        Whether the minimum value for the colormap should be determined from \l source. Defaults to \c true.
 
         \sa ImageView::min
 */
@@ -126,16 +120,16 @@
 /*!
     \qmlproperty bool ImageView::autoMax
 
-        Whether the maximum value for the colormap should be determined from \l source.
+        Whether the maximum value for the colormap should be determined from \l source. Defaults to \c true.
 
         \sa ImageView::max
 */
 
 /*!
     \qmlproperty size ImageView::sourceSize
-    \readonly
 
-        The size of \l source.
+        The size of \l source. When source is a 1D list, this property can be set to the size the list should be
+        interpreted as.
 */
 
 /*!
@@ -150,45 +144,65 @@ ImageView::ImageView(QQuickItem *parent) : QQuickItem{parent} {
     setFlags(QQuickItem::ItemHasContents);
     setSmooth(false);
 
-    paintedRectProp.setBinding([this]() -> QRectF {
-        auto itemRect = QRectF(0, 0, width(), height());
-        auto rect = QRectF(
-            itemRect.topLeft(),
-            sourceSize().toSizeF().scaled(itemRect.size(), static_cast<Qt::AspectRatioMode>(fillMode()))
-        );
-        rect.moveCenter(itemRect.center());
-
-        auto align = alignment();
-        if (align & Qt::AlignLeft) {
-            rect.moveLeft(0);
-        }
-        else if (align & Qt::AlignRight) {
-            rect.moveRight(itemRect.width());
-        }
-        if (align & Qt::AlignTop) {
-            rect.moveTop(0);
-        }
-        else if (align & Qt::AlignBottom) {
-            rect.moveBottom(itemRect.height());
-        }
-
-        return rect;
-    });
-
     // Must update paint node after these
     _mirrorHorizontallyNotifier = mirrorHorizontallyProp.addNotifier([this]() { update(); });
     _mirrorVerticallyNotifier = mirrorVerticallyProp.addNotifier([this]() { update(); });
-    _paintedRectNotifier = paintedRectProp.addNotifier([this]() { update(); });
+
+    // Must update layout after these
+    _fillModeNotifier = fillModeProp.addNotifier([this]() { _layout(); });
+    _alignmentNotifier = alignmentProp.addNotifier([this]() { _layout(); });
 
     // Must regenerate the texture after these
     _sourceNotifier = sourceProp.addNotifier([this]() { polish(); });
-    _source1DSizeNotifier = source1DSizeProp.addNotifier([this]() { polish(); });
     _transposeNotifier = transposeProp.addNotifier([this]() { polish(); });
     _colormapNotifier = colormapProp.addNotifier([this]() { polish(); });
-    _minNotifier = minProp.addNotifier([this]() { polish(); });
-    _maxNotifier = maxProp.addNotifier([this]() { polish(); });
     _autoMinNotifier = autoMinProp.addNotifier([this]() { polish(); });
     _autoMaxNotifier = autoMaxProp.addNotifier([this]() { polish(); });
+}
+
+void ImageView::setSourceSize(QSize sourceSize) {
+    _sourceSize = sourceSize;
+    emit sourceSizeChanged();
+    polish();
+}
+
+void ImageView::setMin(qreal min) {
+    _min = min;
+    emit minChanged();
+    polish();
+}
+
+void ImageView::setMax(qreal max) {
+    _max = max;
+    emit maxChanged();
+    polish();
+}
+
+void ImageView::_layout() {
+    auto itemRect = QRectF(0, 0, width(), height());
+    auto rect = QRectF(
+        itemRect.topLeft(), _sourceSize.toSizeF().scaled(itemRect.size(), static_cast<Qt::AspectRatioMode>(fillMode()))
+    );
+    rect.moveCenter(itemRect.center());
+
+    auto align = alignment();
+    if (align & Qt::AlignLeft) {
+        rect.moveLeft(0);
+    }
+    else if (align & Qt::AlignRight) {
+        rect.moveRight(itemRect.width());
+    }
+    if (align & Qt::AlignTop) {
+        rect.moveTop(0);
+    }
+    else if (align & Qt::AlignBottom) {
+        rect.moveBottom(itemRect.height());
+    }
+    if (rect != _paintedRect) {
+        _paintedRect = rect;
+        emit paintedRectChanged();
+        update();
+    }
 }
 
 struct ColormapStop {
@@ -283,7 +297,7 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max) 
     return colormap;
 }
 
-QImage convertToImageFrom1D(
+std::tuple<QImage, qreal, qreal> convertToImageFrom1D(
     const QList<qreal> &converted, const QSize &size,
     std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
 ) {
@@ -297,6 +311,8 @@ QImage convertToImageFrom1D(
             dataMax = std::max(dataMax, v);
         }
     }
+    auto min = std::get<1>(colormapArgs).value_or(dataMin);
+    auto max = std::get<2>(colormapArgs).value_or(dataMax);
     auto colormap = buildColormap(
         std::get<0>(colormapArgs), std::get<1>(colormapArgs).value_or(dataMin),
         std::get<2>(colormapArgs).value_or(dataMax)
@@ -309,10 +325,10 @@ QImage convertToImageFrom1D(
         }
     }
 
-    return image;
+    return {image, min, max};
 }
 
-QImage convertToImageFrom2D(
+std::tuple<QImage, qreal, qreal> convertToImageFrom2D(
     const QList<QList<qreal>> &converted, std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs,
     bool transpose
 ) {
@@ -331,10 +347,9 @@ QImage convertToImageFrom2D(
             }
         }
     }
-    auto colormap = buildColormap(
-        std::get<0>(colormapArgs), std::get<1>(colormapArgs).value_or(dataMin),
-        std::get<2>(colormapArgs).value_or(dataMax)
-    );
+    auto min = std::get<1>(colormapArgs).value_or(dataMin);
+    auto max = std::get<2>(colormapArgs).value_or(dataMax);
+    auto colormap = buildColormap(std::get<0>(colormapArgs), min, max);
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
     QRgb *pixels = reinterpret_cast<QRgb *>(image.bits());
     for (auto y = 0; y < size.height(); ++y) {
@@ -343,10 +358,10 @@ QImage convertToImageFrom2D(
             pixels[indexForCoord(x, y, size, transpose)] = toColor(row[x], colormap);
         }
     }
-    return image;
+    return {image, min, max};
 }
 
-QImage convertToImage(
+std::tuple<QImage, qreal, qreal> convertToImage(
     const QVariant &data, QSize suggestedSize,
     std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
 ) {
@@ -419,11 +434,26 @@ void ImageView::updatePolish() {
     else {
         auto optionalMin = autoMin() ? std::nullopt : std::optional<qreal>{min()};
         auto optionalMax = autoMax() ? std::nullopt : std::optional<qreal>{max()};
-        _coloredImage = convertToImage(source, source1DSize(), {colormap(), optionalMin, optionalMax}, transpose());
+        auto [coloredImage, newMin, newMax] =
+            convertToImage(source, _sourceSize, {colormap(), optionalMin, optionalMax}, transpose());
+        _coloredImage = coloredImage;
+        if (newMin != _min) {
+            _min = newMin;
+            emit minChanged();
+        }
+        if (newMax != _max) {
+            _max = newMax;
+            emit maxChanged();
+        }
     }
 
     setImplicitSize(_coloredImage.width(), _coloredImage.height());
-    sourceSizeProp.setValue(_coloredImage.size());
+    if (_sourceSize != _coloredImage.size()) {
+        _sourceSize = _coloredImage.size();
+        emit sourceSizeChanged();
+    }
+    _layout();
+
     _textureDirty = true;
     update();
 }

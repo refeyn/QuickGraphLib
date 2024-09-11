@@ -101,7 +101,7 @@ QQL.ColumnLayout {
             colormap: QuickGraphLib.ColorMaps.Magma
             fillMode: Qt.KeepAspectRatio
             source: conwayProvider[displayModeCombo.currentValue || "cells"]
-            source1DSize: conwayProvider.size
+            sourceSize: conwayProvider.size
 
             transform: Matrix4x4 {
                 matrix: pinchArea.viewTransform
