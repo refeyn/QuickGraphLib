@@ -16,12 +16,13 @@ Item {
     id: root
 
     /*!
-        Whether MSAA antialiasing is enabled.
+        Whether MSAA antialiasing is enabled. This can help with rendering when the target display has a
+        fractional scaling factor. It can also make rendering worse, especially with text.
     */
     property alias antialiasingEnabled: root.layer.enabled
 
     implicitHeight: 100
     implicitWidth: 100
-    layer.enabled: true // Improves rendering of fractional DPIs
+    layer.enabled: false //
     layer.samples: 2
 }
