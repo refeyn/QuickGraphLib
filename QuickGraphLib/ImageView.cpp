@@ -161,21 +161,27 @@ ImageView::ImageView(QQuickItem *parent) : QQuickItem{parent} {
 }
 
 void ImageView::setSourceSize(QSize sourceSize) {
-    _sourceSize = sourceSize;
-    emit sourceSizeChanged();
-    polish();
+    if (_sourceSize != sourceSize) {
+        _sourceSize = sourceSize;
+        emit sourceSizeChanged();
+        polish();
+    }
 }
 
 void ImageView::setMin(qreal min) {
-    _min = min;
-    emit minChanged();
-    polish();
+    if (_min != min) {
+        _min = min;
+        emit minChanged();
+        polish();
+    }
 }
 
 void ImageView::setMax(qreal max) {
-    _max = max;
-    emit maxChanged();
-    polish();
+    if (_max != max) {
+        _max = max;
+        emit maxChanged();
+        polish();
+    }
 }
 
 void ImageView::_layout() {
@@ -302,7 +308,7 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max) 
     return colormap;
 }
 
-std::tuple<QImage, qreal, qreal> convertToImageFrom1D(
+std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
     const QList<qreal> &converted, const QSize &size,
     std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
 ) {
@@ -330,10 +336,10 @@ std::tuple<QImage, qreal, qreal> convertToImageFrom1D(
         }
     }
 
-    return {image, min, max};
+    return {{image, min, max}};
 }
 
-std::tuple<QImage, qreal, qreal> convertToImageFrom2D(
+std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
     const QList<QList<qreal>> &converted, std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs,
     bool transpose
 ) {
@@ -363,10 +369,10 @@ std::tuple<QImage, qreal, qreal> convertToImageFrom2D(
             pixels[indexForCoord(x, y, size, transpose)] = toColor(row[x], colormap);
         }
     }
-    return {image, min, max};
+    return {{image, min, max}};
 }
 
-std::tuple<QImage, qreal, qreal> convertToImage(
+std::optional<std::tuple<QImage, qreal, qreal>> convertToImage(
     const QVariant &data, QSize suggestedSize,
     std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
 ) {
@@ -439,16 +445,21 @@ void ImageView::updatePolish() {
     else {
         auto optionalMin = autoMin() ? std::nullopt : std::optional<qreal>{min()};
         auto optionalMax = autoMax() ? std::nullopt : std::optional<qreal>{max()};
-        auto [coloredImage, newMin, newMax] =
-            convertToImage(source, _sourceSize, {colormap(), optionalMin, optionalMax}, transpose());
-        _coloredImage = coloredImage;
-        if (newMin != _min) {
-            _min = newMin;
-            emit minChanged();
+        auto converted = convertToImage(source, _sourceSize, {colormap(), optionalMin, optionalMax}, transpose());
+        if (converted) {
+            auto [coloredImage, newMin, newMax] = *converted;
+            _coloredImage = coloredImage;
+            if (newMin != _min) {
+                _min = newMin;
+                emit minChanged();
+            }
+            if (newMax != _max) {
+                _max = newMax;
+                emit maxChanged();
+            }
         }
-        if (newMax != _max) {
-            _max = newMax;
-            emit maxChanged();
+        else {
+            _coloredImage = {};
         }
     }
 
