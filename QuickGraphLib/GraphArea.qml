@@ -45,14 +45,35 @@ QQS.Shape {
     required property rect viewRect
     /*!
         An additional transform that can be used to zoom/translate the graph area without affecting the original view rect.
+
+        \sa ZoomPanHandler::viewTransform, viewTransformFromRect
     */
     property matrix4x4 viewTransform
 
+    /*!
+        Convert a view rect \a r into a base transform suitable for use with a ZoomPanHandler.
+
+        \sa ZoomPanHandler::baseTransform
+    */
     function baseTransformFromRect(r: rect): matrix4x4 {
         let mat = Qt.matrix4x4();
         mat.scale(viewRect.width / r.width, viewRect.height / r.height, 1);
         mat.translate(Qt.vector3d((viewRect.x - r.x) / viewRect.width, (r.y + r.height - viewRect.y - viewRect.height) / viewRect.height, 0));
         return mat;
+    }
+
+    /*!
+        Convert a base transform \a baseTransform into a view transform suitable for \l viewTransform.
+    */
+    function viewTransformFromBaseTransform(baseTransform: matrix4x4) {
+        return Qt.matrix4x4(baseTransform.m11, baseTransform.m12, baseTransform.m13, baseTransform.m14 * width, baseTransform.m21, baseTransform.m22, baseTransform.m23, baseTransform.m24 * height, baseTransform.m31, baseTransform.m32, baseTransform.m33, baseTransform.m34, baseTransform.m41, baseTransform.m42, baseTransform.m43, baseTransform.m44);
+    }
+
+    /*!
+        Convert a view rect \a r into a view transform suitable for \l viewTransform.
+    */
+    function viewTransformFromRect(r: rect): matrix4x4 {
+        return viewTransformFromBaseTransform(baseTransformFromRect(r));
     }
 
     clip: true

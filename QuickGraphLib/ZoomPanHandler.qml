@@ -15,6 +15,8 @@ PinchArea {
 
     /*!
         The view transform, but in a pixel-independant form.
+
+        \sa GraphArea::baseTransformFromRect
     */
     property matrix4x4 baseTransform
     /*!
