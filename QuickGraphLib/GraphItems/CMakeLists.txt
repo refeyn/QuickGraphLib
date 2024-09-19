@@ -24,6 +24,7 @@ qt_add_qml_module(QuickGraphLibGraphItems
     SOURCES helpers/HistogramHelper.cpp helpers/HistogramHelper.hpp helpers/GridHelper.hpp helpers/GridHelper.cpp
     PLUGIN_TARGET QuickGraphLibGraphItems
     DEPENDENCIES QtQuick QuickGraphLib
+    NO_CACHEGEN
 )
 
 target_compile_definitions(
