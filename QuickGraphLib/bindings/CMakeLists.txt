@@ -12,42 +12,42 @@ find_path(
     pyside_typesystems_path
     NAMES PySide6/typesystems
     PATH_SUFFIXES share
-    PATHS Python_SITELIB
+    PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_path(
     shiboken_include_dir
     NAMES sbkpython.h
     PATH_SUFFIXES shiboken6 shiboken6_generator/include
-    PATHS Python_SITELIB
+    PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_path(
     pyside_include_dir
     NAMES pyside.h
-    PATH_SUFFIXES PySide6
-    PATHS Python_SITELIB
+    PATH_SUFFIXES PySide6 PySide6/include
+    PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_library(
     shiboken_shared_libraries
     NAMES shiboken6 shiboken6.abi3
     PATH_SUFFIXES shiboken6
-    PATHS Python_SITELIB
+    PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_library(
     pyside_shared_library
     NAMES pyside6 pyside6.abi3
     PATH_SUFFIXES PySide6
-    PATHS Python_SITELIB
+    PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_library(
     pyside_qml_shared_library
     NAMES pyside6qml pyside6qml.abi3
     PATH_SUFFIXES PySide6
-    PATHS Python_SITELIB
+    PATHS "${Python_SITELIB}"
     REQUIRED
 )
 set(CMAKE_FIND_DEBUG_MODE FALSE)
@@ -63,7 +63,7 @@ if(EXISTS $ENV{LLVM_PATH})
     # Update shiboken's libclang to fix parsing of recent MSVC C++ headers
     configure_file(
         "$ENV{LLVM_PATH}/bin/libclang.dll"
-        "${shiboken_generator_path}/libclang.dll"
+        "${Python_SITELIB}/shiboken6_generator/libclang.dll"
         COPYONLY
     )
 endif()
@@ -75,10 +75,20 @@ if(DEFINED QT_HOST_PATH)
     list(APPEND INCLUDES "-I${QT_HOST_PATH}/include/QtCore")
     list(APPEND INCLUDES "-I${QT_HOST_PATH}/include/QtGui")
 else()
-    foreach(INCLUDE_DIR ${Qt6Core_INCLUDE_DIRS})
+    get_property(
+        QT_CORE_INCLUDE_DIRS
+        TARGET Qt6::Core
+        PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    )
+    foreach(INCLUDE_DIR ${QT_CORE_INCLUDE_DIRS})
         list(APPEND INCLUDES "-I${INCLUDE_DIR}")
     endforeach()
-    foreach(INCLUDE_DIR ${Qt6Gui_INCLUDE_DIRS})
+    get_property(
+        QT_GUI_INCLUDE_DIRS
+        TARGET Qt6::Gui
+        PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    )
+    foreach(INCLUDE_DIR ${QT_GUI_INCLUDE_DIRS})
         list(APPEND INCLUDES "-I${INCLUDE_DIR}")
     endforeach()
 endif()
