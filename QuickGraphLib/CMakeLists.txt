@@ -67,10 +67,12 @@ add_custom_target(QuickGraphLibPythonFiles ALL DEPENDS ${QGL_PYTHON_FILES})
 install(
     TARGETS QuickGraphLib
     RUNTIME DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
+    LIBRARY DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
 )
 install(
     TARGETS QuickGraphLibPlugin
     RUNTIME DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
+    LIBRARY DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
 )
 install(FILES ${QGL_QML_FILES} DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
 install(

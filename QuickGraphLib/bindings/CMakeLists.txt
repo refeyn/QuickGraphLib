@@ -5,45 +5,53 @@
 set(CMAKE_PROGRAM_PATH "${CMAKE_PROGRAM_PATH};${CMAKE_SOURCE_DIR}/venv/Scripts")
 find_package(Python COMPONENTS Interpreter Development.SABIModule REQUIRED)
 
-# Macro to get various pyside / python include / link flags and paths.
-# Uses the not entirely supported utils/pyside_config.py file.
-macro(pyside_config option output_var)
-    if(${ARGC} GREATER 2)
-        set(is_list ${ARGV2})
-    else()
-        set(is_list "")
-    endif()
-
-    execute_process(
-        COMMAND
-            ${Python_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/pyside_config.py"
-            ${option}
-        OUTPUT_VARIABLE ${output_var}
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-
-    if("${${output_var}}" STREQUAL "")
-        message(
-            FATAL_ERROR
-            "Error: Calling pyside_config.py ${option} returned no output."
-        )
-    endif()
-    if(is_list)
-        string(REPLACE " " ";" ${output_var} "${${output_var}}")
-    endif()
-endmacro()
-
 # Query for the shiboken generator path, Python path, include paths and linker flags.
-pyside_config(--shiboken-generator-path shiboken_generator_path)
-pyside_config(--pyside-path pyside_path)
-pyside_config(--pyside-include-path pyside_include_dir 1)
-pyside_config(--shiboken-generator-include-path shiboken_include_dir 1)
-pyside_config(--shiboken-module-shared-libraries-cmake shiboken_shared_libraries 0)
-pyside_config(--pyside-shared-libraries-cmake pyside_shared_libraries 0)
-
-set(shiboken_path
-    "${shiboken_generator_path}/shiboken6${CMAKE_EXECUTABLE_SUFFIX}"
+set(CMAKE_FIND_DEBUG_MODE TRUE)
+find_program(shiboken_path NAMES shiboken6 REQUIRED)
+find_path(
+    pyside_typesystems_path
+    NAMES PySide6/typesystems
+    PATH_SUFFIXES share
+    PATHS "${Python_SITELIB}"
+    REQUIRED
 )
+find_path(
+    shiboken_include_dir
+    NAMES sbkpython.h
+    PATH_SUFFIXES shiboken6 shiboken6_generator/include
+    PATHS "${Python_SITELIB}"
+    REQUIRED
+)
+find_path(
+    pyside_include_dir
+    NAMES pyside.h
+    PATH_SUFFIXES PySide6 PySide6/include
+    PATHS "${Python_SITELIB}"
+    REQUIRED
+)
+find_library(
+    shiboken_shared_libraries
+    NAMES shiboken6 shiboken6.abi3 libshiboken6.abi3.so.6.5
+    PATH_SUFFIXES shiboken6
+    PATHS "${Python_SITELIB}"
+    REQUIRED
+)
+find_library(
+    pyside_shared_library
+    NAMES pyside6 pyside6.abi3 libpyside6.abi3.so.6.5
+    PATH_SUFFIXES PySide6
+    PATHS "${Python_SITELIB}"
+    REQUIRED
+)
+find_library(
+    pyside_qml_shared_library
+    NAMES pyside6qml pyside6qml.abi3 libpyside6qml.abi3.so.6.5
+    PATH_SUFFIXES PySide6
+    PATHS "${Python_SITELIB}"
+    REQUIRED
+)
+set(CMAKE_FIND_DEBUG_MODE FALSE)
+
 if(NOT EXISTS ${shiboken_path})
     message(
         FATAL_ERROR
@@ -55,29 +63,35 @@ if(EXISTS $ENV{LLVM_PATH})
     # Update shiboken's libclang to fix parsing of recent MSVC C++ headers
     configure_file(
         "$ENV{LLVM_PATH}/bin/libclang.dll"
-        "${shiboken_generator_path}/libclang.dll"
+        "${Python_SITELIB}/shiboken6_generator/libclang.dll"
         COPYONLY
     )
 endif()
 
 # Set up the options to pass to shiboken.
 set(INCLUDES "")
-get_property(
-    QT_CORE_INCLUDE_DIRS
-    TARGET Qt6::Core
-    PROPERTY INTERFACE_INCLUDE_DIRECTORIES
-)
-foreach(INCLUDE_DIR ${QT_CORE_INCLUDE_DIRS})
-    list(APPEND INCLUDES "-I${INCLUDE_DIR}")
-endforeach()
-get_property(
-    QT_GUI_INCLUDE_DIRS
-    TARGET Qt6::Gui
-    PROPERTY INTERFACE_INCLUDE_DIRECTORIES
-)
-foreach(INCLUDE_DIR ${QT_GUI_INCLUDE_DIRS})
-    list(APPEND INCLUDES "-I${INCLUDE_DIR}")
-endforeach()
+if(DEFINED QT_HOST_PATH)
+    list(APPEND INCLUDES "-I${QT_HOST_PATH}/include")
+    list(APPEND INCLUDES "-I${QT_HOST_PATH}/include/QtCore")
+    list(APPEND INCLUDES "-I${QT_HOST_PATH}/include/QtGui")
+else()
+    get_property(
+        QT_CORE_INCLUDE_DIRS
+        TARGET Qt6::Core
+        PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    )
+    foreach(INCLUDE_DIR ${QT_CORE_INCLUDE_DIRS})
+        list(APPEND INCLUDES "-I${INCLUDE_DIR}")
+    endforeach()
+    get_property(
+        QT_GUI_INCLUDE_DIRS
+        TARGET Qt6::Gui
+        PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    )
+    foreach(INCLUDE_DIR ${QT_GUI_INCLUDE_DIRS})
+        list(APPEND INCLUDES "-I${INCLUDE_DIR}")
+    endforeach()
+endif()
 
 # We need to include the headers for the module bindings that we use.
 set(pyside_additional_includes "")
@@ -96,7 +110,7 @@ set(shiboken_options
     ${INCLUDES}
     -I${CMAKE_SOURCE_DIR}
     -T${CMAKE_SOURCE_DIR}
-    -T${pyside_path}/typesystems
+    -T${pyside_typesystems_path}/PySide6/typesystems
     --output-directory=${CMAKE_CURRENT_BINARY_DIR}
     --compiler-path=${CMAKE_CXX_COMPILER}
 )
@@ -148,6 +162,8 @@ target_link_libraries(
     _QuickGraphLib
     PRIVATE
         ${pyside_shared_libraries}
+        ${pyside_shared_library}
+        ${pyside_qml_shared_library}
         ${shiboken_shared_libraries}
         QuickGraphLib
         Qt6::Core
