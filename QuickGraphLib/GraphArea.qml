@@ -65,7 +65,7 @@ QQS.Shape {
     /*!
         Convert a base transform \a baseTransform into a view transform suitable for \l viewTransform.
     */
-    function viewTransformFromBaseTransform(baseTransform: matrix4x4) {
+    function viewTransformFromBaseTransform(baseTransform: matrix4x4): matrix4x4 {
         return Qt.matrix4x4(baseTransform.m11, baseTransform.m12, baseTransform.m13, baseTransform.m14 * width, baseTransform.m21, baseTransform.m22, baseTransform.m23, baseTransform.m24 * height, baseTransform.m31, baseTransform.m32, baseTransform.m33, baseTransform.m34, baseTransform.m41, baseTransform.m42, baseTransform.m43, baseTransform.m44);
     }
 
