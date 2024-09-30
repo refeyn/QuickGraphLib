@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 // SPDX-License-Identifier: MIT
 
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Shapes as QQS
 import QtQuick.Layouts as QQL

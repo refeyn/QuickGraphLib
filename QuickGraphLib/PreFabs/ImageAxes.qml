@@ -146,7 +146,7 @@ QuickGraphLib.AntialiasingContainer {
                     gradient: Gradient {
                         id: grad
 
-                        property var colors: QuickGraphLib.ColorMaps.colors(colorMesh.colormap)
+                        property var colors: QuickGraphLib.ColorMaps.colors(root.colorMesh.colormap)
 
                         stops: colors.map((color, i) => gradStop.createObject(grad, {
                                         "color": color,

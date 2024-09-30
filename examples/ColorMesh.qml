@@ -3,7 +3,6 @@
 
 import QtQuick
 import QuickGraphLib as QuickGraphLib
-import QuickGraphLib.GraphItems as QGLGraphItems
 import QuickGraphLib.PreFabs as QGLPreFabs
 
 QGLPreFabs.ImageAxes {

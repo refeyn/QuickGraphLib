@@ -1,12 +1,11 @@
 // SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd+other QuickGraphLib contributors
 // SPDX-License-Identifier: MIT
 
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls as QQC
 import QtQuick.Layouts as QQL
 import QuickGraphLib as QuickGraphLib
-import QuickGraphLib.GraphItems as QGLGraphItems
-import QuickGraphLib.PreFabs as QGLPreFabs
 
 QQL.GridLayout {
     id: root
