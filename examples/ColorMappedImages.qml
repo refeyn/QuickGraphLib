@@ -5,8 +5,6 @@ import QtQuick
 import QtQuick.Controls as QQC
 import QtQuick.Layouts as QQL
 import QuickGraphLib as QuickGraphLib
-import QuickGraphLib.GraphItems as QGLGraphItems
-import QuickGraphLib.PreFabs as QGLPreFabs
 
 QQL.GridLayout {
     id: root

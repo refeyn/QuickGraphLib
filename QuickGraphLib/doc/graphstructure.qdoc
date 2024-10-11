@@ -129,12 +129,18 @@ Tick positions are also important for grids, normally you can just feed in the t
 
 \section1 Drawing a line
 
+DOCSTODO
+
 \section1 A simple legend
+
+DOCSTODO
 
 \section1 Full example
 
 The full code for this example can be seen in the \l {Basic sin graph (without prefabs)} example.
 
 \section1 Prefabs
+
+DOCSTODO
 
 */

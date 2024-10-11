@@ -9,5 +9,7 @@
 
     \image examples/BasicSinGraph.png
 
+    This example demonstrates how to create the most basic sort of graph, a line graph. A legend has been added as well, using anchors to position it based on the pixel size of the graph.
+
     \quotefile examples/BasicSinGraph.qml
 */

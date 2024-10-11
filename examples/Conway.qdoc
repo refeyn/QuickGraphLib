@@ -7,9 +7,11 @@
     \brief A implementation of Conway's Game of Life cellular automaton (and variants).
     \example conway
 
-    Files to load into this simulator can be found online, e.g. going to \l {https://conwaylife.com/wiki/Gosper_glider_gun} and downloading the "RLE" file under "Pattern files" in the right sidebar.
-
     \image examples/Conway.png
+
+    This example demonstrates providing live 2D data efficiently from Python to QML.
+
+    Files to load into this simulator can be found online, e.g. going to \l {https://conwaylife.com/wiki/Gosper_glider_gun} and downloading the "RLE" file under "Pattern files" in the right sidebar.
 
     \quotefile examples/Conway.qml
     \quotefile examples/conway.py

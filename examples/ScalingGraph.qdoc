@@ -9,5 +9,7 @@
 
     \image examples/ScalingGraph.png
 
+    This example demonstrates using a ScalingContainer to keep a graph at a specific aspect ratio. This can be useful if the graph is going to be exported to a particular paper size.
+
     \quotefile examples/ScalingGraph.qml
 */

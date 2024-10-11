@@ -9,5 +9,7 @@
 
     \image examples/ColorMappedImages.png
 
+    This example demonstrates a neat feature of bitwise and, generating a Sierpinski triangle. An ImageView is used to display this with four different colormaps.
+
     \quotefile examples/ColorMappedImages.qml
 */
