@@ -9,7 +9,7 @@
 
     \image examples/TwinX.png
 
-    This example demonstrates using multiple \l {GraphArea}s to display two Y axes with the same X axis. Each Y axis has it's own GraphArea, as the view rect for each is different. Since GraphAreas are transparent, this does not cause any occlusion problems. 
+    This example demonstrates using multiple \l {GraphArea}s to display two Y axes with the same X axis. Each Y axis has it's own GraphArea, as the view rect for each is different. Since GraphAreas are transparent, this does not cause any occlusion problems.
 
     \quotefile examples/TwinX.qml
 */
