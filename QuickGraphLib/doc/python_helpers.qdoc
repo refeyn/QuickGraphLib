@@ -31,6 +31,8 @@ Visit the \l {QuickGraphLib} module documentation and examples (in particular th
     \inqmlmodule QuickGraphLib.PythonHelpers
     \inherits QObject
     \brief Produces contour lines and fills from XYZ data.
+
+    The contourpy package must be installed to use these methods. See \l {https://contourpy.readthedocs.io/} for installation instructions and algorithm details.
 */
 
 /*!

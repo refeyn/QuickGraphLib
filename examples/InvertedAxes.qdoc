@@ -9,5 +9,7 @@
 
     \image examples/InvertedAxes.png
 
+    This example demonstrates using a negative width and height in the viewRect to invert the direction of the axes.
+
     \quotefile examples/InvertedAxes.qml
 */

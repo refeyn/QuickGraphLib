@@ -9,5 +9,7 @@
 
     \image examples/ReadoutLine.png
 
+    This example demonstrates using a MouseArea to track the user's mouse, and using the dataTransform to covert that into data coordinates. Since QML is declarative, parts of the graph can be easily updated to react to mouse movements.
+
     \quotefile examples/ReadoutLine.qml
 */

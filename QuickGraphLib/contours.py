@@ -27,6 +27,10 @@ def contour_line(
     z: Sequence[Sequence[float]],
     height: float,
 ) -> Sequence[QGLPolygonF]:
+    if not CONTOURPY_AVAILABLE:
+        print("contourpy is not installed, contourLine will not work")
+        return []
+
     gen = contourpy.contour_generator(
         x=x, y=y, z=z, line_type=contourpy.LineType.Separate
     )
@@ -43,6 +47,10 @@ def contour_fill(
     z: Sequence[Sequence[float]],
     heights: tuple[float, float],
 ) -> Sequence[QGLPolygonF]:
+    if not CONTOURPY_AVAILABLE:
+        print("contourpy is not installed, contourFill will not work")
+        return []
+
     gen = contourpy.contour_generator(
         x=x, y=y, z=z, fill_type=contourpy.FillType.OuterOffset
     )

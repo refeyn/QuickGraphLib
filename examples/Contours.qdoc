@@ -9,5 +9,9 @@
 
     \image examples/Contours.png
 
+    This example demonstrates using the Python helpers to generate some contour lines (green and blue) and a contour fill (red area), which are then plotted using \l Contour.
+
+    The contourpy package must be installed to view this example. See \l {https://contourpy.readthedocs.io/} for installation instructions and algorithm details.
+
     \quotefile examples/Contours.qml
 */

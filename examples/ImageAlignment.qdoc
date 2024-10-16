@@ -9,5 +9,7 @@
 
     \image examples/ImageAlignment.png
 
+    This example demonstrates using the various alignments and fill modes of ImageView. It also shows the effect of mirroring and transposing the image - these properties can be used to correct data that uses different indexing styles. And finally, this example also shows the effect smoothing has.
+
     \quotefile examples/ImageAlignment.qml
 */

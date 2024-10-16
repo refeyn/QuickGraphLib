@@ -7,11 +7,11 @@
     \brief A simple graph of a sin function (without prefabs).
     \example basicsingraphnoprefabs
 
+    \image examples/BasicSinGraphNoPrefabs.png
+
     This example is the same as \l {Basic sin graph}, except that it does not use XYAxes
     (and it takes advantage of that by changing the number of decimal points in the X axis).
-    This is a good base for starting your own customisations.
-
-    \image examples/BasicSinGraphNoPrefabs.png
+    This is a good base for starting your own customisations, such as multiple axes or subplots.
 
     \quotefile examples/BasicSinGraphNoPrefabs.qml
 */

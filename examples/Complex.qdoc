@@ -9,5 +9,7 @@
 
     \image examples/Complex.png
 
+    This example is a spaghetti mess of various plots on the same axes. It can be used as an example of how to structure graphs, or as an example of what to avoid. Your choice.
+
     \quotefile examples/Complex.qml
 */

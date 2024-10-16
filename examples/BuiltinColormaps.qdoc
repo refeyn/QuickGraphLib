@@ -9,5 +9,7 @@
 
     \image examples/BuiltinColormaps.png
 
+    This example demonstrates using the colormaps for uses other than an ImageView. This code could be used to display colormaps to the user, so that they can select one to apply to a ImageView.
+
     \quotefile examples/BuiltinColormaps.qml
 */

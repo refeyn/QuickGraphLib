@@ -9,5 +9,7 @@
 
     \image examples/AllTheAxes.png
 
+    This example demonstrates using axes on all sides of a graph. Since all of the positioning is done using a GridLayout, axis arrangement is very flexible. If four axes are not enough for your use case, you can stack axes by just extending GridLayout.
+
     \quotefile examples/AllTheAxes.qml
 */

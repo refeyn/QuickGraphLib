@@ -9,5 +9,7 @@
 
     \image examples/SpansAndLines.png
 
+    This example demonstrates using vertical and horizontal lines and spans, including the various options for dashing and filling provided by ShapePath.
+
     \quotefile examples/SpansAndLines.qml
 */

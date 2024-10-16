@@ -9,5 +9,7 @@
 
     \image examples/Scatter.png
 
+    This example demonstrates using a Repeater to display points in a scatter graph. Since repeaters can take models, you can easily incorporate extra data and give each point a different color or style.
+
     \quotefile examples/Scatter.qml
 */

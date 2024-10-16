@@ -9,5 +9,7 @@
 
     \image examples/Subgraphs.png
 
+    This example demonstrates using multiple XYAxes to form a 2x2 grid of subplots. This is the easier way to achieve this, but if more control over spacing is needed, then prefabs should not be used.
+
     \quotefile examples/Subgraphs.qml
 */
