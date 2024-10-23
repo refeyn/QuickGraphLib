@@ -185,19 +185,19 @@ h3#toc {
 
 /* Syntax highlighting */
 
-.cpp .type, .cpp .type a {
+pre .type, pre .type a {
     color: #81B4E0;
     font-weight: bold;
 }
 
-.cpp .name {
+pre .name {
     color: #ACCEED;
 }
 
-.cpp .string, .cpp .number {
+pre .string, pre .number {
     color: #F6921E;
 }
 
-.cpp .comment {
+pre .comment {
     color: #aaa;
 }
