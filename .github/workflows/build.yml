@@ -63,7 +63,7 @@ jobs:
       - name: Run tests
         run: |
           .\activate_venv.ps1
-          pytest
+          pytest -sv
 
       - name: Build docs
         run: |

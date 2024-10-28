@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 800 600"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny">
+<title>Qt SVG Document</title>
+<desc>Generated with Qt</desc>
+<defs>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<rect x="0" y="0" width="800" height="600"/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#26282a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="16" font-weight="400" font-style="normal" 
+>
+<text fill="#26282a" fill-opacity="1" stroke="none" xml:space="preserve" x="169" y="15" font-family="DejaVuSans" font-size="16" font-weight="400" font-style="normal" 
+ >Magma</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,403,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#26282a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,403,0)"
+font-family="DejaVuSans" font-size="16" font-weight="400" font-style="normal" 
+>
+<text fill="#26282a" fill-opacity="1" stroke="none" xml:space="preserve" x="174.5" y="15" font-family="DejaVuSans" font-size="16" font-weight="400" font-style="normal" 
+ >Viridis</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,403,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,24)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<image x="0" y="0" width="398" height="274" preserveAspectRatio="none" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB2klEQVRYhcWXzU7bQBSFv4kdZILtqEk3RCJsEDvEJiBVKgsWfYMu+wJdd9Un4GX6BlUfhm5gQQT5wTJEw3QBtjye1BMyE5jN9dHRtXx/5uREQKh4x9MCCIKU94qi6EAn2gcgyy95S6x1YLvd462xqO/A8MOXKuTv7W82yS/dgZi+FjfJhwBSTsuZAMwZM3g6KPEm+aU7UHxhKjpsmjd2oH6+9n820fwaXzTytvyVdCBuB43RJd/YgUxOzZktJLud8OVZx675K+lA8cVJWyzFLvllBzI5JcsvjXtaVDBfwBUw+hhWGIVr/ko6YM5OadEl364DLXPm84VgsC1L7JK/kg6YM3yuIAklrvlWHbCdP59+uKT78QNJ+3HtaNUBGwaYLbYYxPfl82uwFz9QVLQTPbwaW3VgbOGrVTHf4Xj/WidvmnkvfqA+2yiRqhqbeC9+oDpTgHwWiHhPAggb78UP1GdcVBh0Ayvv7Ae+Hz428uff7hrf78UP2O676Eb/jV78QNM9B1CTHIZ9oQAmuapiL37Adu+LikljA1v/F5y2RhrWf8/hpJdpuH7Pe2eR9n71+UhUsRc/YNOB+uzpJmX04gcsOqDNHIDJDDXcMzuwrh+w6UB9B8oOpCn/AB+6och5tt2tAAAAAElFTkSuQmCC" />
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,403,24)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<image x="0" y="0" width="397" height="274" preserveAspectRatio="none" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABxklEQVRYhcWWS0vDQBSFv0nSNGmD9f3AhbgTxLXi2q0r/Wf+LMG14FoE6SYS2xhbx0WdmqRtJu1M9EK5uZxemPs6HHElbiX/aA6AG0X8l/cAxkmCt783eVKS/Glc6ACdkL+Opx0gSSbg2QkA+cVoEp+7A+OOX/BN4jM7IAF3kJFtdSZJDeNzd+D3hS5N4zM7oMz9+b3fXFBlvmF+LR4YhaLSm+TreQDwhpJ0w5l+52PT/Fo8oF48Dpgbm+TX4gH1aoD42KFsJvm1eKA8O1VJuQOr5Gt5QFWQn7mbwmev2IFV82vxwKLKx4HENF/LAz7V9nR3rvmHpLgRRbOiB2TwtbI31wOASB1E7xMByNRZKraiB1RFrWC0dGxFD4jUQaYOWdyidxSTt4ywEreiB8qzjYIPmfdVuLEeUB1QMwVI0rY4XIsBxLMGt6IHyjNWFa77Qy1urAdAFmacERL/VA5wffmwiAQkWNIDunvf9pOF3ooeqLpzgH4WcRK+CIA+kczHVvSA7u5VxTve20xsRQ9U3bnqQJ9IPnLA7fq9yGNW9ICOB8qz3/Xep96KHqi6c6Awc4DXUZfT9gAQdvSAjgfKO6A6sOl0+QZ5ez3xX6p7CAAAAABJRU5ErkJggg==" />
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,303)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#26282a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,303)"
+font-family="DejaVuSans" font-size="16" font-weight="400" font-style="normal" 
+>
+<text fill="#26282a" fill-opacity="1" stroke="none" xml:space="preserve" x="170" y="15" font-family="DejaVuSans" font-size="16" font-weight="400" font-style="normal" 
+ >Twilight</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,303)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,403,303)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#26282a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,403,303)"
+font-family="DejaVuSans" font-size="16" font-weight="400" font-style="normal" 
+>
+<text fill="#26282a" fill-opacity="1" stroke="none" xml:space="preserve" x="176" y="15" font-family="DejaVuSans" font-size="16" font-weight="400" font-style="normal" 
+ >Turbo</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,403,303)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,327)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<image x="0" y="0" width="398" height="273" preserveAspectRatio="none" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB4UlEQVRYhcWWy0rDQBSGv6k2oqZGGiveRVyIDyD4DILgBXwdVz6Dj+HCtxBcSxcq3he11caaaoqNC03tJDVJO1M9m8Ph8MOc2z+/uC5e+/yjZQBqzYb/X34QwMxkxWWtCiBM0/rTWOrAw8sbfx2L8A4cFW+lGW2vzNHPfMcdeKx+0O77mY/sAMCENcDFldd6ZT/zHXcgeGH9Sa6gH/lWB0zTYsm0YBrJ9g/PWi//zVTwqXigWfZivQo+kQcAMrYhPorPX7FtyLEiPhUP/LzY6Rir4CM78H2n0swytiGwDQYYxz0+jeRV8Kl4IDy719od7V4Fn4oHwjMfNWd5qJxIHegVn4oHwjNsVUAZVXzkL+jWdtb3VOB69MCYMOjVK+sBAMf3WM5aADgNr6tYix4IKipkh7qOk3lgOvnOHd/DaXicN2DTnkIyNz6vRQ+EZ5s3kXxcXoseaJ8pQKUGS4EQuorPa9ED4RkHFebyIjGvRQ+0zxgXKH9VDnCwuxAH1aMHku59uDDi/+a16IG4Oweol1wxtjoDIOolV4q16IGkuw8qzk5MRmIteiCWB747UC+5wD1TWxsSXoseSOKB8OyH8vMEXoseiOUB5B0AeK/ckFtci3agVz2QxAPhHQg6MGjk+ATHmM7kglQJkwAAAABJRU5ErkJggg==" />
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,403,327)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<image x="0" y="0" width="397" height="273" preserveAspectRatio="none" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACAUlEQVRYhcWWsW7UQBCGvz1ZiD1dEU4YB4kg0URKBQ0FoqCDPhJdXiAtL8Bj8AgpIl2bniZSUoFEUqWJkLiLI5NTrDiXhFuKYyPv7uH1nfeSbca/RyN55p/9/YtX3beKezwtALn8hvuKQk9g6eUmAGffvnCX2JhAlKxy1zgCKPq7FP1dAJKNbeyzyPzUHVCPu0ZcZP52ApoTAHGaMVp7anSwqPzUHdBfeB5fsui88OlA3nM5LZ/O+sfKvK++lg5cdNPK2KTe2QG9sWXO2llM/uLHBGSxiRvW19IB/cWd9ulU3KTe2QH7nh6tG5Dl11sGzld6Bp61vpYO2Nw9f/DTiE3qa+mAzfnx1TPeyT0ADhrW19IBm0PdwQrmLZin3qsDvvP513WT8jB+IC7Gc0evDvgwfCWVLdZSBQhSyUw4iB/QHS0No5lxED+QyhapBOI/vN+PZsoH8QM2tw9/36hyrMoH8QNlTgEuH0VCHp4zeSEr80H8gM2x7nA8uPDmnR2wT97bJnfeZgYqc6yHBBKQfPh07OjMaBIUBPIDvvteDIr/xiB+oOqeA8hEkh4Mxb9nVcZB/IDv3uuOh2c3Dq6lA+0shiwG3P+5nkCVDshEIhOpYmBv50SUc0H8gE8HbO5PcnUbG/sBxj4dwOAc4ElH8H2g3AnM6wd8OmDvgJ5Af9TiLzb+dhJhstLbAAAAAElFTkSuQmCC" />
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+</g>
+</svg>
