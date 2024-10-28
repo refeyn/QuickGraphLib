@@ -68,10 +68,8 @@ pre {
     background-color: #222;
     padding: 1em;
     color: white;
-}
-
-pre a {
-    color: #ACCEED;
+    overflow-x: auto;
+    font-size: 0.9em;
 }
 
 li::marker {
@@ -183,4 +181,23 @@ h3#toc {
 .note {
     background-color: #0B5C9311;
     border-left: 3px solid #0B5C93;
+}
+
+/* Syntax highlighting */
+
+pre .type, pre .type a {
+    color: #81B4E0;
+    font-weight: bold;
+}
+
+pre .name {
+    color: #ACCEED;
+}
+
+pre .string, pre .number {
+    color: #F6921E;
+}
+
+pre .comment {
+    color: #aaa;
 }

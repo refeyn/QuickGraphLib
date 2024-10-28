@@ -9,5 +9,11 @@
 
     \image examples/ZoomableAxes.png
 
+    This example demonstrates using a ZoomPanHandler to handle conversion of user inputs to a transformation. This transformation is then applied to the view rect of the graph, so that the axes limits changed based on user input.
+
+    In addition, the limits are displayed in a set of \l{SpinBox}es, and any changes to the spin box values are fed back into the ZoomPanHandler using the baseTransformFromRect method to convert the limits back into a transformation.
+
+    To zoom into the entire graph instead, see the \l{Zoomable as image} example.
+
     \quotefile examples/ZoomableAxes.qml
 */

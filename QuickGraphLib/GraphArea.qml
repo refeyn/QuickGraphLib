@@ -9,6 +9,8 @@ import QtQuick.Shapes as QQS
     \inqmlmodule QuickGraphLib
     \inherits QtQuick::Shapes::Shape
     \brief An area that graphs can be added to.
+
+    \sa {Basic sin graph (without prefabs)}, {Inverted axes}
 */
 
 QQS.Shape {

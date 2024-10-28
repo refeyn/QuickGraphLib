@@ -129,12 +129,93 @@ Tick positions are also important for grids, normally you can just feed in the t
 
 \section1 Drawing a line
 
+To draw a line between two points, use a \l Line:
+
+\qml
+QGLGraphItems.Line {
+    dataTransform: grapharea.dataTransform
+    path: [Qt.point(0, 0), Qt.point(10, 10)]
+}
+\endqml
+
+This code snippet will draw a line between the point (0, 0) and (10, 10). The \l Line item will convert these data coordinates into pixel coordinates for you. To change the color of the line, set the \l {ShapePath::strokeColor}{strokeColor} property:
+
+\qml
+QGLGraphItems.Line {
+    // ...
+    strokeColor: "red"
+}
+\endqml
+
+\l Line inherits from ShapePath, so any of the properties of ShapePath can be used. This includes line thickness, dashing, line end styles, etc.
+
+The recommended way to generate data for a \l Line or other graph items is to generate it in C++ or Python, since it is much more efficient. However, JavaScript arrays also work, so data can be constructed in the QML code using helper functions like \l {Helpers::linspace}{linspace} and \c map:
+
+\qml
+QGLGraphItems.Line {
+    dataTransform: grapharea.dataTransform
+    path: QuickGraphLib.Helpers.linspace(0, 720, 100).map(x => Qt.point(x, Math.sin(x / 180 * Math.PI)))
+    strokeColor: "red"
+    strokeWidth: 2
+}
+\endqml
+
 \section1 A simple legend
+
+QuickGraphLib provides a basic legend type, which can be used to label the different data sets in use in a graph. Since legends come in many styles, it is quite basic. If you have specific needs, the best option is to implement your own using standard QML types, as you will have maximum flexibility. However, if you need something simple, you can use BasicLegend and BasicLegendItem:
+
+\qml
+QGLGraphItems.BasicLegend {
+    anchors.margins: 10
+    anchors.right: parent.right
+    anchors.top: parent.top
+
+    QGLGraphItems.BasicLegendItem {
+        strokeColor: "red"
+        text: "Sin(θ)"
+    }
+}
+\endqml
+
+Anchors are used to position the legend (since this is purely a UI component, we don't need to care about data coordinates - the legend is not representing any data). BasicLegendItem can be used to add rows to the legend, and it's properties can be used to set the name and indicator color.
 
 \section1 Full example
 
 The full code for this example can be seen in the \l {Basic sin graph (without prefabs)} example.
 
 \section1 Prefabs
+
+QuickGraphLib comes with a set of prefab components, so make common tasks like simple X/Y axes simpler. XYAxes sets up a graph area with two axes, one on the left and one on the bottom. When using XYAxes, you only need to add the graph items, the axes, grid and graph area are already created:
+
+\qml
+QGLPreFabs.XYAxes {
+    id: axes
+
+    viewRect: Qt.rect(-20, -1.1, 760, 2.2)
+    xLabel: "Angle (°)"
+    yLabel: "Value"
+
+    QGLGraphItems.Line {
+        id: sinLine
+
+        dataTransform: axes.dataTransform
+        path: QuickGraphLib.Helpers.linspace(0, 720, 100).map(x => Qt.point(x, Math.sin(x / 180 * Math.PI)))
+        strokeColor: "red"
+        strokeWidth: 2
+    }
+    QGLGraphItems.BasicLegend {
+        anchors.margins: 10
+        anchors.right: parent.right
+        anchors.top: parent.top
+
+        QGLGraphItems.BasicLegendItem {
+            strokeColor: sinLine.strokeColor
+            text: "Sin(θ)"
+        }
+    }
+}
+\endqml
+
+XYAxes can be customized to some extent (see \l {Dark theme sin graph} for a theming example), the components of the graph are exposed though properties. However, if a more flexibly layout is needed, then prefabs should not be used.
 
 */

@@ -9,5 +9,7 @@
 
     \image examples/ColorMesh.png
 
+    This example demonstrates using an ImageAxes, which is essentially a ColorMesh with a colorbar and some automatic setting of axes limits.
+
     \quotefile examples/ColorMesh.qml
 */

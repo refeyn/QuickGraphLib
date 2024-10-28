@@ -8,6 +8,8 @@ import QtQuick
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::MouseArea
     \brief Assists converting mouse drags into data positions.
+
+    \sa {Draggable region}
 */
 
 MouseArea {

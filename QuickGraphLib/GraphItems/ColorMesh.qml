@@ -11,6 +11,8 @@ import QuickGraphLib as QuickGraphLib
     \brief Display a colorized image from a 2D array.
 
     \note This graph item does not inherit from ShapePath, unlike other graph items.
+
+    \sa {Color mesh}, {Color mapped images}
 */
 
 QuickGraphLib.ImageView {

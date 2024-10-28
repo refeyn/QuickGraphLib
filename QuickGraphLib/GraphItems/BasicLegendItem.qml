@@ -8,6 +8,8 @@ import QtQuick
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Row
     \brief An single entry in a simple legend.
+
+    \sa {Basic sin graph}
 */
 
 Row {

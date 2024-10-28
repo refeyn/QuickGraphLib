@@ -10,6 +10,8 @@ import QtQuick
     \brief Scales its contents while preserving the aspect ratio.
 
     This container applies a scaling factor to its content item that preserves its aspect ratio.
+
+    \sa {Scaled graph}
 */
 
 AntialiasingContainer {

@@ -9,6 +9,8 @@ import QtQuick.Shapes as QQS
     \inqmlmodule QuickGraphLib
     \inherits QtQml::Models::Instantiator
     \brief A \l{Repeater}-like component that works with \l{ShapePath}s.
+
+    \sa {Scatter graph}
 */
 
 QQM.Instantiator {

@@ -9,5 +9,7 @@
 
     \image examples/BasicHistogram.png
 
+    This example demonstrates using Histogram to display a normal distribution, along with some vertical spans. The spans are shown above the histogram as they are defined later on in the file. The \l Text items are not integrated into the rendering of the graph (as they are \l {Item}s, not \l {ShapePath}s), and therefore are above everything. This is also the reason the Text items are positioned using the x and y properties, since anchors cannot be used in this case.
+
     \quotefile examples/BasicHistogram.qml
 */

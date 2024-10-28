@@ -11,6 +11,8 @@
     \inqmlmodule QuickGraphLib
     \inherits QObject
     \brief Utility functions for color maps.
+
+    \sa {ImageView}, {Builtin color maps}, {Color mapped images}
 */
 
 extern const std::map<ColorMaps::ColorMapName, QList<QRgb>> DEFAULT_COLORMAPS;

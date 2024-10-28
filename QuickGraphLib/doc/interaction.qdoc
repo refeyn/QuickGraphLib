@@ -8,6 +8,36 @@
 
 \section1 Zooming and panning
 
+Zooming and panning can be handled using a ZoomPanHandler, which combines a PinchHandler and a MouseArea into one type that translates touch and mouse inputs into a transformation. The ZoomPanHandler has two outputs:
+
+\list
+    \li \l{ZoomPanHandler::viewTransform}{viewTransform}, which can be provided to a Matrix4x4 transform, and used on any \l Item, or passed to \l {GraphArea::viewTransform} to scale a graph
+    \li \l{ZoomPanHandler::baseTransform}{baseTransform}, which is a more size-independent version of viewTransform which can be translated into a view rect using ZoomPanHandler's utility methods
+\endlist
+
+With these properties, two sorts of interaction can be implemented:
+
+\list
+    \li Zooming into a graph as if it's an image. This can be useful for large or complex figures, where the user may not be able to see the details. This can be achieved by applying the viewTransform to the \l Item which contains the graph (e.g. the GridLayout or XYAxes). See the \l {Zoomable as image} example for more details.
+    \li Using zooming and panning to change the axes limits. This can be used when the data itself is has complex detail that is not visible when all of the data is shown. This can be achieved by passing the viewTransform to the GraphArea, and optionally providing a set of spin boxes for precise control of the limits. See the \l {Zoomable axes} example for more details.
+\endlist
+
 \section1 Interactive graph items
 
+There is a huge amount of interaction possible in a graph, so here we'll stick to the basics. Things you might want to add to your graph include:
+
+\list
+    \li Draggable regions
+    \li Hover text / tooltips
+    \li Read out of where the cursor is
+    \li Buttons over particular data points
+\endlist
+
+All of this can be implemented using MouseArea, or using a control, and using the \l{Item::x}{x} and \l{Item::y}{y} properties to position the \l Item (this is because graph items usually inherit from ShapePath, which is not an Item, and so anchors do not work).
+
+The \l {Readout line} example demonstrates using a MouseArea to monitor the position of the mouse and translate it into data coordinates, a similar arrangement can be used for tooltips.
+
+The \l {Draggable region} example uses a GraphItemDragHandler (another MouseArea helper) to implement a draggable and resizable region.
+
+In general, because QML already provides so many interactive items, adding interactivity to a graph is easy and just uses standard QML items, with a bit of extra maths to do positioning since it often needs to be done in data coordinates instead of purely using pixel coordinates.
 */

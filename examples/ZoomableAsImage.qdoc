@@ -9,5 +9,7 @@
 
     \image examples/ZoomableAsImage.png
 
+    This example demonstrates using a ZoomPanHandler to handle conversion of user inputs to a transformation. The transformation is then applied to the XYAxes's GridLayout, which will cause the entire graph to scale/translate, just like an image. To change the axes limits instead, see the \l{Zoomable axes} example.
+
     \quotefile examples/ZoomableAsImage.qml
 */

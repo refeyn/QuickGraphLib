@@ -10,6 +10,8 @@ import QtQuick
     \brief Displays a circular marker.
 
     \note This graph item does not inherit from ShapePath, unlike other graph items. This is for performance reasons.
+
+    \sa {Scatter graph}
 */
 
 Rectangle {
