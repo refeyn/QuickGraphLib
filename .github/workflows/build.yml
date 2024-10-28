@@ -60,6 +60,11 @@ jobs:
           .\activate_venv.ps1
           pre-commit run --all-files --show-diff-on-failure
 
+      - name: Run tests
+        run: |
+          .\activate_venv.ps1
+          pytest
+
       - name: Build docs
         run: |
           .\activate_venv.ps1
