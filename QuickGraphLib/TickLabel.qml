@@ -11,6 +11,8 @@ import QtQuick
 
     This is the default implementation of a tick label. To customise how labels are shown,
     you can subclass this and override the \l Text::text property.
+
+    \sa {Axis}
 */
 
 Text {

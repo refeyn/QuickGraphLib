@@ -10,6 +10,8 @@ import QtQuick
     \brief Displays a simple legend.
 
     \note This graph item does not inherit from ShapePath, unlike other graph items.
+
+    \sa {Basic sin graph}
 */
 
 Rectangle {

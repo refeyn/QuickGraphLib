@@ -9,6 +9,8 @@ import QtQuick.Shapes as QQS
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Shapes::ShapePath
     \brief Displays a horizontal line.
+
+    \sa {Spans and lines}
 */
 
 QQS.ShapePath {

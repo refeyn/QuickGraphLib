@@ -11,6 +11,8 @@ import QuickGraphLib as QuickGraphLib
     \inqmlmodule QuickGraphLib
     \inherits QtQuick::Item
     \brief Displays an Axis.
+
+    \sa {Basic sin graph (without prefabs)}, {Graph with all four axes}
 */
 
 Item {

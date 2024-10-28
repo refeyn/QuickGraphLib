@@ -9,6 +9,8 @@ import QtQuick.Shapes as QQS
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Rectangle
     \brief Displays an vertical line.
+
+    \sa {Spans and lines}, {Draggable region}
 */
 
 QQS.ShapePath {

@@ -13,19 +13,7 @@ import QuickGraphLib as QuickGraphLib
 
     Graph a line using a list of X,Y points. The style of the line can be adjusted using the \l {ShapePath::strokeColor} {strokeColor} and \l {ShapePath::strokeWidth} {strokeWidth} properties.
 
-    \qml
-        GraphArea {
-            id: grapharea
-            viewRect: Qt.rect(-20, -1.1, 760, 2.2)
-
-            Line {
-                dataTransform: grapharea.dataTransform
-                path: Helpers.linspace(0, 720, 100).map(x => Qt.point(x, Math.sin(x / 180 * Math.PI)))
-                strokeColor: "red"
-                strokeWidth: 2
-            }
-        }
-    \endqml
+    \sa {Basic sin graph}
 */
 
 QQS.ShapePath {

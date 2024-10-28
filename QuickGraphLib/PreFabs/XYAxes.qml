@@ -11,6 +11,8 @@ import QuickGraphLib.GraphItems as QGLGraphItems
     \inqmlmodule QuickGraphLib.PreFabs
     \inherits QuickGraphLib::AntialiasingContainer
     \brief Displays an XY axis with a grid.
+
+    \sa {Basic sin graph}, {Dark theme sin graph}, {Subgraphs}
 */
 
 QuickGraphLib.AntialiasingContainer {

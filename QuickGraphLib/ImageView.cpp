@@ -13,6 +13,8 @@
     \inqmlmodule QuickGraphLib
     \inherits QtQuick::Item
     \brief Display a colorized image from a 2D array.
+
+    \sa {Builtin color maps}, {Color mapped images}, {Image alignment}
 */
 
 /*!

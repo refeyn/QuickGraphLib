@@ -10,6 +10,8 @@ import QuickGraphLib.GraphItems as QGLGraphItems
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Shapes::ShapePath
     \brief Displays a histogram.
+
+    \sa {Basic histogram}
 */
 
 QQS.ShapePath {

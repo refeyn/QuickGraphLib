@@ -9,6 +9,8 @@ import QtQuick.Shapes as QQS
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Shapes::ShapePath
     \brief Displays an vertical span.
+
+    \sa {Spans and lines}, {Basic histogram}, {Draggable region}
 */
 
 QQS.ShapePath {
