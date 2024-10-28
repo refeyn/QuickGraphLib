@@ -14,7 +14,7 @@ PinchArea {
     id: root
 
     /*!
-        The view transform, but in a pixel-independant form.
+        The view transform, but in a pixel-independent form.
 
         \sa GraphArea::baseTransformFromRect
     */
