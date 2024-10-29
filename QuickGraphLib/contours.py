@@ -36,8 +36,7 @@ def contour_line(
     )
     result = []
     for loop in gen.lines(height):
-        assert isinstance(loop, np.ndarray), "Loop is not an array"  # For mypy
-        result.append(QGLPolygonF.fromNDArray(loop))
+        result.append(QGLPolygonF.fromNDArray(loop))  # type: ignore[arg-type]
     return result
 
 
