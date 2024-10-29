@@ -6,7 +6,7 @@ import sys
 
 if sys.platform == "linux":
     qt_platform = "linux"
-    qt_arch = "gcc_64"
+    qt_arch = "linux_gcc_64"
 
 elif sys.platform == "win32":
     qt_platform = "windows"
