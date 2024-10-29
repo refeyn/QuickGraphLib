@@ -16,6 +16,7 @@ set(QGL_GI_QML_FILES
     Line.qml
     ColorMesh.qml
 )
+set_source_files_properties(Line.qml PROPERTIES QT_QML_SKIP_CACHEGEN True)
 qt_add_qml_module(QuickGraphLibGraphItems
     URI QuickGraphLib.GraphItems
     SHARED
@@ -24,7 +25,6 @@ qt_add_qml_module(QuickGraphLibGraphItems
     SOURCES helpers/HistogramHelper.cpp helpers/HistogramHelper.hpp helpers/GridHelper.hpp helpers/GridHelper.cpp
     PLUGIN_TARGET QuickGraphLibGraphItems
     DEPENDENCIES QtQuick QuickGraphLib
-    NO_CACHEGEN
 )
 
 target_compile_definitions(
