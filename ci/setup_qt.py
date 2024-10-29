@@ -10,11 +10,11 @@ if sys.platform == "linux":
 
 elif sys.platform == "win32":
     qt_platform = "windows"
-    qt_arch = "win64_msvc2019_64"
+    qt_arch = "win64_msvc2022_64"
 
 elif sys.platform == "darwin":
-    qtPlatform = "mac"
-    qtArch = "clang_64"
+    qt_platform = "mac"
+    qt_arch = "clang_64"
 
 else:
     raise RuntimeError(f"Unknown platform {sys.platform}")
