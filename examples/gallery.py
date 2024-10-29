@@ -9,9 +9,8 @@ from PySide6 import QtCore, QtGui, QtQml, QtQuickControls2
 
 EXAMPLES_DIR = pathlib.Path(__file__).parent
 
-import conway  # pylint: disable=unused-import
-
 import QuickGraphLib
+from examples import conway  # pylint: disable=unused-import
 
 if __name__ == "__main__":
     QtQuickControls2.QQuickStyle.setStyle("Basic")

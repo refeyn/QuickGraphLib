@@ -69,8 +69,8 @@ build = [
 before-all = "python ci/setup_qt.py"
 repair-wheel-command = ""
 build-frontend = "build"
-# test-command = "pytest {project}/tests"
-# test-extras = ["tests"]
+test-command = "pytest -sv {project}/tests --import-mode=append"
+test-extras = ["analyse"]
 
 [tool.cibuildwheel.environment]
 SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
