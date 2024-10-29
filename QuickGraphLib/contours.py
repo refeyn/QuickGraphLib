@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 # SPDX-License-Identifier: MIT
 
-from typing import Sequence
+from typing import Sequence, Tuple
 
 from PySide6 import QtCore, QtQml
 
@@ -45,7 +45,7 @@ def contour_fill(
     x: Sequence[Sequence[float]],
     y: Sequence[Sequence[float]],
     z: Sequence[Sequence[float]],
-    heights: tuple[float, float],
+    heights: Tuple[float, float],
 ) -> Sequence[QGLPolygonF]:
     if not CONTOURPY_AVAILABLE:
         print("contourpy is not installed, contourFill will not work")

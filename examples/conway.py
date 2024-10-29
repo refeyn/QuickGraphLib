@@ -5,6 +5,7 @@ import enum
 import itertools
 import pathlib
 import re
+from typing import List, Tuple
 
 import numpy as np
 from PySide6 import QtCore, QtQml
@@ -120,17 +121,16 @@ class ConwayProvider(QtCore.QObject):
                     self._buffer, (y_shift, x_shift), (0, 1)
                 )
         for i, rule in enumerate(self._rule):
-            match rule:
-                case self.CellTransition.BORN_AND_SURVIVE:
-                    self._buffer[self._neighbour_counts == i] = True
-                case self.CellTransition.BORN:
-                    self._buffer[self._neighbour_counts == i] = ~self._buffer[
-                        self._neighbour_counts == i
-                    ]
-                case self.CellTransition.SURVIVE:
-                    pass
-                case self.CellTransition.DIE:
-                    self._buffer[self._neighbour_counts == i] = False
+            if rule == self.CellTransition.BORN_AND_SURVIVE:
+                self._buffer[self._neighbour_counts == i] = True
+            elif rule == self.CellTransition.BORN:
+                self._buffer[self._neighbour_counts == i] = ~self._buffer[
+                    self._neighbour_counts == i
+                ]
+            elif rule == self.CellTransition.SURVIVE:
+                pass
+            elif rule == self.CellTransition.DIE:
+                self._buffer[self._neighbour_counts == i] = False
         self._history_buffer *= 95
         self._history_buffer //= 100
         self._history_buffer[self._buffer] = 1000
@@ -152,7 +152,7 @@ class ConwayProvider(QtCore.QObject):
         self.dataChanged.emit()
         self.sizeChanged.emit()
 
-    def _rule_from_strs(self, rule_b: str, rule_s: str) -> list[CellTransition]:
+    def _rule_from_strs(self, rule_b: str, rule_s: str) -> List[CellTransition]:
         rule = [self.CellTransition.DIE] * self.RULE_LENGTH
         for num in rule_s:
             rule[int(num)] |= self.CellTransition.SURVIVE
@@ -160,7 +160,7 @@ class ConwayProvider(QtCore.QObject):
             rule[int(num)] |= self.CellTransition.BORN
         return rule
 
-    def _strs_from_rule(self) -> tuple[str, str]:
+    def _strs_from_rule(self) -> Tuple[str, str]:
         rule_s = "".join(
             [
                 str(i)
