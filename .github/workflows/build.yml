@@ -31,7 +31,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           aqtversion: "==3.1.*"
-          version: "6.5.3"
+          version: "6.8.0"
           archives: "qttools qtdeclarative qtbase qtsvg icu"
           documentation: true
           doc-archives: "qtcore qtgui qtqml qtqmlcore qtqmlmodels qtquick qtquickcontrols qtquickdialogs qtsvg"

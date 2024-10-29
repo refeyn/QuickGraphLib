@@ -22,6 +22,7 @@ else:
     cm = contextlib.nullcontext()
 with cm:
     pyi_generator.PySide6 = PySide6
+    pyi_generator.os = os
     pyi_generator.main()
 
 # Fixup
