@@ -72,16 +72,20 @@ QQL.ColumnLayout {
         QQC.ComboBox {
             id: displayModeCombo
 
-            model: [{
+            model: [
+                {
                     "value": "historyCells",
                     "text": "Cells with history"
-                }, {
+                },
+                {
                     "value": "cells",
                     "text": "Cells"
-                }, {
+                },
+                {
                     "value": "neighbourCounts",
                     "text": "Neighbour counts"
-                }]
+                }
+            ]
             textRole: "text"
             valueRole: "value"
         }
