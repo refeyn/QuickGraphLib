@@ -6,15 +6,15 @@ import sys
 
 if sys.platform == "linux":
     qt_platform = "linux"
-    qt_arch = "gcc_64"
+    qt_arch = "linux_gcc_64"
 
 elif sys.platform == "win32":
     qt_platform = "windows"
-    qt_arch = "win64_msvc2019_64"
+    qt_arch = "win64_msvc2022_64"
 
 elif sys.platform == "darwin":
-    qtPlatform = "mac"
-    qtArch = "clang_64"
+    qt_platform = "mac"
+    qt_arch = "clang_64"
 
 else:
     raise RuntimeError(f"Unknown platform {sys.platform}")
@@ -26,7 +26,7 @@ subprocess.run(
         "install-qt",
         qt_platform,
         "desktop",
-        "6.5.3",
+        "6.8.0",
         qt_arch,
         "-O",
         "./qt",

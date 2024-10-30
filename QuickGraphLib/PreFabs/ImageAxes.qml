@@ -151,9 +151,9 @@ QuickGraphLib.AntialiasingContainer {
                         property var colors: QuickGraphLib.ColorMaps.colors(root.colorMesh.colormap)
 
                         stops: colors.map((color, i) => gradStop.createObject(grad, {
-                                        "color": color,
-                                        "position": i / (colors.length - 1)
-                                    }))
+                                "color": color,
+                                "position": i / (colors.length - 1)
+                            }))
                     }
                 }
                 QuickGraphLib.Axis {

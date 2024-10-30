@@ -31,21 +31,21 @@ find_path(
 )
 find_library(
     shiboken_shared_libraries
-    NAMES shiboken6 shiboken6.abi3 libshiboken6.abi3.so.6.5
+    NAMES shiboken6 shiboken6.abi3 libshiboken6.abi3.so.6.8
     PATH_SUFFIXES shiboken6
     PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_library(
     pyside_shared_library
-    NAMES pyside6 pyside6.abi3 libpyside6.abi3.so.6.5
+    NAMES pyside6 pyside6.abi3 libpyside6.abi3.so.6.8
     PATH_SUFFIXES PySide6
     PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_library(
     pyside_qml_shared_library
-    NAMES pyside6qml pyside6qml.abi3 libpyside6qml.abi3.so.6.5
+    NAMES pyside6qml pyside6qml.abi3 libpyside6qml.abi3.so.6.8
     PATH_SUFFIXES PySide6
     PATHS "${Python_SITELIB}"
     REQUIRED
@@ -145,7 +145,7 @@ python_add_library(
     ShibokenHelpers.cpp
     WITH_SOABI
     USE_SABI
-    3.7
+    3.9
 )
 
 # Apply relevant include and link flags.

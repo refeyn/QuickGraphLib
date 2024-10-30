@@ -4,7 +4,7 @@ description = "A scientific graphing library for QtQuick"
 readme = "README.md"
 license = { file = "LICENCE" }
 authors = [{ name = "Matthew Joyce", email = "matthew.joyce@refeyn.com" }]
-dependencies = ["PySide6", "contourpy"]
+dependencies = ["PySide6==6.8.0.2", "contourpy", "numpy<2"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: X11 Applications :: Qt",
@@ -38,20 +38,19 @@ analyse = [
     "pytest-cov",
     # Building
     "scikit-build-core",
-    "shiboken6_generator==6.5.3",
-    "PySide6==6.5.3",
+    "shiboken6_generator==6.8.0.2",
     "setuptools_scm",
 ]
 
 [build-system]
-requires = ["scikit-build-core", "shiboken6_generator==6.5.3", "PySide6==6.5.3"]
+requires = ["scikit-build-core", "shiboken6_generator==6.8.0.2", "PySide6==6.8.0.2"]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
 metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"
 sdist.include = ["QuickGraphLib/_version.py"]
 sdist.exclude = [".github", ".vscode"]
-wheel.py-api = "cp37"
+wheel.py-api = "cp39"
 
 [tool.scikit-build.cmake.define]
 INSTALL_SUBPATH = "."
@@ -61,10 +60,10 @@ write_to = "QuickGraphLib/_version.py"
 
 [tool.cibuildwheel]
 build = [
-    "cp37-macosx_x86_64",
-    "cp37-win_amd64",
-    "cp37-manylinux_x86_64",
-    # "cp37-manylinux_aarch64",
+    "cp39-macosx_x86_64",
+    "cp39-win_amd64",
+    "cp39-manylinux_x86_64",
+    # "cp39-manylinux_aarch64",
 ]
 before-all = "python ci/setup_qt.py"
 repair-wheel-command = ""

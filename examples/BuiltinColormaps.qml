@@ -64,9 +64,9 @@ Item {
 
                         orientation: Gradient.Horizontal
                         stops: colors.map((color, i) => gradStop.createObject(grad, {
-                                        "color": color,
-                                        "position": i / (colors.length - 1)
-                                    }))
+                                "color": color,
+                                "position": i / (colors.length - 1)
+                            }))
                     }
                 }
             }

@@ -28,10 +28,11 @@ jobs:
           cache-dependency-path: "./requirements.txt"
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           aqtversion: "==3.1.*"
-          version: "6.5.3"
+          version: "6.8.0"
+          arch: "win64_msvc2022_64"
           archives: "qttools qtdeclarative qtbase qtsvg icu"
           documentation: true
           doc-archives: "qtcore qtgui qtqml qtqmlcore qtqmlmodels qtquick qtquickcontrols qtquickdialogs qtsvg"
