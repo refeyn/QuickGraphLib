@@ -171,19 +171,21 @@ target_link_libraries(
 )
 
 # Generate .pyi stub file
-set(pyi_path ${CMAKE_BINARY_DIR}/QuickGraphLib/_QuickGraphLib.pyi)
-add_custom_command(
-    OUTPUT ${pyi_path}
-    COMMAND
-        "${Python_EXECUTABLE}" ${CMAKE_CURRENT_SOURCE_DIR}/pyigen.py
-        $<TARGET_FILE:_QuickGraphLib> --outpath
-        ${CMAKE_BINARY_DIR}/QuickGraphLib
-    DEPENDS $<TARGET_FILE:_QuickGraphLib>
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Running stub generation for for _QuickGraphLib."
-)
+if(ENABLE_STUB_GENERATION)
+    set(pyi_path ${CMAKE_BINARY_DIR}/QuickGraphLib/_QuickGraphLib.pyi)
+    add_custom_command(
+        OUTPUT ${pyi_path}
+        COMMAND
+            "${Python_EXECUTABLE}" ${CMAKE_CURRENT_SOURCE_DIR}/pyigen.py
+            $<TARGET_FILE:_QuickGraphLib> --outpath
+            ${CMAKE_BINARY_DIR}/QuickGraphLib
+        DEPENDS $<TARGET_FILE:_QuickGraphLib>
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMENT "Running stub generation for for _QuickGraphLib."
+    )
 
-add_custom_target(QuickGraphLibPythonStubs ALL DEPENDS ${pyi_path})
+    add_custom_target(QuickGraphLibPythonStubs ALL DEPENDS ${pyi_path})
+endif()
 
 # Install files
 install(TARGETS _QuickGraphLib DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)

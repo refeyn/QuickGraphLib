@@ -15,6 +15,8 @@ else()
     add_compile_options(-Wextra -Wpedantic -fno-visibility-inlines-hidden)
 endif()
 
+option(ENABLE_STUB_GENERATION "Enable .pyi stub generation (defaults to on)" ON)
+
 if(NOT INSTALL_SUBPATH)
     set(INSTALL_SUBPATH
         ${CMAKE_INSTALL_LIBDIR}/qml
