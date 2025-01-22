@@ -136,11 +136,7 @@ QuickGraphLib.AntialiasingContainer {
             QQL.Layout.alignment: Qt.AlignCenter
             QQL.Layout.columnSpan: 2
             visible: text !== ""
-        }
-        Item  {
-            QQL.Layout.columnSpan: 2
-            visible: text !== ""
-            QQL.Layout.preferredHeight: root.spacing
+            QQL.Layout.bottomMargin: root.spacing
         }
         QuickGraphLib.Axis {
             id: yAxis
