@@ -66,6 +66,10 @@ QuickGraphLib.AntialiasingContainer {
     */
     property alias titleItem: titleLabel
     /*!
+        The spacing between the title and the axes.
+    */
+    property double spacing: 0
+    /*!
         An alias to the view rect of the graph area.
 
         \sa GraphArea::viewRect
@@ -113,6 +117,11 @@ QuickGraphLib.AntialiasingContainer {
             QQL.Layout.alignment: Qt.AlignCenter
             QQL.Layout.columnSpan: 2
             visible: text !== ""
+        }
+        Item  {
+            QQL.Layout.columnSpan: 2
+            visible: text !== ""
+            QQL.Layout.preferredHeight: root.spacing
         }
         QuickGraphLib.Axis {
             id: yAxis
