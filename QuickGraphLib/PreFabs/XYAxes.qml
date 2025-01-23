@@ -29,7 +29,7 @@ QuickGraphLib.AntialiasingContainer {
     /*!
         The padding below the XYAxes
     */
-    property alias bottomPadding: 15
+    property int bottomPadding: 15
     /*!
         An alias to the data transform of the graph area.
 
@@ -52,7 +52,7 @@ QuickGraphLib.AntialiasingContainer {
     /*!
         The padding to the left of the XYAxes
     */
-    property alias leftPadding: 15
+    property int leftPadding: 15
     /*!
         Maximum number of ticks to show on the X axis.
 
@@ -68,7 +68,7 @@ QuickGraphLib.AntialiasingContainer {
     /*!
         The padding to the right of the XYAxes
     */
-    property alias rightPadding: 15
+    property int rightPadding: 15
     /*!
         The title of the graph.
     */
@@ -84,7 +84,7 @@ QuickGraphLib.AntialiasingContainer {
     /*!
         The padding above the XYAxes
     */
-    property alias topPadding: 15
+    property int topPadding: 15
     /*!
         An alias to the view rect of the graph area.
 
