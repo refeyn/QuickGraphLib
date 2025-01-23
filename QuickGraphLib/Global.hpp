@@ -3,5 +3,10 @@
 
 #pragma once
 
-#include "DataTypes.hpp"
-#include "helpers/Helpers.hpp"
+#include <QtGlobal>
+
+#if defined(QGL_LIBRARY)
+#define QGL_EXPORT Q_DECL_EXPORT
+#else
+#define QGL_EXPORT Q_DECL_IMPORT
+#endif

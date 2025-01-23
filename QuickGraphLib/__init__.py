@@ -23,6 +23,7 @@ with cm:
     from QuickGraphLib._QuickGraphLib import (  # pylint: disable=import-error,no-name-in-module
         QGLDoubleList,
         QGLPolygonF,
+        Helpers,
     )
 
 from . import contours

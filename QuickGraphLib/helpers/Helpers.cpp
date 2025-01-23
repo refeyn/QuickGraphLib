@@ -19,7 +19,7 @@
 
 const std::vector<qreal> STEPS = {0.2, 0.25, 0.5, 1};
 
-QList<qreal> Helpers::linspace(qreal min, qreal max, int num) const {
+QList<qreal> Helpers::linspace(qreal min, qreal max, int num) {
     /*!
         \qmlmethod list<real> Helpers::linspace(real min, real max, int num)
 
@@ -36,7 +36,7 @@ QList<qreal> Helpers::linspace(qreal min, qreal max, int num) const {
     return result;
 }
 
-QList<int> Helpers::range(int min, int max, int step /* = 1 */) const {
+QList<int> Helpers::range(int min, int max, int step /* = 1 */) {
     /*!
         \qmlmethod list<int> Helpers::range(int min, int max, int step = 1)
 
@@ -57,7 +57,7 @@ QList<int> Helpers::range(int min, int max, int step /* = 1 */) const {
     return result;
 }
 
-QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum) const {
+QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum) {
     /*!
         \qmlmethod list<real> Helpers::tickLocator(real min, real max, int maxNum)
 
@@ -91,7 +91,7 @@ QPolygonF mapPointsInner(const QList<QPointF>& poly, QMatrix4x4 dataTranform) {
     return newPoly;
 }
 
-QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
+QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) {
     /*!
         \qmlmethod QPolygonF Helpers::mapPoints(var points, matrix4x4 dataTransform)
 
@@ -338,7 +338,7 @@ void exportToPaintDevice(QQuickItem* item, QPaintDevice* device) {
     painter.end();
 }
 
-bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
+bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
     /*!
         \qmlmethod bool Helpers::exportToSvg(Item obj, url path)
 
@@ -353,6 +353,10 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
 
         \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
     */
+
+    if (!item) {
+        return false;
+    }
 
     {
         QSvgGenerator device;
@@ -376,7 +380,7 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
     return true;
 }
 
-bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) const {
+bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
     /*!
         \qmlmethod void Helpers::exportToPng(Item obj, url path, int dpi = 96 * 2)
 
@@ -390,6 +394,10 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
         \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
     */
 
+    if (!item) {
+        return false;
+    }
+
     auto device = QPixmap(std::ceil(item->width() * dpi / 96), std::ceil(item->height() * dpi / 96));
     device.fill(Qt::GlobalColor::transparent);
     device.setDevicePixelRatio(dpi / 96);
@@ -397,7 +405,7 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
     return device.save(path.toLocalFile());
 }
 
-QPicture Helpers::exportToPicture(QQuickItem* item) const {
+QPicture Helpers::exportToPicture(QQuickItem* item) {
     /*!
         \qmlmethod QPicture Helpers::exportToPicture(Item obj)
 
@@ -417,6 +425,8 @@ QPicture Helpers::exportToPicture(QQuickItem* item) const {
      */
 
     QPicture device;
-    exportToPaintDevice(item, &device);
+    if (item) {
+        exportToPaintDevice(item, &device);
+    }
     return device;
 }

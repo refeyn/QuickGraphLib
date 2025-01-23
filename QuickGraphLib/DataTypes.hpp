@@ -6,7 +6,9 @@
 #include <QList>
 #include <QPolygonF>
 
-class QGLPolygonF : public QPolygonF {
+#include "Global.hpp"
+
+class QGL_EXPORT QGLPolygonF : public QPolygonF {
    public:
     using QPolygonF::QPolygonF;
     QGLPolygonF() = default;
@@ -15,19 +17,19 @@ class QGLPolygonF : public QPolygonF {
     QGLPolygonF(QList<QPointF> &&v) noexcept : QPolygonF(std::move(v)) {}
     QGLPolygonF(QPolygonF &&v) noexcept : QPolygonF(std::move(v)) {}
     inline void swap(QGLPolygonF &other) { QPolygonF::swap(other); }
-    Q_DECL_EXPORT operator QVariant() const;
+    operator QVariant() const;
 };
 Q_DECLARE_SHARED(QGLPolygonF)
 
-class QGLDoubleList : public QList<qreal> {
+class QGL_EXPORT QGLDoubleList : public QList<qreal> {
    public:
     using QList<qreal>::QList;
     QGLDoubleList() = default;
     QGLDoubleList(const QList<qreal> &v) : QList<qreal>(v) {}
     QGLDoubleList(QList<qreal> &&v) noexcept : QList<qreal>(std::move(v)) {}
     inline void swap(QGLDoubleList &other) { QList<qreal>::swap(other); }
-    Q_DECL_EXPORT operator QVariant() const;
+    operator QVariant() const;
 };
 Q_DECLARE_SHARED(QGLDoubleList)
 
-Q_DECL_EXPORT void registerConvertions();
+QGL_EXPORT void registerConvertions();
