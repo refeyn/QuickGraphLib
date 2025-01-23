@@ -116,12 +116,14 @@ Window {
         border.width: 0
 
         Loader {
+            id: loader
             source: exampleUrl
             anchors.fill: parent
+            asynchronous: true
         }
     }
     onFrameSwapped: {
-        if (root.hasExported) return;
+        if (root.hasExported || loader.status != Loader.Ready) return;
         content.ensurePolished();
         let res = content.grabToImage(result => {
             result.saveToFile(root.outputGrabUrl);
