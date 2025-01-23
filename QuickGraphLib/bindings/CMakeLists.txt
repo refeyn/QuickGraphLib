@@ -74,6 +74,8 @@ if(DEFINED QT_HOST_PATH)
     list(APPEND INCLUDES "-I${QT_HOST_PATH}/include")
     list(APPEND INCLUDES "-I${QT_HOST_PATH}/include/QtCore")
     list(APPEND INCLUDES "-I${QT_HOST_PATH}/include/QtGui")
+    list(APPEND INCLUDES "-I${QT_HOST_PATH}/include/QtQml")
+    list(APPEND INCLUDES "-I${QT_HOST_PATH}/include/QtQuick")
 else()
     get_property(
         QT_CORE_INCLUDE_DIRS
@@ -91,6 +93,22 @@ else()
     foreach(INCLUDE_DIR ${QT_GUI_INCLUDE_DIRS})
         list(APPEND INCLUDES "-I${INCLUDE_DIR}")
     endforeach()
+    get_property(
+        QT_QML_INCLUDE_DIRS
+        TARGET Qt6::Qml
+        PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    )
+    foreach(INCLUDE_DIR ${QT_QML_INCLUDE_DIRS})
+        list(APPEND INCLUDES "-I${INCLUDE_DIR}")
+    endforeach()
+    get_property(
+        QT_QUICK_INCLUDE_DIRS
+        TARGET Qt6::Quick
+        PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    )
+    foreach(INCLUDE_DIR ${QT_QUICK_INCLUDE_DIRS})
+        list(APPEND INCLUDES "-I${INCLUDE_DIR}")
+    endforeach()
 endif()
 
 # We need to include the headers for the module bindings that we use.
@@ -98,7 +116,19 @@ set(pyside_additional_includes "")
 foreach(INCLUDE_DIR ${pyside_include_dir})
     list(APPEND pyside_additional_includes "${INCLUDE_DIR}/QtCore")
     list(APPEND pyside_additional_includes "${INCLUDE_DIR}/QtGui")
+    list(APPEND pyside_additional_includes "${INCLUDE_DIR}/QtQml")
+    list(APPEND pyside_additional_includes "${INCLUDE_DIR}/QtQuick")
+    list(APPEND pyside_additional_includes "${INCLUDE_DIR}/QtNetwork")
+    list(APPEND pyside_additional_includes "${INCLUDE_DIR}/QtOpenGL")
 endforeach()
+
+# Fix missing doc file that causes the QML typesystem parsing to fail
+file(MAKE_DIRECTORY ${pyside_typesystems_path}/PySide6/doc)
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/qtqml.rst
+    ${pyside_typesystems_path}/PySide6/doc/qtqml_functions.rst
+    COPYONLY
+)
 
 set(shiboken_options
     --generator-set=shiboken
@@ -122,6 +152,7 @@ set(generated_sources
     ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib/_QuickGraphLib/_quickgraphlib_module_wrapper.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib/_QuickGraphLib/qglpolygonf_wrapper.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib/_QuickGraphLib/qgldoublelist_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib/_QuickGraphLib/helpers_wrapper.cpp
 )
 
 # Add custom target to run shiboken to generate the binding cpp files.
@@ -168,6 +199,8 @@ target_link_libraries(
         QuickGraphLib
         Qt6::Core
         Qt6::Gui
+        Qt6::Qml
+        Qt6::Quick
 )
 
 # Generate .pyi stub file

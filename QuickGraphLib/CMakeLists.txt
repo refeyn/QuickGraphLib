@@ -25,6 +25,7 @@ qt_add_qml_module(QuickGraphLib
     SOURCES
         helpers/Helpers.cpp helpers/Helpers.hpp helpers/AxisHelper.hpp helpers/AxisHelper.cpp helpers/Foreign.hpp
         ImageView.hpp ImageView.cpp ColorMaps.hpp ColorMaps.cpp DataTypes.hpp DataTypes.cpp bindings/Bindings.hpp QuickGraphLib.hpp
+        Global.hpp
 )
 set_property(
     TARGET QuickGraphLib
@@ -34,6 +35,7 @@ set_property(
     TARGET QuickGraphLib
     PROPERTY RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
+target_compile_definitions(QuickGraphLib PRIVATE QGL_LIBRARY)
 
 target_compile_definitions(
     QuickGraphLib

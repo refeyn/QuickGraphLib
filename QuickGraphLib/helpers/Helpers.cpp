@@ -17,9 +17,24 @@
     \brief Helper functions for building graphs.
 */
 
+/*!
+    \class Helpers
+    \inmodule QuickGraphLib
+    \inheaderfile QuickGraphLib
+
+    \brief Helper functions for building graphs.
+
+    \sa QuickGraphLib::Helpers
+*/
+
 const std::vector<qreal> STEPS = {0.2, 0.25, 0.5, 1};
 
-QList<qreal> Helpers::linspace(qreal min, qreal max, int num) const {
+/*!
+    \fn QList<qreal> Helpers::linspace(qreal min, qreal max, int num)
+
+    Returns a list of \a num values equally spaced from \a min and \a max (inclusive).
+*/
+QList<qreal> Helpers::linspace(qreal min, qreal max, int num) {
     /*!
         \qmlmethod list<real> Helpers::linspace(real min, real max, int num)
 
@@ -36,7 +51,12 @@ QList<qreal> Helpers::linspace(qreal min, qreal max, int num) const {
     return result;
 }
 
-QList<int> Helpers::range(int min, int max, int step /* = 1 */) const {
+/*!
+    \fn QList<int> Helpers::range(int min, int max, int step = 1)
+
+    Returns a list of values from \a min to \a max (exclusive) with a gap of \a step between each one.
+*/
+QList<int> Helpers::range(int min, int max, int step /* = 1 */) {
     /*!
         \qmlmethod list<int> Helpers::range(int min, int max, int step = 1)
 
@@ -57,7 +77,12 @@ QList<int> Helpers::range(int min, int max, int step /* = 1 */) const {
     return result;
 }
 
-QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum) const {
+/*!
+    \fn QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum)
+
+    Returns a list of at most \a maxNum nice tick locations values equally spaced between \a min and \a max.
+*/
+QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum) {
     /*!
         \qmlmethod list<real> Helpers::tickLocator(real min, real max, int maxNum)
 
@@ -91,7 +116,12 @@ QPolygonF mapPointsInner(const QList<QPointF>& poly, QMatrix4x4 dataTranform) {
     return newPoly;
 }
 
-QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) const {
+/*!
+    \fn Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform)
+
+    Maps each point in \a points though the transform defined by \a dataTransform.
+*/
+QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) {
     /*!
         \qmlmethod QPolygonF Helpers::mapPoints(var points, matrix4x4 dataTransform)
 
@@ -338,7 +368,21 @@ void exportToPaintDevice(QQuickItem* item, QPaintDevice* device) {
     painter.end();
 }
 
-bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
+/*!
+    \fn bool Helpers::exportToSvg(QQuickItem* item, QUrl path)
+
+    Exports the graph in \a item to an SVG file at \a path. Returns a boolean indicating success.
+
+    \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
+        PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
+        more information.
+
+    \note Clip paths for SVGs are only supported in Qt 6.7+. If your graph needs clipping, ensure you are using a Qt
+        version that supports it.
+
+    \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
+*/
+bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
     /*!
         \qmlmethod bool Helpers::exportToSvg(Item obj, url path)
 
@@ -353,6 +397,10 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
 
         \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
     */
+
+    if (!item) {
+        return false;
+    }
 
     {
         QSvgGenerator device;
@@ -376,9 +424,21 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) const {
     return true;
 }
 
-bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) const {
+/*!
+    \fn bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi = 96 * 2)
+
+    Exports the graph in \a item to an PNG file at \a path with the resolution \a dpi. Returns a boolean indicating
+    success.
+
+    \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
+        PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
+        more information.
+
+    \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
+*/
+bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
     /*!
-        \qmlmethod void Helpers::exportToPng(Item obj, url path, int dpi = 96 * 2)
+        \qmlmethod bool Helpers::exportToPng(Item obj, url path, int dpi = 96 * 2)
 
         Exports the graph in \a obj to an PNG file at \a path with the resolution \a dpi. Returns a boolean indicating
         success.
@@ -390,6 +450,10 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
         \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
     */
 
+    if (!item) {
+        return false;
+    }
+
     auto device = QPixmap(std::ceil(item->width() * dpi / 96), std::ceil(item->height() * dpi / 96));
     device.fill(Qt::GlobalColor::transparent);
     device.setDevicePixelRatio(dpi / 96);
@@ -397,7 +461,24 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) c
     return device.save(path.toLocalFile());
 }
 
-QPicture Helpers::exportToPicture(QQuickItem* item) const {
+/*!
+    \fn QPicture Helpers::exportToPicture(QQuickItem* item)
+
+    Exports the graph in \a item to a QPicture.
+
+    \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
+        PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
+        more information.
+
+    \note Using this method, followed by saving to an image should give the same result as the other functions
+        (ignoring some differences in the output that result in equivalent display). One exception is that exporting
+        an ImageView as SVG will result in images rendering using the "optimiseSpeed" setting when they are not
+        smooth. For reliable rendering across multiple programs, it is better to replace this with "pixelated". \l
+        Helpers::exportToSvg does this correction automatically.
+
+    \sa Helpers::exportToPng, Helpers::exportToSvg, {Exporting graphs}
+*/
+QPicture Helpers::exportToPicture(QQuickItem* item) {
     /*!
         \qmlmethod QPicture Helpers::exportToPicture(Item obj)
 
@@ -417,6 +498,8 @@ QPicture Helpers::exportToPicture(QQuickItem* item) const {
      */
 
     QPicture device;
-    exportToPaintDevice(item, &device);
+    if (item) {
+        exportToPaintDevice(item, &device);
+    }
     return device;
 }
