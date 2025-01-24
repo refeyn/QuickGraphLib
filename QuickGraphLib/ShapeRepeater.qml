@@ -1,8 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 // SPDX-License-Identifier: MIT
 
+import QtQuick
 import QtQml.Models as QQM
 import QtQuick.Shapes as QQS
+import QuickGraphLib as QuickGraphLib
 
 /*!
     \qmltype ShapeRepeater
@@ -14,14 +16,29 @@ import QtQuick.Shapes as QQS
 */
 
 QQM.Instantiator {
+    id: root
+
     /*!
         The GraphArea to add children to.
     */
     required property QQS.Shape graphArea
 
-    onObjectAdded: (i, obj) => graphArea.data.push(obj)
+    function forceResync() {
+        if (graphArea.Window.window !== null) {
+            let renderer = graphArea.preferredRendererType;
+            let otherRenderer = graphArea.preferredRendererType === QQS.Shape.CurveRenderer ? QQS.Shape.GeometryRenderer : QQS.Shape.CurveRenderer;
+            graphArea.preferredRendererType = otherRenderer;
+            graphArea.ensurePolished();
+            graphArea.preferredRendererType = renderer;
+        }
+    }
+
+    onObjectAdded: (i, obj) => {
+        QuickGraphLib.ShapeRepeaterHelper.insertObject(graphArea, root, obj, i);
+        forceResync();
+    }
     onObjectRemoved: (i, obj) => {
-        // Remove everything into a JS array and then add back in all items except for `obj`
-        graphArea.data.splice(0, graphArea.data.length).filter(o => o !== obj).map(x => graphArea.data.push(x));
+        QuickGraphLib.ShapeRepeaterHelper.removeObject(graphArea, obj);
+        forceResync();
     }
 }
