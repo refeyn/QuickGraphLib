@@ -36,6 +36,7 @@ QQS.ShapePath {
     */
     required property rect viewRect
 
+    pathHints: QQS.ShapePath.PathLinear | QQS.ShapePath.PathConvex | QQS.ShapePath.PathSolid
     startX: topLeftPoint.x
     startY: topLeftPoint.y
 

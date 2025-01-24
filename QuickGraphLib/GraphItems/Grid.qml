@@ -50,6 +50,7 @@ QQS.ShapePath {
     capStyle: QQS.ShapePath.RoundCap
     fillColor: "transparent"
     joinStyle: QQS.ShapePath.RoundJoin
+    pathHints: QQS.ShapePath.PathLinear
 
     PathMultiline {
         paths: helper.paths

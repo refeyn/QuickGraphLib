@@ -19,6 +19,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
 
         auto isVertical = direction == Top || direction == Bottom;
         auto longAxis = isVertical ? width : height;
+        std::sort(ticks.begin(), ticks.end());
 
         // Calculate everything as if we were a bottom axis
         auto points = QList{QPointF{0, 0}};
@@ -66,6 +67,13 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
             case Bottom: {
                 break;
             }
+        }
+
+        // Axis stroke width is 1px, so round positions to the nearest half pixel so that the line covers a single
+        // pixel.
+        for (auto &p : points) {
+            p.setY(round(p.y() + 0.5) - 0.5);
+            p.setX(round(p.x() + 0.5) - 0.5);
         }
 
         // Update tick items model

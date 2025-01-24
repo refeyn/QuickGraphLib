@@ -46,6 +46,7 @@ QQS.ShapePath {
 
     capStyle: QQS.ShapePath.RoundCap
     joinStyle: QQS.ShapePath.RoundJoin
+    pathHints: QQS.ShapePath.PathLinear
 
     PathPolyline {
         path: root._helper.path
