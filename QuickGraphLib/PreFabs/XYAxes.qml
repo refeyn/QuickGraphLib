@@ -27,6 +27,10 @@ QuickGraphLib.AntialiasingContainer {
     */
     property alias background: background
     /*!
+        The padding below the XYAxes
+    */
+    property int bottomPadding: 15
+    /*!
         An alias to the data transform of the graph area.
 
         \sa GraphArea::dataTransform
@@ -46,6 +50,10 @@ QuickGraphLib.AntialiasingContainer {
     */
     property alias grid: grid
     /*!
+        The padding to the left of the XYAxes
+    */
+    property int leftPadding: 15
+    /*!
         Maximum number of ticks to show on the X axis.
 
         \sa Helpers::tickLocator
@@ -58,6 +66,14 @@ QuickGraphLib.AntialiasingContainer {
     */
     property int numYTicks: 11
     /*!
+        The padding to the right of the XYAxes
+    */
+    property int rightPadding: 15
+    /*!
+        The spacing between the title and the axes.
+    */
+    property double spacing: 0
+    /*!
         The title of the graph.
     */
     property alias title: titleLabel.text
@@ -65,6 +81,10 @@ QuickGraphLib.AntialiasingContainer {
         An alias to the title item of the graph (a \l Text).
     */
     property alias titleItem: titleLabel
+    /*!
+        The padding above the XYAxes
+    */
+    property int topPadding: 15
     /*!
         An alias to the view rect of the graph area.
 
@@ -101,8 +121,11 @@ QuickGraphLib.AntialiasingContainer {
     QQL.GridLayout {
         id: axes
 
+        anchors.bottomMargin: root.bottomPadding
         anchors.fill: parent
-        anchors.margins: 15
+        anchors.leftMargin: root.leftPadding
+        anchors.rightMargin: root.rightPadding
+        anchors.topMargin: root.topPadding
         columnSpacing: 0
         columns: 2
         rowSpacing: 0
@@ -111,6 +134,7 @@ QuickGraphLib.AntialiasingContainer {
             id: titleLabel
 
             QQL.Layout.alignment: Qt.AlignCenter
+            QQL.Layout.bottomMargin: root.spacing
             QQL.Layout.columnSpan: axes.columns
             visible: text !== ""
         }
