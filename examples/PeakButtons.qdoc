@@ -1,0 +1,15 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Peak buttons
+    \ingroup quickgraphlibdemos
+    \brief A histogram with a button and mouse area above each peak.
+    \example buttons
+
+    \image examples/PeakButtons.png
+
+    This example demonstrates controls and other interactive elements positioned based on the data.
+
+    \quotefile examples/PeakButtons.qml
+*/
