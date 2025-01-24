@@ -25,7 +25,7 @@ Item {
         anchors.fill: parent
         anchors.margins: 4
 
-        QuickGraphLib.AntialiasingContainer {
+        Item {
             QQL.Layout.fillHeight: true
             QQL.Layout.fillWidth: true
 

@@ -40,6 +40,7 @@ QQS.ShapePath {
     */
     required property double xMin
 
+    pathHints: QQS.ShapePath.PathLinear | QQS.ShapePath.PathConvex | QQS.ShapePath.PathSolid
     startX: topLeftPoint.x
     startY: topLeftPoint.y
     strokeColor: "transparent"

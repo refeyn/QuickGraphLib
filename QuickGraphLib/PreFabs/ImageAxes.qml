@@ -9,13 +9,13 @@ import QuickGraphLib.GraphItems as QGLGraphItems
 /*!
     \qmltype ImageAxes
     \inqmlmodule QuickGraphLib.PreFabs
-    \inherits QuickGraphLib::AntialiasingContainer
+    \inherits Item
     \brief Displays an image with axes and a colorbar.
 
     \sa {Color mesh}
 */
 
-QuickGraphLib.AntialiasingContainer {
+Item {
     id: root
 
     /*!

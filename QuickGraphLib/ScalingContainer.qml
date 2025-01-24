@@ -6,7 +6,7 @@ import QtQuick
 /*!
     \qmltype ScalingContainer
     \inqmlmodule QuickGraphLib
-    \inherits AntialiasingContainer
+    \inherits Item
     \brief Scales its contents while preserving the aspect ratio.
 
     This container applies a scaling factor to its content item that preserves its aspect ratio.
@@ -14,7 +14,7 @@ import QtQuick
     \sa {Scaled graph}
 */
 
-AntialiasingContainer {
+Item {
     id: container
 
     /*!

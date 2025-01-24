@@ -11,6 +11,13 @@ import QtQuick.Shapes as QQS
     \brief An area that graphs can be added to.
 
     \sa {Basic sin graph (without prefabs)}, {Inverted axes}
+
+    \section2 Antialiasing
+
+    By default, the graph area sets \l {Shape::preferredRendererType} to \c {Shape.CurveRenderer}.
+    This turns on high-quality antialiasing, which generally results in much better looking graphs.
+    However, it may require more GPU performance, so switching this back to \c {Shape.GeometryRenderer}
+    may help on low-power systems. See \l {Shape::rendererType} for more details.
 */
 
 QQS.Shape {
@@ -81,5 +88,6 @@ QQS.Shape {
     clip: true
     // Set initial size to prevent Shape's automatically calculated implicitWidth resulting in binding loops
     height: 100
+    preferredRendererType: QQS.Shape.CurveRenderer
     width: 100
 }

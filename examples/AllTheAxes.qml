@@ -6,7 +6,7 @@ import QtQuick.Layouts as QQL
 import QuickGraphLib as QuickGraphLib
 import QuickGraphLib.GraphItems as QGLGraphItems
 
-QuickGraphLib.AntialiasingContainer {
+Item {
     QQL.GridLayout {
         anchors.fill: parent
         anchors.margins: 20

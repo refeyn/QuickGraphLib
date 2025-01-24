@@ -34,6 +34,7 @@ QQS.ShapePath {
     capStyle: QQS.ShapePath.RoundCap
     fillColor: "transparent"
     joinStyle: QQS.ShapePath.RoundJoin
+    pathHints: QQS.ShapePath.PathLinear
 
     PathMultiline {
         paths: root.paths.map(ps => QuickGraphLib.Helpers.mapPoints(ps, root.dataTransform))
