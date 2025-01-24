@@ -4,7 +4,7 @@
 /*!
     \title Peak buttons
     \ingroup quickgraphlibdemos
-    \brief A histogram with a button and mouse area above each peak
+    \brief A histogram with a button and mouse area above each peak.
     \example buttons
 
     \image examples/PeakButtons.png
