@@ -70,6 +70,10 @@ QuickGraphLib.AntialiasingContainer {
     */
     property int rightPadding: 15
     /*!
+        The spacing between the title and the axes.
+    */
+    property double spacing: 0
+    /*!
         The title of the graph.
     */
     property alias title: titleLabel.text
@@ -77,10 +81,6 @@ QuickGraphLib.AntialiasingContainer {
         An alias to the title item of the graph (a \l Text).
     */
     property alias titleItem: titleLabel
-    /*!
-        The spacing between the title and the axes.
-    */
-    property double spacing: 0
     /*!
         The padding above the XYAxes
     */
@@ -121,11 +121,11 @@ QuickGraphLib.AntialiasingContainer {
     QQL.GridLayout {
         id: axes
 
-        anchors.fill: parent
-        anchors.topMargin: root.topPadding
         anchors.bottomMargin: root.bottomPadding
+        anchors.fill: parent
         anchors.leftMargin: root.leftPadding
         anchors.rightMargin: root.rightPadding
+        anchors.topMargin: root.topPadding
         columnSpacing: 0
         columns: 2
         rowSpacing: 0
@@ -134,9 +134,9 @@ QuickGraphLib.AntialiasingContainer {
             id: titleLabel
 
             QQL.Layout.alignment: Qt.AlignCenter
+            QQL.Layout.bottomMargin: root.spacing
             QQL.Layout.columnSpan: 2
             visible: text !== ""
-            QQL.Layout.bottomMargin: root.spacing
         }
         QuickGraphLib.Axis {
             id: yAxis
