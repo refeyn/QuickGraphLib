@@ -10,6 +10,7 @@ from PySide6 import QtCore, QtGui, QtQml, QtQuick, QtQuickControls2
 
 import QuickGraphLib
 from examples import conway  # pylint: disable=unused-import
+from tests import python_exporter
 
 EXAMPLE_PATHS = [
     path
@@ -59,6 +60,8 @@ class PictureSaver(QtCore.QObject):
 
 
 def compare_images(a: pathlib.Path, b: pathlib.Path, width: int, height: int) -> float:
+    assert a.exists()
+    assert b.exists()
     a_img = QtGui.QImage(str(a))
     b_img = QtGui.QImage(str(b))
     assert a_img.width() == b_img.width() == width
@@ -116,12 +119,14 @@ Window {
         border.width: 0
 
         Loader {
+            id: loader
             source: exampleUrl
             anchors.fill: parent
+            asynchronous: true
         }
     }
     onFrameSwapped: {
-        if (root.hasExported) return;
+        if (root.hasExported || loader.status != Loader.Ready) return;
         content.ensurePolished();
         let res = content.grabToImage(result => {
             result.saveToFile(root.outputGrabUrl);
@@ -154,6 +159,60 @@ Window {
             compare_images(grab_path, REFERENCE_PATH / grab_path.name, 800, 600)
             <= THRESHOLD
         )
+        assert (
+            compare_images(png_path, REFERENCE_PATH / png_path.name, 1600, 1200)
+            <= THRESHOLD
+        )
+        # TODO SVG and QPicture comparisons
+
+
+@pytest.mark.parametrize("example_path", EXAMPLE_PATHS, ids=lambda p: str(p.stem))
+def test_export_python(
+    example_path: pathlib.Path, qapp: QtGui.QGuiApplication, tmp_path: pathlib.Path
+) -> None:
+    png_path = tmp_path / f"{example_path.stem}.png"
+    svg_path = tmp_path / f"{example_path.stem}.svg"
+    picture_path = tmp_path / f"{example_path.stem}.dat"
+    qml_path = tmp_path / f"{example_path.stem}_with_bg.qml"
+    qml_path.write_text(
+        r"""
+import QtQuick
+
+Rectangle {
+    id: root
+    required property url exampleUrl
+    color: "white"
+    border.width: 0
+
+    Loader {
+        source: root.exampleUrl
+        anchors.fill: parent
+    }
+}
+"""
+    )
+
+    with python_exporter.export(
+        qml_path, {"exampleUrl": QtCore.QUrl.fromLocalFile(example_path)}
+    ) as item:
+        QuickGraphLib.Helpers.exportToPicture(item).save(str(picture_path))
+        success = QuickGraphLib.Helpers.exportToPng(
+            item, QtCore.QUrl.fromLocalFile(png_path)
+        )
+        assert success
+        success = QuickGraphLib.Helpers.exportToSvg(
+            item, QtCore.QUrl.fromLocalFile(svg_path)
+        )
+        assert success
+
+    if GENERATE_REFERENCE_IMAGES:
+        for fname in [png_path, svg_path, picture_path]:
+            reference_path = REFERENCE_PATH / fname.name
+            if reference_path.exists():
+                reference_path.unlink()
+            fname.rename(reference_path)
+
+    else:
         assert (
             compare_images(png_path, REFERENCE_PATH / png_path.name, 1600, 1200)
             <= THRESHOLD

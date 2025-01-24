@@ -5,6 +5,7 @@
 -->
 <typesystem package="QuickGraphLib._QuickGraphLib">
     <load-typesystem name="typesystem_gui.xml" generate="no"/>
+    <load-typesystem name="typesystem_quick.xml" generate="no"/>
     <value-type name="QGLDoubleList">
         <inject-code class="native" position="beginning">
             #include &lt;sbknumpycheck.h&gt;
@@ -26,4 +27,5 @@
             <inject-code file="glue/DataTypes.cpp" snippet="qglpolygonf-fromndarray"/>
         </add-function>
     </value-type>
+    <object-type name="Helpers"/>
 </typesystem>

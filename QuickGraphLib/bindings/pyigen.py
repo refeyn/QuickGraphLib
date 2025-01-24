@@ -8,13 +8,14 @@ import re
 import sys
 from typing import ContextManager
 
-import PySide6.QtGui
+import PySide6.QtQuick
+import PySide6.QtSvg
 import shiboken6  # pylint: disable=unused-import
 from shibokensupport.signature.lib import (  # type: ignore[import-not-found] # pylint: disable=import-error
     pyi_generator,
 )
 
-_dll_path = pathlib.Path(sys.argv[1]).parent
+_dll_path = pathlib.Path(sys.argv[1].replace("bindings", "")).parent
 os.environ["PATH"] = os.fspath(_dll_path) + os.pathsep + os.environ["PATH"]
 if hasattr(os, "add_dll_directory"):
     cm: ContextManager = os.add_dll_directory(os.fspath(_dll_path))

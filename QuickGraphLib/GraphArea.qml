@@ -79,6 +79,7 @@ QQS.Shape {
     }
 
     clip: true
-    implicitHeight: 100
-    implicitWidth: 100
+    // Set initial size to prevent Shape's automatically calculated implicitWidth resulting in binding loops
+    height: 100
+    width: 100
 }

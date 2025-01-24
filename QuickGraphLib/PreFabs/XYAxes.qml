@@ -7,7 +7,7 @@ import QuickGraphLib as QuickGraphLib
 import QuickGraphLib.GraphItems as QGLGraphItems
 
 /*!
-    \qmltype Line
+    \qmltype XYAxes
     \inqmlmodule QuickGraphLib.PreFabs
     \inherits QuickGraphLib::AntialiasingContainer
     \brief Displays an XY axis with a grid.
@@ -135,7 +135,7 @@ QuickGraphLib.AntialiasingContainer {
 
             QQL.Layout.alignment: Qt.AlignCenter
             QQL.Layout.bottomMargin: root.spacing
-            QQL.Layout.columnSpan: 2
+            QQL.Layout.columnSpan: axes.columns
             visible: text !== ""
         }
         QuickGraphLib.Axis {

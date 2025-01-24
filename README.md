@@ -23,7 +23,7 @@ The example gallery can be run using (provided the Python environment has [PySid
 python examples/gallery.py
 ```
 
-<p align="center"><img src="https://github.com/refeyn/QuickGraphLib/assets/103422031/56fdff62-ef77-4184-9f43-59a76b92d728" width="80%"></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/19fa3b50-9a86-458d-b7c2-7a6fc95f0b6c" width="80%"></p>
 
 ## Qt version compatibility
 
