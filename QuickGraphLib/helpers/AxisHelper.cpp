@@ -19,7 +19,12 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
 
         auto isVertical = direction == Top || direction == Bottom;
         auto longAxis = isVertical ? width : height;
-        std::sort(ticks.begin(), ticks.end());
+        if (isVertical) {
+            std::sort(ticks.begin(), ticks.end());
+        }
+        else {
+            std::sort(ticks.begin(), ticks.end(), std::greater<double>());
+        }
 
         // Calculate everything as if we were a bottom axis
         auto points = QList{QPointF{0, 0}};
