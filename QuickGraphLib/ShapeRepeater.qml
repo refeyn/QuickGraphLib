@@ -18,6 +18,11 @@ import QuickGraphLib as QuickGraphLib
     the ShapeRepeater instantiates will be inserted, in order, immediately after the repeater's
     position in the list of shape paths.
 
+    \note The ShapeRepeater must temporarily remove the children of the GraphArea in order to add/remove paths it
+    instantiates. This is fine for most elements, but \l Repeaters will destroy all of their children when this
+    happens. This may cause performance issues or loss of state. If this is an issue, place the Repeater outside
+    the GraphArea or inside an \l Item.
+
     \sa {Peak buttons}
 */
 
