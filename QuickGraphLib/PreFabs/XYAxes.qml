@@ -137,6 +137,10 @@ Item {
             QQL.Layout.bottomMargin: root.spacing
             QQL.Layout.columnSpan: axes.columns
             visible: text !== ""
+
+            QQL.Layout.fillWidth: true
+            elide: Text.ElideRight
+            horizontalAlignment: Text.AlignHCenter
         }
         QuickGraphLib.Axis {
             id: yAxis
