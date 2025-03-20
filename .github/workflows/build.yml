@@ -24,8 +24,8 @@ jobs:
         with:
           python-version: "3.10.11"
           architecture: "x64"
-          # cache: "pip"
-          # cache-dependency-path: "./requirements.txt"
+          cache: "pip"
+          cache-dependency-path: "./requirements.txt"
 
       - name: Install Qt
         uses: jurplel/install-qt-action@c6c7281365daef91a238e1c2ddce4eaa94a2991d # v4
@@ -36,8 +36,7 @@ jobs:
           archives: "qttools qtdeclarative qtbase qtsvg icu"
           documentation: true
           doc-archives: "qtcore qtgui qtqml qtqmlcore qtqmlmodels qtquick qtquickcontrols qtquickdialogs qtsvg"
-          # cache: true
-          # 
+          cache: true
 
       - name: Build sdist
         run: |
