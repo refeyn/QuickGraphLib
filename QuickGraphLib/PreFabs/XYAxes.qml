@@ -133,9 +133,11 @@ Item {
         Text {
             id: titleLabel
 
-            QQL.Layout.alignment: Qt.AlignCenter
             QQL.Layout.bottomMargin: root.spacing
             QQL.Layout.columnSpan: axes.columns
+            QQL.Layout.fillWidth: true
+            elide: Text.ElideRight
+            horizontalAlignment: Text.AlignHCenter
             visible: text !== ""
         }
         QuickGraphLib.Axis {
