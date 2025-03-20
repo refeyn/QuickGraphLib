@@ -28,7 +28,8 @@ jobs:
           cache-dependency-path: "./requirements.txt"
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@c6c7281365daef91a238e1c2ddce4eaa94a2991d # v4
+        # uses: jurplel/install-qt-action@c6c7281365daef91a238e1c2ddce4eaa94a2991d # v4
+        uses: jurplel/install-qt-action@v4
         with:
           aqtversion: "==3.1.*"
           version: "6.8.0"
@@ -49,7 +50,8 @@ jobs:
           name: QuickGraphLib-sdist
           path: dist/*.tar.gz
 
-      - uses: KyleMayes/install-llvm-action@e0a8dc9cb8a22e8a7696e8a91a4e9581bec13181 # v2
+      # - uses: KyleMayes/install-llvm-action@e0a8dc9cb8a22e8a7696e8a91a4e9581bec13181 # v2
+      - uses: KyleMayes/install-llvm-action@v2
         with:
           version: 18
 
@@ -93,13 +95,15 @@ jobs:
       - name: Rename sdist package
         run: mv dist/*.tar.gz sdist.tar.gz
 
-      - uses: KyleMayes/install-llvm-action@e0a8dc9cb8a22e8a7696e8a91a4e9581bec13181 # v2
+      # - uses: KyleMayes/install-llvm-action@e0a8dc9cb8a22e8a7696e8a91a4e9581bec13181 # v2
+      - uses: KyleMayes/install-llvm-action@v2
         if: ${{ matrix.os == 'windows-latest' }}
         with:
           version: 18
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@932529cab190fafca8c735a551657247fa8f8eaf # v2.19.1
+        # uses: pypa/cibuildwheel@932529cab190fafca8c735a551657247fa8f8eaf # v2.19.1
+        uses: pypa/cibuildwheel@v2.19.1
         with:
           package-dir: sdist.tar.gz
 
