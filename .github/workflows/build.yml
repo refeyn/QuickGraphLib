@@ -102,8 +102,8 @@ jobs:
           version: 18
 
       - name: Build wheels
-        # uses: pypa/cibuildwheel@932529cab190fafca8c735a551657247fa8f8eaf # v2.19.1
-        uses: pypa/cibuildwheel@v2.19.1
+        uses: pypa/cibuildwheel@932529cab190fafca8c735a551657247fa8f8eaf # v2.19.1
+        # uses: pypa/cibuildwheel@v2.19.1
         with:
           package-dir: sdist.tar.gz
 
