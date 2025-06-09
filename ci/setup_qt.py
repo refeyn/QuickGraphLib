@@ -19,7 +19,7 @@ elif sys.platform == "darwin":
 else:
     raise RuntimeError(f"Unknown platform {sys.platform}")
 
-subprocess.run(["pip", "install", "aqtinstall==3.1.*"], check=True)
+subprocess.run(["pip", "install", "aqtinstall==3.3.*"], check=True)
 subprocess.run(
     [
         "aqt",
