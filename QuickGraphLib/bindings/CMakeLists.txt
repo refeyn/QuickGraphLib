@@ -31,21 +31,21 @@ find_path(
 )
 find_library(
     shiboken_shared_libraries
-    NAMES shiboken6 shiboken6.abi3 libshiboken6.abi3.so.6.8
+    NAMES shiboken6 shiboken6.abi3 libshiboken6.abi3.so.6.9
     PATH_SUFFIXES shiboken6
     PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_library(
     pyside_shared_library
-    NAMES pyside6 pyside6.abi3 libpyside6.abi3.so.6.8
+    NAMES pyside6 pyside6.abi3 libpyside6.abi3.so.6.9
     PATH_SUFFIXES PySide6
     PATHS "${Python_SITELIB}"
     REQUIRED
 )
 find_library(
     pyside_qml_shared_library
-    NAMES pyside6qml pyside6qml.abi3 libpyside6qml.abi3.so.6.8
+    NAMES pyside6qml pyside6qml.abi3 libpyside6qml.abi3.so.6.9
     PATH_SUFFIXES PySide6
     PATHS "${Python_SITELIB}"
     REQUIRED
@@ -56,15 +56,6 @@ if(NOT EXISTS ${shiboken_path})
     message(
         FATAL_ERROR
         "Shiboken executable not found at path: ${shiboken_path}"
-    )
-endif()
-
-if(EXISTS $ENV{LLVM_PATH})
-    # Update shiboken's libclang to fix parsing of recent MSVC C++ headers
-    configure_file(
-        "$ENV{LLVM_PATH}/bin/libclang.dll"
-        "${Python_SITELIB}/shiboken6_generator/libclang.dll"
-        COPYONLY
     )
 endif()
 

@@ -26,7 +26,7 @@ subprocess.run(
         "install-qt",
         qt_platform,
         "desktop",
-        "6.8.0",
+        "6.9.1",
         qt_arch,
         "-O",
         "./qt",
