@@ -335,10 +335,10 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         if (imageView->smooth()) {
             painter->setRenderHint(QPainter::RenderHint::SmoothPixmapTransform, true);
         }
-        painter->drawImage(
-            imageView->paintedRect(),
-            imageView->image().mirrored(imageView->mirrorHorizontally(), imageView->mirrorVertically())
-        );
+        auto flippedFlags = Qt::Orientations();
+        flippedFlags.setFlag(Qt::Horizontal, imageView->mirrorHorizontally());
+        flippedFlags.setFlag(Qt::Vertical, imageView->mirrorVertically());
+        painter->drawImage(imageView->paintedRect(), imageView->image().flipped(flippedFlags));
     }
 
     for (auto c : children) {

@@ -19,14 +19,28 @@ elif sys.platform == "darwin":
 else:
     raise RuntimeError(f"Unknown platform {sys.platform}")
 
-subprocess.run(["pip", "install", "aqtinstall==3.1.*"], check=True)
+if sys.platform == "linux":
+    prefix = "/opt/python/cp312-cp312/bin/"
+else:
+    prefix = ""
+
 subprocess.run(
     [
+        f"{prefix}pip",
+        "install",
+        "aqtinstall==3.3.*",
+    ],
+    check=True,
+)
+subprocess.run(
+    [
+        f"{prefix}python",
+        "-m",
         "aqt",
         "install-qt",
         qt_platform,
         "desktop",
-        "6.8.0",
+        "6.9.2",
         qt_arch,
         "-O",
         "./qt",
