@@ -4,7 +4,7 @@ description = "A scientific graphing library for QtQuick"
 readme = "README.md"
 license = { file = "LICENCE" }
 authors = [{ name = "Matthew Joyce", email = "matthew.joyce@refeyn.com" }]
-dependencies = ["PySide6==6.9.1", "contourpy", "numpy"]
+dependencies = ["PySide6==6.9.2", "contourpy", "numpy"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: X11 Applications :: Qt",
@@ -38,12 +38,12 @@ analyse = [
     "pytest-cov",
     # Building
     "scikit-build-core",
-    "shiboken6_generator==6.9.1",
+    "shiboken6_generator==6.9.2",
     "setuptools_scm",
 ]
 
 [build-system]
-requires = ["scikit-build-core", "shiboken6_generator==6.9.1", "PySide6==6.9.1"]
+requires = ["scikit-build-core", "shiboken6_generator==6.9.2", "PySide6==6.9.2"]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
@@ -73,7 +73,6 @@ test-extras = ["analyse"]
 
 [tool.cibuildwheel.environment]
 SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
-PIP_EXTRA_INDEX_URL = "https://download.qt.io/official_releases/QtForPython/"
 
 [tool.cibuildwheel.macos]
 archs = ["universal2"]
@@ -86,7 +85,6 @@ repair-wheel-command = "cp {wheel} {dest_dir}; wheel tags --remove --platform-ta
 
 [tool.cibuildwheel.linux.environment]
 SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
-PIP_EXTRA_INDEX_URL = "https://download.qt.io/official_releases/QtForPython/"
 LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:$(python ci/find_qt.py)/lib"
 LLVM_INSTALL_DIR = "/usr"
 

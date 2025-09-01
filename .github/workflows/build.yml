@@ -31,7 +31,7 @@ jobs:
         uses: jurplel/install-qt-action@c6c7281365daef91a238e1c2ddce4eaa94a2991d # v4
         with:
           aqtversion: "==3.3.*"
-          version: "6.9.1"
+          version: "6.9.2"
           arch: "win64_msvc2022_64"
           archives: "qttools qtdeclarative qtbase qtsvg icu"
           documentation: true
@@ -41,7 +41,6 @@ jobs:
       - name: Build sdist
         run: |
           pip install build
-          $Env:PIP_EXTRA_INDEX_URL = "https://download.qt.io/official_releases/QtForPython/"
           python -m build --sdist
 
       - uses: actions/upload-artifact@v4
