@@ -28,7 +28,7 @@ jobs:
           cache-dependency-path: "./requirements.txt"
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@c6c7281365daef91a238e1c2ddce4eaa94a2991d # v4
+        uses: jurplel/install-qt-action@d325aaf2a8baeeda41ad0b5d39f84a6af9bcf005 # v4
         with:
           aqtversion: "==3.3.*"
           version: "6.9.2"
