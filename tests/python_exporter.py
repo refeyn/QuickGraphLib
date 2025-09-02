@@ -5,7 +5,7 @@ import contextlib
 import pathlib
 from typing import Any, Iterator
 
-from PySide6 import QtCore, QtQml, QtQuick
+from PySide6 import QtCore, QtGui, QtQml, QtQuick
 
 import QuickGraphLib
 
@@ -63,16 +63,29 @@ def export(
 
     # Bit of funkyness to make sure the items get polished (e.g. laid out properly)
     # which won't happen automatically if we use async incubation
+    rhi = QtGui.QRhi.create(QtGui.QRhi.Implementation.Null, QtGui.QRhiNullInitParams())
+    texture = rhi.newTexture(
+        QtGui.QRhiTexture.Format.RGBA8,
+        QtCore.QSize(int(width), int(height)),
+        1,
+        QtGui.QRhiTexture.Flag.RenderTarget,
+    )
+    texture.create()
+    rendertarget = rhi.newTextureRenderTarget(
+        QtGui.QRhiTextureRenderTargetDescription(texture)
+    )
+    rendertarget.setRenderPassDescriptor(
+        rendertarget.newCompatibleRenderPassDescriptor()
+    )
     rendercontrol = QtQuick.QQuickRenderControl()
     window = QtQuick.QQuickWindow(rendercontrol)
-    window.setRenderTarget(QtQuick.QQuickRenderTarget())
+    window.setRenderTarget(QtQuick.QQuickRenderTarget.fromRhiRenderTarget(rendertarget))
     window.resize(int(width), int(height))
-    window.create()
     item.setParentItem(window.contentItem())
     rendercontrol.polishItems()
 
     yield item
 
     # Cleanup
-    window.destroy()
     item.setParentItem(None)  # type: ignore[arg-type]
+    rendertarget.destroy()
