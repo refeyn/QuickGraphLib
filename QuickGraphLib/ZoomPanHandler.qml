@@ -29,7 +29,7 @@ PinchArea {
         Maximum zoom (separate X/Y zoom limits can be set with the width/height of \l size).
 
         Zooming on a particular axis can be disabled by setting the maximum scale for that axis to 1
-        (provided the minimum scale for that axis is left at it's default of 1).
+        (provided the minimum scale for that axis is left at its default of 1).
     */
     property size maxScale: Qt.size(10, 10)
     /*!
