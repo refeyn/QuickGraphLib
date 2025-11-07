@@ -11,11 +11,6 @@ import QuickGraphLib.GraphItems as QGLGraphItems
     \inherits QtQuick::Shapes::ShapePath
     \brief Displays a histogram.
 
-    \warning Rendering of histograms in Qt 6.8 under the curve renderer may include artefacts
-    (see \l {https://bugreports.qt.io/browse/QTBUG-133247}{QTBUG-133247}). If this happens,
-    switch the renderer of the \l GraphArea back to the geometry renderer. This issue should be fixed
-    in a future Qt version.
-
     \sa {Basic histogram}
 */
 
