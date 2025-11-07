@@ -31,7 +31,7 @@ jobs:
         uses: jurplel/install-qt-action@d325aaf2a8baeeda41ad0b5d39f84a6af9bcf005 # v4
         with:
           aqtversion: "==3.3.*"
-          version: "6.9.2"
+          version: "6.10.0"
           arch: "win64_msvc2022_64"
           archives: "qttools qtdeclarative qtbase qtsvg icu"
           documentation: true

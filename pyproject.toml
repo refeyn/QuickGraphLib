@@ -4,7 +4,7 @@ description = "A scientific graphing library for QtQuick"
 readme = "README.md"
 license = { file = "LICENCE" }
 authors = [{ name = "Matthew Joyce", email = "matthew.joyce@refeyn.com" }]
-dependencies = ["PySide6==6.9.2", "contourpy", "numpy"]
+dependencies = ["PySide6==6.10.0", "contourpy", "numpy"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: X11 Applications :: Qt",
@@ -38,12 +38,12 @@ analyse = [
     "pytest-cov",
     # Building
     "scikit-build-core",
-    "shiboken6_generator==6.9.2",
+    "shiboken6_generator==6.10.0",
     "setuptools_scm",
 ]
 
 [build-system]
-requires = ["scikit-build-core", "shiboken6_generator==6.9.2", "PySide6==6.9.2"]
+requires = ["scikit-build-core", "shiboken6_generator==6.10.0", "PySide6==6.10.0"]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
