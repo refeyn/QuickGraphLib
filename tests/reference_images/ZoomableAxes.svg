@@ -106,7 +106,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="#e0e0e0" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,365,0)"
+<g fill="#e0e0e0" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,365,0)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="40" height="40"/>
@@ -169,7 +169,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="#e0e0e0" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,265,0)"
+<g fill="#e0e0e0" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,265,0)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="40" height="40"/>
@@ -247,7 +247,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="#e0e0e0" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,510,0)"
+<g fill="#e0e0e0" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,510,0)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="40" height="40"/>
@@ -310,7 +310,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="#e0e0e0" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,410,0)"
+<g fill="#e0e0e0" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,410,0)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="40" height="40"/>
@@ -430,7 +430,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="#e0e0e0" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,365,45)"
+<g fill="#e0e0e0" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,365,45)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="40" height="40"/>
@@ -493,7 +493,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="#e0e0e0" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,265,45)"
+<g fill="#e0e0e0" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,265,45)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="40" height="40"/>
@@ -571,7 +571,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="#e0e0e0" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,510,45)"
+<g fill="#e0e0e0" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,510,45)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="40" height="40"/>
@@ -634,7 +634,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="#e0e0e0" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,410,45)"
+<g fill="#e0e0e0" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,410,45)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="40" height="40"/>
