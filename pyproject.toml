@@ -79,8 +79,8 @@ archs = ["universal2"]
 
 [tool.cibuildwheel.linux]
 archs = ["x86_64"]                                                                                                   # , "aarch64"]
-manylinux-x86_64-image = "manylinux_2_28"
-manylinux-aarch64-image = "manylinux_2_28"
+manylinux-x86_64-image = "quay.io/pypa/manylinux_2_34_x86_64"
+manylinux-aarch64-image = "quay.io/pypa/manylinux_2_39_aarch64"
 repair-wheel-command = "cp {wheel} {dest_dir}; wheel tags --remove --platform-tag $AUDITWHEEL_PLAT {dest_dir}/*.whl"
 
 [tool.cibuildwheel.linux.environment]
