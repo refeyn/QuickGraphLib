@@ -7,9 +7,10 @@
     <load-typesystem name="typesystem_gui.xml" generate="no"/>
     <load-typesystem name="typesystem_quick.xml" generate="no"/>
     <value-type name="QGLDoubleList">
+        <include file-name="../DataTypes.hpp" location="local"/>
         <inject-code class="native" position="beginning">
             #include &lt;sbknumpycheck.h&gt;
-            #include &lt;QuickGraphLib/bindings/ShibokenHelpers.hpp&gt;
+            #include &lt;ShibokenHelpers.hpp&gt;
         </inject-code>
         <add-function signature="fromNDArray(PyArrayObject*@data@)" static="yes" return-type="QGLDoubleList">
             <inject-code file="glue/DataTypes.cpp" snippet="qgldoublelist-fromndarray"/>
@@ -19,13 +20,16 @@
         <modify-function signature="data()const" remove="all"/>
     </value-type>
     <value-type name="QGLPolygonF">
+        <include file-name="../DataTypes.hpp" location="local"/>
         <inject-code class="native" position="beginning">
             #include &lt;sbknumpycheck.h&gt;
-            #include &lt;QuickGraphLib/bindings/ShibokenHelpers.hpp&gt;
+            #include &lt;ShibokenHelpers.hpp&gt;
         </inject-code>
         <add-function signature="fromNDArray(PyArrayObject*@data@)" static="yes" return-type="QGLPolygonF">
             <inject-code file="glue/DataTypes.cpp" snippet="qglpolygonf-fromndarray"/>
         </add-function>
     </value-type>
-    <object-type name="Helpers"/>
+    <object-type name="Helpers">
+        <include file-name="../helpers/Helpers.hpp" location="local"/>
+    </object-type>
 </typesystem>
