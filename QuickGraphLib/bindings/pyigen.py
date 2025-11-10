@@ -36,9 +36,9 @@ text = (
     path.read_text(encoding="utf-8")
     .replace(
         "import _QuickGraphLib",
-        "import QuickGraphLib._QuickGraphLib\nimport numpy\nimport typing",
+        "import QuickGraphLib._QuickGraphLib\nimport numpy",
     )
-    .replace("shibokensupport.signature.mapping.ArrayLikeVariable", "numpy.ndarray")
+    .replace("collections.abc.Sequence[typing.Any]", "numpy.ndarray")
 )
-text = re.sub(r"'(.*,.*)'", r"Union[\1]", text)
+text = re.sub(r"'(.*,.*)'", r"typing.Union[\1]", text)
 path.write_text(text, encoding="utf-8")
