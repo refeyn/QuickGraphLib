@@ -47,6 +47,17 @@ find_package(Shiboken6 REQUIRED)
 find_package(Shiboken6Tools REQUIRED)
 find_package(PySide6 REQUIRED)
 
+set(shiboken_options "")
+if(CMAKE_CROSSCOMPILING)
+    list(
+        APPEND
+        shiboken_options
+        "--platform=${CMAKE_SYSTEM_NAME}"
+        "--arch=${CMAKE_SYSTEM_PROCESSOR}"
+        "--compiler-path=${CMAKE_CXX_COMPILER}"
+    )
+endif()
+
 shiboken_generator_create_binding(
     EXTENSION_TARGET _QuickGraphLib
     GENERATED_SOURCES
@@ -59,6 +70,7 @@ shiboken_generator_create_binding(
     LIBRARY_TARGET QuickGraphLib
     FORCE_LIMITED_API
     QT_MODULES Core Gui Qml Quick Network OpenGL
+    SHIBOKEN_EXTRA_OPTIONS ${shiboken_options}
 )
 target_sources(
     _QuickGraphLib
