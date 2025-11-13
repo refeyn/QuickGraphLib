@@ -43,20 +43,32 @@ if(ENABLE_MANYLINUX_BUILD)
     )
 endif()
 
-find_package(Shiboken6 REQUIRED)
-find_package(Shiboken6Tools REQUIRED)
-find_package(PySide6 REQUIRED)
-
-set(shiboken_options "")
 if(CMAKE_CROSSCOMPILING)
-    list(
-        APPEND
-        shiboken_options
+    find_package(Shiboken6 REQUIRED)
+    find_package(PySide6 REQUIRED)
+
+    get_target_property(
+        qt_platform_includes
+        Qt6::Platform
+        INTERFACE_INCLUDE_DIRECTORIES
+    )
+    get_target_property(
+        qt_core_includes
+        Qt6::Core
+        INTERFACE_INCLUDE_DIRECTORIES
+    )
+    set(force_process_list ${qt_platform_includes} ${qt_core_includes})
+    string(REPLACE ";" ":" force_process_paths "${force_process_list}")
+    set(shiboken_options
         "--platform=${CMAKE_SYSTEM_NAME}"
         "--arch=${CMAKE_SYSTEM_PROCESSOR}"
         "--compiler-path=${CMAKE_CXX_COMPILER}"
+        "--compiler-argument=--sysroot=${CMAKE_SYSROOT}"
+        "--force-process-system-include-paths=${force_process_paths}"
     )
 endif()
+
+find_package(Shiboken6Tools REQUIRED)
 
 shiboken_generator_create_binding(
     EXTENSION_TARGET _QuickGraphLib
