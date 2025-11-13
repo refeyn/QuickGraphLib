@@ -5,41 +5,43 @@ list(APPEND CMAKE_PROGRAM_PATH "${CMAKE_SOURCE_DIR}/venv/Scripts")
 find_package(Python COMPONENTS Interpreter REQUIRED)
 list(APPEND CMAKE_PREFIX_PATH "${Python_SITELIB}/shiboken6_generator/lib/cmake")
 
-# HACK https://bugreports.qt.io/browse/PYSIDE-3233
-file(
-    READ
-    "${Python_SITELIB}/shiboken6_generator/lib/cmake/Shiboken6Tools/Shiboken6ToolsConfig.cmake"
-    FILE_CONTENTS
-)
-string(
-    REPLACE
-    "find_dependency(Python COMPONENTS Interpreter Development)"
-    "find_dependency(Python COMPONENTS Interpreter Development.Module)"
-    FILE_CONTENTS
-    "${FILE_CONTENTS}"
-)
-file(
-    WRITE
-    "${Python_SITELIB}/shiboken6_generator/lib/cmake/Shiboken6Tools/Shiboken6ToolsConfig.cmake"
-    "${FILE_CONTENTS}"
-)
-file(
-    READ
-    "${Python_SITELIB}/shiboken6/lib/cmake/Shiboken6/ShibokenHelpers.cmake"
-    FILE_CONTENTS
-)
-string(
-    REPLACE
-    "COMPONENTS Interpreter Development\n"
-    "COMPONENTS Interpreter Development.Module\n"
-    FILE_CONTENTS
-    "${FILE_CONTENTS}"
-)
-file(
-    WRITE
-    "${Python_SITELIB}/shiboken6/lib/cmake/Shiboken6/ShibokenHelpers.cmake"
-    "${FILE_CONTENTS}"
-)
+if(ENABLE_MANYLINUX_BUILD)
+    # HACK https://bugreports.qt.io/browse/PYSIDE-3233
+    file(
+        READ
+        "${Python_SITELIB}/shiboken6_generator/lib/cmake/Shiboken6Tools/Shiboken6ToolsConfig.cmake"
+        FILE_CONTENTS
+    )
+    string(
+        REPLACE
+        "find_dependency(Python COMPONENTS Interpreter Development)"
+        "find_dependency(Python COMPONENTS Interpreter Development.Module)"
+        FILE_CONTENTS
+        "${FILE_CONTENTS}"
+    )
+    file(
+        WRITE
+        "${Python_SITELIB}/shiboken6_generator/lib/cmake/Shiboken6Tools/Shiboken6ToolsConfig.cmake"
+        "${FILE_CONTENTS}"
+    )
+    file(
+        READ
+        "${Python_SITELIB}/shiboken6/lib/cmake/Shiboken6/ShibokenHelpers.cmake"
+        FILE_CONTENTS
+    )
+    string(
+        REPLACE
+        "COMPONENTS Interpreter Development\n"
+        "COMPONENTS Interpreter Development.Module\n"
+        FILE_CONTENTS
+        "${FILE_CONTENTS}"
+    )
+    file(
+        WRITE
+        "${Python_SITELIB}/shiboken6/lib/cmake/Shiboken6/ShibokenHelpers.cmake"
+        "${FILE_CONTENTS}"
+    )
+endif()
 
 find_package(Shiboken6Tools REQUIRED)
 
