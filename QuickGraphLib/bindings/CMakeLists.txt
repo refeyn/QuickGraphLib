@@ -43,7 +43,9 @@ if(ENABLE_MANYLINUX_BUILD)
     )
 endif()
 
+find_package(Shiboken6 REQUIRED)
 find_package(Shiboken6Tools REQUIRED)
+find_package(PySide6 REQUIRED)
 
 shiboken_generator_create_binding(
     EXTENSION_TARGET _QuickGraphLib
