@@ -34,23 +34,10 @@ QQM.Instantiator {
     */
     required property QQS.Shape graphArea
 
-    function forceResync() {
-        // Workaround for https://bugreports.qt.io/browse/QTBUG-133230 and https://bugreports.qt.io/browse/QTBUG-133231
-        if (graphArea.Window.window !== null) {
-            let renderer = graphArea.preferredRendererType;
-            let otherRenderer = graphArea.preferredRendererType === QQS.Shape.CurveRenderer ? QQS.Shape.GeometryRenderer : QQS.Shape.CurveRenderer;
-            graphArea.preferredRendererType = otherRenderer;
-            graphArea.ensurePolished();
-            graphArea.preferredRendererType = renderer;
-        }
-    }
-
     onObjectAdded: (i, obj) => {
         QuickGraphLib.ShapeRepeaterHelper.insertObject(graphArea, root, obj, i);
-        forceResync();
     }
     onObjectRemoved: (i, obj) => {
         QuickGraphLib.ShapeRepeaterHelper.removeObject(graphArea, obj);
-        forceResync();
     }
 }

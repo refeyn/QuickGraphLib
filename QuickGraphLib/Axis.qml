@@ -16,10 +16,12 @@ import QuickGraphLib as QuickGraphLib
 
     \section2 Antialiasing
 
-    To turn on high-quality antialiasing, set \l {preferredRendererType} to \c {Shape.CurveRenderer}.
-    This generally results in much better looking graphs, but can also result in rendering problems as the curve renderer is new.
-    It may also require more GPU performance, so switching this back to \c {Shape.GeometryRenderer}
-    may help on low-power systems. See \l {Shape::rendererType} for more details.
+    By default, the axis sets \l {preferredRendererType} to \c {Shape.CurveRenderer}.
+    This turns on high-quality antialiasing, which results in better looking axes on HiDPI systems.
+    However, if you know your application will only be viewed on LoDPI systems, the axes will look
+    slightly better without antialiasing. In addition, antialiasing may require more GPU performance,
+    so switching this back to \c {Shape.GeometryRenderer} may help on low-power systems. See
+    \l {Shape::rendererType} for more details.
 */
 
 Item {
@@ -171,6 +173,7 @@ Item {
         id: shape
 
         anchors.fill: parent
+        preferredRendererType: QQS.Shape.CurveRenderer
 
         QQS.ShapePath {
             id: myPath
