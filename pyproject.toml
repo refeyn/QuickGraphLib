@@ -84,7 +84,7 @@ manylinux-aarch64-image = "quay.io/pypa/manylinux_2_39_aarch64"
 repair-wheel-command = "cp {wheel} {dest_dir}; pip install wheel; wheel tags --remove --platform-tag $AUDITWHEEL_PLAT {dest_dir}/*.whl"
 
 [tool.cibuildwheel.linux.environment]
-SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
+SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\";ENABLE_MANYLINUX_BUILD=ON"
 LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:$(python ci/find_qt.py)/lib"
 LLVM_INSTALL_DIR = "/usr"
 
