@@ -4,7 +4,7 @@ description = "A scientific graphing library for QtQuick"
 readme = "README.md"
 license = { file = "LICENCE" }
 authors = [{ name = "Matthew Joyce", email = "matthew.joyce@refeyn.com" }]
-dependencies = ["PySide6==6.9.2", "contourpy", "numpy"]
+dependencies = ["PySide6==6.10.0", "contourpy", "numpy"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: X11 Applications :: Qt",
@@ -38,12 +38,12 @@ analyse = [
     "pytest-cov",
     # Building
     "scikit-build-core",
-    "shiboken6_generator==6.9.2",
+    "shiboken6_generator==6.10.0",
     "setuptools_scm",
 ]
 
 [build-system]
-requires = ["scikit-build-core", "shiboken6_generator==6.9.2", "PySide6==6.9.2"]
+requires = ["scikit-build-core", "shiboken6_generator==6.10.0", "PySide6==6.10.0"]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
@@ -79,9 +79,9 @@ archs = ["universal2"]
 
 [tool.cibuildwheel.linux]
 archs = ["x86_64"]                                                                                                   # , "aarch64"]
-manylinux-x86_64-image = "manylinux_2_28"
-manylinux-aarch64-image = "manylinux_2_28"
-repair-wheel-command = "cp {wheel} {dest_dir}; wheel tags --remove --platform-tag $AUDITWHEEL_PLAT {dest_dir}/*.whl"
+manylinux-x86_64-image = "quay.io/pypa/manylinux_2_34_x86_64"
+manylinux-aarch64-image = "quay.io/pypa/manylinux_2_39_aarch64"
+repair-wheel-command = "cp {wheel} {dest_dir}; pip install wheel; wheel tags --remove --platform-tag $AUDITWHEEL_PLAT {dest_dir}/*.whl"
 
 [tool.cibuildwheel.linux.environment]
 SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""

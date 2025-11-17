@@ -15,7 +15,7 @@ IGNORED_LINES = [
     "In file included from",
 ]
 
-QT_PATH = pathlib.Path(os.environ.get("QT_ROOT_DIR", "C:/Qt/6.9.2/msvc2022_64"))
+QT_PATH = pathlib.Path(os.environ.get("QT_ROOT_DIR", "C:/Qt/6.10.0/msvc2022_64"))
 QT_VERSION = QT_PATH.parts[-2]
 QDOC_PATH = QT_PATH / "bin/qdoc.exe"
 INDEX_PATH = QT_PATH.parent.parent / ("Docs/Qt-" + QT_VERSION)
