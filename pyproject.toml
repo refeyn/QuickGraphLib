@@ -18,6 +18,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dynamic = ["version"]
+requires-python = ">=3.9"
 
 [project.urls]
 Homepage = "https://github.com/refeyn/QuickGraphLib"
@@ -28,11 +29,11 @@ Source = "https://github.com/refeyn/QuickGraphLib"
 [project.optional-dependencies]
 analyse = [
     # Code analysis
-    "black",
-    "pylint",
+    "ruff",
     "mypy",
     "pre-commit",
     "lxml",
+    "gersemi",
     # Testing
     "pytest",
     "pytest-cov",
@@ -91,10 +92,9 @@ LLVM_INSTALL_DIR = "/usr"
 [tool.cibuildwheel.windows]
 archs = ["AMD64"]
 
-[tool.isort]
-profile = "black"
-force_alphabetical_sort_within_sections = true
-combine_as_imports = true
+[tool.ruff.lint.isort]
+combine-as-imports = true
+case-sensitive = false
 
 [tool.pylint.main]
 extension-pkg-whitelist = ["PySide6"]

@@ -17,10 +17,8 @@ target_compile_definitions(
 target_link_libraries(QuickGraphLibPreFabs PRIVATE Qt6::Quick)
 
 install(
-    TARGETS
-        QuickGraphLibPreFabs
-        DESTINATION
-        ${INSTALL_SUBPATH}/QuickGraphLib/PreFabs
+    TARGETS QuickGraphLibPreFabs
+    DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib/PreFabs
 )
 install(
     FILES ${QGL_PF_QML_FILES}

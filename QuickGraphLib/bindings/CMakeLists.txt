@@ -9,7 +9,7 @@ if(ENABLE_MANYLINUX_BUILD)
     # HACK https://bugreports.qt.io/browse/PYSIDE-3233
     file(
         READ
-        "${Python_SITELIB}/shiboken6_generator/lib/cmake/Shiboken6Tools/Shiboken6ToolsConfig.cmake"
+            "${Python_SITELIB}/shiboken6_generator/lib/cmake/Shiboken6Tools/Shiboken6ToolsConfig.cmake"
         FILE_CONTENTS
     )
     string(
@@ -21,12 +21,12 @@ if(ENABLE_MANYLINUX_BUILD)
     )
     file(
         WRITE
-        "${Python_SITELIB}/shiboken6_generator/lib/cmake/Shiboken6Tools/Shiboken6ToolsConfig.cmake"
+            "${Python_SITELIB}/shiboken6_generator/lib/cmake/Shiboken6Tools/Shiboken6ToolsConfig.cmake"
         "${FILE_CONTENTS}"
     )
     file(
         READ
-        "${Python_SITELIB}/shiboken6/lib/cmake/Shiboken6/ShibokenHelpers.cmake"
+            "${Python_SITELIB}/shiboken6/lib/cmake/Shiboken6/ShibokenHelpers.cmake"
         FILE_CONTENTS
     )
     string(
@@ -38,7 +38,7 @@ if(ENABLE_MANYLINUX_BUILD)
     )
     file(
         WRITE
-        "${Python_SITELIB}/shiboken6/lib/cmake/Shiboken6/ShibokenHelpers.cmake"
+            "${Python_SITELIB}/shiboken6/lib/cmake/Shiboken6/ShibokenHelpers.cmake"
         "${FILE_CONTENTS}"
     )
 endif()
