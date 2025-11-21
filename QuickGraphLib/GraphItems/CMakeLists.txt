@@ -37,10 +37,8 @@ target_include_directories(
 )
 
 install(
-    TARGETS
-        QuickGraphLibGraphItems
-        DESTINATION
-        ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems
+    TARGETS QuickGraphLibGraphItems
+    DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib/GraphItems
 )
 install(
     FILES ${QGL_GI_QML_FILES}

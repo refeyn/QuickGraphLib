@@ -13,9 +13,9 @@ repos:
         entry: qDebug
         language: pygrep
         files: "(\\.(cpp|hpp))$"
-      - id: black
-        name: black
-        entry: venv/Scripts/black.exe
+      - id: ruff
+        name: ruff
+        entry: venv/Scripts/ruff.exe format
         language: system
         types: [python]
       - id: gersemi
@@ -33,11 +33,6 @@ repos:
       #   entry: venv/Scripts/pyside6-qmllint.exe
       #   files: "\\.qml$"
       #   language: system
-      - id: isort
-        name: isort
-        entry: venv/Scripts/isort.exe --settings-file pyproject.toml
-        language: system
-        types: [python]
       # - id: pylint
       #   name: pylint
       #   entry: venv/Scripts/pylint.exe
