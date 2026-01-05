@@ -3,7 +3,7 @@
 
 #include "HistogramHelper.hpp"
 
-HistogramHelper::HistogramHelper(QObject *parent) : QObject{parent} {
+HistogramHelper::HistogramHelper(QObject* parent) : QObject{parent} {
     pathProp.setBinding([&]() -> QPolygonF {
         auto bins = binsProp.value();
         auto heights = heightsProp.value();
@@ -39,6 +39,10 @@ HistogramHelper::HistogramHelper(QObject *parent) : QObject{parent} {
                 points.emplaceBack(dataTransform.map(QPointF{*binIter, h}));
             }
             points.emplaceBack(dataTransform.map(QPointF{*binIter, 0}));
+        }
+        // FIXME QTBUG-143112
+        if (!std::is_sorted(points.begin(), points.end(), [](const auto& a, const auto& b) { return a.x() < b.x(); })) {
+            std::reverse(points.begin(), points.end());
         }
         return points;
     });
