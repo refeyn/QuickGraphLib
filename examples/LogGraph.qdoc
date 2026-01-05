@@ -1,0 +1,15 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Log graph
+    \ingroup quickgraphlibdemos
+    \brief A tan graph with a logarithmic axis
+    \example loggraph
+
+    \image examples/LogGraph.png
+
+    This example demonstrates how to use a custom tick formatter to display a log axis.
+
+    \quotefile examples/LogGraph.qml
+*/

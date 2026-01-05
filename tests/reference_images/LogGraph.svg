@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 800 600"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny">
+<title>Qt SVG Document</title>
+<desc>Generated with Qt</desc>
+<defs>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<rect x="0" y="0" width="800" height="600"/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<rect x="0" y="0" width="800" height="600"/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="#000000" fill-opacity="0" stroke="#000000" stroke-opacity="0.0666667" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,66,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M22.4688,520 L22.4688,-1.52588e-06 M89.875,520 L89.875,-1.52588e-06 M157.281,520 L157.281,-1.52588e-06 M224.687,520 L224.687,-1.52588e-06 M292.094,520 L292.094,-1.52588e-06 M359.5,520 L359.5,-1.52588e-06 M426.906,520 L426.906,-1.52588e-06 M494.312,520 L494.312,-1.52588e-06 M561.719,520 L561.719,-1.52588e-06 M629.125,520 L629.125,-1.52588e-06 M696.531,520 L696.531,-1.52588e-06 M0,463.922 L719,463.922 M0,361.961 L719,361.961 M0,260 L719,260 M0,158.039 L719,158.039 M0,56.0784 L719,56.0784"/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="#000000" fill-opacity="0" stroke="#ff0000" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,66,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M22.4688,258.387 L23.1435,258.376 L23.8182,258.365 L24.493,258.353 L25.1677,258.342 L25.8424,258.331 L26.5172,258.319 L27.1919,258.307 L27.8666,258.296 L28.5414,258.284 L29.2161,258.272 L29.8909,258.26 L30.5656,258.248 L31.2403,258.236 L31.9151,258.223 L32.5898,258.211 L33.2645,258.199 L33.9393,258.186 L34.614,258.173 L35.2888,258.161 L35.9635,258.148 L36.6382,258.135 L37.313,258.122 L37.9877,258.109 L38.6624,258.096 L39.3372,258.083 L40.0119,258.069 L40.6867,258.056 L41.3614,258.043 L42.0361,258.029 L42.7109,258.015 L43.3856,258.001 L44.0603,257.988 L44.7351,257.974 L45.4098,257.959 L46.0846,257.945 L46.7593,257.931 L47.434,257.917 L48.1088,257.902 L48.7835,257.888 L49.4582,257.873 L50.133,257.858 L50.8077,257.843 L51.4825,257.828 L52.1572,257.813 L52.8319,257.798 L53.5067,257.783 L54.1814,257.767 L54.8561,257.752 L55.5309,257.736 L56.2056,257.72 L56.8803,257.705 L57.5551,257.689 L58.2298,257.673 L58.9046,257.656 L59.5793,257.64 L60.254,257.624 L60.9288,257.607 L61.6035,257.591 L62.2782,257.574 L62.953,257.557 L63.6277,257.54 L64.3025,257.523 L64.9772,257.506 L65.6519,257.488 L66.3267,257.471 L67.0014,257.453 L67.6761,257.436 L68.3509,257.418 L69.0256,257.4 L69.7004,257.382 L70.3751,257.364 L71.0498,257.345 L71.7246,257.327 L72.3993,257.308 L73.074,257.29 L73.7488,257.271 L74.4235,257.252 L75.0983,257.233 L75.773,257.213 L76.4477,257.194 L77.1225,257.175 L77.7972,257.155 L78.4719,257.135 L79.1467,257.115 L79.8214,257.095 L80.4962,257.075 L81.1709,257.055 L81.8456,257.034 L82.5204,257.013 L83.1951,256.993 L83.8698,256.972 L84.5446,256.951 L85.2193,256.93 L85.8941,256.908 L86.5688,256.887 L87.2435,256.865 L87.9183,256.843 L88.593,256.821 L89.2677,256.799 L89.9425,256.777 L90.6172,256.754 L91.2919,256.732 L91.9667,256.709 L92.6414,256.686 L93.3162,256.663 L93.9909,256.64 L94.6656,256.617 L95.3404,256.593 L96.0151,256.569 L96.6898,256.545 L97.3646,256.521 L98.0393,256.497 L98.7141,256.473 L99.3888,256.448 L100.064,256.423 L100.738,256.399 L101.413,256.374 L102.088,256.348 L102.762,256.323 L103.437,256.297 L104.112,256.271 L104.787,256.245 L105.461,256.219 L106.136,256.193 L106.811,256.167 L107.486,256.14 L108.16,256.113 L108.835,256.086 L109.51,256.059 L110.185,256.031 L110.859,256.003 L111.534,255.976 L112.209,255.948 L112.884,255.919 L113.558,255.891 L114.233,255.862 L114.908,255.833 L115.582,255.804 L116.257,255.775 L116.932,255.746 L117.607,255.716 L118.281,255.686 L118.956,255.656 L119.631,255.626 L120.306,255.595 L120.98,255.565 L121.655,255.534 L122.33,255.503 L123.005,255.471 L123.679,255.44 L124.354,255.408 L125.029,255.376 L125.704,255.343 L126.378,255.311 L127.053,255.278 L127.728,255.245 L128.402,255.212 L129.077,255.179 L129.752,255.145 L130.427,255.111 L131.101,255.077 L131.776,255.043 L132.451,255.008 L133.126,254.973 L133.8,254.938 L134.475,254.903 L135.15,254.867 L135.825,254.831 L136.499,254.795 L137.174,254.759 L137.849,254.722 L138.524,254.685 L139.198,254.648 L139.873,254.611 L140.548,254.573 L141.223,254.535 L141.897,254.497 L142.572,254.458 L143.247,254.42 L143.921,254.381 L144.596,254.341 L145.271,254.302 L145.946,254.262 L146.62,254.222 L147.295,254.181 L147.97,254.14 L148.645,254.099 L149.319,254.058 L149.994,254.017 L150.669,253.975 L151.344,253.932 L152.018,253.89 L152.693,253.847 L153.368,253.804 L154.043,253.761 L154.717,253.717 L155.392,253.673 L156.067,253.628 L156.741,253.584 L157.416,253.539 L158.091,253.493 L158.766,253.448 L159.44,253.402 L160.115,253.356 L160.79,253.309 L161.465,253.262 L162.139,253.215 L162.814,253.167 L163.489,253.119 L164.164,253.071 L164.838,253.022 L165.513,252.973 L166.188,252.924 L166.863,252.874 L167.537,252.824 L168.212,252.773 L168.887,252.723 L169.561,252.671 L170.236,252.62 L170.911,252.568 L171.586,252.516 L172.26,252.463 L172.935,252.41 L173.61,252.356 L174.285,252.303 L174.959,252.248 L175.634,252.194 L176.309,252.139 L176.984,252.083 L177.658,252.027 L178.333,251.971 L179.008,251.915 L179.683,251.858 L180.357,251.8 L181.032,251.742 L181.707,251.684 L182.381,251.625 L183.056,251.566 L183.731,251.506 L184.406,251.446 L185.08,251.386 L185.755,251.325 L186.43,251.264 L187.105,251.202 L187.779,251.14 L188.454,251.077 L189.129,251.014 L189.804,250.95 L190.478,250.886 L191.153,250.821 L191.828,250.756 L192.503,250.691 L193.177,250.625 L193.852,250.558 L194.527,250.491 L195.201,250.424 L195.876,250.356 L196.551,250.287 L197.226,250.218 L197.9,250.148 L198.575,250.078 L199.25,250.008 L199.925,249.937 L200.599,249.865 L201.274,249.793 L201.949,249.72 L202.624,249.647 L203.298,249.573 L203.973,249.499 L204.648,249.424 L205.323,249.348 L205.997,249.272 L206.672,249.196 L207.347,249.118 L208.021,249.041 L208.696,248.962 L209.371,248.883 L210.046,248.804 L210.72,248.723 L211.395,248.643 L212.07,248.561 L212.745,248.479 L213.419,248.396 L214.094,248.313 L214.769,248.229 L215.444,248.145 L216.118,248.059 L216.793,247.974 L217.468,247.887 L218.143,247.8 L218.817,247.712 L219.492,247.623 L220.167,247.534 L220.841,247.444 L221.516,247.354 L222.191,247.262 L222.866,247.17 L223.54,247.077 L224.215,246.984 L224.89,246.89 L225.565,246.795 L226.239,246.699 L226.914,246.603 L227.589,246.505 L228.264,246.407 L228.938,246.309 L229.613,246.209 L230.288,246.109 L230.963,246.007 L231.637,245.906 L232.312,245.803 L232.987,245.699 L233.662,245.595 L234.336,245.49 L235.011,245.383 L235.686,245.276 L236.36,245.169 L237.035,245.06 L237.71,244.95 L238.385,244.84 L239.059,244.729 L239.734,244.616 L240.409,244.503 L241.084,244.389 L241.758,244.274 L242.433,244.158 L243.108,244.041 L243.783,243.923 L244.457,243.804 L245.132,243.684 L245.807,243.564 L246.482,243.442 L247.156,243.319 L247.831,243.195 L248.506,243.07 L249.18,242.944 L249.855,242.817 L250.53,242.689 L251.205,242.559 L251.879,242.429 L252.554,242.298 L253.229,242.165 L253.904,242.031 L254.578,241.896 L255.253,241.76 L255.928,241.623 L256.603,241.485 L257.277,241.345 L257.952,241.204 L258.627,241.062 L259.302,240.919 L259.976,240.774 L260.651,240.629 L261.326,240.481 L262,240.333 L262.675,240.183 L263.35,240.032 L264.025,239.88 L264.699,239.726 L265.374,239.571 L266.049,239.414 L266.724,239.256 L267.398,239.096 L268.073,238.935 L268.748,238.773 L269.423,238.609 L270.097,238.444 L270.772,238.277 L271.447,238.108 L272.122,237.938 L272.796,237.766 L273.471,237.593 L274.146,237.418 L274.82,237.241 L275.495,237.063 L276.17,236.883 L276.845,236.701 L277.519,236.517 L278.194,236.332 L278.869,236.145 L279.544,235.956 L280.218,235.765 L280.893,235.572 L281.568,235.378 L282.243,235.181 L282.917,234.982 L283.592,234.782 L284.267,234.579 L284.942,234.375 L285.616,234.168 L286.291,233.959 L286.966,233.748 L287.64,233.535 L288.315,233.32 L288.99,233.102 L289.665,232.882 L290.339,232.66 L291.014,232.435 L291.689,232.208 L292.364,231.979 L293.038,231.747 L293.713,231.512 L294.388,231.275 L295.063,231.036 L295.737,230.793 L296.412,230.548 L297.087,230.301 L297.762,230.05 L298.436,229.797 L299.111,229.541 L299.786,229.282 L300.46,229.02 L301.135,228.755 L301.81,228.486 L302.485,228.215 L303.159,227.94 L303.834,227.663 L304.509,227.382 L305.184,227.097 L305.858,226.809 L306.533,226.518 L307.208,226.223 L307.883,225.924 L308.557,225.622 L309.232,225.316 L309.907,225.006 L310.582,224.692 L311.256,224.374 L311.931,224.052 L312.606,223.725 L313.28,223.395 L313.955,223.06 L314.63,222.721 L315.305,222.377 L315.979,222.028 L316.654,221.675 L317.329,221.317 L318.004,220.954 L318.678,220.586 L319.353,220.212 L320.028,219.834 L320.703,219.45 L321.377,219.06 L322.052,218.665 L322.727,218.264 L323.402,217.857 L324.076,217.444 L324.751,217.025 L325.426,216.599 L326.101,216.167 L326.775,215.729 L327.45,215.283 L328.125,214.83 L328.799,214.371 L329.474,213.903 L330.149,213.428 L330.824,212.946 L331.498,212.455 L332.173,211.956 L332.848,211.449 L333.523,210.933 L334.197,210.408 L334.872,209.874 L335.547,209.331 L336.222,208.778 L336.896,208.215 L337.571,207.641 L338.246,207.057 L338.921,206.463 L339.595,205.857 L340.27,205.239 L340.945,204.61 L341.619,203.968 L342.294,203.314 L342.969,202.646 L343.644,201.965 L344.318,201.27 L344.993,200.56 L345.668,199.836 L346.343,199.096 L347.017,198.341 L347.692,197.568 L348.367,196.779 L349.042,195.972 L349.716,195.146 L350.391,194.302 L351.066,193.437 L351.741,192.552 L352.415,191.646 L353.09,190.718 L353.765,189.766 L354.439,188.791 L355.114,187.791 L355.789,186.764 L356.464,185.711 L357.138,184.629 L357.813,183.518 L358.488,182.376 L359.163,181.202 L359.837,179.995 L360.512,178.752 L361.187,177.472 L361.862,176.154 L362.536,174.796 L363.211,173.395 L363.886,171.949 L364.561,170.457 L365.235,168.915 L365.91,167.321 L366.585,165.673 L367.259,163.967 L367.934,162.199 L368.609,160.368 L369.284,158.468 L369.958,156.496 L370.633,154.447 L371.308,152.316 L371.983,150.099 L372.657,147.789 L373.332,145.381 L374.007,142.868 L374.682,140.243 L375.356,137.496 L376.031,134.621 L376.706,131.606 L377.381,128.442 L378.055,125.116 L378.73,121.616 L379.405,117.926 L380.079,114.031 L380.754,109.912 L381.429,105.549 L382.104,100.92 L382.778,95.9971 L383.453,90.7522 L384.128,85.1516 L384.803,79.157 L385.477,72.7244 L386.152,65.8029 L386.827,58.3336 L387.502,50.2474 L388.176,41.4635 L388.851,31.8858 L389.526,21.4002 L390.201,9.8692 L390.875,-2.87376 L391.55,-17.0327 L392.225,-32.8602 L392.899,-50.6727 L393.574,-70.8722 L394.249,-93.9771 L394.924,-120.668 L395.598,-151.855 L396.273,-188.786 L396.948,-233.218 L397.623,-287.705 L398.297,-356.111 L398.972,-444.569 L399.647,-563.434 L400.322,-731.68 L400.996,-988.211 L401.671,-1427.35 L402.346,-2352.1 L403.021,-5565.66 L403.695,24679.6 L404.37,4180.94 L405.045,2384.6 L405.72,1713.64 L406.394,1362.72 L407.069,1146.9 L407.744,1000.73 L408.418,895.161 L409.093,815.32 L409.768,752.812 L410.443,702.533 L411.117,661.205 L411.792,626.626 L412.467,597.26 L413.142,572.005 L413.816,550.048 L414.491,530.779 L415.166,513.729 L415.841,498.53 L416.515,484.893 L417.19,472.586 L417.865,461.421 L418.54,451.242 L419.214,441.922 L419.889,433.354 L420.564,425.448 L421.238,418.129 L421.913,411.331 L422.588,404.998 L423.263,399.083 L423.937,393.544 L424.612,388.344 L425.287,383.452 L425.962,378.839 L426.636,374.48 L427.311,370.355 L427.986,366.443 L428.661,362.727 L429.335,359.19 L430.01,355.82 L430.685,352.604 L431.36,349.53 L432.034,346.587 L432.709,343.767 L433.384,341.061 L434.058,338.461 L434.733,335.96 L435.408,333.551 L436.083,331.229 L436.757,328.987 L437.432,326.821 L438.107,324.727 L438.782,322.699 L439.456,320.733 L440.131,318.827 L440.806,316.976 L441.481,315.178 L442.155,313.429 L442.83,311.726 L443.505,310.067 L444.18,308.449 L444.854,306.871 L445.529,305.329 L446.204,303.822 L446.878,302.347 L447.553,300.904 L448.228,299.489 L448.903,298.103 L449.577,296.742 L450.252,295.406 L450.927,294.093 L451.602,292.801 L452.276,291.53 L452.951,290.279 L453.626,289.045 L454.301,287.828 L454.975,286.627 L455.65,285.441 L456.325,284.268 L457,283.108 L457.674,281.959 L458.349,280.821 L459.024,279.694 L459.698,278.574 L460.373,277.463 L461.048,276.359 L461.723,275.262 L462.397,274.169 L463.072,273.081 L463.747,271.997 L464.422,270.915 L465.096,269.836 L465.771,268.757 L466.446,267.679 L467.121,266.599 L467.795,265.518 L468.47,264.435 L469.145,263.348 L469.82,262.257 L470.494,261.16 L471.169,260.056 L471.844,258.945 L472.518,257.826 L473.193,256.696 L473.868,255.555 L474.543,254.402 L475.217,253.235 L475.892,252.053 L476.567,250.854 L477.242,249.637 L477.916,248.4 L478.591,247.141 L479.266,245.858 L479.941,244.549 L480.615,243.212 L481.29,241.845 L481.965,240.444 L482.64,239.007 L483.314,237.53 L483.989,236.011 L484.664,234.445 L485.338,232.828 L486.013,231.156 L486.688,229.423 L487.363,227.624 L488.037,225.753 L488.712,223.802 L489.387,221.764 L490.062,219.629 L490.736,217.388 L491.411,215.029 L492.086,212.539 L492.761,209.902 L493.435,207.102 L494.11,204.119 L494.785,200.928 L495.46,197.501 L496.134,193.807 L496.809,189.807 L497.484,185.452 L498.159,180.686 L498.833,175.44 L499.508,169.626 L500.183,163.137 L500.857,155.833 L501.532,147.536 L502.207,138.013 L502.882,126.947 L503.556,113.907 L504.231,98.28 L504.906,79.1748 L505.581,55.2343 L506.255,24.2906 L506.93,-17.3482 L507.605,-76.5233 L508.28,-167.492 L508.954,-325.721 L509.629,-670.647 L510.304,-2014.82 L510.979,5289.95 L511.653,1447.55 L512.328,930.405 L513.003,725.33 L513.677,615.138 L514.352,546.226 L515.027,498.969 L515.702,464.476 L516.376,438.139 L517.051,417.327 L517.726,400.43 L518.401,386.407 L519.075,374.557 L519.75,364.386 L520.425,355.541 L521.1,347.761 L521.774,340.846 L522.449,334.644 L523.124,329.038 L523.799,323.93 L524.473,319.247 L525.148,314.925 L525.823,310.913 L526.497,307.169 L527.172,303.657 L527.847,300.347 L528.522,297.212 L529.196,294.231 L529.871,291.384 L530.546,288.654 L531.221,286.025 L531.895,283.485 L532.57,281.02 L533.245,278.621 L533.92,276.276 L534.594,273.977 L535.269,271.713 L535.944,269.478 L536.619,267.262 L537.293,265.057 L537.968,262.856 L538.643,260.65 L539.317,258.432 L539.992,256.192 L540.667,253.921 L541.342,251.611 L542.016,249.25 L542.691,246.827 L543.366,244.33 L544.041,241.743 L544.715,239.052 L545.39,236.238 L546.065,233.278 L546.74,230.148 L547.414,226.817 L548.089,223.249 L548.764,219.399 L549.439,215.214 L550.113,210.625 L550.788,205.546 L551.463,199.864 L552.137,193.433 L552.812,186.056 L553.487,177.462 L554.162,167.265 L554.836,154.902 L555.511,139.512 L556.186,119.71 L556.861,93.1144 L557.535,55.261 L558.21,-3.32532 L558.885,-106.893 L559.56,-341.67 L560.234,-1404.41 L560.909,2414.01 L561.584,909.566 L562.259,640 L562.933,526.831 L563.608,464.259 L564.283,424.35 L564.957,396.531 L565.632,375.917 L566.307,359.938 L566.982,347.113 L567.656,336.529 L568.331,327.59 L569.006,319.891 L569.681,313.147 L570.355,307.152 L571.03,301.75 L571.705,296.824 L572.38,292.282 L573.054,288.051 L573.729,284.07 L574.404,280.29 L575.079,276.669 L575.753,273.17 L576.428,269.761 L577.103,266.411 L577.777,263.091 L578.452,259.775 L579.127,256.434 L579.802,253.038 L580.476,249.557 L581.151,245.954 L581.826,242.189 L582.501,238.215 L583.175,233.973 L583.85,229.392 L584.525,224.38 L585.2,218.818 L585.874,212.546 L586.549,205.343 L587.224,196.895 L587.899,186.738 L588.573,174.149 L589.248,157.948 L589.923,136.051 L590.598,104.405 L591.272,53.9331 L591.947,-40.7474 L592.622,-287.857 L593.296,-2714.65 L593.971,1122.5 L594.646,633.257 L595.321,495.738 L595.995,430.372 L596.67,391.806 L597.345,366.101 L598.02,347.547 L598.694,333.367 L599.369,322.049 L600.044,312.697 L600.719,304.742 L601.393,297.809 L602.068,291.634 L602.743,286.026 L603.418,280.843 L604.092,275.971 L604.767,271.321 L605.442,266.812 L606.116,262.376 L606.791,257.944 L607.466,253.45 L608.141,248.821 L608.815,243.975 L609.49,238.814 L610.165,233.213 L610.84,227.011 L611.514,219.982 L612.189,211.805 L612.864,201.994 L613.539,189.775 L614.213,173.822 L614.888,151.659 L615.563,118.039 L616.238,59.5698 L616.912,-71.2416 L617.587,-654.72 L618.262,1472.22 L618.936,620.681 L619.611,468.793 L620.286,404.471 L620.961,368.378 L621.635,344.889 L622.31,328.092 L622.985,315.251 L623.66,304.922 L624.334,296.267 L625.009,288.76 L625.684,282.049 L626.359,275.884 L627.033,270.077 L627.708,264.473 L628.383,258.936 L629.058,253.334 L629.732,247.529 L630.407,241.358 L631.082,234.615 L631.756,227.021 L632.431,218.167 L633.106,207.412 L633.781,193.675 L634.455,174.948 L635.13,147.008 L635.805,99.1278 L636.48,-6.33516 L637.154,-461.434 L637.829,1302.71 L638.504,558.632 L639.179,430.747 L639.853,376.641 L640.528,346.06 L641.203,325.904 L641.878,311.24 L642.552,299.78 L643.227,290.311 L643.902,282.118 L644.576,274.737 L645.251,267.839 L645.926,261.164 L646.601,254.483 L647.275,247.56 L647.95,240.122 L648.625,231.807 L649.3,222.086 L649.974,210.101 L650.649,194.306 L651.324,171.544 L651.999,134.111 L652.673,56.7519 L653.348,-220.175 L654.023,1708.48 L654.698,544.822 L655.372,413.821 L656.047,361.886 L656.722,333.121 L657.396,314.204 L658.071,300.315 L658.746,289.268 L659.421,279.902 L660.095,271.517 L660.77,263.633 L661.445,255.864 L662.12,247.842 L662.794,239.144 L663.469,229.19 L664.144,217.063 L664.819,201.092 L665.493,177.746 L666.168,137.791 L666.843,46.564 L667.518,-440.957 L668.192,822.518 L668.867,455.975 L669.542,374.236 L670.216,336.778 L670.891,314.319 L671.566,298.625 L672.241,286.443 L672.915,276.185 L673.59,266.933 L674.265,258.047 L674.94,248.977 L675.614,239.116 L676.289,227.618 L676.964,213.056 L677.639,192.526 L678.313,158.699 L678.988,85.4737 L679.663,-243.611 L680.338,867.662 L681.012,444.517 L681.687,363.751 L682.362,327.737 L683.037,306.164 L683.711,290.891 L684.386,278.746 L685.061,268.156 L685.735,258.141 L686.41,247.908 L687.085,236.577 L687.76,222.84 L688.434,204.209 L689.109,174.648 L689.784,113.593 L690.459,-128.979 L691.133,930.734 L691.808,435 L692.483,355 L693.158,320.156 L693.832,299.225 L694.507,284.149 L695.182,271.8 L695.857,260.564 L696.531,249.302"/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M51.5,0.5 L51.5,56.5 L41.5,56.5 L51.5,56.5 L51.5,158.5 L41.5,158.5 L51.5,158.5 L51.5,260.5 L41.5,260.5 L51.5,260.5 L51.5,361.5 L41.5,361.5 L51.5,361.5 L51.5,463.5 L41.5,463.5 L51.5,463.5 L51.5,520.5"/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,62.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,62.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >4</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,62.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,164.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,164.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >2</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,164.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,266.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,266.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >0</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,42.5,266.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,37.5,367.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,37.5,367.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >-2</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,37.5,367.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,37.5,469.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,37.5,469.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >-4</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,37.5,469.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0,-1,1,0,15,298)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0,-1,1,0,15,298)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >tan(x)</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0,-1,1,0,15,298)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M0.5,0.5 L22.5,0.5 L22.5,10.5 L22.5,0.5 L89.5,0.5 L89.5,10.5 L89.5,0.5 L157.5,0.5 L157.5,10.5 L157.5,0.5 L224.5,0.5 L224.5,10.5 L224.5,0.5 L292.5,0.5 L292.5,10.5 L292.5,0.5 L359.5,0.5 L359.5,10.5 L359.5,0.5 L426.5,0.5 L426.5,10.5 L426.5,0.5 L494.5,0.5 L494.5,10.5 L494.5,0.5 L561.5,0.5 L561.5,10.5 L561.5,0.5 L629.5,0.5 L629.5,10.5 L629.5,0.5 L696.5,0.5 L696.5,10.5 L696.5,0.5 L719.5,0.5"/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,67.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,67.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,67.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;-1.5&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,67.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,67.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,134.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,134.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,134.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;-1.2&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,134.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,134.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,202.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,202.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,202.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;-0.9&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,202.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,202.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,269.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,269.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,269.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;-0.6&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,269.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,269.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,337.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,337.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,337.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;-0.3&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,337.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,337.5,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,406,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,406,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,406,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;0.0&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,406,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,406,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,473,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,473,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,473,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;0.3&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,473,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,473,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,541,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,541,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,541,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;0.6&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,541,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,541,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,608,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,608,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,608,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;0.9&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,608,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,608,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,676,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,676,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,676,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;1.2&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,676,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,676,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,743,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,743,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,743,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >10&lt;sup&gt;1.5&lt;/sup&gt;</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,743,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,743,545.5)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,421,567)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,421,567)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+ >x</text>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,421,567)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,535)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,15,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
+</g>
+</g>
+</svg>

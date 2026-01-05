@@ -52,6 +52,26 @@ QList<qreal> Helpers::linspace(qreal min, qreal max, int num) {
 }
 
 /*!
+    \fn QList<qreal> Helpers::logspace(qreal logmin, qreal logmax, int num, qreal base = 10)
+
+    Returns a list of \a num values equally spaced from \a base to the power of \a logmin and \a base to the power
+    of \a logmax (inclusive).
+*/
+QList<qreal> Helpers::logspace(qreal logmin, qreal logmax, int num, qreal base /*= 10*/) {
+    /*!
+        \qmlmethod list<real> Helpers::logspace(real logmin, real logmax, int num, real base = 10)
+
+        Returns a list of \a num values equally spaced from \a base to the power of \a logmin and \a base to the power
+        of \a logmax (inclusive).
+    */
+    auto result = QList<qreal>();
+    for (auto power : Helpers::linspace(logmin, logmax, num)) {
+        result.append(std::pow(base, power));
+    }
+    return result;
+}
+
+/*!
     \fn QList<int> Helpers::range(int min, int max, int step = 1)
 
     Returns a list of values from \a min to \a max (exclusive) with a gap of \a step between each one.
