@@ -26,7 +26,7 @@
         \value Qt.KeepAspectRatio Preserve the aspect ratio
         \value Qt.KeepAspectRatioByExpanding Preserve the aspect ratio by cropping
 
-        Defaults to \c Qt.IgnoreAspectRatio.
+        \default Qt.IgnoreAspectRatio
 
     \sa Qt::AspectRatioMode
 */
@@ -43,22 +43,33 @@
         \value Qt.AlignVCenter Center align (vertically)
         \value Qt.AlignBottom Bottom align
 
-        Defaults to \c Qt.AlignCenter (which is \c {Qt.AlignHCenter | Qt.AlignVCenter}).
+        \default Qt.AlignHCenter | Qt.AlignVCenter
 
     \sa Qt::AlignmentFlag
 */
 
 /*!
     \qmlproperty bool ImageView::mirrorHorizontally
+
+        Mirror the image horizontally.
+
+        \default false
+*/
+
+/*!
     \qmlproperty bool ImageView::mirrorVertically
 
-        Mirror the image horizontally and/or vertically.
+        Mirror the image vertically.
+
+        \default false
 */
 
 /*!
     \qmlproperty bool ImageView::transpose
 
         Transpose the image.
+
+        \default false
 */
 
 /*!
@@ -76,7 +87,8 @@
     \qmlproperty bool ImageView::smooth
 
         Sets whether the displayed image should be pixelated or smooth (linearly interpolated).
-        Unlike other \l {Item}s, this property defaults to \c false.
+
+        \default false
 */
 
 /*!
@@ -90,11 +102,11 @@
         or equal to max, it will be assigned the value at 1).
         To invert a colormap, swap the values of \l min and \l max.
 
-        The default colormap is grayscale.
-
         \note This property has no effect when \l source is a QImage.
 
         \sa ColorMaps::colors
+
+        \default ColorMaps.Grayscale
 */
 
 /*!
@@ -114,17 +126,21 @@
 /*!
     \qmlproperty bool ImageView::autoMin
 
-        Whether the minimum value for the colormap should be determined from \l source. Defaults to \c true.
+        Whether the minimum value for the colormap should be determined from \l source.
 
         \sa ImageView::min
+
+        \default true
 */
 
 /*!
     \qmlproperty bool ImageView::autoMax
 
-        Whether the maximum value for the colormap should be determined from \l source. Defaults to \c true.
+        Whether the maximum value for the colormap should be determined from \l source.
 
         \sa ImageView::max
+
+        \default true
 */
 
 /*!
@@ -142,7 +158,7 @@
         If \l fillMode is \c Qt.IgnoreAspectRatio, this will equal \c {Qt.rect(0, 0, width, height)}.
 */
 
-ImageView::ImageView(QQuickItem *parent) : QQuickItem{parent} {
+ImageView::ImageView(QQuickItem* parent) : QQuickItem{parent} {
     setFlags(QQuickItem::ItemHasContents);
     setSmooth(false);
 
@@ -213,7 +229,7 @@ void ImageView::_layout() {
     }
 }
 
-void ImageView::geometryChange(const QRectF &newGeometry, const QRectF &oldGeometry) {
+void ImageView::geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) {
     QQuickItem::geometryChange(newGeometry, oldGeometry);
     _layout();
 }
@@ -224,9 +240,9 @@ struct ColormapStop {
     QRgb color;
 };
 
-QRgb toColor(qreal value, const std::vector<ColormapStop> &colormap) {
+QRgb toColor(qreal value, const std::vector<ColormapStop>& colormap) {
     // Guaranteed to have at least one element in the colormap
-    auto right = std::lower_bound(colormap.begin(), colormap.end(), value, [](const ColormapStop &stop, qreal value) {
+    auto right = std::lower_bound(colormap.begin(), colormap.end(), value, [](const ColormapStop& stop, qreal value) {
         return stop.value < value;
     });
     if (right == colormap.begin()) {
@@ -257,7 +273,7 @@ QRgb toColor(qreal value, const std::vector<ColormapStop> &colormap) {
     }
 }
 
-int indexForCoord(int x, int y, const QSize &size, bool transpose = false) {
+int indexForCoord(int x, int y, const QSize& size, bool transpose = false) {
     if (transpose) {
         return y + x * size.height();
     }
@@ -269,7 +285,7 @@ int indexForCoord(int x, int y, const QSize &size, bool transpose = false) {
 std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max) {
     std::vector<ColormapStop> colormap;
     auto scale = max - min;
-    if (auto gradientObj = cmapVar.value<QObject *>()) {
+    if (auto gradientObj = cmapVar.value<QObject*>()) {
         if (gradientObj && gradientObj->inherits("QQuickGradient")) {
             auto stops = QQmlListReference(gradientObj, "stops");
             for (auto stopsIndex = 0; stopsIndex < stops.size(); ++stopsIndex) {
@@ -291,7 +307,7 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max) 
         if (cmap.length()) {
             auto step = scale / cmap.size();
             auto pos = min;
-            for (const auto &stop : cmap) {
+            for (const auto& stop : cmap) {
                 colormap.emplace_back(ColormapStop{pos, step, stop});
                 pos += step;
             }
@@ -311,7 +327,7 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max) 
 }
 
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
-    const QList<qreal> &converted, const QSize &size,
+    const QList<qreal>& converted, const QSize& size,
     std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
 ) {
     if (size.width() * size.height() != converted.size()) {
@@ -331,7 +347,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
         std::get<2>(colormapArgs).value_or(dataMax)
     );
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
-    QRgb *pixels = reinterpret_cast<QRgb *>(image.bits());
+    QRgb* pixels = reinterpret_cast<QRgb*>(image.bits());
     for (auto x = 0; x < size.width(); ++x) {
         for (auto y = 0; y < size.height(); ++y) {
             pixels[indexForCoord(x, y, size, transpose)] = toColor(converted[indexForCoord(x, y, size)], colormap);
@@ -342,18 +358,18 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
 }
 
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
-    const QList<QList<qreal>> &converted, std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs,
+    const QList<QList<qreal>>& converted, std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs,
     bool transpose
 ) {
     QSize size(converted.isEmpty() ? 0 : converted[0].size(), converted.size());
-    for (const auto &row : converted) {
+    for (const auto& row : converted) {
         if (row.size() != size.width()) {
             return {};
         }
     }
     auto dataMin = std::numeric_limits<qreal>::infinity(), dataMax = -std::numeric_limits<qreal>::infinity();
     if (!std::get<1>(colormapArgs).has_value() || !std::get<2>(colormapArgs).has_value()) {
-        for (auto &row : converted) {
+        for (auto& row : converted) {
             for (auto v : row) {
                 dataMin = std::min(dataMin, v);
                 dataMax = std::max(dataMax, v);
@@ -364,9 +380,9 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
     auto max = std::get<2>(colormapArgs).value_or(dataMax);
     auto colormap = buildColormap(std::get<0>(colormapArgs), min, max);
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
-    QRgb *pixels = reinterpret_cast<QRgb *>(image.bits());
+    QRgb* pixels = reinterpret_cast<QRgb*>(image.bits());
     for (auto y = 0; y < size.height(); ++y) {
-        const auto &row = converted[y];
+        const auto& row = converted[y];
         for (auto x = 0; x < size.width(); ++x) {
             pixels[indexForCoord(x, y, size, transpose)] = toColor(row[x], colormap);
         }
@@ -375,7 +391,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
 }
 
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImage(
-    const QVariant &data, QSize suggestedSize,
+    const QVariant& data, QSize suggestedSize,
     std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
 ) {
     if (data.canConvert<QList<qreal>>()) {
@@ -392,7 +408,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImage(
         if (halfWay[0].canConvert<qreal>()) {
             // 1D
             QList<qreal> converted;
-            for (const auto &p : halfWay) {
+            for (const auto& p : halfWay) {
                 converted.append(p.toDouble());
             }
             return convertToImageFrom1D(converted, suggestedSize, colormapArgs, transpose);
@@ -400,13 +416,13 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImage(
         else {
             // 2D
             QList<QList<qreal>> converted;
-            for (const auto &row : halfWay) {
+            for (const auto& row : halfWay) {
                 if (row.canConvert<QList<qreal>>()) {
                     converted.append(row.value<QList<qreal>>());
                 }
                 else if (row.canConvert<QVariantList>()) {
                     QList<qreal> rowConverted;
-                    for (auto &item : row.value<QVariantList>()) {
+                    for (auto& item : row.value<QVariantList>()) {
                         rowConverted.append(item.toDouble());
                     }
                     converted.append(rowConverted);
@@ -433,8 +449,8 @@ void ImageView::updatePolish() {
         _coloredImage = source.value<QImage>().convertToFormat(QImage::Format_ARGB32_Premultiplied);
         if (transpose()) {
             QImage transposedImage(_coloredImage.height(), _coloredImage.width(), QImage::Format_ARGB32_Premultiplied);
-            const QRgb *pixels = reinterpret_cast<const QRgb *>(_coloredImage.constBits());
-            QRgb *transposedPixels = reinterpret_cast<QRgb *>(transposedImage.bits());
+            const QRgb* pixels = reinterpret_cast<const QRgb*>(_coloredImage.constBits());
+            QRgb* transposedPixels = reinterpret_cast<QRgb*>(transposedImage.bits());
             for (auto x = 0; x < _coloredImage.width(); ++x) {
                 for (auto y = 0; y < _coloredImage.height(); ++y) {
                     transposedPixels[indexForCoord(x, y, _coloredImage.size(), true)] =
@@ -476,10 +492,10 @@ void ImageView::updatePolish() {
     update();
 }
 
-QSGNode *ImageView::updatePaintNode(QSGNode *node, UpdatePaintNodeData *) {
+QSGNode* ImageView::updatePaintNode(QSGNode* node, UpdatePaintNodeData*) {
     Q_ASSERT(window() != nullptr);
 
-    QSGImageNode *n = static_cast<QSGImageNode *>(node);
+    QSGImageNode* n = static_cast<QSGImageNode*>(node);
     if (!n) {
         n = window()->createImageNode();
         n->setOwnsTexture(true);

@@ -28,6 +28,8 @@ Item {
     property alias background: background
     /*!
         The padding below the XYAxes
+
+        \default 15
     */
     property int bottomPadding: 15
     /*!
@@ -51,26 +53,36 @@ Item {
     property alias grid: grid
     /*!
         The padding to the left of the XYAxes
+
+        \default 15
     */
     property int leftPadding: 15
     /*!
         Maximum number of ticks to show on the X axis.
 
         \sa Helpers::tickLocator
+
+        \default 11
     */
     property int numXTicks: 11
     /*!
         Maximum number of ticks to show on the Y axis.
 
         \sa Helpers::tickLocator
+
+        \default 11
     */
     property int numYTicks: 11
     /*!
         The padding to the right of the XYAxes
+
+        \default 15
     */
     property int rightPadding: 15
     /*!
         The spacing between the title and the axes.
+
+        \default 0
     */
     property double spacing: 0
     /*!
@@ -83,6 +95,8 @@ Item {
     property alias titleItem: titleLabel
     /*!
         The padding above the XYAxes
+
+        \default 15
     */
     property int topPadding: 15
     /*!

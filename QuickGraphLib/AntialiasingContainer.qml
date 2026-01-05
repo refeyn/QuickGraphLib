@@ -24,12 +24,14 @@ Item {
 
     /*!
         Whether MSAA antialiasing is enabled. This can help with rendering when the target display has a
-        fractional scaling factor. It can also make rendering worse, especially with text. Defaults to \c false.
+        fractional scaling factor. It can also make rendering worse, especially with text.
+
+        \default false
     */
     property alias antialiasingEnabled: root.layer.enabled
 
     implicitHeight: 100
     implicitWidth: 100
-    layer.enabled: false //
+    layer.enabled: false
     layer.samples: 2
 }

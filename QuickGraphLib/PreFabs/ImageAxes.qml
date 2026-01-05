@@ -44,18 +44,24 @@ Item {
         Maximum number of ticks to show on the colorbar axis.
 
         \sa Helpers::tickLocator
+
+        \default 5
     */
     property int numColorbarTicks: 5
     /*!
         Maximum number of ticks to show on the X axis.
 
         \sa Helpers::tickLocator
+
+        \default 11
     */
     property int numXTicks: 11
     /*!
         Maximum number of ticks to show on the Y axis.
 
         \sa Helpers::tickLocator
+
+        \default 11
     */
     property int numYTicks: 11
     /*!
