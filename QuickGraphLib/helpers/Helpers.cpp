@@ -400,6 +400,8 @@ void exportToPaintDevice(QQuickItem* item, QPaintDevice* device) {
     \note Clip paths for SVGs are only supported in Qt 6.7+. If your graph needs clipping, ensure you are using a Qt
         version that supports it.
 
+    \note HTML formatting in labels is not supported yet.
+
     \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
 */
 bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
@@ -414,6 +416,8 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
 
         \note Clip paths for SVGs are only supported in Qt 6.7+. If your graph needs clipping, ensure you are using a Qt
             version that supports it.
+
+        \note HTML formatting in labels is not supported yet.
 
         \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
     */
@@ -454,6 +458,8 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
         PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
         more information.
 
+    \note HTML formatting in labels is not supported yet.
+
     \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
 */
 bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
@@ -466,6 +472,8 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
             more information.
+
+        \note HTML formatting in labels is not supported yet.
 
         \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
     */
@@ -496,6 +504,8 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
         smooth. For reliable rendering across multiple programs, it is better to replace this with "pixelated". \l
         Helpers::exportToSvg does this correction automatically.
 
+    \note HTML formatting in labels is not supported yet.
+
     \sa Helpers::exportToPng, Helpers::exportToSvg, {Exporting graphs}
 */
 QPicture Helpers::exportToPicture(QQuickItem* item) {
@@ -513,6 +523,8 @@ QPicture Helpers::exportToPicture(QQuickItem* item) {
             an ImageView as SVG will result in images rendering using the "optimiseSpeed" setting when they are not
             smooth. For reliable rendering across multiple programs, it is better to replace this with "pixelated". \l
             Helpers::exportToSvg does this correction automatically.
+
+        \note HTML formatting in labels is not supported yet.
 
         \sa Helpers::exportToPng, Helpers::exportToSvg, {Exporting graphs}
      */
