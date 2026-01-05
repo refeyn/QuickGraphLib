@@ -16,8 +16,12 @@ import QtQuick.Shapes as QQS
 
     By default, the graph area sets \l {Shape::preferredRendererType} to \c {Shape.CurveRenderer}.
     This turns on high-quality antialiasing, which generally results in much better looking graphs.
-    However, it may require more GPU performance, so switching this back to \c {Shape.GeometryRenderer}
-    may help on low-power systems. See \l {Shape::rendererType} for more details.
+
+    \warning Using the curve renderer may require more GPU performance, so switching this back to \c {Shape.GeometryRenderer}
+    may help on low-power systems. The curve renderer is also newer, and fails to render correctly in
+    some cases (although it improves in each release).
+
+    \sa Shape::rendererType
 */
 
 QQS.Shape {
