@@ -41,6 +41,8 @@ QQS.ShapePath {
     property alias heights: helper.heights
     /*!
         Whether to draw the histogram horizontally (i.e. \l bins are X positions) or vertically (i.e. \l bins are Y positions).
+
+        \default false
     */
     property alias vertical: helper.vertical
 

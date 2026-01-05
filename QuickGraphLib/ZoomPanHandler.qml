@@ -23,6 +23,8 @@ PinchArea {
     property matrix4x4 baseTransform
     /*!
         When set to true, translations will not be able to leave the original viewRect of the GraphArea.
+
+        \default true
     */
     property bool limitMovement: true
     /*!
@@ -30,10 +32,14 @@ PinchArea {
 
         Zooming on a particular axis can be disabled by setting the maximum scale for that axis to 1
         (provided the minimum scale for that axis is left at its default of 1).
+
+        \default Qt.size(10, 10)
     */
     property size maxScale: Qt.size(10, 10)
     /*!
         Minimum zoom (separate X/Y zoom limits can be set with the width/height of \l size).
+
+        \default Qt.size(1, 1)
     */
     property size minScale: Qt.size(1, 1)
     /*!
@@ -44,6 +50,8 @@ PinchArea {
         The amount to zoom in by for 15 degrees of mouse wheel movement.
 
         \sa QWheelEvent::angleDelta
+
+        \default 1.05
     */
     property double wheelZoomFactor: 1.05
 
@@ -71,6 +79,9 @@ PinchArea {
         baseTransform = change.times(baseTransform);
         _applyLimitedMovement();
     }
+    /*!
+        Reset to initial (1x) zoom.
+    */
     function reset() {
         baseTransform = Qt.matrix4x4();
     }
