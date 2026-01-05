@@ -21,6 +21,8 @@ Rectangle {
     default property alias contentChildren: legend.children
     /*!
         The spacing between each legend item.
+
+        \default 0
     */
     property alias verticalSpacing: legend.spacing
 

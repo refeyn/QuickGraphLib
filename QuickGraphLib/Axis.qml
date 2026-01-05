@@ -44,6 +44,8 @@ Item {
         Number of decimal points the ticks should show.
 
         \sa TickLabel::decimalPoints
+
+        \default 2
     */
     property int decimalPoints: 2
     /*!
@@ -53,6 +55,8 @@ Item {
         \value Axis.Direction.Right Axis to the right of the GraphArea
         \value Axis.Direction.Top Axis above of the GraphArea
         \value Axis.Direction.Bottom Axis below of the GraphArea
+
+        \default Axis.Direction.Left
      */
     property alias direction: helper.direction
     /*!
@@ -75,22 +79,32 @@ Item {
         The preferred renderer type for rendering the spine and ticks.
 
         \sa Shape::preferredRendererType
+
+        \default Shape.CurveRenderer
     */
     property alias preferredRendererType: shape.preferredRendererType
     /*!
         Whether to show a label for each tick.
+
+        \default true
     */
     property bool showTickLabels: true
     /*!
         Spacing between the axis label and the tick labels.
+
+        \default 4
     */
     property double spacing: 4
     /*!
         Color of the axis spine and ticks.
+
+        \default "black"
     */
     property alias strokeColor: myPath.strokeColor
     /*!
         Width of the axis spine and ticks.
+
+        \default 1
     */
     property alias strokeWidth: myPath.strokeWidth
     /*!
@@ -107,14 +121,20 @@ Item {
     }
     /*!
         The color of the tick labels.
+
+        \default labelColor
     */
     property color tickLabelColor: labelColor
     /*!
         The font of the tick labels.
+
+        \default labelFont
     */
     property font tickLabelFont: labelFont
     /*!
         The length of each tick.
+
+        \default 10
     */
     property alias tickLength: helper.tickLength
     /*!

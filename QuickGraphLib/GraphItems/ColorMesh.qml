@@ -26,7 +26,7 @@ QuickGraphLib.ImageView {
         The rect (in data coordinates) the image shall occupy. By default, the center of
         the top-left pixel is the origin (the 0, 0 point). Adjust this property to position
         or scale the image differently. By default, \l ImageView::mirrorHorizontally and
-        \l ImageView::mirrorVertically sre set based on this property.
+        \l ImageView::mirrorVertically are set based on this property.
     */
     property rect extents: Qt.rect(-0.5, sourceSize.height - 0.5, sourceSize.width, -sourceSize.height)
 

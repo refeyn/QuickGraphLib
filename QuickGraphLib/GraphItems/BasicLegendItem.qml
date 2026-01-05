@@ -17,18 +17,26 @@ Row {
 
     /*!
         Fill color below the line.
+
+        \default "transparent"
     */
     property color fillColor: "transparent"
     /*!
         Fill gradient below the line.
+
+        \default null
     */
     property Gradient fillGradient: null
     /*!
         Stroke color of the line.
+
+        \default "black"
     */
     property color strokeColor: "black"
     /*!
         Stroke width of the line.
+
+        \default 1
     */
     property real strokeWidth: 1
     /*!
