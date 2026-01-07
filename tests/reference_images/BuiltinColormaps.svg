@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg viewBox="0 0 800 600"
- xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny">
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <title>Qt SVG Document</title>
 <desc>Generated with Qt</desc>
 <defs>
+<clipPath id="clipPath1">
+<path vector-effect="none" fill-rule="evenodd" d="M7.56452,485.806 L201.113,485.806 L201.113,520.645 L7.56452,520.645 L7.56452,485.806"/>
+</clipPath>
 <linearGradient gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="300" y2="0" id="gradient1">
     <stop offset="0" stop-color="#000000" stop-opacity="1" />
     <stop offset="1" stop-color="#ffffff" stop-opacity="1" />
@@ -2793,11 +2796,12 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="none" stroke="#26282a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1.93548,0,0,1.93548,7.56452,485.806)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#26282a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1.93548,0,0,1.93548,7.56452,485.806)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <text fill="#26282a" fill-opacity="1" stroke="none" xml:space="preserve" x="-11" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
  >TwilightShifted</text>
+</g>
 </g>
 
 <g fill="none" stroke="#26282a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1.93548,0,0,1.93548,7.56452,485.806)"

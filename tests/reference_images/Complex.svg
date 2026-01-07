@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg viewBox="0 0 800 600"
- xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny">
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <title>Qt SVG Document</title>
 <desc>Generated with Qt</desc>
 <defs>
+<clipPath id="clipPath1">
+<path vector-effect="none" fill-rule="evenodd" d="M78,24 L776,24 L776,503 L78,503 L78,24"/>
+</clipPath>
 <linearGradient gradientUnits="userSpaceOnUse" x1="0" y1="21.7727" x2="0" y2="479" id="gradient1">
     <stop offset="0" stop-color="#00ff00" stop-opacity="0.333333" />
     <stop offset="0.5" stop-color="#ffff00" stop-opacity="0.333333" />
     <stop offset="1" stop-color="#ff0000" stop-opacity="0.333333" />
 </linearGradient>
+<clipPath id="clipPath2">
+<path vector-effect="none" fill-rule="evenodd" d="M640,40 L656,40 L656,56 L640,56 L640,40"/>
+</clipPath>
+<clipPath id="clipPath3">
+<path vector-effect="none" fill-rule="evenodd" d="M640,58 L656,58 L656,74 L640,74 L640,58"/>
+</clipPath>
+<clipPath id="clipPath4">
+<path vector-effect="none" fill-rule="evenodd" d="M640,76 L656,76 L656,92 L640,92 L640,76"/>
+</clipPath>
 <linearGradient gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="10" id="gradient2">
     <stop offset="0" stop-color="#00ff00" stop-opacity="0.333333" />
     <stop offset="0.5" stop-color="#ffff00" stop-opacity="0.333333" />
@@ -63,87 +75,102 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="#000000" fill-opacity="0" stroke="#000000" stroke-opacity="0.0666667" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#000000" stroke-opacity="0.0666667" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M18.3684,479 L18.3684,-2.28882e-05 M101.026,479 L101.026,-2.28882e-05 M183.684,479 L183.684,-2.28882e-05 M266.342,479 L266.342,-2.28882e-05 M349,479 L349,-2.28882e-05 M431.658,479 L431.658,-2.28882e-05 M514.316,479 L514.316,-2.28882e-05 M596.974,479 L596.974,-2.28882e-05 M679.632,479 L679.632,-2.28882e-05 M-9.53674e-07,457.227 L698,457.227 M-9.53674e-07,413.682 L698,413.682 M-9.53674e-07,370.136 L698,370.136 M-9.53674e-07,326.591 L698,326.591 M-9.53674e-07,283.045 L698,283.045 M-9.53674e-07,239.5 L698,239.5 M-9.53674e-07,195.955 L698,195.955 M-9.53674e-07,152.409 L698,152.409 M-9.53674e-07,108.864 L698,108.864 M-9.53674e-07,65.3182 L698,65.3182 M-9.53674e-07,21.7727 L698,21.7727"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="#000000" fill-opacity="0.133333" stroke="#808080" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0.133333" stroke="#808080" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M101.026,-2.28882e-05 L101.026,480 L183.684,480 L183.684,-2.28882e-05"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="url(#gradient1)" stroke="#008000" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="url(#gradient1)" stroke="#008000" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M18.3684,239.5 L18.3684,239.5 L21.6747,239.5 L21.6747,110.968 L24.9811,110.968 L24.9811,32.0083 L28.2874,32.0083 L28.2874,33.0756 L31.5937,33.0756 L31.5937,113.758 L34.9,113.758 L34.9,242.937 L38.2063,242.937 L38.2063,370.791 L41.5126,370.791 L41.5126,448.007 L44.8189,448.007 L44.8189,444.806 L48.1253,444.806 L48.1253,362.42 L51.4316,362.42 L51.4316,232.627 L54.7379,232.627 L54.7379,105.484 L58.0442,105.484 L58.0442,30.0291 L61.3505,30.0291 L61.3505,35.3643 L64.6568,35.3643 L64.6568,119.432 L67.9632,119.432 L67.9632,249.808 L71.2695,249.808 L71.2695,376.208 L74.5758,376.208 L74.5758,449.882 L77.8821,449.882 L77.8821,442.415 L81.1884,442.415 L81.1884,356.686 L84.4947,356.686 L84.4947,225.76 L87.801,225.76 L87.801,100.134 L91.1074,100.134 L91.1074,28.2586 L94.4137,28.2586 L94.4137,37.8565 L97.72,37.8565 L97.72,125.225 L101.026,125.225 L101.026,256.668 L104.333,256.668 L104.333,381.49 L107.639,381.49 L107.639,451.548 L110.945,451.548 L110.945,439.822 L114.252,439.822 L114.252,350.835 L117.558,350.835 L117.558,218.907 L120.864,218.907 L120.864,94.9223 L124.171,94.9223 L124.171,26.6988 L127.477,26.6988 L127.477,40.5496 L130.783,40.5496 L130.783,131.133 L134.089,131.133 L134.089,263.512 L137.396,263.512 L137.396,386.63 L140.702,386.63 L140.702,453.002 L144.008,453.002 L144.008,437.029 L147.315,437.029 L147.315,344.872 L150.621,344.872 L150.621,212.075 L153.927,212.075 L153.927,89.8551 L157.234,89.8551 L157.234,25.351 L160.54,25.351 L160.54,43.4411 L163.846,43.4411 L163.846,137.148 L167.153,137.148 L167.153,270.331 L170.459,270.331 L170.459,391.623 L173.765,391.623 L173.765,454.243 L177.072,454.243 L177.072,434.04 L180.378,434.04 L180.378,338.805 L183.684,338.805 L183.684,205.27 L186.991,205.27 L186.991,84.9371 L190.297,84.9371 L190.297,24.2168 L193.603,24.2168 L193.603,46.5281 L196.909,46.5281 L196.909,143.266 L200.216,143.266 L200.216,277.12 L203.522,277.12 L203.522,396.464 L206.828,396.464 L206.828,455.27 L210.135,455.27 L210.135,430.856 L213.441,430.856 L213.441,332.639 L216.747,332.639 L216.747,198.499 L220.054,198.499 L220.054,80.1732 L223.36,80.1732 L223.36,23.2971 L226.666,23.2971 L226.666,49.8073 L229.973,49.8073 L229.973,149.479 L233.279,149.479 L233.279,283.871 L236.585,283.871 L236.585,401.149 L239.892,401.149 L239.892,456.082 L243.198,456.082 L243.198,427.482 L246.504,427.482 L246.504,326.38 L249.811,326.38 L249.811,191.769 L253.117,191.769 L253.117,75.5681 L256.423,75.5681 L256.423,22.5929 L259.729,22.5929 L259.729,53.2757 L263.036,53.2757 L263.036,155.783 L266.342,155.783 L266.342,290.578 L269.648,290.578 L269.648,405.673 L272.955,405.673 L272.955,456.678 L276.261,456.678 L276.261,423.92 L279.567,423.92 L279.567,320.034 L282.874,320.034 L282.874,185.087 L286.18,185.087 L286.18,71.1264 L289.486,71.1264 L289.486,22.105 L292.793,22.105 L292.793,56.9297 L296.099,56.9297 L296.099,162.169 L299.405,162.169 L299.405,297.234 L302.712,297.234 L302.712,410.032 L306.018,410.032 L306.018,457.058 L309.324,457.058 L309.324,420.175 L312.631,420.175 L312.631,313.608 L315.937,313.608 L315.937,178.459 L319.243,178.459 L319.243,66.8525 L322.549,66.8525 L322.549,21.8337 L325.856,21.8337 L325.856,60.7657 L329.162,60.7657 L329.162,168.633 L332.468,168.633 L332.468,303.833 L335.775,303.833 L335.775,414.22 L339.081,414.22 L339.081,457.22 L342.387,457.22 L342.387,416.249 L345.694,416.249 L345.694,307.108 L349,307.108 L349,171.892 L352.306,171.892 L352.306,62.7508 L355.613,62.7508 L355.613,21.7795 L358.919,21.7795 L358.919,64.7799 L362.225,64.7799 L362.225,175.167 L365.532,175.167 L365.532,310.367 L368.838,310.367 L368.838,418.234 L372.144,418.234 L372.144,457.166 L375.451,457.166 L375.451,412.147 L378.757,412.147 L378.757,300.541 L382.063,300.541 L382.063,165.392 L385.369,165.392 L385.369,58.8252 L388.676,58.8252 L388.676,21.9423 L391.982,21.9423 L391.982,68.9682 L395.288,68.9682 L395.288,181.766 L398.595,181.766 L398.595,316.831 L401.901,316.831 L401.901,422.07 L405.207,422.07 L405.207,456.895 L408.514,456.895 L408.514,407.874 L411.82,407.874 L411.82,293.913 L415.126,293.913 L415.126,158.966 L418.433,158.966 L418.433,55.0797 L421.739,55.0797 L421.739,22.3219 L425.045,22.3219 L425.045,73.3265 L428.352,73.3265 L428.352,188.422 L431.658,188.422 L431.658,323.217 L434.964,323.217 L434.964,425.724 L438.271,425.724 L438.271,456.407 L441.577,456.407 L441.577,403.432 L444.883,403.432 L444.883,287.231 L448.189,287.231 L448.189,152.62 L451.496,152.62 L451.496,51.5181 L454.802,51.5181 L454.802,22.918 L458.108,22.918 L458.108,77.8505 L461.415,77.8505 L461.415,195.129 L464.721,195.129 L464.721,329.521 L468.027,329.521 L468.027,429.193 L471.334,429.193 L471.334,455.703 L474.64,455.703 L474.64,398.827 L477.946,398.827 L477.946,280.501 L481.253,280.501 L481.253,146.361 L484.559,146.361 L484.559,48.1439 L487.865,48.1439 L487.865,23.73 L491.172,23.73 L491.172,82.5356 L494.478,82.5356 L494.478,201.88 L497.784,201.88 L497.784,335.734 L501.091,335.734 L501.091,432.472 L504.397,432.472 L504.397,454.783 L507.703,454.783 L507.703,394.063 L511.009,394.063 L511.009,273.73 L514.316,273.73 L514.316,140.195 L517.622,140.195 L517.622,44.9604 L520.928,44.9604 L520.928,24.7571 L524.235,24.7571 L524.235,87.3772 L527.541,87.3772 L527.541,208.669 L530.847,208.669 L530.847,341.852 L534.154,341.852 L534.154,435.559 L537.46,435.559 L537.46,453.649 L540.766,453.649 L540.766,389.145 L544.073,389.145 L544.073,266.925 L547.379,266.925 L547.379,134.127 L550.685,134.127 L550.685,41.9708 L553.992,41.9708 L553.992,25.9983 L557.298,25.9983 L557.298,92.3704 L560.604,92.3704 L560.604,215.488 L563.911,215.488 L563.911,347.867 L567.217,347.867 L567.217,438.45 L570.523,438.45 L570.523,452.301 L573.829,452.301 L573.829,384.078 L577.136,384.078 L577.136,260.093 L580.442,260.093 L580.442,128.165 L583.748,128.165 L583.748,39.1781 L587.055,39.1781 L587.055,27.4523 L590.361,27.4523 L590.361,97.5102 L593.667,97.5102 L593.667,222.332 L596.974,222.332 L596.974,353.775 L600.28,353.775 L600.28,441.143 L603.586,441.143 L603.586,450.741 L606.893,450.741 L606.893,378.866 L610.199,378.866 L610.199,253.24 L613.505,253.24 L613.505,122.314 L616.812,122.314 L616.812,36.5851 L620.118,36.5851 L620.118,29.1176 L623.424,29.1176 L623.424,102.792 L626.731,102.792 L626.731,229.192 L630.037,229.192 L630.037,359.568 L633.343,359.568 L633.343,443.636 L636.649,443.636 L636.649,448.971 L639.956,448.971 L639.956,373.516 L643.262,373.516 L643.262,246.373 L646.568,246.373 L646.568,116.58 L649.875,116.58 L649.875,34.1944 L653.181,34.1944 L653.181,30.9927 L656.487,30.9927 L656.487,108.209 L659.794,108.209 L659.794,236.063 L663.1,236.063 L663.1,365.242 L666.406,365.242 L666.406,445.924 L669.713,445.924 L669.713,446.992 L673.019,446.992 L673.019,368.032 L676.325,368.032 L676.325,239.5 L679.632,239.5 L679.632,239.5"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="#000000" fill-opacity="0" stroke="#0000ff" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#0000ff" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M18.3684,239.5 L25.0478,237.301 L31.7273,235.101 L38.4067,232.902 L45.0861,230.703 L51.7655,228.504 L58.445,226.304 L65.1244,224.105 L71.8038,221.906 L78.4833,219.707 L85.1627,217.507 L91.8421,215.308 L98.5215,213.109 L105.201,210.91 L111.88,208.71 L118.56,206.511 L125.239,204.312 L131.919,202.112 L138.598,199.913 L145.278,197.714 L151.957,195.515 L158.636,193.315 L165.316,191.116 L171.995,188.917 L178.675,186.718 L185.354,184.518 L192.033,182.319 L198.713,180.12 L205.392,177.921 L212.072,175.721 L218.751,173.522 L225.431,171.323 L232.11,169.123 L238.789,166.924 L245.469,164.725 L252.148,162.526 L258.828,160.326 L265.507,158.127 L272.187,155.928 L278.866,153.729 L285.545,151.529 L292.225,149.33 L298.904,147.131 L305.584,144.932 L312.263,142.732 L318.943,140.533 L325.622,138.334 L332.301,136.135 L338.981,133.935 L345.66,131.736 L352.34,129.537 L359.019,127.337 L365.699,125.138 L372.378,122.939 L379.057,120.74 L385.737,118.54 L392.416,116.341 L399.096,114.142 L405.775,111.943 L412.455,109.743 L419.134,107.544 L425.813,105.345 L432.493,103.146 L439.172,100.946 L445.852,98.747 L452.531,96.5477 L459.211,94.3485 L465.89,92.1492 L472.569,89.9499 L479.249,87.7507 L485.928,85.5514 L492.608,83.3521 L499.287,81.1529 L505.966,78.9536 L512.646,76.7543 L519.325,74.5551 L526.005,72.3558 L532.684,70.1565 L539.364,67.9573 L546.043,65.758 L552.722,63.5587 L559.402,61.3595 L566.081,59.1602 L572.761,56.961 L579.44,54.7617 L586.12,52.5624 L592.799,50.3632 L599.478,48.1639 L606.158,45.9646 L612.837,43.7654 L619.517,41.5661 L626.196,39.3668 L632.876,37.1676 L639.555,34.9683 L646.234,32.769 L652.914,30.5698 L659.593,28.3705 L666.273,26.1712 L672.952,23.972 L679.632,21.7727"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="#000000" fill-opacity="0" stroke="#ff0000" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#ff0000" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M18.3684,239.5 L25.0478,211.937 L31.7273,184.818 L38.4067,158.579 L45.0861,133.642 L51.7655,110.408 L58.445,89.251 L65.1244,70.5117 L71.8038,54.4916 L78.4833,41.4483 L85.1627,31.5917 L91.8421,25.0805 L98.5215,22.0193 L105.201,22.4575 L111.88,26.388 L118.56,33.7475 L125.239,44.4177 L131.919,58.2268 L138.598,74.9527 L145.278,94.3262 L151.957,116.036 L158.636,139.732 L165.316,165.033 L171.995,191.532 L178.675,218.804 L185.354,246.408 L192.033,273.901 L198.713,300.841 L205.392,326.793 L212.072,351.342 L218.751,374.09 L225.431,394.673 L232.11,412.759 L238.789,428.057 L245.469,440.322 L252.148,449.355 L258.828,455.011 L265.507,457.2 L272.187,455.886 L278.866,451.09 L285.545,442.889 L292.225,431.416 L298.904,416.855 L305.584,399.441 L312.263,379.452 L318.943,357.212 L325.622,333.078 L332.301,307.438 L338.981,280.705 L345.66,253.309 L352.34,225.691 L359.019,198.295 L365.699,171.562 L372.378,145.922 L379.057,121.788 L385.737,99.5476 L392.416,79.5593 L399.096,62.1446 L405.775,47.5835 L412.455,36.1105 L419.134,27.9101 L425.813,23.1142 L432.493,21.8001 L439.172,23.9889 L445.852,29.6453 L452.531,38.6783 L459.211,50.9426 L465.89,66.2409 L472.569,84.327 L479.249,104.91 L485.928,127.658 L492.608,152.206 L499.287,178.159 L505.966,205.099 L512.646,232.592 L519.325,260.196 L526.005,287.468 L532.684,313.967 L539.364,339.268 L546.043,362.964 L552.722,384.674 L559.402,404.047 L566.081,420.773 L572.761,434.582 L579.44,445.252 L586.12,452.612 L592.799,456.542 L599.478,456.981 L606.158,453.919 L612.837,447.408 L619.517,437.552 L626.196,424.508 L632.876,408.488 L639.555,389.749 L646.234,368.592 L652.914,345.358 L659.593,320.421 L666.273,294.182 L672.952,267.063 L679.632,239.5"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,188.355,245.5)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,188.355,245.5)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#a52a2a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,188.355,245.5)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#a52a2a" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,188.355,245.5)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <text fill="#a52a2a" fill-opacity="1" stroke="none" xml:space="preserve" x="8.5" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
@@ -151,110 +178,131 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 <text fill="#a52a2a" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="31" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
  >axvspan</text>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,188.355,245.5)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,188.355,245.5)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 opacity="0.5" >
 </g>
+</g>
 
-<g fill="#ffff00" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
+<g clip-path="url(#clipPath1)"><g fill="#ffff00" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 opacity="0.5" >
 <rect x="0" y="0" width="58" height="18"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 opacity="0.5" >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
  >A peak!</text>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,480.658,27.7727)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635,34)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635,34)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="#ffffff" fill-opacity="0.666667" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635,34)"
+<g clip-path="url(#clipPath1)"><g fill="#ffffff" fill-opacity="0.666667" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635,34)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="131" height="64"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635,34)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635,34)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,40)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,40)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,48)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,48)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="#000000" fill-opacity="0" stroke="#ff0000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,48)"
+<g clip-path="url(#clipPath2)"><g fill="#000000" fill-opacity="0" stroke="#ff0000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,48)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="20" height="10"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,48)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,48)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,40)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,40)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
+</g>
 </g>
 
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,40)"
@@ -267,17 +315,19 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,39)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,39)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
@@ -285,51 +335,61 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="30" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
  >θ + 0.00)</text>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,39)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,57)"
+<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,57)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,58)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,58)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,66)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,66)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="#000000" fill-opacity="0" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,66)"
+<g clip-path="url(#clipPath3)"><g fill="#000000" fill-opacity="0" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,66)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="20" height="10"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,66)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,66)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,58)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,58)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
+</g>
 </g>
 
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,58)"
@@ -342,67 +402,79 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,57)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,57)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,57)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,57)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,57)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,57)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
  >Linear</text>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,57)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,57)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,57)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,57)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,75)"
+<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,75)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,76)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,76)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,84)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,84)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="url(#gradient2)" stroke="#008000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,84)"
+<g clip-path="url(#clipPath4)"><g fill="url(#gradient2)" stroke="#008000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,84)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <rect x="0" y="0" width="20" height="10"/>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,84)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,638,84)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,76)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,76)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
+</g>
 </g>
 
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,76)"
@@ -415,46 +487,54 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 >
 </g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,75)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,75)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,75)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,75)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,75)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,75)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
  >Histogram</text>
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,75)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,658,75)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,75)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,75)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,640,39)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635,34)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635,34)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>
+</g>
 
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
+<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,78,24)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
+</g>
 </g>
 
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,24,24)"
