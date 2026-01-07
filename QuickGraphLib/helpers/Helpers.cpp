@@ -7,6 +7,7 @@
 #include <QMatrix4x4>
 #include <QPainter>
 #include <QPainterPath>
+#include <QTextDocument>
 #include <QtSvg/QSvgGenerator>
 
 #include "ImageView.hpp"
@@ -317,10 +318,34 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         painter->save();
         painter->setFont(item->property("font").value<QFont>());
         painter->setPen(item->property("color").value<QColor>());
-        painter->drawText(
-            rect, item->property("horizontalAlignment").toInt() | item->property("verticalAlignment").toInt(),
-            item->property("text").toString()
+        auto textFormat = static_cast<Qt::TextFormat>(item->property("textFormat").toInt());
+        auto text = item->property("text").toString();
+        auto alignment = static_cast<Qt::AlignmentFlag>(
+            item->property("horizontalAlignment").toInt() | item->property("verticalAlignment").toInt()
         );
+        if (textFormat == Qt::AutoText) {
+            textFormat = Qt::mightBeRichText(text) ? Qt::RichText : Qt::PlainText;
+        }
+        if (textFormat == Qt::PlainText) {
+            painter->drawText(rect, alignment, text);
+        }
+        else {
+            QTextDocument doc;
+            doc.setPageSize(QSizeF(item->width(), 0));
+            doc.setDocumentMargin(0);
+            doc.setTextWidth(item->width());
+            if (textFormat == Qt::RichText) {
+                doc.setHtml(text);
+            }
+            else {
+                doc.setMarkdown(text);
+            }
+            QTextOption option;
+            option.setAlignment(alignment);
+            doc.setDefaultTextOption(option);
+            doc.setDefaultFont(painter->font());
+            doc.drawContents(painter, rect);
+        }
         painter->restore();
     }
 
@@ -400,8 +425,6 @@ void exportToPaintDevice(QQuickItem* item, QPaintDevice* device) {
         PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
         more information.
 
-    \note HTML formatting in labels is not supported yet.
-
     \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
 */
 bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
@@ -413,8 +436,6 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
             more information.
-
-        \note HTML formatting in labels is not supported yet.
 
         \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
     */
@@ -455,8 +476,6 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
         PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
         more information.
 
-    \note HTML formatting in labels is not supported yet.
-
     \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
 */
 bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
@@ -469,8 +488,6 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
         \note Only some QML elements are supported by this export method (e.g. \l {QtQuick::Rectangle} {Rectangle},
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
             more information.
-
-        \note HTML formatting in labels is not supported yet.
 
         \sa Helpers::exportToSvg, Helpers::exportToPicture, {Exporting graphs}
     */
@@ -501,8 +518,6 @@ bool Helpers::exportToPng(QQuickItem* item, QUrl path, int dpi /* = 96 * 2 */) {
         smooth. For reliable rendering across multiple programs, it is better to replace this with "pixelated". \l
         Helpers::exportToSvg does this correction automatically.
 
-    \note HTML formatting in labels is not supported yet.
-
     \sa Helpers::exportToPng, Helpers::exportToSvg, {Exporting graphs}
 */
 QPicture Helpers::exportToPicture(QQuickItem* item) {
@@ -520,8 +535,6 @@ QPicture Helpers::exportToPicture(QQuickItem* item) {
             an ImageView as SVG will result in images rendering using the "optimiseSpeed" setting when they are not
             smooth. For reliable rendering across multiple programs, it is better to replace this with "pixelated". \l
             Helpers::exportToSvg does this correction automatically.
-
-        \note HTML formatting in labels is not supported yet.
 
         \sa Helpers::exportToPng, Helpers::exportToSvg, {Exporting graphs}
      */
