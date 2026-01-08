@@ -133,10 +133,6 @@ QPolygonF mapPointsInner(const QList<QPointF>& poly, QMatrix4x4 dataTranform) {
     for (auto& point : poly) {
         newPoly.append(dataTranform.map(point));
     }
-    // FIXME QTBUG-143112
-    if (newPoly.size() >= 2 && newPoly.first().x() > newPoly.last().x()) {
-        std::reverse(newPoly.begin(), newPoly.end());
-    }
     return newPoly;
 }
 
