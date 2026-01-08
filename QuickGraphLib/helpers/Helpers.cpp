@@ -370,6 +370,11 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         }
     }
     painter->restore();
+    if (item->clip() && painter->hasClipping()) {
+        // Workaround for QTBUG-143246
+        // If we have reverted to a previous clip, set it again to make sure it's applied
+        painter->setClipRegion(painter->clipRegion());
+    }
 }
 
 void exportToPainter(QQuickItem* item, QPainter* painter) {
