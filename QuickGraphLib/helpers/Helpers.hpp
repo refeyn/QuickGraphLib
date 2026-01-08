@@ -17,6 +17,7 @@ class QGL_EXPORT Helpers : public QObject {
     QML_SINGLETON
    public:
     Q_INVOKABLE static QList<qreal> linspace(qreal min, qreal max, int num);
+    Q_INVOKABLE static QList<qreal> logspace(qreal logmin, qreal logmax, int num, qreal base = 10);
     Q_INVOKABLE static QList<int> range(int min, int max, int step = 1);
     Q_INVOKABLE static QList<qreal> tickLocator(qreal min, qreal max, int maxNum);
     Q_INVOKABLE static QPolygonF mapPoints(QVariant points, QMatrix4x4 dataTransform);
