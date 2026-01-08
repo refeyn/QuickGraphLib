@@ -134,10 +134,6 @@ QPolygonF mapPointsInner(const QList<QPointF>& poly, QMatrix4x4 dataTranform) {
     for (auto& point : poly) {
         newPoly.append(dataTranform.map(point));
     }
-    // FIXME QTBUG-143112
-    if (newPoly.size() >= 2 && newPoly.first().x() > newPoly.last().x()) {
-        std::reverse(newPoly.begin(), newPoly.end());
-    }
     return newPoly;
 }
 
@@ -395,6 +391,11 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         }
     }
     painter->restore();
+    if (item->clip() && painter->hasClipping()) {
+        // Workaround for QTBUG-143246
+        // If we have reverted to a previous clip, set it again to make sure it's applied
+        painter->setClipRegion(painter->clipRegion());
+    }
 }
 
 void exportToPainter(QQuickItem* item, QPainter* painter) {

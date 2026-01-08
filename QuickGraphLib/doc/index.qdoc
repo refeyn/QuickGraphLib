@@ -14,6 +14,8 @@ The QuickGraphLib module provides a \l{QuickGraphLib QML Types}{QML API} and a \
 
 \include {module-use.qdocinc} {using the qml api} {QuickGraphLib}
 
+\note Due to \l {https://qt-project.atlassian.net/browse/QTBUG-143112} {QTBUG-143112}, some graphs may render incorrectly unless the environment variable \c QT_QUICKSHAPES_CHECK_ALL_CURVATURE is set to \c 1. The Python module sets this automatically, however if you are using C++ or you are rendering shapes before importing QuickGraphLib, you will need to set this yourself.
+
 \section1 Important Concepts
 
 \list
