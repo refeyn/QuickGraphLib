@@ -272,7 +272,6 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
     painter->setOpacity(item->opacity());
     auto rect = QRectF(0, 0, item->width(), item->height());
     if (item->clip()) {
-        // Note: doesn't work for SVGs until 6.7
         painter->setClipRect(rect);
     }
 
@@ -367,6 +366,11 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         }
     }
     painter->restore();
+    if (item->clip() && painter->hasClipping()) {
+        // Workaround for QTBUG-143246
+        // If we have reverted to a previous clip, set it again to make sure it's applied
+        painter->setClipRegion(painter->clipRegion());
+    }
 }
 
 void exportToPainter(QQuickItem* item, QPainter* painter) {
@@ -397,9 +401,6 @@ void exportToPaintDevice(QQuickItem* item, QPaintDevice* device) {
         PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
         more information.
 
-    \note Clip paths for SVGs are only supported in Qt 6.7+. If your graph needs clipping, ensure you are using a Qt
-        version that supports it.
-
     \note HTML formatting in labels is not supported yet.
 
     \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
@@ -414,9 +415,6 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
             PathPolyline). Other elements will be rendered incorrectly or not at all. See \l {QPainter-based export} for
             more information.
 
-        \note Clip paths for SVGs are only supported in Qt 6.7+. If your graph needs clipping, ensure you are using a Qt
-            version that supports it.
-
         \note HTML formatting in labels is not supported yet.
 
         \sa Helpers::exportToPng, Helpers::exportToPicture, {Exporting graphs}
@@ -427,7 +425,7 @@ bool Helpers::exportToSvg(QQuickItem* item, QUrl path) {
     }
 
     {
-        QSvgGenerator device;
+        QSvgGenerator device{QSvgGenerator::SvgVersion::Svg11};
         device.setFileName(path.toLocalFile());
         device.setViewBox(QRectF(0, 0, item->width(), item->height()));
         device.setResolution(96);
