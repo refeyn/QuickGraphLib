@@ -24,7 +24,7 @@ set(QGL_SOURCES
 )
 
 if(ENABLE_PYTHON)
-    list(APPEND QGL_SOURCES bindings/Binding.hpp)
+    list(APPEND QGL_SOURCES bindings/Bindings.hpp)
 endif()
 
 add_library(QuickGraphLibPlugin SHARED Plugin.cpp)
