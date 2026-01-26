@@ -12,13 +12,19 @@ set(QGL_QML_FILES
 )
 
 set(QGL_SOURCES
-    helpers/Helpers.cpp helpers/Helpers.hpp
-    helpers/AxisHelper.hpp helpers/AxisHelper.cpp
+    helpers/Helpers.cpp
+    helpers/Helpers.hpp
+    helpers/AxisHelper.hpp
+    helpers/AxisHelper.cpp
     helpers/Foreign.hpp
-    helpers/ShapeRepeaterHelper.hpp helpers/ShapeRepeaterHelper.cpp
-    ImageView.hpp ImageView.cpp
-    ColorMaps.hpp ColorMaps.cpp
-    DataTypes.hpp DataTypes.cpp
+    helpers/ShapeRepeaterHelper.hpp
+    helpers/ShapeRepeaterHelper.cpp
+    ImageView.hpp
+    ImageView.cpp
+    ColorMaps.hpp
+    ColorMaps.cpp
+    DataTypes.hpp
+    DataTypes.cpp
     QuickGraphLib.hpp
     Global.hpp
 )
@@ -81,9 +87,7 @@ install(
 add_subdirectory(PreFabs)
 add_subdirectory(GraphItems)
 
-
 if(ENABLE_PYTHON)
-
     set(QGL_PYTHON_FILES
         __init__.py
         consts.py
@@ -95,7 +99,8 @@ if(ENABLE_PYTHON)
         add_custom_command(
             OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PYTHON_FILE}
             COMMAND
-                ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE}
+                ${CMAKE_COMMAND} -E copy
+                ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE}
                 ${CMAKE_CURRENT_BINARY_DIR}/${PYTHON_FILE}
             DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE}
         )
@@ -103,8 +108,10 @@ if(ENABLE_PYTHON)
     list(TRANSFORM QGL_PYTHON_FILES PREPEND "${CMAKE_CURRENT_BINARY_DIR}/")
     add_custom_target(QuickGraphLibPythonFiles ALL DEPENDS ${QGL_PYTHON_FILES})
 
-    install(FILES ${QGL_PYTHON_FILES} DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
+    install(
+        FILES ${QGL_PYTHON_FILES}
+        DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
+    )
 
     add_subdirectory(bindings)
-
 endif()
