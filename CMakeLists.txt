@@ -15,6 +15,11 @@ else()
     add_compile_options(-Wextra -Wpedantic -fno-visibility-inlines-hidden)
 endif()
 
+option(
+    ENABLE_PYTHON
+    "Enable python binding. C++ only if disabled. (default is on)"
+    ON
+)
 option(ENABLE_STUB_GENERATION "Enable .pyi stub generation (defaults to on)" ON)
 option(
     ENABLE_MANYLINUX_BUILD

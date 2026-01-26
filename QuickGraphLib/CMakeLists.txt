@@ -11,6 +11,28 @@ set(QGL_QML_FILES
     ShapeRepeater.qml
 )
 
+set(QGL_SOURCES
+    helpers/Helpers.cpp
+    helpers/Helpers.hpp
+    helpers/AxisHelper.hpp
+    helpers/AxisHelper.cpp
+    helpers/Foreign.hpp
+    helpers/ShapeRepeaterHelper.hpp
+    helpers/ShapeRepeaterHelper.cpp
+    ImageView.hpp
+    ImageView.cpp
+    ColorMaps.hpp
+    ColorMaps.cpp
+    DataTypes.hpp
+    DataTypes.cpp
+    QuickGraphLib.hpp
+    Global.hpp
+)
+
+if(ENABLE_PYTHON)
+    list(APPEND QGL_SOURCES bindings/Bindings.hpp)
+endif()
+
 add_library(QuickGraphLibPlugin SHARED Plugin.cpp)
 target_link_libraries(QuickGraphLibPlugin PRIVATE Qt6::Gui)
 qt_add_qml_module(QuickGraphLib
@@ -22,11 +44,7 @@ qt_add_qml_module(QuickGraphLib
     NO_GENERATE_PLUGIN_SOURCE
     NO_PLUGIN_OPTIONAL
     DEPENDENCIES QtQuick
-    SOURCES
-        helpers/Helpers.cpp helpers/Helpers.hpp helpers/AxisHelper.hpp helpers/AxisHelper.cpp helpers/Foreign.hpp
-        helpers/ShapeRepeaterHelper.hpp helpers/ShapeRepeaterHelper.cpp
-        ImageView.hpp ImageView.cpp ColorMaps.hpp ColorMaps.cpp DataTypes.hpp DataTypes.cpp bindings/Bindings.hpp QuickGraphLib.hpp
-        Global.hpp
+    SOURCES ${QGL_SOURCES}
 )
 set_property(
     TARGET QuickGraphLib
@@ -48,25 +66,6 @@ target_include_directories(
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/helpers
 )
 
-set(QGL_PYTHON_FILES
-    __init__.py
-    consts.py
-    contours.py
-    py.typed
-    _version.py
-)
-foreach(PYTHON_FILE ${QGL_PYTHON_FILES})
-    add_custom_command(
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PYTHON_FILE}
-        COMMAND
-            ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE}
-            ${CMAKE_CURRENT_BINARY_DIR}/${PYTHON_FILE}
-        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE}
-    )
-endforeach()
-list(TRANSFORM QGL_PYTHON_FILES PREPEND "${CMAKE_CURRENT_BINARY_DIR}/")
-add_custom_target(QuickGraphLibPythonFiles ALL DEPENDS ${QGL_PYTHON_FILES})
-
 install(
     TARGETS QuickGraphLib
     RUNTIME DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
@@ -84,8 +83,35 @@ install(
         ${CMAKE_CURRENT_BINARY_DIR}/QuickGraphLib.qmltypes
     DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
 )
-install(FILES ${QGL_PYTHON_FILES} DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib)
 
 add_subdirectory(PreFabs)
 add_subdirectory(GraphItems)
-add_subdirectory(bindings)
+
+if(ENABLE_PYTHON)
+    set(QGL_PYTHON_FILES
+        __init__.py
+        consts.py
+        contours.py
+        py.typed
+        _version.py
+    )
+    foreach(PYTHON_FILE ${QGL_PYTHON_FILES})
+        add_custom_command(
+            OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${PYTHON_FILE}
+            COMMAND
+                ${CMAKE_COMMAND} -E copy
+                ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE}
+                ${CMAKE_CURRENT_BINARY_DIR}/${PYTHON_FILE}
+            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${PYTHON_FILE}
+        )
+    endforeach()
+    list(TRANSFORM QGL_PYTHON_FILES PREPEND "${CMAKE_CURRENT_BINARY_DIR}/")
+    add_custom_target(QuickGraphLibPythonFiles ALL DEPENDS ${QGL_PYTHON_FILES})
+
+    install(
+        FILES ${QGL_PYTHON_FILES}
+        DESTINATION ${INSTALL_SUBPATH}/QuickGraphLib
+    )
+
+    add_subdirectory(bindings)
+endif()
