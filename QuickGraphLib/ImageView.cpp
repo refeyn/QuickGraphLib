@@ -482,7 +482,7 @@ void ImageView::updatePolish() {
     }
 
     setImplicitSize(_coloredImage.width(), _coloredImage.height());
-    if (_sourceSize != _coloredImage.size()) {
+    if (!_coloredImage.isNull() && _sourceSize != _coloredImage.size()) {
         _sourceSize = _coloredImage.size();
         emit sourceSizeChanged();
     }
