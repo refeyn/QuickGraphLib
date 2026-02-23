@@ -3,6 +3,7 @@
 
 #include "Helpers.hpp"
 
+#include <QAbstractTextDocumentLayout>
 #include <QFile>
 #include <QMatrix4x4>
 #include <QPainter>
@@ -314,8 +315,9 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
     if (item->inherits("QQuickText")) {
         painter->save();
         painter->setFont(item->property("font").value<QFont>());
-        painter->setPen(item->property("color").value<QColor>());
-        painter->setBrush(item->property("color").value<QColor>());
+        auto color = item->property("color").value<QColor>();
+        painter->setPen(color);
+        painter->setBrush(color);
         auto textFormat = static_cast<Qt::TextFormat>(item->property("textFormat").toInt());
         auto text = item->property("text").toString();
         auto alignment = static_cast<Qt::AlignmentFlag>(
@@ -342,7 +344,9 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
             option.setAlignment(alignment);
             doc.setDefaultTextOption(option);
             doc.setDefaultFont(painter->font());
-            doc.drawContents(painter, rect);
+            QAbstractTextDocumentLayout::PaintContext ctx{};
+            ctx.palette.setColor(QPalette::Text, color);
+            doc.documentLayout()->draw(painter, ctx);
         }
         painter->restore();
     }
