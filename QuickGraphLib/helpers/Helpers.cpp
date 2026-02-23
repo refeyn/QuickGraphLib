@@ -9,6 +9,7 @@
 #include <QPainterPath>
 #include <QTextDocument>
 #include <QtSvg/QSvgGenerator>
+#include <QtSvg/QSvgRenderer>
 
 #include "ImageView.hpp"
 
@@ -314,6 +315,7 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         painter->save();
         painter->setFont(item->property("font").value<QFont>());
         painter->setPen(item->property("color").value<QColor>());
+        painter->setBrush(item->property("color").value<QColor>());
         auto textFormat = static_cast<Qt::TextFormat>(item->property("textFormat").toInt());
         auto text = item->property("text").toString();
         auto alignment = static_cast<Qt::AlignmentFlag>(
@@ -383,6 +385,27 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         flippedFlags.setFlag(Qt::Horizontal, imageView->mirrorHorizontally());
         flippedFlags.setFlag(Qt::Vertical, imageView->mirrorVertically());
         painter->drawImage(imageView->paintedRect(), imageView->image().flipped(flippedFlags));
+    }
+
+    else if (item->inherits("QQuickImage")) {
+        if (item->property("smooth").toBool()) {
+            painter->setRenderHint(QPainter::RenderHint::SmoothPixmapTransform, true);
+        }
+        auto flippedFlags = Qt::Orientations();
+        flippedFlags.setFlag(Qt::Horizontal, item->property("mirror").toBool());
+        flippedFlags.setFlag(Qt::Vertical, item->property("mirrorVertically").toBool());
+        auto image = QImage(item->property("source").toString());
+        auto sourceClipRect = item->property("sourceClipRect").toRectF();
+        if (sourceClipRect.isValid()) {
+            image = image.copy(sourceClipRect.toRect());
+        }
+        auto rect = QRectF(0, 0, item->width(), item->height());
+        painter->drawImage(rect, image.flipped(flippedFlags));
+    }
+
+    else if (item->inherits("QQuickVectorImage")) {
+        QSvgRenderer renderer(item->property("source").toString());
+        renderer.render(painter, QRectF(0, 0, item->width(), item->height()));
     }
 
     for (auto c : children) {
