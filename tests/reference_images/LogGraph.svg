@@ -7,15 +7,6 @@
 <clipPath id="clipPath1">
 <path vector-effect="none" fill-rule="evenodd" d="M66,15 L785,15 L785,535 L66,535 L66,15"/>
 </clipPath>
-<clipPath id="clipPath2">
-<path vector-effect="none" fill-rule="evenodd" d="M184,545.5 L217,545.5 L217,563.5 L184,563.5 L184,545.5"/>
-</clipPath>
-<clipPath id="clipPath3">
-<path vector-effect="none" fill-rule="evenodd" d="M410.5,545.5 L440.5,545.5 L440.5,563.5 L410.5,563.5 L410.5,545.5"/>
-</clipPath>
-<clipPath id="clipPath4">
-<path vector-effect="none" fill-rule="evenodd" d="M635.5,545.5 L665.5,545.5 L665.5,563.5 L635.5,563.5 L635.5,545.5"/>
-</clipPath>
 </defs>
 <g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
 
@@ -348,21 +339,10 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,184,545.5)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
-</g>
-
-<g clip-path="url(#clipPath2)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,184,545.5)"
-font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
->
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
  >10</text>
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="20" y="9" font-family="DejaVuSans" font-size="9.33333" font-weight="400" font-style="normal" 
  >-1</text>
-</g>
-</g>
-
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,184,545.5)"
-font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
->
 </g>
 
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,184,545.5)"
@@ -381,11 +361,6 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 </g>
 
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,410.5,545.5)"
-font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
->
-</g>
-
-<g clip-path="url(#clipPath3)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,410.5,545.5)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
@@ -393,12 +368,6 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="20" y="9" font-family="DejaVuSans" font-size="9.33333" font-weight="400" font-style="normal" 
  >0</text>
 </g>
-</g>
-
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,410.5,545.5)"
-font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
->
-</g>
 
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,410.5,545.5)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
@@ -418,21 +387,10 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635.5,545.5)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
-</g>
-
-<g clip-path="url(#clipPath4)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635.5,545.5)"
-font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
->
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="14" font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
  >10</text>
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="20" y="9" font-family="DejaVuSans" font-size="9.33333" font-weight="400" font-style="normal" 
  >1</text>
-</g>
-</g>
-
-<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635.5,545.5)"
-font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
->
 </g>
 
 <g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,635.5,545.5)"

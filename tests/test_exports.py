@@ -13,13 +13,16 @@ from examples import conway  # pylint: disable=unused-import
 from tests import python_exporter
 
 EXAMPLE_PATHS = [
-    path
-    for path in (pathlib.Path(__file__).parent.parent / "examples").glob("*.qml")
-    if path.name != "ExampleGallery.qml"
+    *[
+        path
+        for path in (pathlib.Path(__file__).parent.parent / "examples").glob("*.qml")
+        if path.name != "ExampleGallery.qml"
+    ],
+    *(pathlib.Path(__file__).parent / "extra_examples").glob("*.qml"),
 ]
 REFERENCE_PATH = pathlib.Path(__file__).parent / "reference_images"
 FONT_PATH = pathlib.Path(__file__).parent / "fonts"
-GENERATE_REFERENCE_IMAGES = False
+GENERATE_REFERENCE_IMAGES = True
 
 # Getting the same results on different OSes is tricky, so essentially
 # disable the comparisons when not on Windows (which is where the references were generated)

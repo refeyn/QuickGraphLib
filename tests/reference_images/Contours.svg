@@ -125,7 +125,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 <g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#008000" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,64,15)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
-<path vector-effect="none" fill-rule="evenodd" d="M0,203.25 L240.333,29.0357 L471.423,271 L480.667,325.2 L587.481,542 M480.667,0 L560.778,271 L721,348.429"/>
+<path vector-effect="none" fill-rule="evenodd" d="M587.481,542 L480.667,325.2 L471.423,271 L240.333,29.0357 L0,203.25 M480.667,0 L560.778,271 L721,348.429"/>
 </g>
 </g>
 
