@@ -426,7 +426,8 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         auto source = item->property("source").toString();
         auto ctx = qmlContext(item);
         if (ctx) {
-            source = ctx->resolvedUrl(source).toLocalFile();
+            auto url = ctx->resolvedUrl(source);
+            source = url.scheme() == "file" ? url.toLocalFile() : url.toString();
         }
         auto image = QImage(source);
         if (image.isNull()) {
@@ -475,7 +476,8 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         auto source = item->property("source").toString();
         auto ctx = qmlContext(item);
         if (ctx) {
-            source = ctx->resolvedUrl(source).toLocalFile();
+            auto url = ctx->resolvedUrl(source);
+            source = url.scheme() == "file" ? url.toLocalFile() : url.toString();
         }
         QSvgRenderer renderer(source);
         if (!renderer.isValid()) {
