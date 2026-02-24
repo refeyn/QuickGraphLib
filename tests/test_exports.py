@@ -22,7 +22,7 @@ EXAMPLE_PATHS = [
 ]
 REFERENCE_PATH = pathlib.Path(__file__).parent / "reference_images"
 FONT_PATH = pathlib.Path(__file__).parent / "fonts"
-GENERATE_REFERENCE_IMAGES = True
+GENERATE_REFERENCE_IMAGES = False
 
 # Getting the same results on different OSes is tricky, so essentially
 # disable the comparisons when not on Windows (which is where the references were generated)
