@@ -56,6 +56,10 @@ jobs:
           .\activate_venv.ps1
           pre-commit run --all-files --show-diff-on-failure
 
+      - name: Fixup missing DLL (PYSIDE-3267)
+        run: |
+          cp $Env:QT_ROOT_DIR/bin/Qt6QuickVectorImageHelpers.dll venv/Lib/site-packages/PySide6
+
       - name: Run tests
         run: |
           .\activate_venv.ps1

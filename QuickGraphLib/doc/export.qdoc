@@ -42,6 +42,8 @@ If an element is not rendered correctly, create a \l {https://github.com/refeyn/
 
 \list
     \li \l Rectangle items must have \l {Rectangle::border.width} {border.width} set to zero if the border should be hidden. This is because the border width defaults to 1, and there is no public API for checking if the width or color has been set.
+    \li For \l Image items, the \c Image.Tile, \c Image.TileVertically, and \c Image.TileHorizontally options for \l {Image::fillMode} are not yet supported.
+    \li Network sources are not supported for \l Image and \l VectorImage items.
 \endlist
 
 */

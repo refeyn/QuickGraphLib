@@ -3,12 +3,15 @@
 
 #include "Helpers.hpp"
 
+#include <QAbstractTextDocumentLayout>
 #include <QFile>
 #include <QMatrix4x4>
 #include <QPainter>
 #include <QPainterPath>
+#include <QQmlContext>
 #include <QTextDocument>
 #include <QtSvg/QSvgGenerator>
+#include <QtSvg/QSvgRenderer>
 
 #include "ImageView.hpp"
 
@@ -264,6 +267,31 @@ void exportShapePathToPainter(QObject* shapePath, QPainter* painter) {
     painter->restore();
 }
 
+QRectF alignSizeInsideRect(QRectF area, QSizeF size, Qt::Alignment alignment) {
+    qreal x;
+    if (alignment & Qt::AlignLeft) {
+        x = 0;
+    }
+    else if (alignment & Qt::AlignRight) {
+        x = area.width() - size.width();
+    }
+    else {
+        x = (area.width() - size.width()) / 2;
+    }
+
+    qreal y;
+    if (alignment & Qt::AlignTop) {
+        y = 0;
+    }
+    else if (alignment & Qt::AlignBottom) {
+        y = area.height() - size.height();
+    }
+    else {
+        y = (area.height() - size.height()) / 2;
+    }
+    return QRectF(QPointF(x, y), size);
+}
+
 void exportItemToPainter(QQuickItem* item, QPainter* painter) {
     if (!item->isVisible()) {
         return;
@@ -313,7 +341,8 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
     if (item->inherits("QQuickText")) {
         painter->save();
         painter->setFont(item->property("font").value<QFont>());
-        painter->setPen(item->property("color").value<QColor>());
+        auto color = item->property("color").value<QColor>();
+        painter->setPen(color);
         auto textFormat = static_cast<Qt::TextFormat>(item->property("textFormat").toInt());
         auto text = item->property("text").toString();
         auto alignment = static_cast<Qt::AlignmentFlag>(
@@ -340,7 +369,9 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
             option.setAlignment(alignment);
             doc.setDefaultTextOption(option);
             doc.setDefaultFont(painter->font());
-            doc.drawContents(painter, rect);
+            QAbstractTextDocumentLayout::PaintContext ctx{};
+            ctx.palette.setColor(QPalette::Text, color);
+            doc.documentLayout()->draw(painter, ctx);
         }
         painter->restore();
     }
@@ -383,6 +414,95 @@ void exportItemToPainter(QQuickItem* item, QPainter* painter) {
         flippedFlags.setFlag(Qt::Horizontal, imageView->mirrorHorizontally());
         flippedFlags.setFlag(Qt::Vertical, imageView->mirrorVertically());
         painter->drawImage(imageView->paintedRect(), imageView->image().flipped(flippedFlags));
+    }
+
+    else if (item->inherits("QQuickImage")) {
+        if (item->property("smooth").toBool()) {
+            painter->setRenderHint(QPainter::RenderHint::SmoothPixmapTransform, true);
+        }
+        auto flippedFlags = Qt::Orientations();
+        flippedFlags.setFlag(Qt::Horizontal, item->property("mirror").toBool());
+        flippedFlags.setFlag(Qt::Vertical, item->property("mirrorVertically").toBool());
+        auto source = item->property("source").toString();
+        auto ctx = qmlContext(item);
+        if (ctx) {
+            auto url = ctx->resolvedUrl(source);
+            source = url.scheme() == "file" ? url.toLocalFile() : url.toString();
+        }
+        auto image = QImage(source);
+        if (image.isNull()) {
+            qWarning() << __func__ << "Could not load" << source;
+        }
+        auto sourceClipRect = item->property("sourceClipRect").toRectF();
+        if (!sourceClipRect.isValid()) {
+            sourceClipRect = QRectF(0, 0, image.width(), image.height());
+        }
+        auto alignment = static_cast<Qt::Alignment>(
+            item->property("horizontalAlignment").toUInt() | item->property("verticalAlignment").toUInt()
+        );
+        auto sourceSize = item->property("sourceSize").toSizeF();
+        if (sourceSize.isNull()) {
+            sourceSize = sourceClipRect.size();
+        }
+        else {
+            sourceSize = sourceClipRect.size().scaled(sourceSize, Qt::KeepAspectRatio);
+        }
+        switch (item->property("fillMode").toInt()) {
+            case 0:     // QQuickImage::FillMode::Stretch
+                break;  // Don't need to do anything
+            case 1:     // QQuickImage::FillMode::PreserveAspectFit
+                rect = alignSizeInsideRect(
+                    rect, sourceClipRect.size().scaled(rect.size(), Qt::KeepAspectRatio), alignment
+                );
+                break;
+            case 2:  // QQuickImage::FillMode::PreserveAspectCrop
+                sourceClipRect = alignSizeInsideRect(
+                    sourceClipRect, rect.size().scaled(sourceClipRect.size(), Qt::KeepAspectRatio), alignment
+                );
+                break;
+            case 3:  // QQuickImage::FillMode::Tile
+            case 4:  // QQuickImage::FillMode::TileVertically
+            case 5:  // QQuickImage::FillMode::TileHorizontally
+                qWarning() << __func__ << "Unsupported fillMode for QQuickImage";
+                break;
+            case 6:  // QQuickImage::FillMode::Pad
+                rect = alignSizeInsideRect(rect, sourceSize, alignment);
+                break;
+        }
+        painter->drawImage(rect, image.flipped(flippedFlags), sourceClipRect);
+    }
+
+    else if (item->inherits("QQuickVectorImage")) {
+        auto source = item->property("source").toString();
+        auto ctx = qmlContext(item);
+        if (ctx) {
+            auto url = ctx->resolvedUrl(source);
+            source = url.scheme() == "file" ? url.toLocalFile() : url.toString();
+        }
+        QSvgRenderer renderer(source);
+        if (!renderer.isValid()) {
+            qWarning() << __func__ << "Could not load" << source;
+        }
+        switch (item->property("fillMode").toInt()) {
+            case 0:  // QQuickVectorImage::FillMode::NoResize
+                rect = renderer.viewBoxF();
+                break;
+            case 1:  // QQuickVectorImage::FillMode::PreserveAspectFit
+                rect = alignSizeInsideRect(
+                    rect, renderer.viewBoxF().size().scaled(rect.size(), Qt::KeepAspectRatio),
+                    Qt::AlignLeft | Qt::AlignTop
+                );
+                break;
+            case 2:  // QQuickVectorImage::FillMode::PreserveAspectCrop
+                rect = alignSizeInsideRect(
+                    rect, renderer.viewBoxF().size().scaled(rect.size(), Qt::KeepAspectRatioByExpanding),
+                    Qt::AlignLeft | Qt::AlignTop
+                );
+                break;
+            case 3:     // QQuickVectorImage::FillMode::Stretch
+                break;  // Don't need to do anything
+        }
+        renderer.render(painter, rect);
     }
 
     for (auto c : children) {

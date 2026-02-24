@@ -4,7 +4,7 @@
 /*!
     \title Log graph
     \ingroup quickgraphlibdemos
-    \brief A tan graph with a logarithmic axis
+    \brief A tan graph with a logarithmic axis.
     \example loggraph
 
     \image examples/LogGraph.png
