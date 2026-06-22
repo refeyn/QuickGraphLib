@@ -4,6 +4,8 @@
 set(QGL_QML_FILES
     AntialiasingContainer.qml
     Axis.qml
+    BoxPlotHorizontal.qml
+    BoxPlotVertical.qml
     GraphArea.qml
     ScalingContainer.qml
     ZoomPanHandler.qml
