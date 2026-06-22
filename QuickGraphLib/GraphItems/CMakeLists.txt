@@ -4,6 +4,7 @@
 set(QGL_GI_QML_FILES
     AxHLine.qml
     AxVLine.qml
+    Bar.qml
     BasicLegend.qml
     GraphItemDragHandler.qml
     Histogram.qml
