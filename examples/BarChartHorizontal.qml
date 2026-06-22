@@ -9,68 +9,68 @@ import QuickGraphLib.PreFabs as QGLPreFabs
 QGLPreFabs.XYAxes {
     id: axes
 
-    title: "Bar Chart (vertical)"
+    title: "Bar Chart (horizontal)"
     viewRect: Qt.rect(0, 0, 600, 200)
-    xLabel: "Position"
-    yLabel: "Number of things"
+    xLabel: "Number of things"
+    yLabel: "Position"
 
-    QGLGraphItems.BarVertical {
+    QGLGraphItems.BarHorizontal {
         dataTransform: axes.dataTransform
         fillColor: "#66ff0000"
         strokeColor: "black"
         dashP
         strokeWidth: 1
-        barHeight: 100
-        barWidth: 50
-        position: 100
-    }
-    QGLGraphItems.BarVertical {
-        dataTransform: axes.dataTransform
-        fillColor: '#66ff7b00'
-        strokeColor: "black"
-        strokeWidth: 1
-        barHeight: 30
-        barWidth: 50
-        strokeStyle: QQC.ShapePath.DashLine
-        position: 100
-    }
-    QGLGraphItems.BarVertical {
-        dataTransform: axes.dataTransform
-        fillColor: '#66ffd900'
-        strokeColor: "black"
-        strokeWidth: 1
+        barLength: 100
         barHeight: 50
-        barWidth: 50
+        position: 100
+    }
+    QGLGraphItems.BarHorizontal {
+        dataTransform: axes.dataTransform
+        fillColor: '#66ff7b00'
+        strokeColor: "black"
+        strokeWidth: 1
+        barLength: 30
+        barHeight: 50
+        strokeStyle: QQC.ShapePath.DashLine
+        position: 100
+    }
+    QGLGraphItems.BarHorizontal {
+        dataTransform: axes.dataTransform
+        fillColor: '#66ffd900'
+        strokeColor: "black"
+        strokeWidth: 1
+        barLength: 50
+        barHeight: 50
         position: 100
     }
 
-    QGLGraphItems.BarVertical {
+    QGLGraphItems.BarHorizontal {
         dataTransform: axes.dataTransform
         fillColor: "#66ff0000"
         strokeColor: "black"
         dashP
         strokeWidth: 1
-        barHeight: 20
-        barWidth: 50
+        barLength: 20
+        barHeight: 50
         position: 500
     }
-    QGLGraphItems.BarVertical {
+    QGLGraphItems.BarHorizontal {
         dataTransform: axes.dataTransform
         fillColor: '#66ff7b00'
         strokeColor: "black"
         strokeWidth: 1
-        barHeight: 70
-        barWidth: 50
+        barLength: 70
+        barHeight: 50
         strokeStyle: QQC.ShapePath.DashLine
         position: 500
     }
-    QGLGraphItems.BarVertical {
+    QGLGraphItems.BarHorizontal {
         dataTransform: axes.dataTransform
         fillColor: '#66ffd900'
         strokeColor: "black"
         strokeWidth: 1
-        barHeight: 150
-        barWidth: 50
+        barLength: 150
+        barHeight: 50
         position: 500
     }
 }
