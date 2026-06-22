@@ -8,7 +8,7 @@ import QtQuick.Shapes as QQS
     \qmltype Bar
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Shapes::ShapePath
-    \brief Displays a bar for a bar graph.
+    \brief Displays a horizontal bar for a bar graph.
 */
 QQS.ShapePath {
     id: root
@@ -20,26 +20,26 @@ QQS.ShapePath {
     */
     required property matrix4x4 dataTransform
     /*!
-        The height of the bar in data coordinates.
+        The length (X) of the bar in data coordinates.
+    */
+    required property double barLength
+    /*!
+        The height (Y) of the bar in data coordinates.
     */
     required property double barHeight
-    /*!
-        The width of the bar in data coordinates.
-    */
-    required property double barWidth
     /*!
         The X position of the bar in data coordinates.
     */
     required property double position
     /*!
-        The starting Y position of the bar in data coordinates.
+        The starting X position of the bar in data coordinates.
     */
-    property double yStart: 0
+    property double xStart: 0
 
     pathHints: QQS.ShapePath.PathLinear | QQS.ShapePath.PathConvex | QQS.ShapePath.PathSolid
     PathRectangle {
-        readonly property point bottomRightPoint: dataTransform.map(Qt.point(position+barWidth/2, barHeight >= 0 ? yStart : yStart - barHeight))
-        readonly property point topLeftPoint: dataTransform.map(Qt.point(position-barWidth/2, barHeight >= 0 ? yStart + barHeight : yStart))
+        readonly property point bottomRightPoint: dataTransform.map(Qt.point(barLength >= 0 ? xStart + barLength : xStart,  position+barHeight/2))
+        readonly property point topLeftPoint: dataTransform.map(Qt.point(barLength >= 0 ? xStart :  xStart + barLength, position-barHeight/2))
         x: topLeftPoint.x
         y: topLeftPoint.y
         width: bottomRightPoint.x - topLeftPoint.x
