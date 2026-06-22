@@ -5,7 +5,7 @@ import QtQuick
 import QtQuick.Shapes as QQS
 
 /*!
-    \qmltype Bar
+    \qmltype BarHorizontal
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Shapes::ShapePath
     \brief Displays a horizontal bar for a bar graph.
