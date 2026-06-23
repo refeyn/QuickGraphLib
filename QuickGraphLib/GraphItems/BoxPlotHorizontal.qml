@@ -56,11 +56,14 @@ QQS.ShapePath {
     pathHints: QQS.ShapePath.PathLinear | QQS.ShapePath.PathSolid
 
     PathMultiline {
-        paths: [[dataTransform.map(Qt.point(q0, position + whiskerHeight / 2)), dataTransform.map(Qt.point(q0, position - whiskerHeight / 2))], [dataTransform.map(Qt.point(q0, position)), dataTransform.map(Qt.point(q1, position))]]
+        paths: [
+            [root.dataTransform.map(Qt.point(root.q0, root.position + root.whiskerHeight / 2)), root.dataTransform.map(Qt.point(root.q0, root.position - root.whiskerHeight / 2))],
+            [root.dataTransform.map(Qt.point(root.q0, root.position)), root.dataTransform.map(Qt.point(root.q1, root.position))]
+            ]
     }
     PathRectangle {
-        readonly property point bottomRightPoint: dataTransform.map(Qt.point(q2, position - boxHeight / 2))
-        readonly property point topLeftPoint: dataTransform.map(Qt.point(q1, position + boxHeight / 2))
+        readonly property point bottomRightPoint: root.dataTransform.map(Qt.point(root.q2, root.position - root.boxHeight / 2))
+        readonly property point topLeftPoint: root.dataTransform.map(Qt.point(root.q1, root.position + root.boxHeight / 2))
 
         height: bottomRightPoint.y - topLeftPoint.y
         width: bottomRightPoint.x - topLeftPoint.x
@@ -68,8 +71,8 @@ QQS.ShapePath {
         y: topLeftPoint.y
     }
     PathRectangle {
-        readonly property point bottomRightPoint: dataTransform.map(Qt.point(q3, position - boxHeight / 2))
-        readonly property point topLeftPoint: dataTransform.map(Qt.point(q2, position + boxHeight / 2))
+        readonly property point bottomRightPoint: root.dataTransform.map(Qt.point(root.q3, root.position - root.boxHeight / 2))
+        readonly property point topLeftPoint: root.dataTransform.map(Qt.point(root.q2, root.position + root.boxHeight / 2))
 
         height: bottomRightPoint.y - topLeftPoint.y
         width: bottomRightPoint.x - topLeftPoint.x
@@ -77,6 +80,9 @@ QQS.ShapePath {
         y: topLeftPoint.y
     }
     PathMultiline {
-        paths: [[dataTransform.map(Qt.point(q3, position)), dataTransform.map(Qt.point(q4, position))], [dataTransform.map(Qt.point(q4, position + whiskerHeight / 2)), dataTransform.map(Qt.point(q4, position - whiskerHeight / 2))]]
+        paths: [
+            [root.dataTransform.map(Qt.point(root.q3, root.position)), root.dataTransform.map(Qt.point(root.q4, root.position))],
+            [root.dataTransform.map(Qt.point(root.q4, root.position + root.whiskerHeight / 2)), root.dataTransform.map(Qt.point(root.q4, root.position - root.whiskerHeight / 2))]
+        ]
     }
 }
