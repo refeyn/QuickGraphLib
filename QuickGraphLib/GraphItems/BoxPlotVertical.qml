@@ -56,7 +56,7 @@ QQS.ShapePath {
     pathHints: QQS.ShapePath.PathLinear | QQS.ShapePath.PathSolid
 
     PathMultiline {
-        paths: [[dataTransform.map(Qt.point(position - whiskerWidth / 2, q4)), dataTransform.map(Qt.point(position + whiskerWidth / 2, q4)),], [dataTransform.map(Qt.point(position, q4)), dataTransform.map(Qt.point(position, q3)),]]
+        paths: [[dataTransform.map(Qt.point(position - whiskerWidth / 2, q4)), dataTransform.map(Qt.point(position + whiskerWidth / 2, q4))], [dataTransform.map(Qt.point(position, q4)), dataTransform.map(Qt.point(position, q3))]]
     }
     PathRectangle {
         readonly property point bottomRightPoint: dataTransform.map(Qt.point(position + boxWidth / 2, q2))
@@ -77,6 +77,6 @@ QQS.ShapePath {
         y: topLeftPoint.y
     }
     PathMultiline {
-        paths: [[dataTransform.map(Qt.point(position, q1)), dataTransform.map(Qt.point(position, q0)),], [dataTransform.map(Qt.point(position - whiskerWidth / 2, q0)), dataTransform.map(Qt.point(position + whiskerWidth / 2, q0)),]]
+        paths: [[dataTransform.map(Qt.point(position, q1)), dataTransform.map(Qt.point(position, q0))], [dataTransform.map(Qt.point(position - whiskerWidth / 2, q0)), dataTransform.map(Qt.point(position + whiskerWidth / 2, q0))]]
     }
 }

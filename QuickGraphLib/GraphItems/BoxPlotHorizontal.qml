@@ -14,7 +14,7 @@ QQS.ShapePath {
     id: root
 
     /*!
-        The width of the box in data coordinates.
+        The height of the box in data coordinates.
     */
     required property double boxHeight
 
@@ -49,18 +49,18 @@ QQS.ShapePath {
     */
     required property double q4
     /*!
-        The width of the whiskers in data coordinates.
+        The height of the whiskers in data coordinates.
     */
     required property double whiskerHeight
 
     pathHints: QQS.ShapePath.PathLinear | QQS.ShapePath.PathSolid
 
     PathMultiline {
-        paths: [[dataTransform.map(Qt.point(q0, position + whiskerHeight / 2)), dataTransform.map(Qt.point(q0, position - whiskerHeight / 2)),], [dataTransform.map(Qt.point(q0, position)), dataTransform.map(Qt.point(q1, position)),]]
+        paths: [[dataTransform.map(Qt.point(q0, position + whiskerHeight / 2)), dataTransform.map(Qt.point(q0, position - whiskerHeight / 2))], [dataTransform.map(Qt.point(q0, position)), dataTransform.map(Qt.point(q1, position))]]
     }
     PathRectangle {
-        readonly property point bottomRightPoint: dataTransform.map(Qt.point(q1, position + boxHeight / 2))
-        readonly property point topLeftPoint: dataTransform.map(Qt.point(q2, position - boxHeight / 2))
+        readonly property point bottomRightPoint: dataTransform.map(Qt.point(q2, position - boxHeight / 2))
+        readonly property point topLeftPoint: dataTransform.map(Qt.point(q1, position + boxHeight / 2))
 
         height: bottomRightPoint.y - topLeftPoint.y
         width: bottomRightPoint.x - topLeftPoint.x
@@ -68,8 +68,8 @@ QQS.ShapePath {
         y: topLeftPoint.y
     }
     PathRectangle {
-        readonly property point bottomRightPoint: dataTransform.map(Qt.point(q2, position + boxHeight / 2))
-        readonly property point topLeftPoint: dataTransform.map(Qt.point(q3, position - boxHeight / 2))
+        readonly property point bottomRightPoint: dataTransform.map(Qt.point(q3, position - boxHeight / 2))
+        readonly property point topLeftPoint: dataTransform.map(Qt.point(q2, position + boxHeight / 2))
 
         height: bottomRightPoint.y - topLeftPoint.y
         width: bottomRightPoint.x - topLeftPoint.x
@@ -77,6 +77,6 @@ QQS.ShapePath {
         y: topLeftPoint.y
     }
     PathMultiline {
-        paths: [[dataTransform.map(Qt.point(q3, position)), dataTransform.map(Qt.point(q4, position)),], [dataTransform.map(Qt.point(q4, position + whiskerHeight / 2)), dataTransform.map(Qt.point(q4, position - whiskerHeight / 2)),]]
+        paths: [[dataTransform.map(Qt.point(q3, position)), dataTransform.map(Qt.point(q4, position))], [dataTransform.map(Qt.point(q4, position + whiskerHeight / 2)), dataTransform.map(Qt.point(q4, position - whiskerHeight / 2))]]
     }
 }
