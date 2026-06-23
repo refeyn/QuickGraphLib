@@ -68,6 +68,7 @@ build = [
 ]
 before-all = "python ci/setup_qt.py"
 repair-wheel-command = ""
+audit-command = ""
 build-frontend = "build"
 test-command = "python {project}/ci/fixup_qt.py && pytest -sv {project}/tests --import-mode=append"
 test-extras = ["analyse"]

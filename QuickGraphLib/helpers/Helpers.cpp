@@ -189,6 +189,82 @@ void exportPathElementToPainterPath(QObject* element, QPainterPath& path) {
     else if (element->inherits("QQuickPathMove")) {
         path.moveTo(element->property("x").toDouble(), element->property("y").toDouble());
     }
+    else if (element->inherits("QQuickPathRectangle")) {
+        // Based on the Qt code in qtdeclarative/src/quick/util/qquickpath.cpp
+        auto bottomLeftBevel = element->property("bottomLeftBevel").toBool();
+        auto bottomRightBevel = element->property("bottomRightBevel").toBool();
+        auto topLeftBevel = element->property("topLeftBevel").toBool();
+        auto topRightBevel = element->property("topRightBevel").toBool();
+        auto bottomLeftRadius = element->property("bottomLeftRadius").toDouble();
+        auto bottomRightRadius = element->property("bottomRightRadius").toDouble();
+        auto topLeftRadius = element->property("topLeftRadius").toDouble();
+        auto topRightRadius = element->property("topRightRadius").toDouble();
+        auto strokeAdjustment = element->property("strokeAdjustment").toDouble();
+        auto height = element->property("height").toDouble();
+        auto width = element->property("width").toDouble();
+        auto x = element->property("x").toDouble();
+        auto y = element->property("y").toDouble();
+
+        auto rect = QRect(x, y, width, height);
+        auto halfStroke = strokeAdjustment * 0.5;
+        rect.adjust(halfStroke, halfStroke, -halfStroke, -halfStroke);
+        if (rect.isEmpty())
+            return;
+
+        // Radii must not exceed half of the width or half of the height
+        const qreal maxDiameter = qMin(rect.width(), rect.height());
+        const qreal diamTL = qMin(maxDiameter, 2 * topLeftRadius);
+        const qreal diamTR = qMin(maxDiameter, 2 * topRightRadius);
+        const qreal diamBL = qMin(maxDiameter, 2 * bottomLeftRadius);
+        const qreal diamBR = qMin(maxDiameter, 2 * bottomRightRadius);
+
+        path.moveTo(rect.left() + diamTL * 0.5, rect.top());
+        if (diamTR) {
+            if (!topRightBevel) {
+                // Rounded corners.
+                path.arcTo(QRectF(QPointF(rect.right() - diamTR, rect.top()), QSizeF(diamTR, diamTR)), 90, -90);
+            } else {
+                // Beveled corners.
+                path.lineTo(QPointF(rect.right() - diamTR * 0.5, rect.top()));
+                path.lineTo(QPointF(rect.right(), rect.top() + diamTR * 0.5));
+            }
+        } else {
+            // Regular corners.
+            path.lineTo(rect.topRight());
+        }
+
+        if (diamBR) {
+            if (!bottomRightBevel) {
+                path.arcTo(QRectF(QPointF(rect.right() - diamBR, rect.bottom() - diamBR), QSizeF(diamBR, diamBR)), 0, -90);
+            } else {
+                path.lineTo(QPointF(rect.right(), rect.bottom() - diamBR * 0.5));
+                path.lineTo(QPointF(rect.right() - diamBR * 0.5, rect.bottom()));
+            }
+        } else {
+            path.lineTo(rect.bottomRight());
+        }
+
+        if (diamBL) {
+            if (!bottomLeftBevel) {
+                path.arcTo(QRectF(QPointF(rect.left(), rect.bottom() - diamBL), QSizeF(diamBL, diamBL)), 270, -90);
+            } else {
+                path.lineTo(QPointF(rect.left() + diamBL * 0.5, rect.bottom()));
+                path.lineTo(QPointF(rect.left(), rect.bottom() - diamBL * 0.5));
+            }
+        } else {
+            path.lineTo(rect.bottomLeft());
+        }
+
+        if (diamTL) {
+            if (!topLeftBevel)
+                path.arcTo(QRectF(rect.topLeft(), QSizeF(diamTL, diamTL)), 180, -90);
+            else
+                path.lineTo(QPointF(rect.left(), rect.top() + diamTL * 0.5));
+        } else {
+            path.lineTo(rect.topLeft());
+        }
+        path.closeSubpath();
+    }
 }
 
 QBrush brushFromColorAndGradient(QVariant fillGradient, QVariant color, std::optional<QSizeF> simpleGradient) {
