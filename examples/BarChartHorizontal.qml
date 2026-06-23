@@ -14,6 +14,8 @@ QGLPreFabs.XYAxes {
     viewRect: Qt.rect(0, 0, 160, 400)
     xLabel: "Number of things"
     yLabel: "Position"
+    xAxis.decimalPoints: 0
+    yAxis.decimalPoints: 0
 
     QGLGraphItems.BarHorizontal {
         barHeight: 50
