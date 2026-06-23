@@ -14,19 +14,20 @@ QQS.ShapePath {
     id: root
 
     /*!
+        The height (Y) of the bar in data coordinates.
+    */
+    required property double barHeight
+    /*!
+        The length (X) of the bar in data coordinates.
+    */
+    required property double barLength
+
+    /*!
         Must be assigned the data transform of the graph area this axis is paired to.
 
         \sa GraphArea::dataTransform
     */
     required property matrix4x4 dataTransform
-    /*!
-        The length (X) of the bar in data coordinates.
-    */
-    required property double barLength
-    /*!
-        The height (Y) of the bar in data coordinates.
-    */
-    required property double barHeight
     /*!
         The X position of the bar in data coordinates.
     */
@@ -37,14 +38,14 @@ QQS.ShapePath {
     property double xStart: 0
 
     pathHints: QQS.ShapePath.PathLinear | QQS.ShapePath.PathConvex | QQS.ShapePath.PathSolid
+
     PathRectangle {
-        readonly property point bottomRightPoint: dataTransform.map(Qt.point(barLength >= 0 ? xStart + barLength : xStart,  position+barHeight/2))
-        readonly property point topLeftPoint: dataTransform.map(Qt.point(barLength >= 0 ? xStart :  xStart + barLength, position-barHeight/2))
+        readonly property point bottomRightPoint: dataTransform.map(Qt.point(barLength >= 0 ? xStart + barLength : xStart, position - barHeight / 2))
+        readonly property point topLeftPoint: dataTransform.map(Qt.point(barLength >= 0 ? xStart : xStart + barLength, position + barHeight / 2))
+
+        height: bottomRightPoint.y - topLeftPoint.y
+        width: bottomRightPoint.x - topLeftPoint.x
         x: topLeftPoint.x
         y: topLeftPoint.y
-        width: bottomRightPoint.x - topLeftPoint.x
-        height: bottomRightPoint.y - topLeftPoint.y
-
     }
-
 }
