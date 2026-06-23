@@ -11,8 +11,6 @@ QGLPreFabs.XYAxes {
 
     title: "Box plots"
     viewRect: Qt.rect(0, 0, 500, 500)
-    xLabel: "X"
-    yLabel: "Y"
     xAxis.decimalPoints: 0
     yAxis.decimalPoints: 0
 
