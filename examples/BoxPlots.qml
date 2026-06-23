@@ -13,35 +13,34 @@ QGLPreFabs.XYAxes {
     viewRect: Qt.rect(0, 0, 500, 500)
     xLabel: "X"
     yLabel: "Y"
+
     QGLGraphItems.BoxPlotVertical {
-        dataTransform: axes.dataTransform
-        position: 100
-        whiskerWidth: 25
         boxWidth: 50
+        dataTransform: axes.dataTransform
+        fillColor: "green"
+        position: 100
         q0: 20
         q1: 140
         q2: 190
         q3: 380
         q4: 400
-        fillColor: "green"
         strokeColor: "darkgreen"
         strokeWidth: 3
+        whiskerWidth: 25
     }
-
     QGLGraphItems.BoxPlotHorizontal {
-        dataTransform: axes.dataTransform
-        position: 250
-        whiskerHeight: 150
         boxWidth: 50
+        dataTransform: axes.dataTransform
+        fillColor: "red"
+        position: 250
         q0: 200
         q1: 270
         q2: 30
         q3: 320
         q4: 400
-        fillColor: "red"
         strokeColor: "darkred"
-        strokeWidth: 7
         strokeStyle: QQS.ShapePath.DashLine
+        strokeWidth: 7
+        whiskerHeight: 150
     }
-    
 }

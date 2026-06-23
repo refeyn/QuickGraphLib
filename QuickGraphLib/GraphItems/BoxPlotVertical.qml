@@ -14,11 +14,20 @@ QQS.ShapePath {
     id: root
 
     /*!
+        The width of the box in data coordinates.
+    */
+    required property double boxWidth
+
+    /*!
         Must be assigned the data transform of the graph area this axis is paired to.
 
         \sa GraphArea::dataTransform
     */
     required property matrix4x4 dataTransform
+    /*!
+        The X position of the plot in data coordinates.
+    */
+    required property double position
     /*!
         The position of the Q0 whisker (minimum) in data coordinates.
     */
@@ -40,59 +49,34 @@ QQS.ShapePath {
     */
     required property double q4
     /*!
-        The width of the box in data coordinates.
-    */
-    required property double boxWidth
-    /*!
         The width of the whiskers in data coordinates.
     */
     required property double whiskerWidth
-    /*!
-        The X position of the plot in data coordinates.
-    */
-    required property double position
-
 
     pathHints: QQS.ShapePath.PathLinear | QQS.ShapePath.PathSolid
+
     PathMultiline {
-        paths:  [
-            [
-                dataTransform.map(Qt.point(position-whiskerWidth/2, q4)),
-                dataTransform.map(Qt.point(position+whiskerWidth/2, q4)),
-            ],
-            [
-                dataTransform.map(Qt.point(position, q4)),
-                dataTransform.map(Qt.point(position, q3)),
-            ]
-        ]
+        paths: [[dataTransform.map(Qt.point(position - whiskerWidth / 2, q4)), dataTransform.map(Qt.point(position + whiskerWidth / 2, q4)),], [dataTransform.map(Qt.point(position, q4)), dataTransform.map(Qt.point(position, q3)),]]
     }
     PathRectangle {
-        readonly property point bottomRightPoint: dataTransform.map(Qt.point(position+boxWidth/2, q2))
-        readonly property point topLeftPoint: dataTransform.map(Qt.point(position-boxWidth/2, q3))
+        readonly property point bottomRightPoint: dataTransform.map(Qt.point(position + boxWidth / 2, q2))
+        readonly property point topLeftPoint: dataTransform.map(Qt.point(position - boxWidth / 2, q3))
+
+        height: bottomRightPoint.y - topLeftPoint.y
+        width: bottomRightPoint.x - topLeftPoint.x
         x: topLeftPoint.x
         y: topLeftPoint.y
-        width: bottomRightPoint.x - topLeftPoint.x
-        height: bottomRightPoint.y - topLeftPoint.y
     }
     PathRectangle {
-        readonly property point bottomRightPoint: dataTransform.map(Qt.point(position+boxWidth/2, q1))
-        readonly property point topLeftPoint: dataTransform.map(Qt.point(position-boxWidth/2, q2))
+        readonly property point bottomRightPoint: dataTransform.map(Qt.point(position + boxWidth / 2, q1))
+        readonly property point topLeftPoint: dataTransform.map(Qt.point(position - boxWidth / 2, q2))
+
+        height: bottomRightPoint.y - topLeftPoint.y
+        width: bottomRightPoint.x - topLeftPoint.x
         x: topLeftPoint.x
         y: topLeftPoint.y
-        width: bottomRightPoint.x - topLeftPoint.x
-        height: bottomRightPoint.y - topLeftPoint.y
     }
     PathMultiline {
-        paths:  [
-            [
-                dataTransform.map(Qt.point(position, q1)),
-                dataTransform.map(Qt.point(position, q0)),
-            ],
-            [
-                dataTransform.map(Qt.point(position-whiskerWidth/2, q0)),
-                dataTransform.map(Qt.point(position+whiskerWidth/2, q0)),
-            ]
-            
-        ]
+        paths: [[dataTransform.map(Qt.point(position, q1)), dataTransform.map(Qt.point(position, q0)),], [dataTransform.map(Qt.point(position - whiskerWidth / 2, q0)), dataTransform.map(Qt.point(position + whiskerWidth / 2, q0)),]]
     }
 }
