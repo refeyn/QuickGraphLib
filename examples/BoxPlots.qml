@@ -19,11 +19,11 @@ QGLPreFabs.XYAxes {
         dataTransform: axes.dataTransform
         fillColor: "green"
         position: 100
-        q0: 20
-        q1: 140
-        q2: 190
-        q3: 380
-        q4: 400
+        quartile0: 20
+        quartile1: 140
+        quartile2: 190
+        quartile3: 380
+        quartile4: 400
         strokeColor: "darkgreen"
         strokeWidth: 3
         whiskerWidth: 25
@@ -33,11 +33,11 @@ QGLPreFabs.XYAxes {
         dataTransform: axes.dataTransform
         fillColor: "red"
         position: 250
-        q0: 200
-        q1: 270
-        q2: 300
-        q3: 320
-        q4: 400
+        quartile0: 200
+        quartile1: 270
+        quartile2: 300
+        quartile3: 320
+        quartile4: 400
         strokeColor: "darkred"
         strokeStyle: QQS.ShapePath.DashLine
         strokeWidth: 7
