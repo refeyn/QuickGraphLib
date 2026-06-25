@@ -5,6 +5,7 @@ set(QGL_GI_QML_FILES
     AxHLine.qml
     AxVLine.qml
     BasicLegend.qml
+    GraphHandle.qml
     GraphItemDragHandler.qml
     Histogram.qml
     Marker.qml
@@ -14,6 +15,8 @@ set(QGL_GI_QML_FILES
     Contour.qml
     Grid.qml
     Line.qml
+    LineSegmentEditor.qml
+    LineSegment.qml
     ColorMesh.qml
 )
 qt_add_qml_module(QuickGraphLibGraphItems
