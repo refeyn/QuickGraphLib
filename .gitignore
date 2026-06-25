@@ -7,3 +7,4 @@ dist
 aqtinstall.log
 qt
 QuickGraphLib/_version.py
+build/
