@@ -41,9 +41,13 @@ Item {
     */
     required property point position
     /*!
-        The visual size and hit target size of the handle.
+        The visual size of the handle.
     */
     property real size: 12
+    /*!
+        The mouse hit target size of the handle.
+    */
+    property real hitSize: size
     /*!
         Whether the handle can be dragged.
     */
@@ -111,21 +115,25 @@ Item {
 
     x: mappedPosition.x - width / 2
     y: mappedPosition.y - height / 2
-    width: size
-    height: size
+    width: hitSize
+    height: hitSize
 
     Rectangle {
-        anchors.fill: parent
+        anchors.centerIn: parent
         border.color: root.strokeColor
         border.width: root.strokeWidth
         color: root.dragging || root.selected ? root.selectedFillColor : mouseArea.containsMouse ? root.hoverFillColor : root.fillColor
-        radius: root.shape === GraphHandle.Circle ? width / 2 : 0
+        height: root.size
+        radius: root.shape === GraphHandle.Circle ? root.size / 2 : 0
         visible: root.delegate === null
+        width: root.size
     }
     Loader {
-        anchors.fill: parent
+        anchors.centerIn: parent
+        height: root.size
         property Item handle: root
         sourceComponent: root.delegate
+        width: root.size
     }
     MouseArea {
         id: mouseArea

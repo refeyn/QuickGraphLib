@@ -46,9 +46,13 @@ QtObject {
     */
     property bool selected: false
     /*!
-        The visual size and hit target size of this handle.
+        The visual size of this handle.
     */
     property real size: 12
+    /*!
+        The mouse hit target size of this handle.
+    */
+    property real hitSize: size
     /*!
         The default visual shape of this handle.
     */

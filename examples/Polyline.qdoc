@@ -1,0 +1,15 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Polyline
+    \ingroup quickgraphlibdemos
+    \brief Open polylines and polyline regions of interest in data coordinates.
+    \example polyline
+
+    \image examples/Polyline.png
+
+    This example demonstrates using Polyline to draw connected open line segments in data coordinates. The red polyline is paired with a PolylineRoi so it can be selected, moved by dragging its body and edited by dragging its vertex handles. Clicking empty plot space clears the selection and hides the handles.
+
+    \quotefile examples/Polyline.qml
+*/

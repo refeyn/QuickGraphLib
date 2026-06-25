@@ -20,7 +20,7 @@ Item {
     /*!
         Handle configuration objects to render.
     */
-    property list<RoiHandle> handles
+    property var handles: []
     /*!
         Whether all handles should be selectable.
     */
@@ -73,6 +73,7 @@ Item {
             dataTransform: root.dataTransform
             delegate: modelData.delegate
             fillColor: root.fillColor
+            hitSize: modelData.hitSize
             hoverFillColor: root.hoverFillColor
             movable: modelData.movable
             position: modelData.position
@@ -85,6 +86,7 @@ Item {
             strokeColor: root.strokeColor
             strokeWidth: root.strokeWidth
             visible: modelData.visible
+            z: 10
 
             onMoved: position => root.handleMoved(modelData, position)
             onSelectionRequested: root.handleSelectionRequested(modelData)
