@@ -17,6 +17,8 @@ set(QGL_GI_QML_FILES
     Line.qml
     LineSegmentEditor.qml
     LineSegment.qml
+    Rectangle.qml
+    RectangleRoi.qml
     ColorMesh.qml
 )
 qt_add_qml_module(QuickGraphLibGraphItems
