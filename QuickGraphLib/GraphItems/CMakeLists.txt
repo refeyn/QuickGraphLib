@@ -13,6 +13,8 @@ set(QGL_GI_QML_FILES
     AxVSpan.qml
     BasicLegendItem.qml
     Contour.qml
+    Ellipse.qml
+    EllipseRoi.qml
     Grid.qml
     Line.qml
     LineSegmentRoi.qml

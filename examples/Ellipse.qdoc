@@ -1,0 +1,15 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Ellipse
+    \ingroup quickgraphlibdemos
+    \brief Ellipses and elliptical regions of interest in data coordinates.
+    \example ellipse
+
+    \image examples/Ellipse.png
+
+    This example demonstrates using Ellipse to draw finite ellipses in data coordinates. The red ellipse is paired with an EllipseRoi so it can be selected, moved by dragging its body and resized by dragging its cardinal handles. Clicking empty plot space clears the selection and hides the handles.
+
+    \quotefile examples/Ellipse.qml
+*/
