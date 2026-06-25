@@ -4,12 +4,12 @@
 import QtQuick
 
 /*!
-    \qmltype LineSegmentEditor
+    \qmltype LineSegmentRoi
     \inqmlmodule QuickGraphLib.GraphItems
     \inherits QtQuick::Item
-    \brief Interaction overlay for editing a LineSegment.
+    \brief Interaction overlay for a line segment region of interest.
 
-    LineSegmentEditor provides selection, body dragging and optional handles for a line segment.
+    LineSegmentRoi provides selection, body dragging and optional handles for a line segment.
     It does not own the segment data; instead it emits movement signals so applications can update
     their own model.
 */
@@ -26,12 +26,24 @@ Item {
     property point _lastDragPoint: Qt.point(0, 0)
 
     readonly property point centerPoint: Qt.point((point1.x + point2.x) / 2, (point1.y + point2.y) / 2)
-    readonly property point mappedCenterPoint: dataTransform.map(centerPoint)
     readonly property point mappedPoint1: dataTransform.map(point1)
     readonly property point mappedPoint2: dataTransform.map(point2)
 
     /*!
-        Must be assigned the data transform of the graph area this editor is paired to.
+        A direct reference to the first endpoint resize handle.
+    */
+    readonly property RoiHandle point1Handle: point1HandleSpec
+    /*!
+        A direct reference to the second endpoint resize handle.
+    */
+    readonly property RoiHandle point2Handle: point2HandleSpec
+    /*!
+        A direct reference to the optional center move handle.
+    */
+    readonly property RoiHandle centerHandle: centerHandleSpec
+
+    /*!
+        Must be assigned the data transform of the graph area this ROI is paired to.
 
         \sa GraphArea::dataTransform
     */
@@ -57,7 +69,7 @@ Item {
     */
     property bool endpointHandlesMovable: true
     /*!
-        Whether the editor should be drawn in the selected state.
+        Whether the ROI should be drawn in the selected state.
     */
     property bool selected: false
     /*!
@@ -65,9 +77,50 @@ Item {
     */
     property bool handlesVisible: selected
     /*!
-        Which handles should be shown.
+        Which built-in handles should be shown.
     */
-    property int handleMode: LineSegmentEditor.Endpoints
+    property int handleMode: LineSegmentRoi.Endpoints
+    /*!
+        Handle configuration objects rendered by this ROI.
+    */
+    property list<RoiHandle> handles: [
+        RoiHandle {
+            id: point1HandleSpec
+
+            movable: root.endpointHandlesMovable
+            name: "point1"
+            position: root.point1
+            role: GraphHandle.Resize
+            shape: root.endpointHandleShape
+            size: root.handleSize
+            delegate: root.endpointHandleDelegate
+            visible: root.handlesVisible && root.handleMode !== LineSegmentRoi.NoHandles
+        },
+        RoiHandle {
+            id: point2HandleSpec
+
+            movable: root.endpointHandlesMovable
+            name: "point2"
+            position: root.point2
+            role: GraphHandle.Resize
+            shape: root.endpointHandleShape
+            size: root.handleSize
+            delegate: root.endpointHandleDelegate
+            visible: root.handlesVisible && root.handleMode !== LineSegmentRoi.NoHandles
+        },
+        RoiHandle {
+            id: centerHandleSpec
+
+            movable: root.movable
+            name: "center"
+            position: root.centerPoint
+            role: GraphHandle.Move
+            shape: root.centerHandleShape
+            size: root.centerHandleSize
+            delegate: root.centerHandleDelegate
+            visible: root.handlesVisible && root.handleMode === LineSegmentRoi.EndpointsAndCenter
+        }
+    ]
     /*!
         The body hit target width in pixels.
     */
@@ -122,7 +175,7 @@ Item {
     property real handleStrokeWidth: 1
 
     /*!
-        Emitted when the editor requests selection.
+        Emitted when the ROI requests selection.
     */
     signal selectionRequested()
     /*!
@@ -134,9 +187,13 @@ Item {
     */
     signal point2Moved(point position)
     /*!
-        Emitted when the segment body has moved by \a delta in data coordinates.
+        Emitted when the segment body or move handle has moved by \a delta in data coordinates.
     */
     signal moved(point delta)
+    /*!
+        Emitted when \a handle has moved to \a position in data coordinates.
+    */
+    signal handleMoved(RoiHandle handle, point position)
 
     x: 0
     y: 0
@@ -169,64 +226,27 @@ Item {
             root.moved(delta);
         }
     }
-    GraphHandle {
+    RoiHandleRepeater {
         dataTransform: root.dataTransform
-        delegate: root.endpointHandleDelegate
         fillColor: root.handleFillColor
+        handles: root.handles
         hoverFillColor: root.handleHoverFillColor
-        movable: root.endpointHandlesMovable
-        position: root.point1
-        role: GraphHandle.Resize
         selectable: root.selectable
         selected: root.selected
         selectedFillColor: root.handleSelectedFillColor
-        shape: root.endpointHandleShape
-        size: root.handleSize
         strokeColor: root.handleStrokeColor
         strokeWidth: root.handleStrokeWidth
-        visible: root.handlesVisible && root.handleMode !== LineSegmentEditor.NoHandles
 
-        onMoved: point => root.point1Moved(point)
-        onSelectionRequested: root.selectionRequested()
-    }
-    GraphHandle {
-        dataTransform: root.dataTransform
-        delegate: root.endpointHandleDelegate
-        fillColor: root.handleFillColor
-        hoverFillColor: root.handleHoverFillColor
-        movable: root.endpointHandlesMovable
-        position: root.point2
-        role: GraphHandle.Resize
-        selectable: root.selectable
-        selected: root.selected
-        selectedFillColor: root.handleSelectedFillColor
-        shape: root.endpointHandleShape
-        size: root.handleSize
-        strokeColor: root.handleStrokeColor
-        strokeWidth: root.handleStrokeWidth
-        visible: root.handlesVisible && root.handleMode !== LineSegmentEditor.NoHandles
-
-        onMoved: point => root.point2Moved(point)
-        onSelectionRequested: root.selectionRequested()
-    }
-    GraphHandle {
-        dataTransform: root.dataTransform
-        delegate: root.centerHandleDelegate
-        fillColor: root.handleFillColor
-        hoverFillColor: root.handleHoverFillColor
-        movable: root.movable
-        position: root.centerPoint
-        role: GraphHandle.Move
-        selectable: root.selectable
-        selected: root.selected
-        selectedFillColor: root.handleSelectedFillColor
-        shape: root.centerHandleShape
-        size: root.centerHandleSize
-        strokeColor: root.handleStrokeColor
-        strokeWidth: root.handleStrokeWidth
-        visible: root.handlesVisible && root.handleMode === LineSegmentEditor.EndpointsAndCenter
-
-        onMoved: point => root.moved(Qt.point(point.x - root.centerPoint.x, point.y - root.centerPoint.y))
-        onSelectionRequested: root.selectionRequested()
+        onHandleMoved: (handle, position) => {
+            root.handleMoved(handle, position);
+            if (handle.name === "point1") {
+                root.point1Moved(position);
+            } else if (handle.name === "point2") {
+                root.point2Moved(position);
+            } else if (handle.role === GraphHandle.Move) {
+                root.moved(Qt.point(position.x - handle.position.x, position.y - handle.position.y));
+            }
+        }
+        onHandleSelectionRequested: handle => root.selectionRequested()
     }
 }

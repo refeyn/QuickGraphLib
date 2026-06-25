@@ -23,33 +23,6 @@ QGLPreFabs.XYAxes {
         editablePoint2 = Qt.point(editablePoint2.x + delta.x, editablePoint2.y + delta.y);
     }
 
-    Component {
-        id: moveHandleDelegate
-
-        Rectangle {
-            anchors.centerIn: parent
-            width: parent.width
-            height: parent.height
-            border.color: "#333333"
-            border.width: parent.handle.strokeWidth
-            color: parent.handle.dragging || parent.handle.selected ? "#ffe680" : "#f7f7f7"
-            radius: 2
-
-            Rectangle {
-                anchors.centerIn: parent
-                width: parent.width - 6
-                height: 2
-                color: "#333333"
-            }
-            Rectangle {
-                anchors.centerIn: parent
-                width: 2
-                height: parent.height - 6
-                color: "#333333"
-            }
-        }
-    }
-
     QGLGraphItems.Line {
         dataTransform: axes.dataTransform
         path: QuickGraphLib.Helpers.linspace(0, 10, 80).map(x => Qt.point(x, 3 + 1.5 * Math.sin(x)))
@@ -63,12 +36,11 @@ QGLPreFabs.XYAxes {
         strokeColor: axes.lineSegmentSelected ? "#d62728" : "#8c564b"
         strokeWidth: 4
     }
-    QGLGraphItems.LineSegmentEditor {
+    QGLGraphItems.LineSegmentRoi {
         dataTransform: axes.dataTransform
         point1: axes.editablePoint1
         point2: axes.editablePoint2
-        centerHandleDelegate: moveHandleDelegate
-        handleMode: QGLGraphItems.LineSegmentEditor.EndpointsAndCenter
+        handleMode: QGLGraphItems.LineSegmentRoi.Endpoints
         movable: true
         selectable: true
         selected: axes.lineSegmentSelected

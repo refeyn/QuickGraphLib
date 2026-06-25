@@ -40,7 +40,7 @@ QGLPreFabs.XYAxes {
     QGLGraphItems.RectangleRoi {
         dataRect: axes.editableRect
         dataTransform: axes.dataTransform
-        handleMode: QGLGraphItems.RectangleRoi.CornersAndCenter
+        handleMode: QGLGraphItems.RectangleRoi.Corners
         movable: true
         selectable: true
         selected: axes.rectangleSelected

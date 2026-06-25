@@ -42,6 +42,27 @@ Item {
     readonly property point mappedTopRight: dataTransform.map(topRightPoint)
 
     /*!
+        A direct reference to the top-left corner resize handle.
+    */
+    readonly property RoiHandle topLeftHandle: topLeftHandleSpec
+    /*!
+        A direct reference to the top-right corner resize handle.
+    */
+    readonly property RoiHandle topRightHandle: topRightHandleSpec
+    /*!
+        A direct reference to the bottom-left corner resize handle.
+    */
+    readonly property RoiHandle bottomLeftHandle: bottomLeftHandleSpec
+    /*!
+        A direct reference to the bottom-right corner resize handle.
+    */
+    readonly property RoiHandle bottomRightHandle: bottomRightHandleSpec
+    /*!
+        A direct reference to the optional center move handle.
+    */
+    readonly property RoiHandle centerHandle: centerHandleSpec
+
+    /*!
         Must be assigned the data transform of the graph area this ROI is paired to.
 
         \sa GraphArea::dataTransform
@@ -75,6 +96,71 @@ Item {
         Which handles should be shown.
     */
     property int handleMode: RectangleRoi.Corners
+    /*!
+        Handle configuration objects rendered by this ROI.
+    */
+    property list<RoiHandle> handles: [
+        RoiHandle {
+            id: topLeftHandleSpec
+
+            delegate: root.cornerHandleDelegate
+            movable: root.cornerHandlesMovable
+            name: "topLeft"
+            position: root.topLeftPoint
+            role: GraphHandle.Resize
+            shape: root.cornerHandleShape
+            size: root.handleSize
+            visible: root.handlesVisible && root.handleMode !== RectangleRoi.NoHandles
+        },
+        RoiHandle {
+            id: topRightHandleSpec
+
+            delegate: root.cornerHandleDelegate
+            movable: root.cornerHandlesMovable
+            name: "topRight"
+            position: root.topRightPoint
+            role: GraphHandle.Resize
+            shape: root.cornerHandleShape
+            size: root.handleSize
+            visible: root.handlesVisible && root.handleMode !== RectangleRoi.NoHandles
+        },
+        RoiHandle {
+            id: bottomLeftHandleSpec
+
+            delegate: root.cornerHandleDelegate
+            movable: root.cornerHandlesMovable
+            name: "bottomLeft"
+            position: root.bottomLeftPoint
+            role: GraphHandle.Resize
+            shape: root.cornerHandleShape
+            size: root.handleSize
+            visible: root.handlesVisible && root.handleMode !== RectangleRoi.NoHandles
+        },
+        RoiHandle {
+            id: bottomRightHandleSpec
+
+            delegate: root.cornerHandleDelegate
+            movable: root.cornerHandlesMovable
+            name: "bottomRight"
+            position: root.bottomRightPoint
+            role: GraphHandle.Resize
+            shape: root.cornerHandleShape
+            size: root.handleSize
+            visible: root.handlesVisible && root.handleMode !== RectangleRoi.NoHandles
+        },
+        RoiHandle {
+            id: centerHandleSpec
+
+            delegate: root.centerHandleDelegate
+            movable: root.movable
+            name: "center"
+            position: root.centerPoint
+            role: GraphHandle.Move
+            shape: root.centerHandleShape
+            size: root.centerHandleSize
+            visible: root.handlesVisible && root.handleMode === RectangleRoi.CornersAndCenter
+        }
+    ]
     /*!
         The visual size and hit target size of corner handles.
     */
@@ -136,6 +222,10 @@ Item {
         Emitted when a corner handle has resized the rectangle to \a dataRect.
     */
     signal resized(rect dataRect)
+    /*!
+        Emitted when \a handle has moved to \a position in data coordinates.
+    */
+    signal handleMoved(RoiHandle handle, point position)
 
     function normalizedRect(point1, point2) {
         let left = Math.min(point1.x, point2.x);
@@ -178,104 +268,31 @@ Item {
             root.moved(delta);
         }
     }
-    GraphHandle {
+    RoiHandleRepeater {
         dataTransform: root.dataTransform
-        delegate: root.cornerHandleDelegate
         fillColor: root.handleFillColor
+        handles: root.handles
         hoverFillColor: root.handleHoverFillColor
-        movable: root.cornerHandlesMovable
-        position: root.topLeftPoint
-        role: GraphHandle.Resize
         selectable: root.selectable
         selected: root.selected
         selectedFillColor: root.handleSelectedFillColor
-        shape: root.cornerHandleShape
-        size: root.handleSize
         strokeColor: root.handleStrokeColor
         strokeWidth: root.handleStrokeWidth
-        visible: root.handlesVisible && root.handleMode !== RectangleRoi.NoHandles
 
-        onMoved: point => root.resized(root.normalizedRect(point, root.bottomRightPoint))
-        onSelectionRequested: root.selectionRequested()
-    }
-    GraphHandle {
-        dataTransform: root.dataTransform
-        delegate: root.cornerHandleDelegate
-        fillColor: root.handleFillColor
-        hoverFillColor: root.handleHoverFillColor
-        movable: root.cornerHandlesMovable
-        position: root.topRightPoint
-        role: GraphHandle.Resize
-        selectable: root.selectable
-        selected: root.selected
-        selectedFillColor: root.handleSelectedFillColor
-        shape: root.cornerHandleShape
-        size: root.handleSize
-        strokeColor: root.handleStrokeColor
-        strokeWidth: root.handleStrokeWidth
-        visible: root.handlesVisible && root.handleMode !== RectangleRoi.NoHandles
-
-        onMoved: point => root.resized(root.normalizedRect(point, root.bottomLeftPoint))
-        onSelectionRequested: root.selectionRequested()
-    }
-    GraphHandle {
-        dataTransform: root.dataTransform
-        delegate: root.cornerHandleDelegate
-        fillColor: root.handleFillColor
-        hoverFillColor: root.handleHoverFillColor
-        movable: root.cornerHandlesMovable
-        position: root.bottomLeftPoint
-        role: GraphHandle.Resize
-        selectable: root.selectable
-        selected: root.selected
-        selectedFillColor: root.handleSelectedFillColor
-        shape: root.cornerHandleShape
-        size: root.handleSize
-        strokeColor: root.handleStrokeColor
-        strokeWidth: root.handleStrokeWidth
-        visible: root.handlesVisible && root.handleMode !== RectangleRoi.NoHandles
-
-        onMoved: point => root.resized(root.normalizedRect(point, root.topRightPoint))
-        onSelectionRequested: root.selectionRequested()
-    }
-    GraphHandle {
-        dataTransform: root.dataTransform
-        delegate: root.cornerHandleDelegate
-        fillColor: root.handleFillColor
-        hoverFillColor: root.handleHoverFillColor
-        movable: root.cornerHandlesMovable
-        position: root.bottomRightPoint
-        role: GraphHandle.Resize
-        selectable: root.selectable
-        selected: root.selected
-        selectedFillColor: root.handleSelectedFillColor
-        shape: root.cornerHandleShape
-        size: root.handleSize
-        strokeColor: root.handleStrokeColor
-        strokeWidth: root.handleStrokeWidth
-        visible: root.handlesVisible && root.handleMode !== RectangleRoi.NoHandles
-
-        onMoved: point => root.resized(root.normalizedRect(point, root.topLeftPoint))
-        onSelectionRequested: root.selectionRequested()
-    }
-    GraphHandle {
-        dataTransform: root.dataTransform
-        delegate: root.centerHandleDelegate
-        fillColor: root.handleFillColor
-        hoverFillColor: root.handleHoverFillColor
-        movable: root.movable
-        position: root.centerPoint
-        role: GraphHandle.Move
-        selectable: root.selectable
-        selected: root.selected
-        selectedFillColor: root.handleSelectedFillColor
-        shape: root.centerHandleShape
-        size: root.centerHandleSize
-        strokeColor: root.handleStrokeColor
-        strokeWidth: root.handleStrokeWidth
-        visible: root.handlesVisible && root.handleMode === RectangleRoi.CornersAndCenter
-
-        onMoved: point => root.moved(Qt.point(point.x - root.centerPoint.x, point.y - root.centerPoint.y))
-        onSelectionRequested: root.selectionRequested()
+        onHandleMoved: (handle, position) => {
+            root.handleMoved(handle, position);
+            if (handle.name === "topLeft") {
+                root.resized(root.normalizedRect(position, root.bottomRightPoint));
+            } else if (handle.name === "topRight") {
+                root.resized(root.normalizedRect(position, root.bottomLeftPoint));
+            } else if (handle.name === "bottomLeft") {
+                root.resized(root.normalizedRect(position, root.topRightPoint));
+            } else if (handle.name === "bottomRight") {
+                root.resized(root.normalizedRect(position, root.topLeftPoint));
+            } else if (handle.role === GraphHandle.Move) {
+                root.moved(Qt.point(position.x - handle.position.x, position.y - handle.position.y));
+            }
+        }
+        onHandleSelectionRequested: handle => root.selectionRequested()
     }
 }

@@ -15,10 +15,12 @@ set(QGL_GI_QML_FILES
     Contour.qml
     Grid.qml
     Line.qml
-    LineSegmentEditor.qml
+    LineSegmentRoi.qml
     LineSegment.qml
     Rectangle.qml
     RectangleRoi.qml
+    RoiHandle.qml
+    RoiHandleRepeater.qml
     ColorMesh.qml
 )
 qt_add_qml_module(QuickGraphLibGraphItems
