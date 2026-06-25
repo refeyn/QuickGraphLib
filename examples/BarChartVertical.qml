@@ -12,16 +12,16 @@ QGLPreFabs.XYAxes {
 
     title: "Bar Chart (vertical)"
     viewRect: Qt.rect(0, 0, 400, 160)
-    xLabel: "Position"
-    yLabel: "Number of things"
     xAxis.decimalPoints: 0
+    xLabel: "Position"
     yAxis.decimalPoints: 0
+    yLabel: "Number of things"
 
     QGLGraphItems.BarVertical {
         barHeight: 100
         barWidth: 50
         dataTransform: axes.dataTransform
-        fillColor: "#66ff0000"
+        fillColor: '#d10a0a'
         position: 100
         strokeColor: "black"
         strokeWidth: 1
@@ -30,26 +30,28 @@ QGLPreFabs.XYAxes {
         barHeight: 30
         barWidth: 50
         dataTransform: axes.dataTransform
-        fillColor: '#66ff7b00'
+        fillColor: '#cf6808'
         position: 100
         strokeColor: "black"
         strokeStyle: QQS.ShapePath.DashLine
         strokeWidth: 1
+        yStart: 100
     }
     QGLGraphItems.BarVertical {
         barHeight: 50
         barWidth: 50
         dataTransform: axes.dataTransform
-        fillColor: '#66ffd900'
+        fillColor: '#e7c609'
         position: 100
         strokeColor: "black"
         strokeWidth: 1
+        yStart: 130
     }
     QGLGraphItems.BarVertical {
         barHeight: 20
         barWidth: 50
         dataTransform: axes.dataTransform
-        fillColor: "#66ff0000"
+        fillColor: '#d10a0a'
         position: 300
         strokeColor: "black"
         strokeWidth: 1
@@ -58,19 +60,21 @@ QGLPreFabs.XYAxes {
         barHeight: 70
         barWidth: 50
         dataTransform: axes.dataTransform
-        fillColor: '#66ff7b00'
+        fillColor: '#cf6808'
         position: 300
         strokeColor: "black"
         strokeStyle: QQS.ShapePath.DashLine
         strokeWidth: 1
+        yStart: 20
     }
     QGLGraphItems.BarVertical {
         barHeight: 150
         barWidth: 50
         dataTransform: axes.dataTransform
-        fillColor: '#66ffd900'
+        fillColor: '#e7c609'
         position: 300
         strokeColor: "black"
         strokeWidth: 1
+        yStart: 90
     }
 }

@@ -12,16 +12,16 @@ QGLPreFabs.XYAxes {
 
     title: "Bar Chart (horizontal)"
     viewRect: Qt.rect(0, 0, 160, 400)
-    xLabel: "Number of things"
-    yLabel: "Position"
     xAxis.decimalPoints: 0
+    xLabel: "Number of things"
     yAxis.decimalPoints: 0
+    yLabel: "Position"
 
     QGLGraphItems.BarHorizontal {
         barHeight: 50
         barLength: 100
         dataTransform: axes.dataTransform
-        fillColor: "#66ff0000"
+        fillColor: '#d10a0a'
         position: 100
         strokeColor: "black"
         strokeWidth: 1
@@ -30,26 +30,28 @@ QGLPreFabs.XYAxes {
         barHeight: 50
         barLength: 30
         dataTransform: axes.dataTransform
-        fillColor: '#66ff7b00'
+        fillColor: '#cf6808'
         position: 100
         strokeColor: "black"
         strokeStyle: QQS.ShapePath.DashLine
         strokeWidth: 1
+        xStart: 100
     }
     QGLGraphItems.BarHorizontal {
         barHeight: 50
         barLength: 50
         dataTransform: axes.dataTransform
-        fillColor: '#66ffd900'
+        fillColor: '#e7c609'
         position: 100
         strokeColor: "black"
         strokeWidth: 1
+        xStart: 130
     }
     QGLGraphItems.BarHorizontal {
         barHeight: 50
         barLength: 20
         dataTransform: axes.dataTransform
-        fillColor: "#66ff0000"
+        fillColor: '#d10a0a'
         position: 300
         strokeColor: "black"
         strokeWidth: 1
@@ -58,19 +60,21 @@ QGLPreFabs.XYAxes {
         barHeight: 50
         barLength: 70
         dataTransform: axes.dataTransform
-        fillColor: '#66ff7b00'
+        fillColor: '#cf6808'
         position: 300
         strokeColor: "black"
         strokeStyle: QQS.ShapePath.DashLine
         strokeWidth: 1
+        xStart: 20
     }
     QGLGraphItems.BarHorizontal {
         barHeight: 50
         barLength: 150
         dataTransform: axes.dataTransform
-        fillColor: '#66ffd900'
+        fillColor: '#e7c609'
         position: 300
         strokeColor: "black"
         strokeWidth: 1
+        xStart: 90
     }
 }
