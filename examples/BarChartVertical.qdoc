@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Vertical bar chart
+    \ingroup quickgraphlibdemos
+    \brief A simple vertical bar chart
+    \example barchartVertical
+
+    \image examples/BarChartVertical.png
+
+    \quotefile examples/BarChartVertical.qml
+*/

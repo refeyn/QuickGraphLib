@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Horizontal bar chart
+    \ingroup quickgraphlibdemos
+    \brief A simple horizontal bar chart
+    \example barchartHorizontal
+
+    \image examples/BarChartHorizontal.png
+
+    \quotefile examples/BarChartHorizontal.qml
+*/
