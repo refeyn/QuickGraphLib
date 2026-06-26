@@ -4,8 +4,12 @@
 set(QGL_GI_QML_FILES
     AxHLine.qml
     AxVLine.qml
+    BarHorizontal.qml
+    BarVertical.qml
     BasicLegend.qml
     GraphHandle.qml
+    BoxPlotHorizontal.qml
+    BoxPlotVertical.qml
     GraphItemDragHandler.qml
     Histogram.qml
     Marker.qml
