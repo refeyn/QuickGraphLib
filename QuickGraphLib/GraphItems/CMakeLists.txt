@@ -27,6 +27,7 @@ set(QGL_GI_QML_FILES
     RectangleRoi.qml
     RoiHandle.qml
     RoiHandleRepeater.qml
+    RoiHitTest.js
     ColorMesh.qml
 )
 qt_add_qml_module(QuickGraphLibGraphItems

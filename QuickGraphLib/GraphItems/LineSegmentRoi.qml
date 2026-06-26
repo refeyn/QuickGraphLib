@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import QtQuick
+import "RoiHitTest.js" as RoiHitTest
 
 /*!
     \qmltype LineSegmentRoi
@@ -24,6 +25,8 @@ Item {
     }
 
     property point _lastDragPoint: Qt.point(0, 0)
+    property bool _bodyDragging: false
+    property bool _bodyHovered: false
 
     readonly property point centerPoint: Qt.point((point1.x + point2.x) / 2, (point1.y + point2.y) / 2)
     readonly property point mappedPoint1: dataTransform.map(point1)
@@ -195,6 +198,18 @@ Item {
     */
     signal handleMoved(RoiHandle handle, point position)
 
+    function bodyScenePoint(localPoint) {
+        return Qt.point(bodyMouseArea.x + localPoint.x, bodyMouseArea.y + localPoint.y);
+    }
+
+    function containsBodyScenePoint(scenePoint) {
+        return RoiHitTest.isNearSegment(scenePoint, mappedPoint1, mappedPoint2, hitWidth);
+    }
+
+    function containsBodyPoint(localPoint) {
+        return containsBodyScenePoint(bodyScenePoint(localPoint));
+    }
+
     x: 0
     y: 0
     width: parent ? parent.width : 0
@@ -209,21 +224,37 @@ Item {
         enabled: root.selectable || root.movable
         height: Math.max(Math.abs(root.mappedPoint2.y - root.mappedPoint1.y), root.hitWidth)
         hoverEnabled: true
-        cursorShape: root.movable ? Qt.SizeAllCursor : Qt.ArrowCursor
+        cursorShape: root.movable && (root._bodyHovered || root._bodyDragging) ? Qt.SizeAllCursor : Qt.ArrowCursor
         width: Math.max(Math.abs(root.mappedPoint2.x - root.mappedPoint1.x), root.hitWidth)
         x: segmentLeft - (width - Math.abs(root.mappedPoint2.x - root.mappedPoint1.x)) / 2
         y: segmentTop - (height - Math.abs(root.mappedPoint2.y - root.mappedPoint1.y)) / 2
 
         onPressed: event => {
+            if (!root.containsBodyPoint(Qt.point(event.x, event.y))) {
+                root._bodyDragging = false;
+                event.accepted = false;
+                return;
+            }
+            root._bodyDragging = true;
             if (root.selectable) root.selectionRequested();
             root._lastDragPoint = root.dataTransform.inverted().map(Qt.point(bodyMouseArea.x + event.x, bodyMouseArea.y + event.y));
         }
         onPositionChanged: event => {
-            if (!pressed || !root.movable) return;
+            root._bodyHovered = root.containsBodyPoint(Qt.point(event.x, event.y));
+            if (!root._bodyDragging || !root.movable) return;
             let currentPoint = root.dataTransform.inverted().map(Qt.point(bodyMouseArea.x + event.x, bodyMouseArea.y + event.y));
             let delta = Qt.point(currentPoint.x - root._lastDragPoint.x, currentPoint.y - root._lastDragPoint.y);
             root._lastDragPoint = currentPoint;
             root.moved(delta);
+        }
+        onExited: {
+            root._bodyHovered = false;
+        }
+        onReleased: {
+            root._bodyDragging = false;
+        }
+        onCanceled: {
+            root._bodyDragging = false;
         }
     }
     RoiHandleRepeater {

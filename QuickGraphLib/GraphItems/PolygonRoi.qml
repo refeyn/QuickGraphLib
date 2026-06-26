@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import QtQuick
+import "RoiHitTest.js" as RoiHitTest
 
 /*!
     \qmltype PolygonRoi
@@ -18,6 +19,8 @@ Item {
     id: root
 
     property point _lastDragPoint: Qt.point(0, 0)
+    property bool _bodyDragging: false
+    property bool _bodyHovered: false
 
     readonly property var mappedPoints: points.map(point => dataTransform.map(point))
     readonly property real mappedBottom: mappedPoints.length === 0 ? 0 : Math.max(...mappedPoints.map(point => point.y))
@@ -172,6 +175,18 @@ Item {
         return parseInt(handle.name.slice(5));
     }
 
+    function bodyScenePoint(localPoint) {
+        return Qt.point(bodyMouseArea.x + localPoint.x, bodyMouseArea.y + localPoint.y);
+    }
+
+    function containsBodyScenePoint(scenePoint) {
+        return RoiHitTest.isInsidePolygon(scenePoint, mappedPoints) || RoiHitTest.isNearPolyline(scenePoint, mappedPoints, hitPadding * 2, true);
+    }
+
+    function containsBodyPoint(localPoint) {
+        return containsBodyScenePoint(bodyScenePoint(localPoint));
+    }
+
     onHandleSizeChanged: updateHandles()
     onHandleHitSizeChanged: updateHandles()
     onHandlesVisibleChanged: updateHandles()
@@ -199,21 +214,37 @@ Item {
         enabled: root.points.length > 0 && (root.selectable || root.movable)
         height: Math.max(root.mappedBottom - root.mappedTop + root.hitPadding * 2, root.hitPadding * 2)
         hoverEnabled: true
-        cursorShape: root.movable ? Qt.SizeAllCursor : Qt.ArrowCursor
+        cursorShape: root.movable && (root._bodyHovered || root._bodyDragging) ? Qt.SizeAllCursor : Qt.ArrowCursor
         width: Math.max(root.mappedRight - root.mappedLeft + root.hitPadding * 2, root.hitPadding * 2)
         x: root.mappedLeft - root.hitPadding
         y: root.mappedTop - root.hitPadding
 
         onPressed: event => {
+            if (!root.containsBodyPoint(Qt.point(event.x, event.y))) {
+                root._bodyDragging = false;
+                event.accepted = false;
+                return;
+            }
+            root._bodyDragging = true;
             if (root.selectable) root.selectionRequested();
             root._lastDragPoint = root.dataTransform.inverted().map(Qt.point(bodyMouseArea.x + event.x, bodyMouseArea.y + event.y));
         }
         onPositionChanged: event => {
-            if (!pressed || !root.movable) return;
+            root._bodyHovered = root.containsBodyPoint(Qt.point(event.x, event.y));
+            if (!root._bodyDragging || !root.movable) return;
             let currentPoint = root.dataTransform.inverted().map(Qt.point(bodyMouseArea.x + event.x, bodyMouseArea.y + event.y));
             let delta = Qt.point(currentPoint.x - root._lastDragPoint.x, currentPoint.y - root._lastDragPoint.y);
             root._lastDragPoint = currentPoint;
             root.moved(delta);
+        }
+        onExited: {
+            root._bodyHovered = false;
+        }
+        onReleased: {
+            root._bodyDragging = false;
+        }
+        onCanceled: {
+            root._bodyDragging = false;
         }
     }
     RoiHandleRepeater {
