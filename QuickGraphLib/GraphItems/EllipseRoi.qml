@@ -213,6 +213,14 @@ Item {
         The handle outline width.
     */
     property real handleStrokeWidth: 1
+    /*!
+        The minimum width emitted when resize handles are dragged toward the opposite edge.
+    */
+    property real minimumDataWidth: 0
+    /*!
+        The minimum height emitted when resize handles are dragged toward the opposite edge.
+    */
+    property real minimumDataHeight: 0
 
     /*!
         Emitted when the ROI requests selection.
@@ -240,17 +248,39 @@ Item {
     }
 
     function resizedFromHandle(handle, position) {
+        let minimumWidth = Math.max(0, root.minimumDataWidth);
+        let minimumHeight = Math.max(0, root.minimumDataHeight);
         if (handle.name === "left") {
-            return normalizedRect(position.x, root.dataTop, root.dataRight, root.dataBottom);
+            return normalizedRect(
+                Math.min(position.x, root.dataRight - minimumWidth),
+                root.dataTop,
+                root.dataRight,
+                root.dataBottom
+            );
         }
         if (handle.name === "right") {
-            return normalizedRect(root.dataLeft, root.dataTop, position.x, root.dataBottom);
+            return normalizedRect(
+                root.dataLeft,
+                root.dataTop,
+                Math.max(position.x, root.dataLeft + minimumWidth),
+                root.dataBottom
+            );
         }
         if (handle.name === "top") {
-            return normalizedRect(root.dataLeft, position.y, root.dataRight, root.dataBottom);
+            return normalizedRect(
+                root.dataLeft,
+                Math.min(position.y, root.dataBottom - minimumHeight),
+                root.dataRight,
+                root.dataBottom
+            );
         }
         if (handle.name === "bottom") {
-            return normalizedRect(root.dataLeft, root.dataTop, root.dataRight, position.y);
+            return normalizedRect(
+                root.dataLeft,
+                root.dataTop,
+                root.dataRight,
+                Math.max(position.y, root.dataTop + minimumHeight)
+            );
         }
         return root.dataRect;
     }

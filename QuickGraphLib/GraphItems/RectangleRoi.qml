@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import QtQuick
+import "RoiHitTest.js" as RoiHitTest
 
 /*!
     \qmltype RectangleRoi
@@ -209,6 +210,14 @@ Item {
         The handle outline width.
     */
     property real handleStrokeWidth: 1
+    /*!
+        The minimum width emitted when resize handles are dragged toward the opposite anchor.
+    */
+    property real minimumDataWidth: 0
+    /*!
+        The minimum height emitted when resize handles are dragged toward the opposite anchor.
+    */
+    property real minimumDataHeight: 0
 
     /*!
         Emitted when the ROI requests selection.
@@ -233,6 +242,64 @@ Item {
         let top = Math.min(point1.y, point2.y);
         let bottom = Math.max(point1.y, point2.y);
         return Qt.rect(left, top, right - left, bottom - top);
+    }
+
+    function clampedResizePoint(position, anchor, xSign, ySign) {
+        let minimumWidth = Math.max(0, root.minimumDataWidth);
+        let minimumHeight = Math.max(0, root.minimumDataHeight);
+        return Qt.point(
+            xSign < 0
+                ? Math.min(position.x, anchor.x - minimumWidth)
+                : Math.max(position.x, anchor.x + minimumWidth),
+            ySign < 0
+                ? Math.min(position.y, anchor.y - minimumHeight)
+                : Math.max(position.y, anchor.y + minimumHeight)
+        );
+    }
+
+    function resizedFromHandle(handle, position) {
+        if (handle.name === "topLeft") {
+            return root.normalizedRect(
+                root.clampedResizePoint(position, root.bottomRightPoint, -1, -1),
+                root.bottomRightPoint
+            );
+        }
+        if (handle.name === "topRight") {
+            return root.normalizedRect(
+                root.clampedResizePoint(position, root.bottomLeftPoint, 1, -1),
+                root.bottomLeftPoint
+            );
+        }
+        if (handle.name === "bottomLeft") {
+            return root.normalizedRect(
+                root.clampedResizePoint(position, root.topRightPoint, -1, 1),
+                root.topRightPoint
+            );
+        }
+        if (handle.name === "bottomRight") {
+            return root.normalizedRect(
+                root.clampedResizePoint(position, root.topLeftPoint, 1, 1),
+                root.topLeftPoint
+            );
+        }
+        return root.dataRect;
+    }
+
+    function bodyScenePoint(localPoint) {
+        return Qt.point(bodyMouseArea.x + localPoint.x, bodyMouseArea.y + localPoint.y);
+    }
+
+    function containsBodyScenePoint(scenePoint) {
+        return RoiHitTest.isInsidePolygon(scenePoint, [
+            mappedTopLeft,
+            mappedTopRight,
+            mappedBottomRight,
+            mappedBottomLeft
+        ]);
+    }
+
+    function containsBodyPoint(localPoint) {
+        return containsBodyScenePoint(bodyScenePoint(localPoint));
     }
 
     x: 0
@@ -281,14 +348,8 @@ Item {
 
         onHandleMoved: (handle, position) => {
             root.handleMoved(handle, position);
-            if (handle.name === "topLeft") {
-                root.resized(root.normalizedRect(position, root.bottomRightPoint));
-            } else if (handle.name === "topRight") {
-                root.resized(root.normalizedRect(position, root.bottomLeftPoint));
-            } else if (handle.name === "bottomLeft") {
-                root.resized(root.normalizedRect(position, root.topRightPoint));
-            } else if (handle.name === "bottomRight") {
-                root.resized(root.normalizedRect(position, root.topLeftPoint));
+            if (handle.role === GraphHandle.Resize) {
+                root.resized(root.resizedFromHandle(handle, position));
             } else if (handle.role === GraphHandle.Move) {
                 root.moved(Qt.point(position.x - handle.position.x, position.y - handle.position.y));
             }
