@@ -19,6 +19,8 @@ set(QGL_GI_QML_FILES
     Line.qml
     LineSegmentRoi.qml
     LineSegment.qml
+    Polygon.qml
+    PolygonRoi.qml
     Polyline.qml
     PolylineRoi.qml
     Rectangle.qml
