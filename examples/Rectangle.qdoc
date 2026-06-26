@@ -9,7 +9,7 @@
 
     \image examples/Rectangle.png
 
-    This example demonstrates using Rectangle to draw finite rectangles in data coordinates. The red rectangle is paired with a RectangleRoi so it can be selected, moved by dragging its body and resized by dragging its corner handles. Clicking empty plot space clears the selection and hides the handles.
+    This example demonstrates using Rectangle to draw finite rectangles in data coordinates. The editable rectangle is paired with a RectangleRoi so it can be selected, moved by dragging its body and resized by dragging its corner handles. Clicking empty plot space clears the selection and hides the handles.
 
     \quotefile examples/Rectangle.qml
 */

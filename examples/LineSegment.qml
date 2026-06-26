@@ -23,6 +23,10 @@ QGLPreFabs.XYAxes {
         editablePoint2 = Qt.point(editablePoint2.x + delta.x, editablePoint2.y + delta.y);
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: axes.lineSegmentSelected = false
+    }
     QGLGraphItems.Line {
         dataTransform: axes.dataTransform
         path: QuickGraphLib.Helpers.linspace(0, 10, 80).map(x => Qt.point(x, 3 + 1.5 * Math.sin(x)))

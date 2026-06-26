@@ -9,7 +9,7 @@
 
     \image examples/LineSegment.png
 
-    This example demonstrates using LineSegment to draw finite segments between two points in data coordinates. The red segment is paired with a LineSegmentRoi so it can be selected, moved by dragging its body and resized by dragging its endpoint handles. The other segments demonstrate standard ShapePath styling properties such as stroke width, dashing and cap style.
+    This example demonstrates using LineSegment to draw finite segments between two points in data coordinates. The editable segment is paired with a LineSegmentRoi so it can be selected, moved by dragging its body and resized by dragging its endpoint handles. Clicking empty plot space clears the selection and hides the handles. The other segments demonstrate standard ShapePath styling properties such as stroke width, dashing and cap style.
 
     \quotefile examples/LineSegment.qml
 */

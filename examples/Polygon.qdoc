@@ -9,7 +9,7 @@
 
     \image examples/Polygon.png
 
-    This example demonstrates using Polygon to draw closed filled shapes in data coordinates. The red polygon is paired with a PolygonRoi so it can be selected, moved by dragging its body and edited by dragging its vertex handles. Clicking empty plot space clears the selection and hides the handles.
+    This example demonstrates using Polygon to draw closed filled shapes in data coordinates. The editable polygon is paired with a PolygonRoi so it can be selected, moved by dragging its body and edited by dragging its vertex handles. Clicking empty plot space clears the selection and hides the handles.
 
     \quotefile examples/Polygon.qml
 */

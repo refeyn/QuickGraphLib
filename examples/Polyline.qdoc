@@ -9,7 +9,7 @@
 
     \image examples/Polyline.png
 
-    This example demonstrates using Polyline to draw connected open line segments in data coordinates. The red polyline is paired with a PolylineRoi so it can be selected, moved by dragging its body and edited by dragging its vertex handles. Clicking empty plot space clears the selection and hides the handles.
+    This example demonstrates using Polyline to draw connected open line segments in data coordinates. The editable polyline is paired with a PolylineRoi so it can be selected, moved by dragging its body and edited by dragging its vertex handles. Clicking empty plot space clears the selection and hides the handles.
 
     \quotefile examples/Polyline.qml
 */
