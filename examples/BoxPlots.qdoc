@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
+// SPDX-License-Identifier: MIT
+
+/*!
+    \title Box plots
+    \ingroup quickgraphlibdemos
+    \brief A simple showing horizontal and vertical box plots
+    \example boxplots
+
+    \image examples/boxplots.png
+
+    \quotefile examples/BoxPlots.qml
+*/

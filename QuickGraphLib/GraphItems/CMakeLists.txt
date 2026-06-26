@@ -7,6 +7,8 @@ set(QGL_GI_QML_FILES
     BarHorizontal.qml
     BarVertical.qml
     BasicLegend.qml
+    BoxPlotHorizontal.qml
+    BoxPlotVertical.qml
     GraphItemDragHandler.qml
     Histogram.qml
     Marker.qml
