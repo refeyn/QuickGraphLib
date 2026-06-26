@@ -35,7 +35,7 @@ QGLPreFabs.XYAxes {
         dataTransform: axes.dataTransform
         fillColor: "transparent"
         strokeColor: "black"
-        strokeWidth: 4
+        strokeWidth: 1
     }
     QGLGraphItems.RectangleRoi {
         dataRect: axes.editableRect

@@ -205,3 +205,110 @@ QGLPreFabs.XYAxes {
     assert item is not None, [error.toString() for error in component.errors()]
     item.deleteLater()
     app.processEvents()
+
+
+def test_roi_handles_expose_role_specific_cursors() -> None:
+    QtQuick.QQuickWindow.setGraphicsApi(
+        QtQuick.QSGRendererInterface.GraphicsApi.Software
+    )
+    app = QtGui.QGuiApplication.instance() or QtGui.QGuiApplication(
+        ["", "-platform", "offscreen"]
+    )
+    engine = QtQml.QQmlEngine()
+    engine.addImportPath(QuickGraphLib.QML_IMPORT_PATH)
+
+    component = QtQml.QQmlComponent(engine)
+    component.setData(
+        rb"""
+import QtQuick
+import QuickGraphLib.GraphItems as QGLGraphItems
+import QuickGraphLib.PreFabs as QGLPreFabs
+
+QGLPreFabs.XYAxes {
+    id: axes
+
+    width: 800
+    height: 600
+    viewRect: Qt.rect(0, 0, 10, 10)
+
+    QGLGraphItems.LineSegmentRoi {
+        id: lineRoi
+
+        dataTransform: axes.dataTransform
+        point1: Qt.point(1, 1)
+        point2: Qt.point(9, 9)
+        selected: true
+    }
+    QGLGraphItems.PolylineRoi {
+        id: polylineRoi
+
+        dataTransform: axes.dataTransform
+        points: [Qt.point(1, 1), Qt.point(5, 5), Qt.point(9, 1)]
+        selected: true
+    }
+    QGLGraphItems.PolygonRoi {
+        id: polygonRoi
+
+        dataTransform: axes.dataTransform
+        points: [Qt.point(1, 1), Qt.point(5, 5), Qt.point(9, 1)]
+        selected: true
+    }
+    QGLGraphItems.RectangleRoi {
+        id: rectangleRoi
+
+        dataTransform: axes.dataTransform
+        dataRect: Qt.rect(2, 2, 6, 4)
+        handleMode: QGLGraphItems.RectangleRoi.CornersAndCenter
+        selected: true
+    }
+    QGLGraphItems.EllipseRoi {
+        id: ellipseRoi
+
+        dataTransform: axes.dataTransform
+        dataRect: Qt.rect(2, 2, 6, 4)
+        handleMode: QGLGraphItems.EllipseRoi.CardinalAndCenter
+        selected: true
+    }
+
+    Component.onCompleted: {
+        if (rectangleRoi.topLeftHandle.cursorShape !== Qt.SizeBDiagCursor
+                || rectangleRoi.bottomRightHandle.cursorShape !== Qt.SizeBDiagCursor) {
+            throw new Error("rectangle backward diagonal cursor mismatch");
+        }
+        if (rectangleRoi.topRightHandle.cursorShape !== Qt.SizeFDiagCursor
+                || rectangleRoi.bottomLeftHandle.cursorShape !== Qt.SizeFDiagCursor) {
+            throw new Error("rectangle forward diagonal cursor mismatch");
+        }
+        if (rectangleRoi.centerHandle.cursorShape !== Qt.SizeAllCursor) {
+            throw new Error("rectangle move cursor mismatch");
+        }
+        if (ellipseRoi.leftHandle.cursorShape !== Qt.SizeHorCursor
+                || ellipseRoi.rightHandle.cursorShape !== Qt.SizeHorCursor) {
+            throw new Error("ellipse horizontal resize cursor mismatch");
+        }
+        if (ellipseRoi.topHandle.cursorShape !== Qt.SizeVerCursor
+                || ellipseRoi.bottomHandle.cursorShape !== Qt.SizeVerCursor) {
+            throw new Error("ellipse vertical resize cursor mismatch");
+        }
+        if (ellipseRoi.centerHandle.cursorShape !== Qt.SizeAllCursor) {
+            throw new Error("ellipse move cursor mismatch");
+        }
+        if (lineRoi.point1Handle.cursorShape !== Qt.PointingHandCursor
+                || lineRoi.point2Handle.cursorShape !== Qt.PointingHandCursor) {
+            throw new Error("line endpoint cursor mismatch");
+        }
+        if (polylineRoi.handles[0].cursorShape !== Qt.PointingHandCursor) {
+            throw new Error("polyline vertex cursor mismatch");
+        }
+        if (polygonRoi.handles[0].cursorShape !== Qt.PointingHandCursor) {
+            throw new Error("polygon vertex cursor mismatch");
+        }
+    }
+}
+""",
+        QtCore.QUrl(),
+    )
+    item = component.create()
+    assert item is not None, [error.toString() for error in component.errors()]
+    item.deleteLater()
+    app.processEvents()

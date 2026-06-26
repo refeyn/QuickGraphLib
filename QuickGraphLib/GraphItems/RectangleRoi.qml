@@ -104,6 +104,7 @@ Item {
         RoiHandle {
             id: topLeftHandleSpec
 
+            cursorShape: Qt.SizeBDiagCursor
             delegate: root.cornerHandleDelegate
             movable: root.cornerHandlesMovable
             name: "topLeft"
@@ -116,6 +117,7 @@ Item {
         RoiHandle {
             id: topRightHandleSpec
 
+            cursorShape: Qt.SizeFDiagCursor
             delegate: root.cornerHandleDelegate
             movable: root.cornerHandlesMovable
             name: "topRight"
@@ -128,6 +130,7 @@ Item {
         RoiHandle {
             id: bottomLeftHandleSpec
 
+            cursorShape: Qt.SizeFDiagCursor
             delegate: root.cornerHandleDelegate
             movable: root.cornerHandlesMovable
             name: "bottomLeft"
@@ -140,6 +143,7 @@ Item {
         RoiHandle {
             id: bottomRightHandleSpec
 
+            cursorShape: Qt.SizeBDiagCursor
             delegate: root.cornerHandleDelegate
             movable: root.cornerHandlesMovable
             name: "bottomRight"
@@ -152,6 +156,7 @@ Item {
         RoiHandle {
             id: centerHandleSpec
 
+            cursorShape: Qt.SizeAllCursor
             delegate: root.centerHandleDelegate
             movable: root.movable
             name: "center"
@@ -165,7 +170,7 @@ Item {
     /*!
         The visual size and hit target size of corner handles.
     */
-    property real handleSize: 12
+    property real handleSize: 8
     /*!
         The visual size and hit target size of the center handle.
     */

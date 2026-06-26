@@ -65,6 +65,10 @@ Item {
     */
     property bool dragging: false
     /*!
+        The mouse cursor shown while hovering the handle.
+    */
+    property int cursorShape: Qt.SizeAllCursor
+    /*!
         The semantic editing role of the handle.
 
         This describes what the handle does. It is separate from \l shape, which only controls the
@@ -139,7 +143,7 @@ Item {
         id: mouseArea
 
         anchors.fill: parent
-        cursorShape: root.movable ? Qt.SizeAllCursor : Qt.ArrowCursor
+        cursorShape: root.movable ? root.cursorShape : Qt.ArrowCursor
         hoverEnabled: true
 
         onPositionChanged: event => {

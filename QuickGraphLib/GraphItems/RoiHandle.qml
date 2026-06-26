@@ -46,6 +46,10 @@ QtObject {
     */
     property bool selected: false
     /*!
+        The mouse cursor shown while hovering this handle.
+    */
+    property int cursorShape: Qt.SizeAllCursor
+    /*!
         The visual size of this handle.
     */
     property real size: 12

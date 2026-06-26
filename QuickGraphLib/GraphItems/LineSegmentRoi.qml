@@ -90,6 +90,7 @@ Item {
         RoiHandle {
             id: point1HandleSpec
 
+            cursorShape: Qt.PointingHandCursor
             movable: root.endpointHandlesMovable
             name: "point1"
             position: root.point1
@@ -102,6 +103,7 @@ Item {
         RoiHandle {
             id: point2HandleSpec
 
+            cursorShape: Qt.PointingHandCursor
             movable: root.endpointHandlesMovable
             name: "point2"
             position: root.point2
@@ -114,6 +116,7 @@ Item {
         RoiHandle {
             id: centerHandleSpec
 
+            cursorShape: Qt.SizeAllCursor
             movable: root.movable
             name: "center"
             position: root.centerPoint
@@ -131,7 +134,7 @@ Item {
     /*!
         The visual size and hit target size of endpoint handles.
     */
-    property real handleSize: 12
+    property real handleSize: 8
     /*!
         The visual size and hit target size of the center handle.
     */

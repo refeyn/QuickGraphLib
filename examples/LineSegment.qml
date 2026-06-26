@@ -34,7 +34,7 @@ QGLPreFabs.XYAxes {
         point1: axes.editablePoint1
         point2: axes.editablePoint2
         strokeColor: "black"
-        strokeWidth: 4
+        strokeWidth: 1
     }
     QGLGraphItems.LineSegmentRoi {
         dataTransform: axes.dataTransform

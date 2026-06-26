@@ -75,7 +75,7 @@ Item {
     /*!
         The visual size and hit target size of vertex handles.
     */
-    property real handleSize: 12
+    property real handleSize: 8
     /*!
         The mouse hit target size of vertex handles.
     */
@@ -129,6 +129,7 @@ Item {
     signal handleMoved(RoiHandle handle, point position)
 
     function configureHandle(handle, index) {
+        handle.cursorShape = Qt.PointingHandCursor;
         handle.delegate = root.vertexHandleDelegate;
         handle.hitSize = root.handleHitSize;
         handle.movable = root.vertexHandlesMovable;

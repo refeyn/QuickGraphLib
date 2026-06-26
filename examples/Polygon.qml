@@ -53,7 +53,7 @@ QGLPreFabs.XYAxes {
         points: axes.editablePoints
         fillColor: "transparent"
         strokeColor: "black"
-        strokeWidth: 4
+        strokeWidth: 1
     }
     QGLGraphItems.PolygonRoi {
         dataTransform: axes.dataTransform

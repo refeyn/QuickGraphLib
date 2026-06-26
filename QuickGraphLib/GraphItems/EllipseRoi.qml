@@ -107,6 +107,7 @@ Item {
         RoiHandle {
             id: leftHandleSpec
 
+            cursorShape: Qt.SizeHorCursor
             delegate: root.cardinalHandleDelegate
             movable: root.cardinalHandlesMovable
             name: "left"
@@ -119,6 +120,7 @@ Item {
         RoiHandle {
             id: rightHandleSpec
 
+            cursorShape: Qt.SizeHorCursor
             delegate: root.cardinalHandleDelegate
             movable: root.cardinalHandlesMovable
             name: "right"
@@ -131,6 +133,7 @@ Item {
         RoiHandle {
             id: topHandleSpec
 
+            cursorShape: Qt.SizeVerCursor
             delegate: root.cardinalHandleDelegate
             movable: root.cardinalHandlesMovable
             name: "top"
@@ -143,6 +146,7 @@ Item {
         RoiHandle {
             id: bottomHandleSpec
 
+            cursorShape: Qt.SizeVerCursor
             delegate: root.cardinalHandleDelegate
             movable: root.cardinalHandlesMovable
             name: "bottom"
@@ -155,6 +159,7 @@ Item {
         RoiHandle {
             id: centerHandleSpec
 
+            cursorShape: Qt.SizeAllCursor
             delegate: root.centerHandleDelegate
             movable: root.movable
             name: "center"
@@ -168,7 +173,7 @@ Item {
     /*!
         The visual size and hit target size of cardinal resize handles.
     */
-    property real handleSize: 12
+    property real handleSize: 8
     /*!
         The visual size and hit target size of the center handle.
     */

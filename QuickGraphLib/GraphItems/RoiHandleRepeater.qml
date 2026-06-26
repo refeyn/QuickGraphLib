@@ -70,6 +70,7 @@ Item {
         GraphHandle {
             required property RoiHandle modelData
 
+            cursorShape: modelData.cursorShape
             dataTransform: root.dataTransform
             delegate: modelData.delegate
             fillColor: root.fillColor
