@@ -26,14 +26,14 @@ QGLPreFabs.XYAxes {
     QGLGraphItems.Line {
         dataTransform: axes.dataTransform
         path: QuickGraphLib.Helpers.linspace(0, 10, 80).map(x => Qt.point(x, 3 + 1.5 * Math.sin(x)))
-        strokeColor: "#bbbbbb"
+        strokeColor: "black"
         strokeWidth: 2
     }
     QGLGraphItems.LineSegment {
         dataTransform: axes.dataTransform
         point1: axes.editablePoint1
         point2: axes.editablePoint2
-        strokeColor: axes.lineSegmentSelected ? "#d62728" : "#8c564b"
+        strokeColor: "black"
         strokeWidth: 4
     }
     QGLGraphItems.LineSegmentRoi {
@@ -55,7 +55,7 @@ QGLPreFabs.XYAxes {
         dataTransform: axes.dataTransform
         point1: Qt.point(1, 6)
         point2: Qt.point(9, 1)
-        strokeColor: "#1f77b4"
+        strokeColor: "black"
         strokeStyle: QQS.ShapePath.DashLine
         strokeWidth: 3
     }
@@ -64,7 +64,7 @@ QGLPreFabs.XYAxes {
         dataTransform: axes.dataTransform
         point1: Qt.point(2, 3.5)
         point2: Qt.point(8, 3.5)
-        strokeColor: "#2ca02c"
+        strokeColor: "black"
         strokeWidth: 8
     }
 }

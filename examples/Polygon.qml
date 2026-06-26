@@ -44,15 +44,15 @@ QGLPreFabs.XYAxes {
             Qt.point(6.25, 4.9),
             Qt.point(3.6, 4.65)
         ]
-        fillColor: "#332ca02c"
-        strokeColor: "#2ca02c"
+        fillColor: "transparent"
+        strokeColor: "black"
         strokeWidth: 3
     }
     QGLGraphItems.Polygon {
         dataTransform: axes.dataTransform
         points: axes.editablePoints
-        fillColor: axes.polygonSelected ? "#33d62728" : "#338c564b"
-        strokeColor: axes.polygonSelected ? "#d62728" : "#8c564b"
+        fillColor: "transparent"
+        strokeColor: "black"
         strokeWidth: 4
     }
     QGLGraphItems.PolygonRoi {

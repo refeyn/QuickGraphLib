@@ -86,7 +86,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 </g>
 </g>
 
-<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#bbbbbb" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,91,15)"
+<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#000000" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,91,15)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M57.8333,260 L65.154,247.691 L72.4747,235.579 L79.7954,223.858 L87.116,212.715 L94.4367,202.329 L101.757,192.866 L109.078,184.477 L116.399,177.296 L123.719,171.439 L131.04,166.999 L138.361,164.047 L145.681,162.631 L153.002,162.772 L160.323,164.47 L167.643,167.696 L174.964,172.399 L182.285,178.504 L189.605,185.913 L196.926,194.507 L204.247,204.15 L211.568,214.686 L218.888,225.947 L226.209,237.753 L233.53,249.915 L240.85,262.239 L248.171,274.527 L255.492,286.582 L262.812,298.212 L270.133,309.23 L277.454,319.461 L284.774,328.74 L292.095,336.919 L299.416,343.868 L306.736,349.474 L314.057,353.649 L321.378,356.325 L328.698,357.459 L336.019,357.035 L343.34,355.057 L350.66,351.559 L357.981,346.595 L365.302,340.246 L372.622,332.612 L379.943,323.817 L387.264,314.001 L394.584,303.32 L401.905,291.946 L409.226,280.061 L416.546,267.855 L423.867,255.524 L431.188,243.263 L438.508,231.271 L445.829,219.739 L453.15,208.85 L460.47,198.781 L467.791,189.69 L475.112,181.725 L482.432,175.013 L489.753,169.66 L497.074,165.753 L504.395,163.354 L511.715,162.502 L519.036,163.209 L526.357,165.466 L533.677,169.235 L540.998,174.457 L548.319,181.047 L555.639,188.901 L562.96,197.892 L570.281,207.878 L577.601,218.697 L584.922,230.178 L592.243,242.135 L599.563,254.378 L606.884,266.712 L614.205,278.938 L621.525,290.861 L628.846,302.29 L636.167,313.042"/>
@@ -99,7 +99,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 </g>
 </g>
 
-<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#d62728" stroke-opacity="1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,91,15)"
+<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#000000" stroke-opacity="1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,91,15)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M115.667,390 L578.333,65"/>
@@ -112,7 +112,7 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 </g>
 </g>
 
-<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#1f77b4" stroke-opacity="1" stroke-dasharray="24,12" stroke-dashoffset="0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,91,15)"
+<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#000000" stroke-opacity="1" stroke-dasharray="24,12" stroke-dashoffset="0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,91,15)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M115.667,65 L578.333,390"/>
@@ -125,10 +125,16 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 </g>
 </g>
 
-<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#2ca02c" stroke-opacity="1" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round" transform="matrix(1,0,0,1,91,15)"
+<g clip-path="url(#clipPath1)"><g fill="#000000" fill-opacity="0" stroke="#000000" stroke-opacity="1" stroke-width="8" stroke-linecap="butt" stroke-linejoin="round" transform="matrix(1,0,0,1,91,15)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 <path vector-effect="none" fill-rule="evenodd" d="M173.5,227.5 L520.5,227.5"/>
+</g>
+</g>
+
+<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,91,15)"
+font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
+>
 </g>
 </g>
 
@@ -243,12 +249,6 @@ font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="norma
 </g>
 
 <g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,663.333,74)"
-font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
->
-</g>
-</g>
-
-<g clip-path="url(#clipPath1)"><g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,91,15)"
 font-family="DejaVuSans" font-size="14.6667" font-weight="400" font-style="normal" 
 >
 </g>

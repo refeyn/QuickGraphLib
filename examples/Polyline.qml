@@ -43,13 +43,13 @@ QGLPreFabs.XYAxes {
             Qt.point(5, 6.5),
             Qt.point(8.5, 5.25)
         ]
-        strokeColor: "#2ca02c"
+        strokeColor: "black"
         strokeWidth: 3
     }
     QGLGraphItems.Polyline {
         dataTransform: axes.dataTransform
         points: axes.editablePoints
-        strokeColor: axes.polylineSelected ? "#d62728" : "#8c564b"
+        strokeColor: "black"
         strokeWidth: 4
     }
     QGLGraphItems.PolylineRoi {

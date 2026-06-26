@@ -26,15 +26,15 @@ QGLPreFabs.XYAxes {
     QGLGraphItems.Ellipse {
         dataRect: Qt.rect(6.5, 1.25, 2.75, 4)
         dataTransform: axes.dataTransform
-        fillColor: "#332ca02c"
-        strokeColor: "#2ca02c"
+        fillColor: "transparent"
+        strokeColor: "black"
         strokeWidth: 3
     }
     QGLGraphItems.Ellipse {
         dataRect: axes.editableEllipseRect
         dataTransform: axes.dataTransform
-        fillColor: axes.ellipseSelected ? "#33d62728" : "#228c564b"
-        strokeColor: axes.ellipseSelected ? "#d62728" : "#8c564b"
+        fillColor: "transparent"
+        strokeColor: "black"
         strokeWidth: 4
     }
     QGLGraphItems.EllipseRoi {
