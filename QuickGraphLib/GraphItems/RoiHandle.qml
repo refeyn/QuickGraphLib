@@ -18,25 +18,34 @@ QtObject {
     id: root
 
     /*!
+        The mouse cursor shown while hovering this handle.
+    */
+    property int cursorShape: Qt.SizeAllCursor
+    /*!
+        Optional visual delegate for this handle.
+    */
+    property Component delegate: null
+    /*!
+        The mouse hit target size of this handle.
+    */
+    property real hitSize: size
+    /*!
+        Whether this handle can be dragged.
+    */
+    property bool movable: true
+
+    /*!
         Stable application-facing name for this handle.
     */
     property string name: ""
-    /*!
-        The semantic editing role of this handle.
-    */
-    property int role: GraphHandle.Custom
     /*!
         The handle position in data coordinates.
     */
     property point position: Qt.point(0, 0)
     /*!
-        Whether this handle should be shown.
+        The semantic editing role of this handle.
     */
-    property bool visible: true
-    /*!
-        Whether this handle can be dragged.
-    */
-    property bool movable: true
+    property int role: GraphHandle.Custom
     /*!
         Whether pressing this handle should request ROI selection.
     */
@@ -46,23 +55,15 @@ QtObject {
     */
     property bool selected: false
     /*!
-        The mouse cursor shown while hovering this handle.
+        The default visual shape of this handle.
     */
-    property int cursorShape: Qt.SizeAllCursor
+    property int shape: GraphHandle.Circle
     /*!
         The visual size of this handle.
     */
     property real size: 12
     /*!
-        The mouse hit target size of this handle.
+        Whether this handle should be shown.
     */
-    property real hitSize: size
-    /*!
-        The default visual shape of this handle.
-    */
-    property int shape: GraphHandle.Circle
-    /*!
-        Optional visual delegate for this handle.
-    */
-    property Component delegate: null
+    property bool visible: true
 }

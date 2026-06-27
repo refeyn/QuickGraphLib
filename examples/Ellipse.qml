@@ -11,16 +11,17 @@ QGLPreFabs.XYAxes {
     property rect editableEllipseRect: Qt.rect(1, 1.25, 4, 3)
     property bool ellipseSelected: true
 
-    viewRect: Qt.rect(-1, -1, 12, 8)
-    xLabel: "X"
-    yLabel: "Y"
-
     function moveEditableEllipse(delta) {
         editableEllipseRect = Qt.rect(editableEllipseRect.x + delta.x, editableEllipseRect.y + delta.y, editableEllipseRect.width, editableEllipseRect.height);
     }
 
+    viewRect: Qt.rect(-1, -1, 12, 8)
+    xLabel: "X"
+    yLabel: "Y"
+
     MouseArea {
         anchors.fill: parent
+
         onClicked: axes.ellipseSelected = false
     }
     QGLGraphItems.Ellipse {

@@ -11,16 +11,17 @@ QGLPreFabs.XYAxes {
     property rect editableRect: Qt.rect(1, 1, 4, 3)
     property bool rectangleSelected: true
 
-    viewRect: Qt.rect(-1, -1, 12, 8)
-    xLabel: "X"
-    yLabel: "Y"
-
     function moveEditableRectangle(delta) {
         editableRect = Qt.rect(editableRect.x + delta.x, editableRect.y + delta.y, editableRect.width, editableRect.height);
     }
 
+    viewRect: Qt.rect(-1, -1, 12, 8)
+    xLabel: "X"
+    yLabel: "Y"
+
     MouseArea {
         anchors.fill: parent
+
         onClicked: axes.rectangleSelected = false
     }
     QGLGraphItems.Rectangle {

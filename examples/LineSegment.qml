@@ -14,17 +14,18 @@ QGLPreFabs.XYAxes {
     property point editablePoint2: Qt.point(9, 6)
     property bool lineSegmentSelected: true
 
-    viewRect: Qt.rect(-1, -1, 12, 8)
-    xLabel: "X"
-    yLabel: "Y"
-
     function moveEditableLineSegment(delta) {
         editablePoint1 = Qt.point(editablePoint1.x + delta.x, editablePoint1.y + delta.y);
         editablePoint2 = Qt.point(editablePoint2.x + delta.x, editablePoint2.y + delta.y);
     }
 
+    viewRect: Qt.rect(-1, -1, 12, 8)
+    xLabel: "X"
+    yLabel: "Y"
+
     MouseArea {
         anchors.fill: parent
+
         onClicked: axes.lineSegmentSelected = false
     }
     QGLGraphItems.Line {
@@ -42,10 +43,10 @@ QGLPreFabs.XYAxes {
     }
     QGLGraphItems.LineSegmentRoi {
         dataTransform: axes.dataTransform
-        point1: axes.editablePoint1
-        point2: axes.editablePoint2
         handleMode: QGLGraphItems.LineSegmentRoi.Endpoints
         movable: true
+        point1: axes.editablePoint1
+        point2: axes.editablePoint2
         selectable: true
         selected: axes.lineSegmentSelected
 

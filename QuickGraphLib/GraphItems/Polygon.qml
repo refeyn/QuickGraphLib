@@ -19,6 +19,14 @@ import QuickGraphLib as QuickGraphLib
 QQS.ShapePath {
     id: root
 
+    readonly property var closedPoints: {
+        if (points.length === 0)
+            return [];
+        let nextPoints = points.slice();
+        nextPoints.push(points[0]);
+        return nextPoints;
+    }
+
     /*!
         Must be assigned the data transform of the graph area this polygon is paired to.
 
@@ -29,13 +37,6 @@ QQS.ShapePath {
         Polygon vertices in data coordinates.
     */
     required property var points
-
-    readonly property var closedPoints: {
-        if (points.length === 0) return [];
-        let nextPoints = points.slice();
-        nextPoints.push(points[0]);
-        return nextPoints;
-    }
 
     fillColor: "transparent"
     joinStyle: QQS.ShapePath.RoundJoin

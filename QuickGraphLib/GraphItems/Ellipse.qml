@@ -19,18 +19,16 @@ QQS.ShapePath {
     id: root
 
     readonly property real dataBottom: Math.max(dataRect.y, dataRect.y + dataRect.height)
-    readonly property real dataLeft: Math.min(dataRect.x, dataRect.x + dataRect.width)
-    readonly property real dataRight: Math.max(dataRect.x, dataRect.x + dataRect.width)
-    readonly property real dataTop: Math.min(dataRect.y, dataRect.y + dataRect.height)
-
     readonly property point dataCenter: Qt.point((dataLeft + dataRight) / 2, (dataTop + dataBottom) / 2)
+    readonly property real dataLeft: Math.min(dataRect.x, dataRect.x + dataRect.width)
+    /*!
+        The ellipse bounding rectangle in data coordinates.
+    */
+    required property rect dataRect
+    readonly property real dataRight: Math.max(dataRect.x, dataRect.x + dataRect.width)
     readonly property point dataRightCenter: Qt.point(dataRight, dataCenter.y)
+    readonly property real dataTop: Math.min(dataRect.y, dataRect.y + dataRect.height)
     readonly property point dataTopCenter: Qt.point(dataCenter.x, dataTop)
-    readonly property point mappedCenter: dataTransform.map(dataCenter)
-    readonly property point mappedRightCenter: dataTransform.map(dataRightCenter)
-    readonly property point mappedTopCenter: dataTransform.map(dataTopCenter)
-    readonly property real radiusX: Math.abs(mappedRightCenter.x - mappedCenter.x)
-    readonly property real radiusY: Math.abs(mappedTopCenter.y - mappedCenter.y)
 
     /*!
         Must be assigned the data transform of the graph area this ellipse is paired to.
@@ -38,10 +36,11 @@ QQS.ShapePath {
         \sa GraphArea::dataTransform
     */
     required property matrix4x4 dataTransform
-    /*!
-        The ellipse bounding rectangle in data coordinates.
-    */
-    required property rect dataRect
+    readonly property point mappedCenter: dataTransform.map(dataCenter)
+    readonly property point mappedRightCenter: dataTransform.map(dataRightCenter)
+    readonly property point mappedTopCenter: dataTransform.map(dataTopCenter)
+    readonly property real radiusX: Math.abs(mappedRightCenter.x - mappedCenter.x)
+    readonly property real radiusY: Math.abs(mappedTopCenter.y - mappedCenter.y)
 
     fillColor: "transparent"
     pathHints: QQS.ShapePath.PathConvex | QQS.ShapePath.PathSolid

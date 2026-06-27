@@ -20,13 +20,12 @@ QQS.ShapePath {
 
     readonly property real dataBottom: Math.max(dataRect.y, dataRect.y + dataRect.height)
     readonly property real dataLeft: Math.min(dataRect.x, dataRect.x + dataRect.width)
+    /*!
+        The rectangle in data coordinates.
+    */
+    required property rect dataRect
     readonly property real dataRight: Math.max(dataRect.x, dataRect.x + dataRect.width)
     readonly property real dataTop: Math.min(dataRect.y, dataRect.y + dataRect.height)
-
-    readonly property point mappedBottomLeft: dataTransform.map(Qt.point(dataLeft, dataBottom))
-    readonly property point mappedBottomRight: dataTransform.map(Qt.point(dataRight, dataBottom))
-    readonly property point mappedTopLeft: dataTransform.map(Qt.point(dataLeft, dataTop))
-    readonly property point mappedTopRight: dataTransform.map(Qt.point(dataRight, dataTop))
 
     /*!
         Must be assigned the data transform of the graph area this rectangle is paired to.
@@ -34,10 +33,10 @@ QQS.ShapePath {
         \sa GraphArea::dataTransform
     */
     required property matrix4x4 dataTransform
-    /*!
-        The rectangle in data coordinates.
-    */
-    required property rect dataRect
+    readonly property point mappedBottomLeft: dataTransform.map(Qt.point(dataLeft, dataBottom))
+    readonly property point mappedBottomRight: dataTransform.map(Qt.point(dataRight, dataBottom))
+    readonly property point mappedTopLeft: dataTransform.map(Qt.point(dataLeft, dataTop))
+    readonly property point mappedTopRight: dataTransform.map(Qt.point(dataRight, dataTop))
 
     fillColor: "transparent"
     joinStyle: QQS.ShapePath.RoundJoin

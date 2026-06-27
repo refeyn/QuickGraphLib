@@ -18,9 +18,17 @@ Item {
     */
     required property matrix4x4 dataTransform
     /*!
+        The normal handle fill color.
+    */
+    property color fillColor: "white"
+    /*!
         Handle configuration objects to render.
     */
     property var handles: []
+    /*!
+        The handle fill color used while hovered.
+    */
+    property color hoverFillColor: "#fff6bf"
     /*!
         Whether all handles should be selectable.
     */
@@ -29,14 +37,6 @@ Item {
         Whether handles should use the selected visual state.
     */
     property bool selected: false
-    /*!
-        The normal handle fill color.
-    */
-    property color fillColor: "white"
-    /*!
-        The handle fill color used while hovered.
-    */
-    property color hoverFillColor: "#fff6bf"
     /*!
         The handle fill color used while selected or dragged.
     */
@@ -51,18 +51,19 @@ Item {
     property real strokeWidth: 1
 
     /*!
-        Emitted when \a handle requests selection.
-    */
-    signal handleSelectionRequested(RoiHandle handle)
-    /*!
         Emitted when \a handle has moved to \a position in data coordinates.
     */
     signal handleMoved(RoiHandle handle, point position)
 
+    /*!
+        Emitted when \a handle requests selection.
+    */
+    signal handleSelectionRequested(RoiHandle handle)
+
+    height: parent ? parent.height : 0
+    width: parent ? parent.width : 0
     x: 0
     y: 0
-    width: parent ? parent.width : 0
-    height: parent ? parent.height : 0
 
     Repeater {
         model: root.handles
