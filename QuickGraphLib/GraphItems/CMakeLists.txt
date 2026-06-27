@@ -7,6 +7,7 @@ set(QGL_GI_QML_FILES
     BarHorizontal.qml
     BarVertical.qml
     BasicLegend.qml
+    GraphHandle.qml
     BoxPlotHorizontal.qml
     BoxPlotVertical.qml
     GraphItemDragHandler.qml
@@ -16,8 +17,21 @@ set(QGL_GI_QML_FILES
     AxVSpan.qml
     BasicLegendItem.qml
     Contour.qml
+    Ellipse.qml
+    EllipseRoi.qml
     Grid.qml
     Line.qml
+    LineSegmentRoi.qml
+    LineSegment.qml
+    Polygon.qml
+    PolygonRoi.qml
+    Polyline.qml
+    PolylineRoi.qml
+    Rectangle.qml
+    RectangleRoi.qml
+    RoiHandle.qml
+    RoiHandleRepeater.qml
+    RoiHitTest.js
     ColorMesh.qml
 )
 qt_add_qml_module(QuickGraphLibGraphItems
