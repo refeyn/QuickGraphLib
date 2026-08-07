@@ -3,11 +3,15 @@
 
 #include "Helpers.hpp"
 
+#include <algorithm>
+#include <cmath>
+
 #include <QAbstractTextDocumentLayout>
 #include <QFile>
 #include <QMatrix4x4>
 #include <QPainter>
 #include <QPainterPath>
+#include <QPolygonF>
 #include <QQmlContext>
 #include <QTextDocument>
 #include <QtSvg/QSvgGenerator>
@@ -140,6 +144,28 @@ QPolygonF mapPointsInner(const QList<QPointF>& poly, QMatrix4x4 dataTranform) {
     return newPoly;
 }
 
+QPolygonF pointsFromVariant(QVariant points, const char* caller) {
+    if (points.canConvert<QPolygonF>()) {
+        return points.value<QPolygonF>();
+    }
+    if (points.canConvert<QList<QPointF>>()) {
+        return QPolygonF(points.value<QList<QPointF>>());
+    }
+    if (points.canConvert<QVariantList>()) {
+        QPolygonF convertedPoints;
+        const auto pointList = points.value<QVariantList>();
+        convertedPoints.reserve(pointList.size());
+        for (const auto& point : pointList) {
+            convertedPoints.append(point.toPointF());
+        }
+        return convertedPoints;
+    }
+
+    qWarning() << caller << ": Cannot interpret" << (points.typeName() ? points.typeName() : "null")
+               << "as a list of points";
+    return {};
+}
+
 /*!
     \fn Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform)
 
@@ -170,6 +196,166 @@ QPolygonF Helpers::mapPoints(QVariant points, QMatrix4x4 dataTransform) {
                    << "as a list of points";
         return {};
     }
+}
+
+/*!
+    \fn QRectF Helpers::boundingRect(QVariant points)
+
+    Returns the bounding rectangle of \a points.
+*/
+QRectF Helpers::boundingRect(QVariant points) {
+    /*!
+        \qmlmethod rect Helpers::boundingRect(var points)
+
+        Returns the bounding rectangle of \a points.
+    */
+    return pointsFromVariant(points, "Helpers::boundingRect").boundingRect();
+}
+
+/*!
+    \fn QRectF Helpers::normalizedRect(QRectF rect)
+
+    Returns \a rect with non-negative width and height.
+*/
+QRectF Helpers::normalizedRect(QRectF rect) {
+    /*!
+        \qmlmethod rect Helpers::normalizedRect(rect rect)
+
+        Returns \a rect with non-negative width and height.
+    */
+    return rect.normalized();
+}
+
+/*!
+    \fn QRectF Helpers::clampedResizeRect(QPointF position, QPointF anchor, qreal minimumWidth,
+                                          qreal minimumHeight, int xSign, int ySign)
+
+    Returns a normalized rectangle between \a anchor and \a position. The position is clamped to
+    preserve the non-negative \a minimumWidth and \a minimumHeight in the directions indicated by
+    \a xSign and \a ySign.
+*/
+QRectF Helpers::clampedResizeRect(QPointF position, QPointF anchor, qreal minimumWidth, qreal minimumHeight, int xSign,
+                                  int ySign) {
+    /*!
+        \qmlmethod rect Helpers::clampedResizeRect(point position, point anchor, real minimumWidth,
+                                                    real minimumHeight, int xSign, int ySign)
+
+        Returns a normalized rectangle between \a anchor and \a position. The position is clamped
+        to preserve the non-negative \a minimumWidth and \a minimumHeight in the directions
+        indicated by \a xSign and \a ySign.
+    */
+    minimumWidth = std::max<qreal>(0, minimumWidth);
+    minimumHeight = std::max<qreal>(0, minimumHeight);
+    position.setX(xSign < 0 ? std::min(position.x(), anchor.x() - minimumWidth)
+                            : std::max(position.x(), anchor.x() + minimumWidth));
+    position.setY(ySign < 0 ? std::min(position.y(), anchor.y() - minimumHeight)
+                            : std::max(position.y(), anchor.y() + minimumHeight));
+    return QRectF(position, anchor).normalized();
+}
+
+/*!
+    \fn qreal Helpers::distanceToSegment(QPointF point, QPointF segmentStart, QPointF segmentEnd)
+
+    Returns the shortest distance from \a point to the line segment from \a segmentStart to \a segmentEnd.
+*/
+qreal Helpers::distanceToSegment(QPointF point, QPointF segmentStart, QPointF segmentEnd) {
+    /*!
+        \qmlmethod real Helpers::distanceToSegment(point point, point segmentStart, point segmentEnd)
+
+        Returns the shortest distance from \a point to the line segment from \a segmentStart to \a segmentEnd.
+    */
+    const auto segment = segmentEnd - segmentStart;
+    const auto lengthSquared = QPointF::dotProduct(segment, segment);
+
+    if (lengthSquared == 0) {
+        const auto pointOffset = point - segmentStart;
+        return std::hypot(pointOffset.x(), pointOffset.y());
+    }
+
+    const auto pointOffset = point - segmentStart;
+    const auto t = std::clamp(QPointF::dotProduct(pointOffset, segment) / lengthSquared, 0.0, 1.0);
+    const auto closest = segmentStart + segment * t;
+    const auto delta = point - closest;
+    return std::hypot(delta.x(), delta.y());
+}
+
+/*!
+    \fn bool Helpers::isNearSegment(QPointF point, QPointF segmentStart, QPointF segmentEnd, qreal hitWidth)
+
+    Returns whether \a point is within half \a hitWidth of the segment from \a segmentStart to \a segmentEnd.
+*/
+bool Helpers::isNearSegment(QPointF point, QPointF segmentStart, QPointF segmentEnd, qreal hitWidth) {
+    /*!
+        \qmlmethod bool Helpers::isNearSegment(point point, point segmentStart, point segmentEnd, real hitWidth)
+
+        Returns whether \a point is within half \a hitWidth of the segment from \a segmentStart to \a segmentEnd.
+    */
+    return distanceToSegment(point, segmentStart, segmentEnd) <= hitWidth / 2;
+}
+
+/*!
+    \fn bool Helpers::isNearPolyline(QPointF point, QVariant points, qreal hitWidth, bool closed)
+
+    Returns whether \a point is within half \a hitWidth of any segment in \a points. If \a closed is true, the
+    final point is connected back to the first point.
+*/
+bool Helpers::isNearPolyline(QPointF point, QVariant points, qreal hitWidth, bool closed) {
+    /*!
+        \qmlmethod bool Helpers::isNearPolyline(point point, var points, real hitWidth, bool closed)
+
+        Returns whether \a point is within half \a hitWidth of any segment in \a points. If \a closed is true, the
+        final point is connected back to the first point.
+    */
+    const auto polyline = pointsFromVariant(points, "Helpers::isNearPolyline");
+    if (polyline.size() < 2) {
+        return false;
+    }
+
+    for (qsizetype index = 0; index < polyline.size() - 1; ++index) {
+        if (isNearSegment(point, polyline[index], polyline[index + 1], hitWidth)) {
+            return true;
+        }
+    }
+
+    return closed && isNearSegment(point, polyline.back(), polyline.front(), hitWidth);
+}
+
+/*!
+    \fn bool Helpers::isInsidePolygon(QPointF point, QVariant points)
+
+    Returns whether \a point is inside the polygon defined by \a points.
+*/
+bool Helpers::isInsidePolygon(QPointF point, QVariant points) {
+    /*!
+        \qmlmethod bool Helpers::isInsidePolygon(point point, var points)
+
+        Returns whether \a point is inside the polygon defined by \a points.
+    */
+    const auto polygon = pointsFromVariant(points, "Helpers::isInsidePolygon");
+    if (polygon.size() < 3) {
+        return false;
+    }
+    return polygon.containsPoint(point, Qt::OddEvenFill);
+}
+
+/*!
+    \fn bool Helpers::isInsideEllipse(QPointF point, QPointF center, qreal radiusX, qreal radiusY)
+
+    Returns whether \a point is inside the ellipse centered on \a center with radii \a radiusX and \a radiusY.
+*/
+bool Helpers::isInsideEllipse(QPointF point, QPointF center, qreal radiusX, qreal radiusY) {
+    /*!
+        \qmlmethod bool Helpers::isInsideEllipse(point point, point center, real radiusX, real radiusY)
+
+        Returns whether \a point is inside the ellipse centered on \a center with radii \a radiusX and \a radiusY.
+    */
+    if (radiusX <= 0 || radiusY <= 0) {
+        return false;
+    }
+
+    const auto normalizedX = (point.x() - center.x()) / radiusX;
+    const auto normalizedY = (point.y() - center.y()) / radiusY;
+    return normalizedX * normalizedX + normalizedY * normalizedY <= 1;
 }
 
 void exportPathElementToPainterPath(QObject* element, QPainterPath& path) {
