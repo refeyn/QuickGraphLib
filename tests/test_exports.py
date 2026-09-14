@@ -22,6 +22,7 @@ EXAMPLE_PATHS = [
 ]
 REFERENCE_PATH = pathlib.Path(__file__).parent / "reference_images"
 FONT_PATH = pathlib.Path(__file__).parent / "fonts"
+QML_TEST_DIR = pathlib.Path(__file__).with_name("qml")
 GENERATE_REFERENCE_IMAGES = False
 
 # Getting the same results on different OSes is tricky, so essentially
@@ -97,55 +98,7 @@ def test_export(
         }
     )
     engine.addImportPath(QuickGraphLib.QML_IMPORT_PATH)
-    engine.loadData(
-        rb"""
-import QtQuick
-import QuickGraphLib as QuickGraphLib
-import Tests as Tests
-Window {
-    id: root
-    required property url exampleUrl
-
-    required property url outputGrabUrl
-    required property url outputPngUrl
-    required property url outputSvgUrl
-    required property url outputPictureUrl
-    property bool hasExported: false
-
-    width: 800
-    height: 600
-    visible: true
-    Rectangle {
-        id: content
-        color: "white"
-        anchors.fill: parent
-        border.width: 0
-
-        Loader {
-            id: loader
-            source: exampleUrl
-            anchors.fill: parent
-            asynchronous: true
-        }
-    }
-    onFrameSwapped: {
-        if (root.hasExported || loader.status != Loader.Ready) return;
-        content.ensurePolished();
-        let res = content.grabToImage(result => {
-            result.saveToFile(root.outputGrabUrl);
-            Qt.exit(0);
-        });
-        if (!res) {
-            Qt.exit(1);
-        }
-        QuickGraphLib.Helpers.exportToPng(content, root.outputPngUrl);
-        QuickGraphLib.Helpers.exportToSvg(content, root.outputSvgUrl);
-        Tests.PictureSaver.savePicture(QuickGraphLib.Helpers.exportToPicture(content), root.outputPictureUrl);
-        root.hasExported = true;
-    }
-}
-"""
-    )
+    engine.load(QML_TEST_DIR / "ExportFromQMLTest.qml")
     assert len(engine.rootObjects()) != 0
     engine.quit.connect(qapp.quit)
     assert qapp.exec() == 0
@@ -176,27 +129,10 @@ def test_export_python(
     png_path = tmp_path / f"{example_path.stem}.png"
     svg_path = tmp_path / f"{example_path.stem}.svg"
     picture_path = tmp_path / f"{example_path.stem}.dat"
-    qml_path = tmp_path / f"{example_path.stem}_with_bg.qml"
-    qml_path.write_text(
-        r"""
-import QtQuick
-
-Rectangle {
-    id: root
-    required property url exampleUrl
-    color: "white"
-    border.width: 0
-
-    Loader {
-        source: root.exampleUrl
-        anchors.fill: parent
-    }
-}
-"""
-    )
 
     with python_exporter.export(
-        qml_path, {"exampleUrl": QtCore.QUrl.fromLocalFile(example_path)}
+        QML_TEST_DIR / "ExportFromPythonTest.qml",
+        {"exampleUrl": QtCore.QUrl.fromLocalFile(example_path)},
     ) as item:
         QuickGraphLib.Helpers.exportToPicture(item).save(str(picture_path))
         success = QuickGraphLib.Helpers.exportToPng(
