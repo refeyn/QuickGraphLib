@@ -100,13 +100,25 @@
         The values of \l source are mapped to a color using \l min and \l max (i.e. if the value is
         less than or equal to min, it will be assigned the value at 0; if the value is greater than
         or equal to max, it will be assigned the value at 1).
-        To invert a colormap, swap the values of \l min and \l max.
+        To invert a colormap, swap the values of \l min and \l max or set \l invertColormap.
 
         \note This property has no effect when \l source is a QImage.
 
         \sa ColorMaps::colors
 
         \default ColorMaps.Grayscale
+*/
+
+/*!
+    \qmlproperty bool ImageView::invertColormap
+
+        Whether to invert the colormap
+
+        \note This property has no effect when \l source is a QImage.
+
+        \sa colormap
+
+        \default false
 */
 
 /*!
@@ -128,7 +140,7 @@
 
         Whether the minimum value for the colormap should be determined from \l source.
 
-        \sa ImageView::min
+        \sa min
 
         \default true
 */
@@ -138,7 +150,7 @@
 
         Whether the maximum value for the colormap should be determined from \l source.
 
-        \sa ImageView::max
+        \sa max
 
         \default true
 */
@@ -282,7 +294,7 @@ int indexForCoord(int x, int y, const QSize& size, bool transpose = false) {
     }
 }
 
-std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max) {
+std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max, bool inverted) {
     std::vector<ColormapStop> colormap;
     auto scale = max - min;
     if (auto gradientObj = cmapVar.value<QObject*>()) {
@@ -321,30 +333,39 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max) 
         colormap.emplace_back(ColormapStop{min + scale, scale, QColor(Qt::white).rgba()});
     }
     if (scale < 0) {
+        inverted = !inverted;
+    }
+    if (inverted) {
         std::reverse(colormap.begin(), colormap.end());
     }
     return colormap;
 }
 
+struct ColormapArgs {
+    QVariant colormap;
+    std::optional<qreal> min;
+    std::optional<qreal> max;
+    bool inverted;
+};
+
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
     const QList<qreal>& converted, const QSize& size,
-    std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
+    ColormapArgs colormapArgs, bool transpose
 ) {
     if (size.width() * size.height() != converted.size()) {
         return {};
     }
     auto dataMin = std::numeric_limits<qreal>::infinity(), dataMax = -std::numeric_limits<qreal>::infinity();
-    if (!std::get<1>(colormapArgs).has_value() || !std::get<2>(colormapArgs).has_value()) {
+    if (!colormapArgs.min.has_value() || !colormapArgs.max.has_value()) {
         for (auto v : converted) {
             dataMin = std::min(dataMin, v);
             dataMax = std::max(dataMax, v);
         }
     }
-    auto min = std::get<1>(colormapArgs).value_or(dataMin);
-    auto max = std::get<2>(colormapArgs).value_or(dataMax);
+    auto min = colormapArgs.min.value_or(dataMin);
+    auto max = colormapArgs.max.value_or(dataMax);
     auto colormap = buildColormap(
-        std::get<0>(colormapArgs), std::get<1>(colormapArgs).value_or(dataMin),
-        std::get<2>(colormapArgs).value_or(dataMax)
+        colormapArgs.colormap, min,max,colormapArgs.inverted
     );
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
     QRgb* pixels = reinterpret_cast<QRgb*>(image.bits());
@@ -358,7 +379,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
 }
 
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
-    const QList<QList<qreal>>& converted, std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs,
+    const QList<QList<qreal>>& converted, ColormapArgs colormapArgs,
     bool transpose
 ) {
     QSize size(converted.isEmpty() ? 0 : converted[0].size(), converted.size());
@@ -368,7 +389,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
         }
     }
     auto dataMin = std::numeric_limits<qreal>::infinity(), dataMax = -std::numeric_limits<qreal>::infinity();
-    if (!std::get<1>(colormapArgs).has_value() || !std::get<2>(colormapArgs).has_value()) {
+    if (!colormapArgs.min.has_value() || !colormapArgs.max.has_value()) {
         for (auto& row : converted) {
             for (auto v : row) {
                 dataMin = std::min(dataMin, v);
@@ -376,9 +397,11 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
             }
         }
     }
-    auto min = std::get<1>(colormapArgs).value_or(dataMin);
-    auto max = std::get<2>(colormapArgs).value_or(dataMax);
-    auto colormap = buildColormap(std::get<0>(colormapArgs), min, max);
+    auto min = colormapArgs.min.value_or(dataMin);
+    auto max = colormapArgs.max.value_or(dataMax);
+    auto colormap = buildColormap(
+        colormapArgs.colormap, min,max,colormapArgs.inverted
+    );
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
     QRgb* pixels = reinterpret_cast<QRgb*>(image.bits());
     for (auto y = 0; y < size.height(); ++y) {
@@ -392,7 +415,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
 
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImage(
     const QVariant& data, QSize suggestedSize,
-    std::tuple<QVariant, std::optional<qreal>, std::optional<qreal>> colormapArgs, bool transpose
+    ColormapArgs colormapArgs, bool transpose
 ) {
     if (data.canConvert<QList<qreal>>()) {
         return convertToImageFrom1D(data.value<QList<qreal>>(), suggestedSize, colormapArgs, transpose);
@@ -463,7 +486,7 @@ void ImageView::updatePolish() {
     else {
         auto optionalMin = autoMin() ? std::nullopt : std::optional<qreal>{min()};
         auto optionalMax = autoMax() ? std::nullopt : std::optional<qreal>{max()};
-        auto converted = convertToImage(source, _sourceSize, {colormap(), optionalMin, optionalMax}, transpose());
+        auto converted = convertToImage(source, _sourceSize, {colormap(), optionalMin, optionalMax, invertColormap()}, transpose());
         if (converted) {
             auto [coloredImage, newMin, newMax] = *converted;
             _coloredImage = coloredImage;
