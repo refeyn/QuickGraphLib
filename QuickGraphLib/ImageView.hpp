@@ -19,6 +19,7 @@ class ImageView : public QQuickItem {
     Q_PROPERTY(bool transpose READ transpose WRITE setTranspose NOTIFY transposeChanged BINDABLE bindableTranspose)
     Q_PROPERTY(QVariant source READ source WRITE setSource NOTIFY sourceChanged BINDABLE bindableSource)
     Q_PROPERTY(QVariant colormap READ colormap WRITE setColormap NOTIFY colormapChanged BINDABLE bindableColormap)
+    Q_PROPERTY(bool invertColormap READ invertColormap WRITE setInvertColormap NOTIFY invertColormapChanged BINDABLE bindableInvertColormap)
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY minChanged)
     Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY maxChanged)
     Q_PROPERTY(bool autoMin READ autoMin WRITE setAutoMin NOTIFY autoMinChanged BINDABLE bindableAutoMin)
@@ -71,6 +72,10 @@ class ImageView : public QQuickItem {
     QVariant colormap() const { return colormapProp; }
     QBindable<QVariant> bindableColormap() { return &colormapProp; }
 
+    void setInvertColormap(bool invertColormap) { invertColormapProp = invertColormap; }
+    bool invertColormap() const { return invertColormapProp; }
+    QBindable<bool> bindableInvertColormap() { return &invertColormapProp; }
+
     void setMin(qreal min);
     qreal min() const { return _min; }
 
@@ -104,6 +109,7 @@ class ImageView : public QQuickItem {
     void transposeChanged();
     void sourceChanged();
     void colormapChanged();
+    void invertColormapChanged();
     void minChanged();
     void maxChanged();
     void autoMinChanged();
@@ -121,6 +127,7 @@ class ImageView : public QQuickItem {
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, bool, transposeProp, &ImageView::transposeChanged)
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, QVariant, sourceProp, &ImageView::sourceChanged)
     Q_OBJECT_BINDABLE_PROPERTY(ImageView, QVariant, colormapProp, &ImageView::colormapChanged)
+    Q_OBJECT_BINDABLE_PROPERTY(ImageView, bool, invertColormapProp, &ImageView::invertColormapChanged)
     Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, bool, autoMinProp, true, &ImageView::autoMinChanged)
     Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(ImageView, bool, autoMaxProp, true, &ImageView::autoMaxChanged)
 };
