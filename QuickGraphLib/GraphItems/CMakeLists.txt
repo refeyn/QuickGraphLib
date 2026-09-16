@@ -6,7 +6,9 @@ set(QGL_GI_QML_FILES
     AxVLine.qml
     BarHorizontal.qml
     BarVertical.qml
+    BaseHandles.qml
     BasicLegend.qml
+    GraphHandle.qml
     BoxPlotHorizontal.qml
     BoxPlotVertical.qml
     GraphItemDragHandler.qml
@@ -16,8 +18,18 @@ set(QGL_GI_QML_FILES
     AxVSpan.qml
     BasicLegendItem.qml
     Contour.qml
+    Ellipse.qml
+    EllipseHandles.qml
     Grid.qml
     Line.qml
+    LineSegmentHandles.qml
+    LineSegment.qml
+    Polygon.qml
+    PolygonHandles.qml
+    Polyline.qml
+    PolylineHandles.qml
+    Rectangle.qml
+    RectangleHandles.qml
     ColorMesh.qml
 )
 qt_add_qml_module(QuickGraphLibGraphItems

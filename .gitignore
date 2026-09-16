@@ -2,6 +2,7 @@
 .mypy_cache
 __pycache__
 venv
+build/
 dist
 *.egg-info
 aqtinstall.log
