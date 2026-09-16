@@ -375,6 +375,17 @@ void exportPathElementToPainterPath(QObject* element, QPainterPath& path) {
     else if (element->inherits("QQuickPathMove")) {
         path.moveTo(element->property("x").toDouble(), element->property("y").toDouble());
     }
+    else if (element->inherits("QQuickPathAngleArc")) {
+        auto x = element->property("centerX").toDouble() - element->property("radiusX").toDouble();
+        auto y = element->property("centerY").toDouble() - element->property("radiusY").toDouble();
+        auto width = element->property("radiusX").toDouble() * 2;
+        auto height = element->property("radiusY").toDouble() * 2;
+        auto startAngle = element->property("startAngle").toDouble();
+        if (element->property("moveToStart").toBool()){
+            path.arcMoveTo(x, y, width, height, -startAngle);
+        }
+        path.arcTo(x, y, width, height, -startAngle, -element->property("sweepAngle").toDouble());
+    }
     else if (element->inherits("QQuickPathRectangle")) {
         // Based on the Qt code in qtdeclarative/src/quick/util/qquickpath.cpp
         auto bottomLeftBevel = element->property("bottomLeftBevel").toBool();
