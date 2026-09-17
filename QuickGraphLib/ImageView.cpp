@@ -296,13 +296,22 @@ int indexForCoord(int x, int y, const QSize& size, bool transpose = false) {
 
 std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max, bool inverted) {
     std::vector<ColormapStop> colormap;
+    if (inverted) {
+        std::swap(min, max);
+    }
     auto scale = max - min;
     if (auto gradientObj = cmapVar.value<QObject*>()) {
         if (gradientObj && gradientObj->inherits("QQuickGradient")) {
             auto stops = QQmlListReference(gradientObj, "stops");
+            std::optional<qreal> prevPosition = {};
             for (auto stopsIndex = 0; stopsIndex < stops.size(); ++stopsIndex) {
                 auto stop = stops.at(stopsIndex);
-                auto value = min + stop->property("position").toDouble() * scale;
+                auto position = stop->property("position").toDouble();
+                if (prevPosition && *prevPosition > position) {
+                    continue;
+                }
+                prevPosition = {position};
+                auto value = min + position * scale;
                 auto diff = colormap.size() == 0 ? 0 : value - colormap.back().value;
                 colormap.emplace_back(
                     ColormapStop{value, diff, qPremultiply(stop->property("color").value<QColor>().rgba())}
@@ -317,12 +326,13 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max, 
         auto cmapName = static_cast<ColorMaps::ColorMapName>(cmapVar.toInt());
         auto cmap = colors(cmapName);
         if (cmap.length()) {
-            auto step = scale / cmap.size();
+            auto step = scale / (cmap.size()-1);
             auto pos = min;
             for (const auto& stop : cmap) {
                 colormap.emplace_back(ColormapStop{pos, step, stop});
                 pos += step;
             }
+        colormap.front().diffFromPrev=0;
         }
         else {
             colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::white).rgba()});
@@ -330,13 +340,18 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max, 
     }
     else {
         colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::black).rgba()});
-        colormap.emplace_back(ColormapStop{min + scale, scale, QColor(Qt::white).rgba()});
+        colormap.emplace_back(ColormapStop{max, scale, QColor(Qt::white).rgba()});
     }
     if (scale < 0) {
-        inverted = !inverted;
-    }
-    if (inverted) {
         std::reverse(colormap.begin(), colormap.end());
+        auto next_iter = ++colormap.rbegin();
+        for (auto iter = colormap.rbegin(); next_iter != colormap.rend(); ++iter, ++next_iter) {
+            iter->diffFromPrev = -next_iter->diffFromPrev;
+        }
+        colormap.front().diffFromPrev=0;
+    }
+    for (auto& c : colormap) {
+        Q_ASSERT(c.diffFromPrev>=0);
     }
     return colormap;
 }
