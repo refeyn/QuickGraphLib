@@ -13,16 +13,19 @@ class HistogramHelper : public QObject {
     Q_OBJECT
     QML_ELEMENT
 
-    Q_PROPERTY(QList<qreal> heights READ heights WRITE setHeights NOTIFY heightsChanged BINDABLE bindableHeights
-                   REQUIRED)
+    Q_PROPERTY(
+        QList<qreal> heights READ heights WRITE setHeights NOTIFY heightsChanged BINDABLE bindableHeights REQUIRED
+    )
     Q_PROPERTY(QList<qreal> bins READ bins WRITE setBins NOTIFY binsChanged BINDABLE bindableBins REQUIRED)
-    Q_PROPERTY(QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE
-                   bindableDataTransform REQUIRED)
+    Q_PROPERTY(
+        QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE
+            bindableDataTransform REQUIRED
+    )
     Q_PROPERTY(bool vertical READ vertical WRITE setVertical NOTIFY verticalChanged BINDABLE bindableVertical)
 
     Q_PROPERTY(QPolygonF path READ path NOTIFY pathChanged BINDABLE bindablePath)
    public:
-    explicit HistogramHelper(QObject *parent = nullptr);
+    explicit HistogramHelper(QObject* parent = nullptr);
 
     void setHeights(QList<qreal> heights) { heightsProp = heights; }
     QList<qreal> heights() const { return heightsProp; }

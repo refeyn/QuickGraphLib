@@ -18,6 +18,11 @@ repos:
         entry: venv/Scripts/ruff.exe format
         language: system
         types: [python]
+      - id: clang_format
+        name: "Format C/C++ files"
+        entry: venv/Scripts/clang-format.exe -i
+        types_or: [c, c++]
+        language: system
       - id: gersemi
         name: gersemi
         entry: venv/Scripts/gersemi.exe -i

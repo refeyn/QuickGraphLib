@@ -8,6 +8,6 @@
 #include "../DataTypes.hpp"
 
 namespace ShibokenHelpers {
-QGLDoubleList doubleListFromNDArray(PyObject *pyData);
-QGLPolygonF polygonFFromNDArray(PyObject *pyData);
+QGLDoubleList doubleListFromNDArray(PyObject* pyData);
+QGLPolygonF polygonFFromNDArray(PyObject* pyData);
 }  // namespace ShibokenHelpers

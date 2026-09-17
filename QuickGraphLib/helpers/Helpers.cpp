@@ -3,9 +3,6 @@
 
 #include "Helpers.hpp"
 
-#include <algorithm>
-#include <cmath>
-
 #include <QAbstractTextDocumentLayout>
 #include <QFile>
 #include <QMatrix4x4>
@@ -16,6 +13,8 @@
 #include <QTextDocument>
 #include <QtSvg/QSvgGenerator>
 #include <QtSvg/QSvgRenderer>
+#include <algorithm>
+#include <cmath>
 
 #include "ImageView.hpp"
 
@@ -234,8 +233,9 @@ QRectF Helpers::normalizedRect(QRectF rect) {
     preserve the non-negative \a minimumWidth and \a minimumHeight in the directions indicated by
     \a xSign and \a ySign.
 */
-QRectF Helpers::clampedResizeRect(QPointF position, QPointF anchor, qreal minimumWidth, qreal minimumHeight, int xSign,
-                                  int ySign) {
+QRectF Helpers::clampedResizeRect(
+    QPointF position, QPointF anchor, qreal minimumWidth, qreal minimumHeight, int xSign, int ySign
+) {
     /*!
         \qmlmethod rect Helpers::clampedResizeRect(point position, point anchor, real minimumWidth,
                                                     real minimumHeight, int xSign, int ySign)
@@ -246,10 +246,14 @@ QRectF Helpers::clampedResizeRect(QPointF position, QPointF anchor, qreal minimu
     */
     minimumWidth = std::max<qreal>(0, minimumWidth);
     minimumHeight = std::max<qreal>(0, minimumHeight);
-    position.setX(xSign < 0 ? std::min(position.x(), anchor.x() - minimumWidth)
-                            : std::max(position.x(), anchor.x() + minimumWidth));
-    position.setY(ySign < 0 ? std::min(position.y(), anchor.y() - minimumHeight)
-                            : std::max(position.y(), anchor.y() + minimumHeight));
+    position.setX(
+        xSign < 0 ? std::min(position.x(), anchor.x() - minimumWidth)
+                  : std::max(position.x(), anchor.x() + minimumWidth)
+    );
+    position.setY(
+        ySign < 0 ? std::min(position.y(), anchor.y() - minimumHeight)
+                  : std::max(position.y(), anchor.y() + minimumHeight)
+    );
     return QRectF(position, anchor).normalized();
 }
 
@@ -381,7 +385,7 @@ void exportPathElementToPainterPath(QObject* element, QPainterPath& path) {
         auto width = element->property("radiusX").toDouble() * 2;
         auto height = element->property("radiusY").toDouble() * 2;
         auto startAngle = element->property("startAngle").toDouble();
-        if (element->property("moveToStart").toBool()){
+        if (element->property("moveToStart").toBool()) {
             path.arcMoveTo(x, y, width, height, -startAngle);
         }
         path.arcTo(x, y, width, height, -startAngle, -element->property("sweepAngle").toDouble());
@@ -405,8 +409,7 @@ void exportPathElementToPainterPath(QObject* element, QPainterPath& path) {
         auto rect = QRect(x, y, width, height);
         auto halfStroke = strokeAdjustment * 0.5;
         rect.adjust(halfStroke, halfStroke, -halfStroke, -halfStroke);
-        if (rect.isEmpty())
-            return;
+        if (rect.isEmpty()) return;
 
         // Radii must not exceed half of the width or half of the height
         const qreal maxDiameter = qMin(rect.width(), rect.height());
@@ -420,35 +423,43 @@ void exportPathElementToPainterPath(QObject* element, QPainterPath& path) {
             if (!topRightBevel) {
                 // Rounded corners.
                 path.arcTo(QRectF(QPointF(rect.right() - diamTR, rect.top()), QSizeF(diamTR, diamTR)), 90, -90);
-            } else {
+            }
+            else {
                 // Beveled corners.
                 path.lineTo(QPointF(rect.right() - diamTR * 0.5, rect.top()));
                 path.lineTo(QPointF(rect.right(), rect.top() + diamTR * 0.5));
             }
-        } else {
+        }
+        else {
             // Regular corners.
             path.lineTo(rect.topRight());
         }
 
         if (diamBR) {
             if (!bottomRightBevel) {
-                path.arcTo(QRectF(QPointF(rect.right() - diamBR, rect.bottom() - diamBR), QSizeF(diamBR, diamBR)), 0, -90);
-            } else {
+                path.arcTo(
+                    QRectF(QPointF(rect.right() - diamBR, rect.bottom() - diamBR), QSizeF(diamBR, diamBR)), 0, -90
+                );
+            }
+            else {
                 path.lineTo(QPointF(rect.right(), rect.bottom() - diamBR * 0.5));
                 path.lineTo(QPointF(rect.right() - diamBR * 0.5, rect.bottom()));
             }
-        } else {
+        }
+        else {
             path.lineTo(rect.bottomRight());
         }
 
         if (diamBL) {
             if (!bottomLeftBevel) {
                 path.arcTo(QRectF(QPointF(rect.left(), rect.bottom() - diamBL), QSizeF(diamBL, diamBL)), 270, -90);
-            } else {
+            }
+            else {
                 path.lineTo(QPointF(rect.left() + diamBL * 0.5, rect.bottom()));
                 path.lineTo(QPointF(rect.left(), rect.bottom() - diamBL * 0.5));
             }
-        } else {
+        }
+        else {
             path.lineTo(rect.bottomLeft());
         }
 
@@ -457,7 +468,8 @@ void exportPathElementToPainterPath(QObject* element, QPainterPath& path) {
                 path.arcTo(QRectF(rect.topLeft(), QSizeF(diamTL, diamTL)), 180, -90);
             else
                 path.lineTo(QPointF(rect.left(), rect.top() + diamTL * 0.5));
-        } else {
+        }
+        else {
             path.lineTo(rect.topLeft());
         }
         path.closeSubpath();

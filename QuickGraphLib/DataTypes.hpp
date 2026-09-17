@@ -12,11 +12,11 @@ class QGL_EXPORT QGLPolygonF : public QPolygonF {
    public:
     using QPolygonF::QPolygonF;
     QGLPolygonF() = default;
-    QGLPolygonF(const QList<QPointF> &v) : QPolygonF(v) {}
-    QGLPolygonF(const QPolygonF &v) : QPolygonF(v) {}
-    QGLPolygonF(QList<QPointF> &&v) noexcept : QPolygonF(std::move(v)) {}
-    QGLPolygonF(QPolygonF &&v) noexcept : QPolygonF(std::move(v)) {}
-    inline void swap(QGLPolygonF &other) { QPolygonF::swap(other); }
+    QGLPolygonF(const QList<QPointF>& v) : QPolygonF(v) {}
+    QGLPolygonF(const QPolygonF& v) : QPolygonF(v) {}
+    QGLPolygonF(QList<QPointF>&& v) noexcept : QPolygonF(std::move(v)) {}
+    QGLPolygonF(QPolygonF&& v) noexcept : QPolygonF(std::move(v)) {}
+    inline void swap(QGLPolygonF& other) { QPolygonF::swap(other); }
     operator QVariant() const;
 };
 Q_DECLARE_SHARED(QGLPolygonF)
@@ -25,9 +25,9 @@ class QGL_EXPORT QGLDoubleList : public QList<qreal> {
    public:
     using QList<qreal>::QList;
     QGLDoubleList() = default;
-    QGLDoubleList(const QList<qreal> &v) : QList<qreal>(v) {}
-    QGLDoubleList(QList<qreal> &&v) noexcept : QList<qreal>(std::move(v)) {}
-    inline void swap(QGLDoubleList &other) { QList<qreal>::swap(other); }
+    QGLDoubleList(const QList<qreal>& v) : QList<qreal>(v) {}
+    QGLDoubleList(QList<qreal>&& v) noexcept : QList<qreal>(std::move(v)) {}
+    inline void swap(QGLDoubleList& other) { QList<qreal>::swap(other); }
     operator QVariant() const;
 };
 Q_DECLARE_SHARED(QGLDoubleList)

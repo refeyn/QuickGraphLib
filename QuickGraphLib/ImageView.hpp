@@ -12,14 +12,21 @@ class ImageView : public QQuickItem {
 
     Q_PROPERTY(int fillMode READ fillMode WRITE setFillMode NOTIFY fillModeChanged BINDABLE bindableFillMode)
     Q_PROPERTY(int alignment READ alignment WRITE setAlignment NOTIFY alignmentChanged BINDABLE bindableAlignment)
-    Q_PROPERTY(bool mirrorHorizontally READ mirrorHorizontally WRITE setMirrorHorizontally NOTIFY
-                   mirrorHorizontallyChanged BINDABLE bindableMirrorHorizontally)
-    Q_PROPERTY(bool mirrorVertically READ mirrorVertically WRITE setMirrorVertically NOTIFY mirrorVerticallyChanged
-                   BINDABLE bindableMirrorVertically)
+    Q_PROPERTY(
+        bool mirrorHorizontally READ mirrorHorizontally WRITE setMirrorHorizontally NOTIFY mirrorHorizontallyChanged
+            BINDABLE bindableMirrorHorizontally
+    )
+    Q_PROPERTY(
+        bool mirrorVertically READ mirrorVertically WRITE setMirrorVertically NOTIFY mirrorVerticallyChanged BINDABLE
+            bindableMirrorVertically
+    )
     Q_PROPERTY(bool transpose READ transpose WRITE setTranspose NOTIFY transposeChanged BINDABLE bindableTranspose)
     Q_PROPERTY(QVariant source READ source WRITE setSource NOTIFY sourceChanged BINDABLE bindableSource)
     Q_PROPERTY(QVariant colormap READ colormap WRITE setColormap NOTIFY colormapChanged BINDABLE bindableColormap)
-    Q_PROPERTY(bool invertColormap READ invertColormap WRITE setInvertColormap NOTIFY invertColormapChanged BINDABLE bindableInvertColormap)
+    Q_PROPERTY(
+        bool invertColormap READ invertColormap WRITE setInvertColormap NOTIFY invertColormapChanged BINDABLE
+            bindableInvertColormap
+    )
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY minChanged)
     Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY maxChanged)
     Q_PROPERTY(bool autoMin READ autoMin WRITE setAutoMin NOTIFY autoMinChanged BINDABLE bindableAutoMin)

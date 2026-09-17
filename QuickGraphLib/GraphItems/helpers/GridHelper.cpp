@@ -3,7 +3,7 @@
 
 #include "GridHelper.hpp"
 
-GridHelper::GridHelper(QObject *parent) : QObject{parent} {
+GridHelper::GridHelper(QObject* parent) : QObject{parent} {
     pathsProp.setBinding([&]() -> QList<QPolygonF> {
         auto xTicks = xTicksProp.value();
         auto yTicks = yTicksProp.value();
