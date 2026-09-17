@@ -20,7 +20,7 @@ class AxisTickModel : public QAbstractListModel {
     };
     QList<TickData> _ticks;
     QList<TickData> _newTicks;
-    void _setNewTicks(const QList<TickData> &ticks);
+    void _setNewTicks(const QList<TickData>& ticks);
     friend class AxisHelper;
 
    private slots:
@@ -29,9 +29,9 @@ class AxisTickModel : public QAbstractListModel {
    public:
     enum Roles { PositionRole = Qt::UserRole, ValueRole };
 
-    AxisTickModel(QObject *parent = nullptr);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    AxisTickModel(QObject* parent = nullptr);
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 };
 
@@ -40,23 +40,27 @@ class AxisHelper : public QObject {
     QML_ELEMENT
 
     Q_PROPERTY(QList<qreal> ticks READ ticks WRITE setTicks NOTIFY ticksChanged BINDABLE bindableTicks REQUIRED)
-    Q_PROPERTY(QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE
-                   bindableDataTransform REQUIRED)
-    Q_PROPERTY(int direction READ direction WRITE setDirection NOTIFY directionChanged BINDABLE bindableDirection
-                   REQUIRED)
+    Q_PROPERTY(
+        QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE
+            bindableDataTransform REQUIRED
+    )
+    Q_PROPERTY(
+        int direction READ direction WRITE setDirection NOTIFY directionChanged BINDABLE bindableDirection REQUIRED
+    )
     Q_PROPERTY(qreal width READ width WRITE setWidth NOTIFY widthChanged BINDABLE bindableWidth REQUIRED)
     Q_PROPERTY(qreal height READ height WRITE setHeight NOTIFY heightChanged BINDABLE bindableHeight REQUIRED)
-    Q_PROPERTY(qreal tickLength READ tickLength WRITE setTickLength NOTIFY tickLengthChanged BINDABLE bindableTickLength
+    Q_PROPERTY(
+        qreal tickLength READ tickLength WRITE setTickLength NOTIFY tickLengthChanged BINDABLE bindableTickLength
     )
 
     Q_PROPERTY(QPolygonF path READ path NOTIFY pathChanged BINDABLE bindablePath)
-    Q_PROPERTY(AxisTickModel *tickModel READ tickModel CONSTANT)
+    Q_PROPERTY(AxisTickModel* tickModel READ tickModel CONSTANT)
 
     QList<int> _cachedTickPositions;
-    AxisTickModel *_tickModel = nullptr;
+    AxisTickModel* _tickModel = nullptr;
 
    public:
-    explicit AxisHelper(QObject *parent = nullptr);
+    explicit AxisHelper(QObject* parent = nullptr);
 
     void setTicks(QList<qreal> ticks) { ticksProp = ticks; }
     QList<qreal> ticks() const { return ticksProp; }
@@ -85,7 +89,7 @@ class AxisHelper : public QObject {
     QPolygonF path() const { return pathProp; }
     QBindable<QPolygonF> bindablePath() { return &pathProp; }
 
-    AxisTickModel *tickModel() const { return _tickModel; }
+    AxisTickModel* tickModel() const { return _tickModel; }
 
    signals:
     void ticksChanged();

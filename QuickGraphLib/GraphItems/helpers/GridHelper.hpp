@@ -15,13 +15,16 @@ class GridHelper : public QObject {
 
     Q_PROPERTY(QList<qreal> xTicks READ xTicks WRITE setXTicks NOTIFY xTicksChanged BINDABLE bindableXTicks REQUIRED)
     Q_PROPERTY(QList<qreal> yTicks READ yTicks WRITE setYTicks NOTIFY yTicksChanged BINDABLE bindableYTicks REQUIRED)
-    Q_PROPERTY(QRectF viewRect READ viewRect WRITE setViewRect NOTIFY viewRectChanged BINDABLE bindableViewRect REQUIRED
+    Q_PROPERTY(
+        QRectF viewRect READ viewRect WRITE setViewRect NOTIFY viewRectChanged BINDABLE bindableViewRect REQUIRED
     )
-    Q_PROPERTY(QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE
-                   bindableDataTransform REQUIRED)
+    Q_PROPERTY(
+        QMatrix4x4 dataTransform READ dataTransform WRITE setDataTransform NOTIFY dataTransformChanged BINDABLE
+            bindableDataTransform REQUIRED
+    )
     Q_PROPERTY(QList<QPolygonF> paths READ paths NOTIFY pathsChanged BINDABLE bindablePaths)
    public:
-    explicit GridHelper(QObject *parent = nullptr);
+    explicit GridHelper(QObject* parent = nullptr);
 
     void setXTicks(QList<qreal> xTicks) { xTicksProp = xTicks; }
     QList<qreal> xTicks() const { return xTicksProp; }

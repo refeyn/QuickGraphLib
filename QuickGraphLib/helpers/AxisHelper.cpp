@@ -5,7 +5,7 @@
 
 enum Direction { Left, Right, Top, Bottom };
 
-AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
+AxisHelper::AxisHelper(QObject* parent) : QObject{parent} {
     _tickModel = new AxisTickModel(this);
     connect(this, &AxisHelper::pathChanged, _tickModel, &AxisTickModel::_updateToNewTicks);
 
@@ -48,7 +48,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
         // Transform into the correct positions
         switch (direction) {
             case Left: {
-                for (auto &p : points) {
+                for (auto& p : points) {
                     auto x = p.x();
                     p.setX(width - p.y());
                     p.setY(x);
@@ -56,7 +56,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
                 break;
             }
             case Right: {
-                for (auto &p : points) {
+                for (auto& p : points) {
                     auto x = p.x();
                     p.setX(p.y());
                     p.setY(x);
@@ -64,7 +64,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
                 break;
             }
             case Top: {
-                for (auto &p : points) {
+                for (auto& p : points) {
                     p.setY(height - p.y());
                 }
                 break;
@@ -76,7 +76,7 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
 
         // Axis stroke width is 1px, so round positions to the nearest half pixel so that the line covers a single
         // pixel.
-        for (auto &p : points) {
+        for (auto& p : points) {
             p.setY(round(p.y() + 0.5) - 0.5);
             p.setX(round(p.x() + 0.5) - 0.5);
         }
@@ -96,11 +96,11 @@ AxisHelper::AxisHelper(QObject *parent) : QObject{parent} {
     });
 }
 
-AxisTickModel::AxisTickModel(QObject *parent) : QAbstractListModel(parent) {}
+AxisTickModel::AxisTickModel(QObject* parent) : QAbstractListModel(parent) {}
 
-int AxisTickModel::rowCount(const QModelIndex &parent) const { return parent.isValid() ? 0 : _ticks.size(); }
+int AxisTickModel::rowCount(const QModelIndex& parent) const { return parent.isValid() ? 0 : _ticks.size(); }
 
-QVariant AxisTickModel::data(const QModelIndex &index, int role) const {
+QVariant AxisTickModel::data(const QModelIndex& index, int role) const {
     if (!checkIndex(index, CheckIndexOption::IndexIsValid | CheckIndexOption::ParentIsInvalid)) {
         return {};
     }
@@ -129,7 +129,7 @@ QHash<int, QByteArray> AxisTickModel::roleNames() const {
     };
 }
 
-void AxisTickModel::_setNewTicks(const QList<AxisTickModel::TickData> &ticks) { _newTicks = ticks; }
+void AxisTickModel::_setNewTicks(const QList<AxisTickModel::TickData>& ticks) { _newTicks = ticks; }
 
 void AxisTickModel::_updateToNewTicks() {
     auto oldCount = _ticks.count();

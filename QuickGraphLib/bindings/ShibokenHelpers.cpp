@@ -6,11 +6,11 @@
 #include <sbknumpyview.h>
 
 template <class T>
-QGLDoubleList _doubleListFromNDArray(const T *data, qsizetype length) {
+QGLDoubleList _doubleListFromNDArray(const T* data, qsizetype length) {
     return QGLDoubleList(data, &data[length]);
 }
 
-QGLDoubleList ShibokenHelpers::doubleListFromNDArray(PyObject *pyData) {
+QGLDoubleList ShibokenHelpers::doubleListFromNDArray(PyObject* pyData) {
     auto view = Shiboken::Numpy::View::fromPyObject(pyData);
     if (!view) {
         PyErr_Format(PyExc_TypeError, "Invalid array passed to QGLDoubleList.fromNDArray");
@@ -25,27 +25,27 @@ QGLDoubleList ShibokenHelpers::doubleListFromNDArray(PyObject *pyData) {
 
     switch (view.type) {
         case Shiboken::Numpy::View::Int16:
-            return _doubleListFromNDArray(reinterpret_cast<const int16_t *>(view.data), length);
+            return _doubleListFromNDArray(reinterpret_cast<const int16_t*>(view.data), length);
         case Shiboken::Numpy::View::Unsigned16:
-            return _doubleListFromNDArray(reinterpret_cast<const uint16_t *>(view.data), length);
+            return _doubleListFromNDArray(reinterpret_cast<const uint16_t*>(view.data), length);
         case Shiboken::Numpy::View::Int:
-            return _doubleListFromNDArray(reinterpret_cast<const int *>(view.data), length);
+            return _doubleListFromNDArray(reinterpret_cast<const int*>(view.data), length);
         case Shiboken::Numpy::View::Unsigned:
-            return _doubleListFromNDArray(reinterpret_cast<const unsigned *>(view.data), length);
+            return _doubleListFromNDArray(reinterpret_cast<const unsigned*>(view.data), length);
         case Shiboken::Numpy::View::Int64:
-            return _doubleListFromNDArray(reinterpret_cast<const int64_t *>(view.data), length);
+            return _doubleListFromNDArray(reinterpret_cast<const int64_t*>(view.data), length);
         case Shiboken::Numpy::View::Unsigned64:
-            return _doubleListFromNDArray(reinterpret_cast<const uint64_t *>(view.data), length);
+            return _doubleListFromNDArray(reinterpret_cast<const uint64_t*>(view.data), length);
         case Shiboken::Numpy::View::Float:
-            return _doubleListFromNDArray(reinterpret_cast<const float *>(view.data), length);
+            return _doubleListFromNDArray(reinterpret_cast<const float*>(view.data), length);
         case Shiboken::Numpy::View::Double:
-            return _doubleListFromNDArray(reinterpret_cast<const double *>(view.data), length);
+            return _doubleListFromNDArray(reinterpret_cast<const double*>(view.data), length);
     }
     return {};
 }
 
 template <class T>
-QGLPolygonF _polygonFFromNDArray(const T *data, qsizetype length) {
+QGLPolygonF _polygonFFromNDArray(const T* data, qsizetype length) {
     QGLPolygonF result;
     result.reserve(length);
     for (auto i = 0; i < length; ++i) {
@@ -55,7 +55,7 @@ QGLPolygonF _polygonFFromNDArray(const T *data, qsizetype length) {
     return result;
 }
 
-QGLPolygonF ShibokenHelpers::polygonFFromNDArray(PyObject *pyData) {
+QGLPolygonF ShibokenHelpers::polygonFFromNDArray(PyObject* pyData) {
     auto view = Shiboken::Numpy::View::fromPyObject(pyData);
     if (!view) {
         PyErr_Format(PyExc_TypeError, "Invalid array passed to QGLPolygonF.fromNDArray");
@@ -77,21 +77,21 @@ QGLPolygonF ShibokenHelpers::polygonFFromNDArray(PyObject *pyData) {
 
     switch (view.type) {
         case Shiboken::Numpy::View::Int16:
-            return _polygonFFromNDArray(reinterpret_cast<const int16_t *>(view.data), length);
+            return _polygonFFromNDArray(reinterpret_cast<const int16_t*>(view.data), length);
         case Shiboken::Numpy::View::Unsigned16:
-            return _polygonFFromNDArray(reinterpret_cast<const uint16_t *>(view.data), length);
+            return _polygonFFromNDArray(reinterpret_cast<const uint16_t*>(view.data), length);
         case Shiboken::Numpy::View::Int:
-            return _polygonFFromNDArray(reinterpret_cast<const int *>(view.data), length);
+            return _polygonFFromNDArray(reinterpret_cast<const int*>(view.data), length);
         case Shiboken::Numpy::View::Unsigned:
-            return _polygonFFromNDArray(reinterpret_cast<const unsigned *>(view.data), length);
+            return _polygonFFromNDArray(reinterpret_cast<const unsigned*>(view.data), length);
         case Shiboken::Numpy::View::Int64:
-            return _polygonFFromNDArray(reinterpret_cast<const int64_t *>(view.data), length);
+            return _polygonFFromNDArray(reinterpret_cast<const int64_t*>(view.data), length);
         case Shiboken::Numpy::View::Unsigned64:
-            return _polygonFFromNDArray(reinterpret_cast<const uint64_t *>(view.data), length);
+            return _polygonFFromNDArray(reinterpret_cast<const uint64_t*>(view.data), length);
         case Shiboken::Numpy::View::Float:
-            return _polygonFFromNDArray(reinterpret_cast<const float *>(view.data), length);
+            return _polygonFFromNDArray(reinterpret_cast<const float*>(view.data), length);
         case Shiboken::Numpy::View::Double:
-            return _polygonFFromNDArray(reinterpret_cast<const double *>(view.data), length);
+            return _polygonFFromNDArray(reinterpret_cast<const double*>(view.data), length);
     }
     return {};
 }

@@ -13,7 +13,7 @@ class QuickGraphLibPlugin : public QQmlEngineExtensionPlugin {
     Q_PLUGIN_METADATA(IID QQmlEngineExtensionInterface_iid)
 
    public:
-    QuickGraphLibPlugin(QObject *parent = nullptr) : QQmlEngineExtensionPlugin(parent) {
+    QuickGraphLibPlugin(QObject* parent = nullptr) : QQmlEngineExtensionPlugin(parent) {
         volatile auto registration = &qml_register_types_QuickGraphLib;
         Q_UNUSED(registration)
         registerConvertions();

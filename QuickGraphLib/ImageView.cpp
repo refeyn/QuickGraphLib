@@ -326,13 +326,13 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max, 
         auto cmapName = static_cast<ColorMaps::ColorMapName>(cmapVar.toInt());
         auto cmap = colors(cmapName);
         if (cmap.length()) {
-            auto step = scale / (cmap.size()-1);
+            auto step = scale / (cmap.size() - 1);
             auto pos = min;
             for (const auto& stop : cmap) {
                 colormap.emplace_back(ColormapStop{pos, step, stop});
                 pos += step;
             }
-        colormap.front().diffFromPrev=0;
+            colormap.front().diffFromPrev = 0;
         }
         else {
             colormap.emplace_back(ColormapStop{min, 0, QColor(Qt::white).rgba()});
@@ -348,10 +348,10 @@ std::vector<ColormapStop> buildColormap(QVariant cmapVar, qreal min, qreal max, 
         for (auto iter = colormap.rbegin(); next_iter != colormap.rend(); ++iter, ++next_iter) {
             iter->diffFromPrev = -next_iter->diffFromPrev;
         }
-        colormap.front().diffFromPrev=0;
+        colormap.front().diffFromPrev = 0;
     }
     for (auto& c : colormap) {
-        Q_ASSERT(c.diffFromPrev>=0);
+        Q_ASSERT(c.diffFromPrev >= 0);
     }
     return colormap;
 }
@@ -364,8 +364,7 @@ struct ColormapArgs {
 };
 
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
-    const QList<qreal>& converted, const QSize& size,
-    ColormapArgs colormapArgs, bool transpose
+    const QList<qreal>& converted, const QSize& size, ColormapArgs colormapArgs, bool transpose
 ) {
     if (size.width() * size.height() != converted.size()) {
         return {};
@@ -379,9 +378,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
     }
     auto min = colormapArgs.min.value_or(dataMin);
     auto max = colormapArgs.max.value_or(dataMax);
-    auto colormap = buildColormap(
-        colormapArgs.colormap, min,max,colormapArgs.inverted
-    );
+    auto colormap = buildColormap(colormapArgs.colormap, min, max, colormapArgs.inverted);
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
     QRgb* pixels = reinterpret_cast<QRgb*>(image.bits());
     for (auto x = 0; x < size.width(); ++x) {
@@ -394,8 +391,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom1D(
 }
 
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
-    const QList<QList<qreal>>& converted, ColormapArgs colormapArgs,
-    bool transpose
+    const QList<QList<qreal>>& converted, ColormapArgs colormapArgs, bool transpose
 ) {
     QSize size(converted.isEmpty() ? 0 : converted[0].size(), converted.size());
     for (const auto& row : converted) {
@@ -414,9 +410,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
     }
     auto min = colormapArgs.min.value_or(dataMin);
     auto max = colormapArgs.max.value_or(dataMax);
-    auto colormap = buildColormap(
-        colormapArgs.colormap, min,max,colormapArgs.inverted
-    );
+    auto colormap = buildColormap(colormapArgs.colormap, min, max, colormapArgs.inverted);
     QImage image(size, QImage::Format_ARGB32_Premultiplied);
     QRgb* pixels = reinterpret_cast<QRgb*>(image.bits());
     for (auto y = 0; y < size.height(); ++y) {
@@ -429,8 +423,7 @@ std::optional<std::tuple<QImage, qreal, qreal>> convertToImageFrom2D(
 }
 
 std::optional<std::tuple<QImage, qreal, qreal>> convertToImage(
-    const QVariant& data, QSize suggestedSize,
-    ColormapArgs colormapArgs, bool transpose
+    const QVariant& data, QSize suggestedSize, ColormapArgs colormapArgs, bool transpose
 ) {
     if (data.canConvert<QList<qreal>>()) {
         return convertToImageFrom1D(data.value<QList<qreal>>(), suggestedSize, colormapArgs, transpose);
@@ -501,7 +494,8 @@ void ImageView::updatePolish() {
     else {
         auto optionalMin = autoMin() ? std::nullopt : std::optional<qreal>{min()};
         auto optionalMax = autoMax() ? std::nullopt : std::optional<qreal>{max()};
-        auto converted = convertToImage(source, _sourceSize, {colormap(), optionalMin, optionalMax, invertColormap()}, transpose());
+        auto converted =
+            convertToImage(source, _sourceSize, {colormap(), optionalMin, optionalMax, invertColormap()}, transpose());
         if (converted) {
             auto [coloredImage, newMin, newMax] = *converted;
             _coloredImage = coloredImage;
