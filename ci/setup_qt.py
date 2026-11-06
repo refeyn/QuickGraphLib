@@ -28,7 +28,7 @@ subprocess.run(
     [
         f"{prefix}pip",
         "install",
-        "aqtinstall==3.3.*",
+        "git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7",
     ],
     check=True,
 )
@@ -40,7 +40,7 @@ subprocess.run(
         "install-qt",
         qt_platform,
         "desktop",
-        "6.10.0",
+        "6.11.3",
         qt_arch,
         "-O",
         "./qt",

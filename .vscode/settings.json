@@ -1,5 +1,6 @@
 {
     "qtForPython.qmlls.options": [
         "--build-dir build"
-    ]
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }

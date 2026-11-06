@@ -27,8 +27,8 @@ python examples/gallery.py
 
 ## Qt version compatibility
 
-This version of QuickGraphLib is compatible with Qt and PySide6 6.10.0. If you use this module from C++, then Qt's ABI stability guarantees means the compiled binaries will work for any Qt version >= 6.10 and < 7.0. If you use this module from Python, there are some additional features that rely on the PySide6 library version. Therefore the PySide6 version must be 6.10.0 exactly. Other 6.10 versions of PySide6 may work, but there are no guarantees.
+This version of QuickGraphLib is compatible with Qt and PySide6 6.11.3. If you use this module from C++, then Qt's ABI stability guarantees means the compiled binaries will work for any Qt version >= 6.11 and < 7.0. If you use this module from Python, there are some additional features that rely on the PySide6 library version. Therefore the PySide6 version must be 6.11.3 exactly. Other 6.11 versions of PySide6 may work, but there are no guarantees.
 
 ## Python version compatibility
 
-QuickGraphLib is compatible with the same Python versions and glibc versions that PySide6 is. For PySide6 6.10, the minimum Python version is 3.9.
+QuickGraphLib is compatible with the same Python versions and glibc versions that PySide6 is. For PySide6 6.11, the minimum Python version is 3.10.

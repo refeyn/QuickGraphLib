@@ -19,7 +19,6 @@ QQS.ShapePath {
 
     property QGLGraphItems.GridHelper _helper: QGLGraphItems.GridHelper {
         id: helper
-
     }
 
     /*!

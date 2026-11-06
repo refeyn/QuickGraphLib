@@ -34,7 +34,6 @@ QQL.ColumnLayout {
     }
     ConwayProvider.ConwayProvider {
         id: conwayProvider
-
     }
     QQL.RowLayout {
         QQC.Button {

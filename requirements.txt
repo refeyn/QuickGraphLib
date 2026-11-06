@@ -21,9 +21,9 @@ platformdirs==4.5.0
 pluggy==1.6.0
 pre_commit==4.4.0
 Pygments==2.20.0
-PySide6==6.10.0
-PySide6_Addons==6.10.0
-PySide6_Essentials==6.10.0
+PySide6==6.11.3
+PySide6_Addons==6.11.3
+PySide6_Essentials==6.11.3
 pytest==9.0.3
 pytest-cov==7.0.0
 PyYAML==6.0.3
@@ -31,7 +31,7 @@ ruff==0.14.5
 scikit_build_core==0.11.6
 setuptools==80.9.0
 setuptools-scm==9.2.2
-shiboken6==6.10.0
-shiboken6_generator==6.10.0
+shiboken6==6.11.3
+shiboken6_generator==6.11.3
 typing_extensions==4.15.0
 virtualenv==20.36.1
