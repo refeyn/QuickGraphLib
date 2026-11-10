@@ -135,33 +135,27 @@ QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum) {
 }
 
 /*!
-    \fn int Helpers::displayDecimalPoints(QRect viewRect, Qt::Orientation orientation, QList<qreal> ticks)
+    \fn int Helpers::displayDecimalPoints(qreal axisRange, QList<qreal> ticks)
 
-    Return the best number of decimal points for displaying ticks on an axis. This function considers the axis range
-    using \a viewRect and \a orientation, as well as the range and spacing of the \a ticks. The returned number of
-    decimal places does not guarantee that the tick value displayed is not rounded.
+    Return the best number of decimal points for displaying ticks on an axis. This function considers the \a axisRange,
+    as well as the range and spacing of the \a ticks. The returned number of decimal places does not guarantee that the
+    tick value displayed is not rounded.
 */
-int Helpers::displayDecimalPoints(QRectF viewRect, Qt::Orientation orientation, QList<qreal> ticks) {
+int Helpers::displayDecimalPoints(qreal axisRange, QList<qreal> ticks) {
     /*!
-        \qmlmethod int Helpers::displayDecimalPoints(rect viewRect, enumeration orientation, list<real> ticks)
+        \qmlmethod int Helpers::displayDecimalPoints(real axisRange, list<real> ticks)
 
-        Return the best number of decimal points for displaying ticks on an axis. This function considers the axis range
-        using \a viewRect and \a orientation, as well as the range and spacing of the \a ticks. The returned number of
-        decimal places does not guarantee that the tick value displayed is not rounded.
+        Return the best number of decimal points for displaying ticks on an axis. This function considers the \a
+        axisRange, as well as the range and spacing of the \a ticks. The returned number of decimal places does not
+        guarantee that the tick value displayed is not rounded.
     */
     int decimals = 0;
     // Consider the overall axis range
-    auto axisRange = orientation == Qt::Horizontal ? viewRect.width() : viewRect.height();
     if (axisRange) {
         decimals = std::max(decimals, 2 - static_cast<int>(std::floor(std::log10(axisRange))));
     }
     if (ticks.size() >= 2) {
         std::sort(ticks.begin(), ticks.end());
-        // Consider the tick range
-        auto tickRange = ticks.back() - ticks.front();
-        if (tickRange) {
-            decimals = std::max(decimals, 2 - static_cast<int>(std::floor(std::log10(tickRange))));
-        }
         // Consider the differences between ticks
         qreal minTickDiff = std::numeric_limits<qreal>::infinity();
         for (auto leftIter = ticks.begin(), rightIter = ++ticks.begin(); rightIter != ticks.end();

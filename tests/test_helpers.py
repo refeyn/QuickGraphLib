@@ -1,8 +1,6 @@
 # SPDX-FileCopyrightText: Copyright (c) 2024 Refeyn Ltd and other QuickGraphLib contributors
 # SPDX-License-Identifier: MIT
 
-from PySide6 import QtCore
-
 import QuickGraphLib
 
 
@@ -14,55 +12,13 @@ def test_tick_locator() -> None:
 
 
 def test_decimal_points() -> None:
+    assert QuickGraphLib.Helpers.displayDecimalPoints(100, [0, 10, 100]) == 0
+    assert QuickGraphLib.Helpers.displayDecimalPoints(100, [0, 0.5, 100]) == 1
+    assert QuickGraphLib.Helpers.displayDecimalPoints(100, [0, 0.05, 100]) == 2
+    assert QuickGraphLib.Helpers.displayDecimalPoints(10, [0, 100]) == 1
     assert (
-        QuickGraphLib.Helpers.displayDecimalPoints(
-            QtCore.QRectF(0, 0, 100, 0), QtCore.Qt.Orientation.Horizontal, [0, 10, 100]
-        )
-        == 0
-    )
-    assert (
-        QuickGraphLib.Helpers.displayDecimalPoints(
-            QtCore.QRectF(0, 0, 100, 0), QtCore.Qt.Orientation.Horizontal, [0, 0.5, 100]
-        )
-        == 1
-    )
-    assert (
-        QuickGraphLib.Helpers.displayDecimalPoints(
-            QtCore.QRectF(0, 0, 100, 0),
-            QtCore.Qt.Orientation.Horizontal,
-            [0, 0.05, 100],
-        )
-        == 2
-    )
-    assert (
-        QuickGraphLib.Helpers.displayDecimalPoints(
-            QtCore.QRectF(0, 0, 10, 0),
-            QtCore.Qt.Orientation.Horizontal,
-            [0, 100],
-        )
-        == 1
-    )
-    assert (
-        QuickGraphLib.Helpers.displayDecimalPoints(
-            QtCore.QRectF(0, 0, 1, 0),
-            QtCore.Qt.Orientation.Horizontal,
-            [x / 100 for x in range(101)],
-        )
+        QuickGraphLib.Helpers.displayDecimalPoints(1, [x / 100 for x in range(101)])
         == 3
     )
-    assert (
-        QuickGraphLib.Helpers.displayDecimalPoints(
-            QtCore.QRectF(0, 0, 0, 0),
-            QtCore.Qt.Orientation.Horizontal,
-            [0, 0],
-        )
-        == 0
-    )
-    assert (
-        QuickGraphLib.Helpers.displayDecimalPoints(
-            QtCore.QRectF(0, 0, 0, 0),
-            QtCore.Qt.Orientation.Horizontal,
-            [],
-        )
-        == 0
-    )
+    assert QuickGraphLib.Helpers.displayDecimalPoints(0, [0, 0]) == 0
+    assert QuickGraphLib.Helpers.displayDecimalPoints(0, []) == 0
