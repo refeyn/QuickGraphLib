@@ -21,11 +21,6 @@ option(
     ON
 )
 option(ENABLE_STUB_GENERATION "Enable .pyi stub generation (defaults to on)" ON)
-option(
-    ENABLE_MANYLINUX_BUILD
-    "Enable workarounds for manylinux build (defaults to off)"
-    OFF
-)
 
 if(NOT INSTALL_SUBPATH)
     set(INSTALL_SUBPATH
