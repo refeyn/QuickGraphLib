@@ -21,11 +21,6 @@ option(
     ON
 )
 option(ENABLE_STUB_GENERATION "Enable .pyi stub generation (defaults to on)" ON)
-option(
-    ENABLE_MANYLINUX_BUILD
-    "Enable workarounds for manylinux build (defaults to off)"
-    OFF
-)
 
 if(NOT INSTALL_SUBPATH)
     set(INSTALL_SUBPATH
@@ -36,6 +31,6 @@ if(NOT INSTALL_SUBPATH)
 endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Quick Svg)
-qt_standard_project_setup(REQUIRES 6.10)
+qt_standard_project_setup(REQUIRES 6.11)
 
 add_subdirectory(QuickGraphLib)

@@ -4,7 +4,7 @@ description = "A scientific graphing library for QtQuick"
 readme = "README.md"
 license = { file = "LICENCE" }
 authors = [{ name = "Matthew Joyce", email = "matthew.joyce@refeyn.com" }]
-dependencies = ["PySide6==6.10.0", "contourpy", "numpy"]
+dependencies = ["PySide6==6.11.3", "contourpy", "numpy"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: X11 Applications :: Qt",
@@ -18,7 +18,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dynamic = ["version"]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 [project.urls]
 Homepage = "https://github.com/refeyn/QuickGraphLib"
@@ -39,19 +39,19 @@ analyse = [
     "pytest-cov",
     # Building
     "scikit-build-core",
-    "shiboken6_generator==6.10.0",
+    "shiboken6_generator==6.11.3",
     "setuptools_scm",
 ]
 
 [build-system]
-requires = ["scikit-build-core", "shiboken6_generator==6.10.0", "PySide6==6.10.0"]
+requires = ["scikit-build-core", "shiboken6_generator==6.11.3", "PySide6==6.11.3"]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
 metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"
 sdist.include = ["QuickGraphLib/_version.py"]
 sdist.exclude = [".github", ".vscode"]
-wheel.py-api = "cp39"
+wheel.py-api = "cp310"
 
 [tool.scikit-build.cmake.define]
 INSTALL_SUBPATH = "."
@@ -61,10 +61,10 @@ write_to = "QuickGraphLib/_version.py"
 
 [tool.cibuildwheel]
 build = [
-    "cp39-macosx_x86_64",
-    "cp39-win_amd64",
-    "cp39-manylinux_x86_64",
-    # "cp39-manylinux_aarch64",
+    "cp310-macosx_x86_64",
+    "cp310-win_amd64",
+    "cp310-manylinux_x86_64",
+    # "cp310-manylinux_aarch64",
 ]
 before-all = "python ci/setup_qt.py"
 repair-wheel-command = ""
@@ -87,7 +87,7 @@ manylinux-aarch64-image = "quay.io/pypa/manylinux_2_39_aarch64"
 repair-wheel-command = "cp {wheel} {dest_dir}; pip install wheel; wheel tags --remove --platform-tag $AUDITWHEEL_PLAT {dest_dir}/*.whl"
 
 [tool.cibuildwheel.linux.environment]
-SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\";ENABLE_MANYLINUX_BUILD=ON"
+SKBUILD_CMAKE_DEFINE = "CMAKE_PREFIX_PATH=\"$(python ci/find_qt.py)/lib/cmake\""
 LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:$(python ci/find_qt.py)/lib"
 LLVM_INSTALL_DIR = "/usr"
 
