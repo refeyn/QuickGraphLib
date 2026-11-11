@@ -7,7 +7,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype PolylineHandles
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Item
+    \inherits Item
     \brief Interaction overlay for an open polyline region of interest.
 
     PolylineHandles provides selection, body dragging and vertex handles for a list of points. It does

@@ -9,7 +9,7 @@
 /*!
     \qmltype ColorMaps
     \inqmlmodule QuickGraphLib
-    \inherits QObject
+    \inherits QtObject
     \brief Utility functions for color maps.
 
     \sa {ImageView}, {Builtin color maps}, {Color mapped images}

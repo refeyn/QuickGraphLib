@@ -4,7 +4,7 @@
 /*!
     \title Vertical bar chart
     \ingroup quickgraphlibdemos
-    \brief A simple vertical bar chart
+    \brief A simple vertical bar chart.
     \example barchartVertical
 
     \image examples/BarChartVertical.png

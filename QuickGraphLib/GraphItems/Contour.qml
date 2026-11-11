@@ -8,7 +8,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype Contours
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Draw a contour line or fill.
 
     \sa {Contours}

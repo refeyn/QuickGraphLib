@@ -7,7 +7,7 @@ import QtQuick.Shapes as QQS
 /*!
     \qmltype BarVertical
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays a vertical bar for a bar graph.
 */
 QQS.ShapePath {

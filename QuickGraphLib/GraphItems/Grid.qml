@@ -8,7 +8,7 @@ import QuickGraphLib.GraphItems as QGLGraphItems
 /*!
     \qmltype Grid
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays a grid in the background of a graph.
 
     \sa {Basic sin graph (without prefabs)}

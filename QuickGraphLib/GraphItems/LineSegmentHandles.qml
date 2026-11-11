@@ -7,7 +7,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype LineSegmentHandles
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Item
+    \inherits Item
     \brief Interaction overlay for a line segment region of interest.
 
     LineSegmentHandles provides selection, body dragging and optional handles for a line segment.
@@ -105,11 +105,11 @@ BaseHandles {
     */
     signal moved(point delta)
     /*!
-        Emitted when the first endpoint has moved to \a point.
+        Emitted when the first endpoint has moved to \a position.
     */
     signal point1Moved(point position)
     /*!
-        Emitted when the second endpoint has moved to \a point.
+        Emitted when the second endpoint has moved to \a position.
     */
     signal point2Moved(point position)
 

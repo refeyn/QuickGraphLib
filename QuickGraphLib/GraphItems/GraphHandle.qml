@@ -6,7 +6,7 @@ import QtQuick
 /*!
     \qmltype GraphHandle
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Item
+    \inherits Item
     \brief A draggable handle positioned in graph data coordinates.
 
     GraphHandle is an interaction helper for graph item editors. It renders a small handle at

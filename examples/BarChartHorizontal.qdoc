@@ -4,7 +4,7 @@
 /*!
     \title Horizontal bar chart
     \ingroup quickgraphlibdemos
-    \brief A simple horizontal bar chart
+    \brief A simple horizontal bar chart.
     \example barchartHorizontal
 
     \image examples/BarChartHorizontal.png

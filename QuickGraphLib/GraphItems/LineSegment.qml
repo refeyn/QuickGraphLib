@@ -8,7 +8,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype LineSegment
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays a finite line segment.
 
     Draws a line segment between two points in data coordinates. The style of the segment can be adjusted using the

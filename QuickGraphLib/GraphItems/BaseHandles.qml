@@ -6,7 +6,7 @@ import QtQuick
 /*!
     \qmltype BaseHandles
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Item
+    \inherits Item
     \internal
     \brief Shared base contract for graph handle overlays.
 

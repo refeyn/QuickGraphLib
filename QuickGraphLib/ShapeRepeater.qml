@@ -9,7 +9,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype ShapeRepeater
     \inqmlmodule QuickGraphLib
-    \inherits QtQml::Models::Instantiator
+    \inherits Instantiator
     \brief A \l{Repeater}-like component that works with \l{ShapePath}s.
 
     See the \l{Repeater} documentation for the general concept, and how to access data from the \l Instantiator::model.

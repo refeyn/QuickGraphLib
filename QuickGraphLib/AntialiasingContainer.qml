@@ -10,7 +10,7 @@ import QtQuick
 /*!
     \qmltype AntialiasingContainer
     \inqmlmodule QuickGraphLib
-    \inherits QtQuick::Item
+    \inherits Item
     \brief Enables antialiasing for it's contents.
 
     This item turns on \l {Multisample Antialiasing}. This helps with rendering in some cases.

@@ -7,7 +7,7 @@ import QtQuick.Shapes as QQS
 /*!
     \qmltype Histogram
     \inqmlmodule QuickGraphLib
-    \inherits QtQuick::Shapes::Shape
+    \inherits Shape
     \brief An area that graphs can be added to.
 
     \sa {Basic sin graph (without prefabs)}, {Inverted axes}

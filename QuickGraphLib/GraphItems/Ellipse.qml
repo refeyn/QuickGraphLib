@@ -8,7 +8,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype Ellipse
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays an ellipse in data coordinates.
 
     Draws an ellipse from a bounding Qt rect in data coordinates. The style can be adjusted using the

@@ -7,7 +7,7 @@ import QtQuick.Shapes as QQS
 /*!
     \qmltype Rectangle
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays a rectangle in data coordinates.
 
     Draws a rectangle from a Qt rect in data coordinates. The style can be adjusted using the

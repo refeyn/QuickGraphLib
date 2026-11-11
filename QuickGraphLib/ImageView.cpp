@@ -11,7 +11,8 @@
 /*!
     \qmltype ImageView
     \inqmlmodule QuickGraphLib
-    \inherits QtQuick::Item
+    \inherits Item
+    \nativetype ImageView
     \brief Display a colorized image from a 2D array.
 
     \sa {Builtin color maps}, {Color mapped images}, {Image alignment}

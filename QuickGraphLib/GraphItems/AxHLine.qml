@@ -7,7 +7,7 @@ import QtQuick.Shapes as QQS
 /*!
     \qmltype AxHLine
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays a horizontal line.
 
     \sa {Spans and lines}

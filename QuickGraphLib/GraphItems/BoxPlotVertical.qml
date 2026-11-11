@@ -7,8 +7,8 @@ import QtQuick.Shapes as QQS
 /*!
     \qmltype BoxPLotVertical
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
-    \brief Displays a vertical box plot
+    \inherits ShapePath
+    \brief Displays a vertical box plot.
 */
 QQS.ShapePath {
     id: root

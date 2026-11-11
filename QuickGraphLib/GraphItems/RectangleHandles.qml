@@ -7,7 +7,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype RectangleHandles
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Item
+    \inherits Item
     \brief Interaction overlay for a rectangular region of interest.
 
     RectangleHandles provides selection, body dragging and optional corner handles for a rectangle.

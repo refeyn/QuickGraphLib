@@ -7,7 +7,7 @@ import QtQuick.Shapes as QQS
 /*!
     \qmltype AxVSpan
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays an vertical span.
 
     \sa {Spans and lines}, {Basic histogram}, {Draggable region}

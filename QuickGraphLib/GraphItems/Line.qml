@@ -8,7 +8,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype Line
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays a line graph.
 
     Graph a line using a list of X,Y points. The style of the line can be adjusted using the

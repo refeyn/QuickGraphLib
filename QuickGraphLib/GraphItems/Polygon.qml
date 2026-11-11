@@ -8,7 +8,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype Polygon
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Shapes::ShapePath
+    \inherits ShapePath
     \brief Displays a closed polygon in data coordinates.
 
     Draws a closed polygon through a list of points in data coordinates. The style can be adjusted

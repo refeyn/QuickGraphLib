@@ -20,6 +20,7 @@ QT_VERSION = QT_PATH.parts[-2]
 QDOC_PATH = QT_PATH / "bin/qdoc.exe"
 INDEX_PATH = QT_PATH.parent.parent / ("Docs/Qt-" + QT_VERSION)
 QDOCCONF_PATH = pathlib.Path(__file__).parent / "config.qdocconf"
+OUTPUT_PATH = pathlib.Path(__file__).parent.parent / "dist/docs"
 QT_INSTALL_DOCS = QT_PATH / "doc"
 QT_INCLUDE_PATHS = [
     QT_PATH / "include",
@@ -57,6 +58,8 @@ proc = subprocess.run(
         "-I",
         "QuickGraphLib",
         *(f"-I{path}" for path in QT_INCLUDE_PATHS),
+        "--outputdir",
+        OUTPUT_PATH,
     ],
     env=collections.ChainMap(
         {"QT_INSTALL_DOCS": str(QT_INSTALL_DOCS), "QGL_VERSION": qgl_version},

@@ -9,7 +9,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype Axis
     \inqmlmodule QuickGraphLib
-    \inherits QtQuick::Item
+    \inherits Item
     \brief Displays an Axis.
 
     \sa {Basic sin graph (without prefabs)}, {Graph with all four axes}

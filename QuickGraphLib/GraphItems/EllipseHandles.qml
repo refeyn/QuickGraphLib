@@ -7,7 +7,7 @@ import QuickGraphLib as QuickGraphLib
 /*!
     \qmltype EllipseHandles
     \inqmlmodule QuickGraphLib.GraphItems
-    \inherits QtQuick::Item
+    \inherits Item
     \brief Interaction overlay for an elliptical region of interest.
 
     EllipseHandles provides selection, body dragging and optional cardinal resize handles for an
