@@ -134,6 +134,44 @@ QList<qreal> Helpers::tickLocator(qreal min, qreal max, int maxNum) {
     return linspace(lower, upper, numTicks);
 }
 
+/*!
+    \fn int Helpers::displayDecimalPoints(qreal axisRange, QList<qreal> ticks)
+
+    Return the best number of decimal points for displaying ticks on an axis. This function considers the \a axisRange,
+    as well as the range and spacing of the \a ticks. The returned number of decimal places does not guarantee that the
+    tick value displayed is not rounded.
+*/
+int Helpers::displayDecimalPoints(qreal axisRange, QList<qreal> ticks) {
+    /*!
+        \qmlmethod int Helpers::displayDecimalPoints(real axisRange, list<real> ticks)
+
+        Return the best number of decimal points for displaying ticks on an axis. This function considers the \a
+        axisRange, as well as the range and spacing of the \a ticks. The returned number of decimal places does not
+        guarantee that the tick value displayed is not rounded.
+    */
+    int decimals = 0;
+    // Consider the overall axis range
+    if (axisRange) {
+        decimals = std::max(decimals, 2 - static_cast<int>(std::floor(std::log10(axisRange))));
+    }
+    if (ticks.size() >= 2) {
+        std::sort(ticks.begin(), ticks.end());
+        // Consider the differences between ticks
+        qreal minTickDiff = std::numeric_limits<qreal>::infinity();
+        for (auto leftIter = ticks.begin(), rightIter = ++ticks.begin(); rightIter != ticks.end();
+             ++leftIter, ++rightIter) {
+            auto diff = *rightIter - *leftIter;
+            if (diff) {
+                minTickDiff = std::min(minTickDiff, diff);
+            }
+        }
+        if (std::isfinite(minTickDiff)) {
+            decimals = std::max(decimals, -static_cast<int>(std::floor(std::log10(minTickDiff))));
+        }
+    }
+    return decimals;
+}
+
 QPolygonF mapPointsInner(const QList<QPointF>& poly, QMatrix4x4 dataTranform) {
     QPolygonF newPoly;
     newPoly.reserve(poly.size());

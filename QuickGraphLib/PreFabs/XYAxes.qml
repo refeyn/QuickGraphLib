@@ -159,6 +159,7 @@ Item {
 
             QQL.Layout.fillHeight: true
             dataTransform: grapharea.dataTransform
+            decimalPoints: QuickGraphLib.Helpers.displayDecimalPoints(grapharea.viewRect.height, grid.yTicks)
             direction: QuickGraphLib.Axis.Direction.Left
             ticks: grid.yTicks
         }
@@ -186,6 +187,7 @@ Item {
 
             QQL.Layout.fillWidth: true
             dataTransform: grapharea.dataTransform
+            decimalPoints: QuickGraphLib.Helpers.displayDecimalPoints(grapharea.viewRect.width, grid.xTicks)
             direction: QuickGraphLib.Axis.Direction.Bottom
             ticks: grid.xTicks
         }
